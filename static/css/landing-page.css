@@ -1,0 +1,72 @@
+.main-content {
+    display: flex;
+    align-items: center;
+    /* background-color: rgb(184, 65, 65); */
+    height: 100vh;
+    width: 100%;
+
+}
+
+#logo {
+    width: 100px;
+}
+
+#navBar {
+    background-color: #FD009B;
+}
+
+#signBtn {
+    background-color: transparent;
+    border: none;
+    color:white;
+}
+
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+}
+
+
+#upload-btn, #browseFile {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 150px;
+    padding: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#upload-btn h3, #browseFile h3 {
+    /* color: black; */
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#upload-btn:hover, #browseFile:hover {
+    background-color:#FD009B;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: white !important;
+}
+
+
+.upload-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 300px;
+    background-color: aqua;
+}
