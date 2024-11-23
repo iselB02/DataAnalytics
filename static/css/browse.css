@@ -1,0 +1,25 @@
+.browse-container{
+    background-color: rgb(30, 146, 146);
+    height: 100%;
+}
+
+.title {
+    /* background-color: aqua; */
+}
+
+.browse-history{
+    /* background-color: aquamarine; */
+    height: 80%;
+    padding: 50px 20px 20px 20px;
+}
+
+.browse-buttons {
+    /* background-color: rgb(85, 222, 176); */
+    height: auto;
+}
+
+.browse-buttons button {
+    background-color: transparent;
+    border: none;
+    margin-right: 30px;
+}

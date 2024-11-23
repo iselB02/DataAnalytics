@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<div class="main-cleaning-container">
+    <h1 class="title">Data Cleaning</h1>
+    <div class="cleaning-container">
+        <div class="cleaning-tools">
+            <div class="cleaning-selections">
+                <button data-tool="missing-val">Missing Value</button>
+                <button data-tool="duplicates">Duplicates</button>
+                <button data-tool="format">Format</button>
+            </div>
+            <div class="cleaning-tool">
+                <div id="missing-val">
+                    <div id="row">
+                        <div>
+                            <button>remove all row</button>
+                            <button>remove all row in specific column</button>
+                        </div>
+                        <h3>row</h3>
+                    </div>
+                    <div id="col">
+                        <button>remove the entire column</button>
+                        <h3>column</h3>
+                    </div>
+                    <div id="fill">
+                        <div>
+                            <button>Forward</button>
+                            <button>Backward</button>
+                        </div>
+                        <h3>fill</h3>
+                    </div>
+                    <div id="interpolation">
+                        <button>Interpolation</button>
+                        <h3>Interpolation</h3>
+                    </div>
+                </div>
+                <div id="format">
+                    <button>Upercase</button>
+                    <button>Lowercase</button>
+                    <button>Capitalize each word</button>
+                </div>
+                <div id="duplicates">
+                    <button>Remove Duplicates</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="main-cleaning">
+            <div class="table-container">
+                {{ table_html | safe }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

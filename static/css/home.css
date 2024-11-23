@@ -1,0 +1,48 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    background-color: rgb(116, 125, 125);
+    height: 100%;
+    padding: 10px;
+}
+
+.new {
+    border: none;
+    background-color: blue;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+    width: 100px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.new:hover {
+    cursor: pointer;
+}
+
+.history {
+    /* background-color: aqua; */
+    height: 70%;
+    overflow-y: auto;
+}
+
+ul {
+    margin-top: 20px;
+    /* background-color: aquamarine; */
+}
+
+li {
+    list-style: none;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+li {
+    display: flex;
+    padding: 5px 5px 5px 0px;
+    gap: 20px;
+}

@@ -1,0 +1,35 @@
+.createNew-container {
+    background-color: rgb(175, 197, 197);
+    height: 100%;
+}
+
+h1 {
+    /* background-color: blue; */
+    padding: 20px 0px 0px 20px;
+    height: 5%;
+}
+
+.buttons-create button {
+    border: none;
+    border-radius: 10px;
+    width: 150px;
+    height: 100px;
+}
+
+.buttons-create button svg {
+    color: black;
+}
+
+.buttons-create button:hover {
+    cursor: pointer;
+}
+
+.buttons-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* background-color: aquamarine; */
+    height: 90%;
+}
