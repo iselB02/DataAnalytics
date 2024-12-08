@@ -1,13 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('uploadModal');
     const uploadSelect = document.getElementById('uploadSelect');
-    const createSelect = document.getElementById('createSelect');
     const closeModal = document.querySelector('.close');
     const dropZone = document.querySelector('.drop-zone');
     const fileInput = document.getElementById('file-input');
     const tableBody = document.getElementById('tableBody');
+    const createReportButton = document.getElementById('createReportButton');
 
-    // File Upload Functionality
+    let userInteractedWithUpload = false;
+
+    // Open Modal When Upload Option is Selected
+    uploadSelect.addEventListener('change', function () {
+        if (['csv', 'xls', 'xlsx'].includes(this.value)) {
+            modal.style.display = 'flex'; // Show modal
+        }
+        userInteractedWithUpload = true; // Mark that the user interacted with the upload dropdown
+    });
+
+    // Close Modal When Close Button is Clicked
+    closeModal.addEventListener('click', function () {
+        modal.style.display = 'none'; // Hide modal
+    });
+
+    // Close Modal When Clicking Outside of Modal Content
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none'; // Hide modal
+        }
+    });
+
+    // Drop Zone: Simulate File Input Click on Drop Zone Click
+    dropZone.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Drag-and-Drop Functionality for Drop Zone
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over'); // Highlight drop zone
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('drag-over'); // Remove highlight
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over'); // Remove highlight
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFileUpload(files[0]); // Handle the uploaded file
+        }
+    });
+
+    // Handle File Input Change Event
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        handleFileUpload(file); // Handle the uploaded file
+    });
+
+    // Handle File Upload
     function handleFileUpload(file) {
         if (!file) return;
 
@@ -16,130 +68,53 @@ document.addEventListener('DOMContentLoaded', function() {
         const filePath = URL.createObjectURL(file);
         const timestamp = new Date().toLocaleString();
 
-        // Add file to table
+        // Add File to the Table
         const newRow = tableBody.insertRow();
         newRow.innerHTML = `
             <td>${fileName}</td>
             <td>${fileType}</td>
-            <td>${filePath}</td>
+            <td><a href="${filePath}" target="_blank">View File</a></td>
             <td>${timestamp}</td>
         `;
 
-        // Save to local storage
+        // Save to Local Storage
         saveFileToLocalStorage({
             name: fileName,
             type: fileType,
             path: filePath,
-            timestamp: timestamp
+            timestamp: timestamp,
         });
 
-        // Close modal
+        // Close Modal After File Upload
         modal.style.display = 'none';
     }
 
-    // Local Storage Management
+    // Save File Data to Local Storage
     function saveFileToLocalStorage(fileData) {
         let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
         files.push(fileData);
         localStorage.setItem('uploadedFiles', JSON.stringify(files));
     }
 
+    // Load Files from Local Storage on Page Load
     function loadFilesFromLocalStorage() {
         const files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
-        files.forEach(file => {
+        files.forEach((file) => {
             const newRow = tableBody.insertRow();
             newRow.innerHTML = `
                 <td>${file.name}</td>
                 <td>${file.type}</td>
-                <td>${file.path}</td>
+                <td><a href="${file.path}" target="_blank">View File</a></td>
                 <td>${file.timestamp}</td>
             `;
         });
     }
 
-    // File Creation Functionality
-    createSelect.addEventListener('change', function() {
-        const fileType = this.value;
-        const content = generateSampleContent(fileType);
-        const blob = new Blob([content], { type: getContentType(fileType) });
-        const filename = `sample_file.${fileType}`;
-
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+    // Create Blank Report Functionality
+    createReportButton.addEventListener('click', function () {
+        window.location.href = '/report'; // Redirect to the blank report page
     });
 
-    function generateSampleContent(fileType) {
-        switch(fileType) {
-            case 'pdf':
-                return 'Sample PDF Content';
-            case 'csv':
-                return 'Name,Age,City\nJohn Doe,30,New York\nJane Smith,25,San Francisco';
-            case 'xls':
-                return 'Sample Excel Content';
-            default:
-                return 'Sample File Content';
-        }
-    }
-
-    function getContentType(fileType) {
-        switch(fileType) {
-            case 'pdf': return 'application/pdf';
-            case 'csv': return 'text/csv';
-            case 'xls': return 'application/vnd.ms-excel';
-            default: return 'text/plain';
-        }
-    }
-
-    // Modal and File Selection
-    uploadSelect.addEventListener('change', function () {
-        if (['csv', 'xls', 'xlsx'].includes(this.value)) {
-            modal.style.display = 'flex';
-        }
-    });
-
-    // Close modal when the close button is clicked
-    closeModal.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside the modal content
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Drag and Drop Functionality
-    dropZone.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('drag-over');
-    });
-
-    dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('drag-over');
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('drag-over');
-        
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            handleFileUpload(files[0]);
-        }
-    });
-
-    fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        handleFileUpload(file);
-    });
-
-    // Load existing files when page loads
+    // Load Files When Page Loads
     loadFilesFromLocalStorage();
 });

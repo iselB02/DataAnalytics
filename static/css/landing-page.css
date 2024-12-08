@@ -105,17 +105,6 @@ body {
     animation: sparkle 2s infinite ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .main-content {
     flex: 1;
     padding: 20px;
@@ -125,14 +114,37 @@ body {
 }
 
 .top-bar {
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* Enable flexbox */
+    flex-direction: row; /* Align children horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Add space between the buttons */
+    align-items: center; /* Align buttons vertically */
     margin-bottom: 20px;
-    padding: 10px 20px;
-    
 }
 
-.create-button, .upload-button {
+.create-button button {
+    background-image: linear-gradient(to right, #ff69b4, #ff1493); /* Bright pink gradient */
+    border: none;
+    border-radius: 25px; /* Rounded buttons */
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;
+    box-shadow: 3px 3px 8px rgba(255, 20, 147, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; 
+}
+
+.create-button button:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 15px rgba(255, 20, 147, 0.5); /* Hover effect */
+}
+
+.upload-button {
     background-image: linear-gradient(to right, #ff69b4, #ff1493); /* Bright pink gradient */
     border: none;
     border-radius: 25px; /* Rounded buttons */
@@ -149,7 +161,7 @@ body {
     position: relative; /* Required for custom dropdown icon */
 }
 
-.create-button select, .upload-button select {
+.upload-button select {
     background-color: transparent;
     border: none;
     color: white;
@@ -163,19 +175,20 @@ body {
     z-index: 10;
 }
 
-.create-button::after, .upload-button::after {
-    content: '\25BC'; /* Down arrow symbol */
-    color: white;
-    font-size: 10px;
-    position: absolute;
-    right: 10px; /* Positions arrow inside button */
-    pointer-events: none; /* Prevents blocking select clicks */
-}
-
-.create-button:hover, .upload-button:hover {
+.upload-button:hover {
     transform: scale(1.1);
     box-shadow: 5px 5px 15px rgba(255, 20, 147, 0.5); /* Hover effect */
 }
+
+.top-bar {
+    display: flex; /* Enable flexbox */
+    flex-direction: row; /* Align children horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Add space between the buttons */
+    align-items: center; /* Align buttons vertically */
+    margin-bottom: 20px;
+}
+
 
 .container {
     display: flex;
