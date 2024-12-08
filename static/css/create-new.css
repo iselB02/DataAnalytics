@@ -125,23 +125,48 @@ body {
 
 
 /* for visualizations button */ 
-.data-input-container {
+.createNew-container {
     display: flex;
-    gap: 20px;
-    justify-content: center; /* Center the buttons */
+    flex-direction: column; /* Stack items vertically */
   }
+
+  .data-input-container {
+    margin-top: 20px; /* Add some spacing between h2 and buttons */
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping onto multiple lines if necessary */
+    justify-content: center; /* Center horizontally */
+    gap: 10px; /* Space between the data input buttons */
+  }
+
   .data-input-button {
+    width: calc(25% - 15px); /* Adjust for four buttons and spacing */
+    min-width: 150px; /* Minimum width for smaller screens */
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
     text-align: center;
-  }
-  .data-input-button:hover {
-    background-color: #f0f0f0;
+    box-sizing: border-box; /* Include padding in element width */
+    margin-bottom: 10px; /* Add some vertical space */
   }
   .data-input-button svg {
     width: 24px;
     height: 24px;
     margin-bottom: 5px;
   }
+
+
+/* scroll bar */ 
+
+&::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+}
+
+&::-webkit-scrollbar-track {
+    background: #FF85A1; /* Light pink background */
+    border-radius: 10px;
+}
+
+&::-webkit-scrollbar-thumb {
+    background: #FF85A1; /* Darker pink thumb */
+    border-radius: 10px;
+}
