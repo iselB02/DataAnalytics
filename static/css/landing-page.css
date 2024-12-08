@@ -11,23 +11,22 @@ body {
     background: linear-gradient(to bottom, #ffb6c1, #ff69b4); 
     padding: 20px 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Ensure vertical alignment */
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; /* Full height of the viewport */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar svg {
-    margin-bottom: 15px;
-    width: 40px;
-    height: 40px;
-    fill: white;
+    width: 30px; /* Icon size */
+    height: 30px;
+    fill: white; /* Color for icons */
     transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 .sidebar svg:hover {
-    transform: scale(1.2);
-    fill: #ff1493; /* Brighter pink hover effect */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    fill: #ff1493; /* Brighter pink hover effect for visibility */
 }
 
 .sidebar a {
@@ -43,8 +42,8 @@ body {
 }
 
 .sidebar a:hover {
-    transform: scale(1.1);
-    color: #f8f0ff;
+    transform: scale(1.05); 
+    color: #ffe4e1; 
 }
 
 .sidebar-header img {
@@ -55,7 +54,7 @@ body {
     border: 3px solid #ffffff; /* White border for elegance */
     padding: 10px; /* Spacing between the border and the image */
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 /* Hover effect for the image */
@@ -126,7 +125,6 @@ body {
 }
 
 .top-bar {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -253,4 +251,60 @@ body {
 * {
     scrollbar-width: thin; /* Makes the scrollbar thin */
     scrollbar-color: #FF85A1 #fff0f5; /* Pink thumb and soft pink track */
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10; /* Above other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    background: linear-gradient(to bottom, #fff0f5, #ffb6c1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close Button */
+.modal-content .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Drop Zone */
+.drop-zone {
+    background: #ffc0cb;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed #ff69b4;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.drop-zone:hover {
+    background: #ffb6c1;
+}
+
+.drop-zone p {
+    color: #800080;
+    font-weight: bold;
+    margin-top: 10px;
 }
