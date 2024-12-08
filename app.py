@@ -1,39 +1,11 @@
-from flask import Flask, render_template, request, session, redirect, url_for
-import os
-import tempfile
-import pandas as pd
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for session storage
+app.secret_key = 'your_secret_key'  # Needed for session storage (although not used now)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def landingPage():
-    if request.method == 'POST':
-        # Check if a file is in the request
-        if 'file' not in request.files:
-            return 'No file part', 400
-        file = request.files['file']
-        if file.filename == '':
-            return 'No selected file', 400
-        if file and file.filename.endswith('.csv'):
-            # Save the file temporarily
-            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.csv')
-            file.save(temp_file.name)
-            session['temp_file'] = temp_file.name  # Store the path in session
-            return redirect(url_for('cleaning'))  # Redirect to /data-cleaning
     return render_template('landing-page.html')
-
-@app.route('/data-cleaning', methods=['GET'])
-def cleaning():
-    temp_file_path = session.get('temp_file')
-    if not temp_file_path or not os.path.exists(temp_file_path):
-        return 'No file to display', 400
-
-    # Read the CSV file into a DataFrame
-    data = pd.read_csv(temp_file_path)
-    table_html = data.to_html(classes='table table-striped', index=False)
-
-    return render_template('data-cleaning.html', table_html=table_html)
 
 @app.route('/sign-in')
 def signin():
