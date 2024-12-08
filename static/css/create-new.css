@@ -170,3 +170,26 @@ body {
     background: #FF85A1; /* Darker pink thumb */
     border-radius: 10px;
 }
+
+* {
+    scrollbar-width: thin; /* Makes the scrollbar thin */
+    scrollbar-color: #FF85A1 #fff0f5; /* Pink thumb and soft pink track */
+}
+
+/* pop-up */ 
+.popup {
+    display: none; /* Initially hidden */
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the popup */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000; /* Ensure it's on top of other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+     
+}

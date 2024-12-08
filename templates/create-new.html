@@ -64,6 +64,28 @@
 </div>
 </div>
 
+ <!-- pop up-->
+ <div id="excelPopup" class="popup">  <!-- The pop-up -->
+    <div class="popup-content">
+        <h3>Connect to Data Source</h3>
+        <p>Excel Workbook</p>
+        <input type="radio" name="excelType" value="Link"> Link to file
+        <input type="radio" name="excelType" value="Upload"> Upload file
+        <input type="text" id="excelFilepath" placeholder="File path or URL">
+        <button id="browseButton">Browse OneDrive...</button>
+        <div>Connection Credentials</div>
+        <select></select>
+        <input type="text" placeholder="Connection Name">
+        <select></select>
+        <select></select>
+        <button>Cancel</button>
+        <button>Next</button>
+    </div>
+
+    <!-- pop-up code end -->
+
+    
+
 <script src="/static/js/create-new.js"></script>
 </body>
 </html>

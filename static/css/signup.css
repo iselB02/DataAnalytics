@@ -9,6 +9,14 @@ body {
     background-image: url("/static/images/bg1.png");
 }
 
+#logo {
+    max-width: 200px; /* Adjust the maximum width as needed */
+    max-height: 100px; /* Adjust the maximum height as needed */
+    display: block; /* Makes the image a block element, taking full width available */
+    margin: 20px auto; /* Centers the image horizontally */
+    margin-bottom: 10px; /* Spacing below the logo */
+}
+
 .login-container {
     width: 300px;
     padding: 20px;
