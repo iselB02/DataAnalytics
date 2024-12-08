@@ -1,65 +1,145 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const uploadBtn = document.getElementById('upload-btn');
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('uploadModal');
+    const uploadSelect = document.getElementById('uploadSelect');
+    const createSelect = document.getElementById('createSelect');
+    const closeModal = document.querySelector('.close');
+    const dropZone = document.querySelector('.drop-zone');
     const fileInput = document.getElementById('file-input');
-    const browseCreate = document.getElementById('browse-create');
-    const createNew = document.getElementById('createNew');
+    const tableBody = document.getElementById('tableBody');
 
-    // Check if upload button and file input exist
-    if (uploadBtn && fileInput) {
-        uploadBtn.addEventListener('click', () => {
-            fileInput.click();
+    // File Upload Functionality
+    function handleFileUpload(file) {
+        if (!file) return;
+
+        const fileName = file.name;
+        const fileType = file.type || fileName.split('.').pop();
+        const filePath = URL.createObjectURL(file);
+        const timestamp = new Date().toLocaleString();
+
+        // Add file to table
+        const newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+            <td>${fileName}</td>
+            <td>${fileType}</td>
+            <td>${filePath}</td>
+            <td>${timestamp}</td>
+        `;
+
+        // Save to local storage
+        saveFileToLocalStorage({
+            name: fileName,
+            type: fileType,
+            path: filePath,
+            timestamp: timestamp
         });
 
-        fileInput.addEventListener('change', async (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                if (file.name.endsWith('.csv')) {
-                    const formData = new FormData();
-                    formData.append('file', file);
-
-                    try {
-                        const response = await fetch('/', {
-                            method: 'POST',
-                            body: formData,
-                        });
-
-                        if (response.redirected) {
-                            // Redirect to /data-cleaning
-                            window.location.href = response.url;
-                        } else {
-                            alert('An error occurred while uploading the file.');
-                        }
-                    } catch (error) {
-                        alert('An error occurred while uploading the file.');
-                        console.error(error);
-                    }
-                } else {
-                    alert('Please upload a valid .csv file.');
-                    fileInput.value = ''; // Reset the input
-                }
-            }
-        });
-    } else {
-        console.warn("Upload button or file input element not found.");
+        // Close modal
+        modal.style.display = 'none';
     }
 
-    // Check if browse-create button exists
-    if (browseCreate) {
-        browseCreate.addEventListener('click', () => {
-            // Redirect to the /browse-file URL
-            window.location.href = '/browse-file';
-        });
-    } else {
-        console.warn("Button with ID 'browse-create' not found.");
+    // Local Storage Management
+    function saveFileToLocalStorage(fileData) {
+        let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+        files.push(fileData);
+        localStorage.setItem('uploadedFiles', JSON.stringify(files));
     }
 
-    // Check if createNew button exists
-    if (createNew) {
-        createNew.addEventListener('click', () => {
-            // Redirect to the /create-new URL
-            window.location.href = '/create-new';
+    function loadFilesFromLocalStorage() {
+        const files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+        files.forEach(file => {
+            const newRow = tableBody.insertRow();
+            newRow.innerHTML = `
+                <td>${file.name}</td>
+                <td>${file.type}</td>
+                <td>${file.path}</td>
+                <td>${file.timestamp}</td>
+            `;
         });
-    } else {
-        console.warn("Button with ID 'createNew' not found.");
     }
+
+    // File Creation Functionality
+    createSelect.addEventListener('change', function() {
+        const fileType = this.value;
+        const content = generateSampleContent(fileType);
+        const blob = new Blob([content], { type: getContentType(fileType) });
+        const filename = `sample_file.${fileType}`;
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+    });
+
+    function generateSampleContent(fileType) {
+        switch(fileType) {
+            case 'pdf':
+                return 'Sample PDF Content';
+            case 'csv':
+                return 'Name,Age,City\nJohn Doe,30,New York\nJane Smith,25,San Francisco';
+            case 'xls':
+                return 'Sample Excel Content';
+            default:
+                return 'Sample File Content';
+        }
+    }
+
+    function getContentType(fileType) {
+        switch(fileType) {
+            case 'pdf': return 'application/pdf';
+            case 'csv': return 'text/csv';
+            case 'xls': return 'application/vnd.ms-excel';
+            default: return 'text/plain';
+        }
+    }
+
+    // Modal and File Selection
+    uploadSelect.addEventListener('change', function () {
+        if (['csv', 'xls', 'xlsx'].includes(this.value)) {
+            modal.style.display = 'flex';
+        }
+    });
+
+    // Close modal when the close button is clicked
+    closeModal.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Drag and Drop Functionality
+    dropZone.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('drag-over');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFileUpload(files[0]);
+        }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        handleFileUpload(file);
+    });
+
+    // Load existing files when page loads
+    loadFilesFromLocalStorage();
 });
