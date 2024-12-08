@@ -25,7 +25,7 @@ def create():
 
 @app.route('/browse-file')
 def browseFile():
-    return render_template('browse-file.html')
+    return render_template('browse.html')
 
 @app.route('/account-setting')
 def accountSetting():
