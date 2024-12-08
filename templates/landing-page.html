@@ -55,24 +55,35 @@
                     <th>Path</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr><td>Filename.pdf</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.csv</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.pdf</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.csv</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.pdf</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.csv</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.pdf</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.csv</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.pdf</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-                <tr><td>Filename.csv</td><td>C:/Users/Chriszel Abby Oduca/OneDrive - Pamantasan ng Lungsod ng Maynila/Desktop/FSL Real time Detection - Copy/fsl-application/labels.csv</td></tr>
-
+            <tbody id="tableBody">
+               
             </tbody>
         </table>
     </div>
 
     <script>
-      // Your JavaScript code for file upload will go here.
+        document.getElementById("createSelect").addEventListener("change", function() {
+            const value = this.value;
+            alert(`You selected to create a ${value.toUpperCase()}`);
+          
+        });
+
+        document.getElementById("uploadSelect").addEventListener("change", function() {
+            const value = this.value;
+            const fileInput = document.getElementById("file-input");
+            fileInput.accept = `.${value}`; 
+            fileInput.click();
+        });
+
+        document.getElementById("file-input").addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const tableBody = document.getElementById("tableBody");
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `<td>${file.name}</td><td>${file.webkitRelativePath || "Uploaded from local storage"}</td>`;
+                tableBody.appendChild(newRow);
+            }
+        });
     </script>
 </body>
 </html>

@@ -1,112 +1,217 @@
 body {
-    font-family: sans-serif;
-    background-color: #fff0f5; /* Light pink background */
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffb6c1); /* Soft gradient background */
     margin: 0;
     display: flex;
+    color: #800080;
 }
 
 .sidebar {
-    width: 150px; /* Increased width for better layout */
-    background-color: #fff0f5; /* Light pink sidebar */
+    width: 200px;
+    background: linear-gradient(to bottom, #ffb6c1, #ff69b4); 
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar svg {
-    margin-bottom: 10px;
-    width: 30px;
-    height: 30px;
-    fill: #ffb6c1; /* Light pink icons */
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    fill: white;
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.sidebar svg:hover {
+    transform: scale(1.2);
+    fill: #ff1493; /* Brighter pink hover effect */
 }
 
 .sidebar a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-    text-decoration: none;
-    color: #800080;
-}
-
-.sidebar a:last-child {
-    margin-bottom: 0;
-}
-
-.sidebar h6 {
-    font-size: 12px;
-    color: #800080;
     margin-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
+
+.sidebar a:hover {
+    transform: scale(1.1);
+    color: #f8f0ff;
+}
+
+.sidebar-header img {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%; /* Keeps the circular shape */
+    box-shadow: 0px 4px 15px rgba(255, 182, 193, 0.6), 0px 0px 20px rgba(255, 20, 147, 0.4); /* Adds soft pink glow */
+    border: 3px solid #ffffff; /* White border for elegance */
+    padding: 10px; /* Spacing between the border and the image */
+    background: linear-gradient(to bottom right, #ffe4e1, #ffb6c1); /* Light gradient background */
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+}
+
+/* Hover effect for the image */
+.sidebar-header img:hover {
+    transform: scale(1.1); /* Enlarges slightly on hover */
+    box-shadow: 0px 8px 25px rgba(255, 182, 193, 0.8), 0px 0px 30px rgba(255, 20, 147, 0.6); /* Enhances glow */
+}
+
+/* Adding decorative sparkles */
+.sidebar-header img::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 182, 193, 0.6) 70%, rgba(255, 20, 147, 0) 100%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 15px rgba(255, 182, 193, 0.6);
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+/* sparkle */ 
+
+/* Sparkle animation */
+@keyframes sparkle {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Optional: Adding more sparkles at different positions */
+.sidebar-header img::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 182, 193, 0.6) 70%, rgba(255, 20, 147, 0) 100%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8), 0px 0px 12px rgba(255, 182, 193, 0.6);
+    animation: sparkle 2s infinite ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .main-content {
     flex: 1;
     padding: 20px;
-    background-color: #fff0f5;
-    display: flex;
-    flex-direction: column;
+    background: #fff0f5;
+    border-radius: 20px; /* Rounded corners for content box */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .top-bar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    padding: 10px 20px;
+    
 }
 
 .create-button, .upload-button {
-    background-image: linear-gradient(to right, #ffb6c1, #ff8080);
+    background-image: linear-gradient(to right, #ff69b4, #ff1493); /* Bright pink gradient */
     border: none;
-    border-radius: 25px;
+    border-radius: 25px; /* Rounded buttons */
     padding: 10px 20px;
     color: white;
     cursor: pointer;
+    font-weight: bold;
     display: inline-flex;
     align-items: center;
+    justify-content: center; /* Ensures text stays centered */
     gap: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Added margin for spacing */
+    box-shadow: 3px 3px 8px rgba(255, 20, 147, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Required for custom dropdown icon */
 }
-
 
 .create-button select, .upload-button select {
     background-color: transparent;
     border: none;
     color: white;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    font-weight: bold;
+    padding: 0 10px;
+    font-size: 14px;
+    -webkit-appearance: none; /* Removes default dropdown styling */
+    -moz-appearance: none; /* Removes default dropdown styling */
     appearance: none;
-    width: 100%;
-    padding: 10px;
-    border-radius: 20px;
     cursor: pointer;
+    z-index: 10;
 }
-
 
 .create-button::after, .upload-button::after {
-    content: '\279C';
+    content: '\25BC'; /* Down arrow symbol */
     color: white;
+    font-size: 10px;
+    position: absolute;
+    right: 10px; /* Positions arrow inside button */
+    pointer-events: none; /* Prevents blocking select clicks */
 }
+
+.create-button:hover, .upload-button:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 15px rgba(255, 20, 147, 0.5); /* Hover effect */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: linear-gradient(to right, #ffb6c1, #ff69b4); /* Gradient background */
+    border-radius: 25px; /* Rounded container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .recent-files {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
-    border-radius: 8px;
-    overflow: auto;
+    background: #fff0f5;
+    border-radius: 10px; /* Rounded edges for table */
+    overflow: hidden;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .recent-files th, .recent-files td {
-    border: 1px solid #eee;
-    padding: 8px 12px;
+    padding: 15px;
+    border: 1px solid #ffb6c1;
     text-align: left;
+    font-size: 14px;
 }
 
 .recent-files th {
-    background-color: #ffb6c1;
+    background: linear-gradient(to right, #ff69b4, #ff1493); /* Gradient for table headers */
     color: white;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .recent-files td {
@@ -117,14 +222,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.sidebar-header img {
-    max-width: 100px;
-    max-height: 100px;
-}
-
-#dropzone.highlight {
-    border: 2px dashed blue; /* Or any style you prefer */
-}
