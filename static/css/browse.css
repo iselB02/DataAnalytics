@@ -122,3 +122,16 @@ body {
     align-items: center;
     margin-bottom: 30px;
 }
+
+/*filter */
+.filter-bar {
+    display: flex; /* Enable flexbox */
+    justify-content: flex-end; /* Align items to the end (right) */
+    margin-bottom: 10px; /* Add spacing below the filter bar */
+}
+
+.filter-bar input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
