@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="manual-container">
+    <div class="data-entry"> <!-- Corrected div tag for data-entry -->
+        <div>
+            <label for="tableName">Enter Data:</label>
+            <input type="text" id="tableName" value="Table">
+        </div>
+        <div>
+            <button id="add-row">Add Row</button>
+            <button id="add-column">Add Column</button> <!-- New button for adding columns -->
+        </div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <!-- Initially only one column -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class="delete-row">X</button></td>
+                    <td><input type="text"></td>
+                    <!-- Initially one input cell -->
+                </tr>
+            </tbody>
+        </table>
+        <button id="auto-create-report">Auto-create report</button>
+        <button id="manual-create-report">Cancel</button>
+    </div>
+</div>
+
+{% endblock %}

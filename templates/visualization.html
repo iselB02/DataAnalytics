@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="main-visual">
+    <h1 class="title">Data Visualization</h1>
+
+    <!-- Tab Navigation -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'histogram')">Histogram</button>
+        <button class="tablinks" onclick="openTab(event, 'barChart')">Bar Chart</button>
+        <button class="tablinks" onclick="openTab(event, 'lineChart')">Line Chart</button>
+        <button class="tablinks" onclick="openTab(event, 'pieChart')">Pie Chart</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div id="histogram" class="tabcontent">
+        <div class="canvas_container">
+            <canvas id="histogramCanvas"></canvas>
+            <div class="customize">
+                <h3>Customize Histogram</h3>
+                <label for="histogramColor">Bar Color</label>
+                <input type="color" id="histogramColor" name="histogramColor" value="#ff0000">
+                
+                <label for="histogramBins">Number of Bins</label>
+                <input type="number" id="histogramBins" name="histogramBins" min="5" max="100" value="20">
+                
+                <button onclick="updateHistogram()">Update Chart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="barChart" class="tabcontent" style="display: none;">
+        <div class="canvas_container">
+            <canvas id="barChartCanvas"></canvas>
+            <div class="customize">
+                <h3>Customize Bar Chart</h3>
+                <label for="barColor">Bar Color</label>
+                <input type="color" id="barColor" name="barColor" value="#00ff00">
+                
+                <label for="barWidth">Bar Width</label>
+                <input type="number" id="barWidth" name="barWidth" min="5" max="50" value="20">
+                
+                <button onclick="updateBarChart()">Update Chart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lineChart" class="tabcontent" style="display: none;">
+        <div class="canvas_container">
+            <canvas id="lineChartCanvas"></canvas>
+            <div class="customize">
+                <h3>Customize Line Chart</h3>
+                <label for="lineColor">Line Color</label>
+                <input type="color" id="lineColor" name="lineColor" value="#0000ff">
+                
+                <label for="lineWidth">Line Width</label>
+                <input type="number" id="lineWidth" name="lineWidth" min="1" max="10" value="2">
+                
+                <button onclick="updateLineChart()">Update Chart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pieChart" class="tabcontent" style="display: none;">
+        <div class="canvas_container">
+            <canvas id="pieChartCanvas"></canvas>
+            <div class="customize">
+                <h3>Customize Pie Chart</h3>
+                <label for="pieColor">Slice Color</label>
+                <input type="color" id="pieColor" name="pieColor" value="#ff00ff">
+                
+                <label for="pieLabel">Label Size</label>
+                <input type="number" id="pieLabel" name="pieLabel" min="10" max="50" value="20">
+                
+                <button onclick="updatePieChart()">Update Chart</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .main-visual {
+        background-color: aqua;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .tab {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .tab button {
+        background-color: transparent;
+        border: none;
+        padding: 14px 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: black;
+        width: 100%;
+    }
+
+    .tab button:hover {
+        background-color: #fac6ce;
+    }
+
+    .tab button.active {
+        background-color: #ffb6c1;
+        font-weight: bold;
+    }
+
+    .tabcontent {
+        display: none;
+        width: 100%;
+    }
+
+    .canvas_container {
+        width: 100%;
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(111, 0, 255);
+    }
+
+    .tabcontent canvas {
+        width: 90%;
+        height: 90%;
+        background-color: white;
+        border: 1px solid #ccc;
+    }
+
+    .title {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .customize {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .customize label {
+        font-size: 1rem;
+        color: black;
+    }
+
+    .customize input[type="color"],
+    .customize input[type="number"] {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .customize button {
+        padding: 10px;
+        background-color: #ffb6c1;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+    }
+
+    .customize button:hover {
+        background-color: #fbccdc;
+    }
+
+</style>
+{% endblock %}

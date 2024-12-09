@@ -1,62 +1,11 @@
-/* for visualizations button */ 
-.createNew-container {
+.manual-container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    height: 80%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .title-create {
-    /* background-color: #ff69b4; */
-    height: 10%;
-  }
-
-
-  .data-input-container {
-    margin-top: 20px; /* Add some spacing between h2 and buttons */
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping onto multiple lines if necessary */
-    justify-content: center; /* Center horizontally */
-    gap: 10px; /* Space between the data input buttons */
-  }
-
-  .data-input-button {
-    width: calc(25% - 15px); /* Adjust for four buttons and spacing */
-    min-width: 150px; /* Minimum width for smaller screens */
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    box-sizing: border-box; /* Include padding in element width */
-    margin-bottom: 10px; /* Add some vertical space */
-  }
-  .data-input-button svg {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 5px;
-  }
-
-
-/* scroll bar */ 
-
-&::-webkit-scrollbar {
-    width: 10px; /* Adjust the width of the scrollbar */
-}
-
-&::-webkit-scrollbar-track {
-    background: #FF85A1; /* Light pink background */
-    border-radius: 10px;
-}
-
-&::-webkit-scrollbar-thumb {
-    background: #FF85A1; /* Darker pink thumb */
-    border-radius: 10px;
-}
-
-* {
-    scrollbar-width: thin; /* Makes the scrollbar thin */
-    scrollbar-color: #FF85A1 #fff0f5; /* Pink thumb and soft pink track */
+    flex-direction: center;
+    background-color: #fff0f5;
+    height: 100%;
+    gap: 40px;
+    overflow: hidden;
+    
 }
 
 /* Pink Theme */
@@ -112,7 +61,7 @@ input[type="text"] {
     border-radius: 3px;
 }
 
-#buttons-create, #browse-create, #input-create, #upload-btn {
+button {
     padding: 8px 15px;
     background-color: #ff69b4; /* Pinkish-purple */
     color: white;
@@ -120,8 +69,6 @@ input[type="text"] {
     cursor: pointer;
     border-radius: 3px;
     margin: inherit;
-    width: 200px;
-    height: 150px;
 }
 
 #data-table thead th:first-child,

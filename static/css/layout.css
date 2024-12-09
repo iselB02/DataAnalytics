@@ -5,6 +5,11 @@
     box-sizing: border-box; /* Ensure consistent box-sizing */
 }
 
+.title {
+    /* background-color: #ffb6c1; */
+    text-align: center;
+}
+
 /* Body Layout */
 body {
     font-family: Arial, sans-serif;
@@ -123,8 +128,9 @@ svg {
 /* Main Content Layout */
 .main-content {
     flex: 1;
+    margin-left: 200px;
     padding: 20px;
     background: #fff0f5;
-    border-radius: 20px; /* Rounded corners for content box */
+    /* border-radius: 20px; Rounded corners for content box */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
