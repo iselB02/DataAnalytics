@@ -2,18 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 import os
 import tempfile
 import pandas as pd
-import firebase_admin
-from firebase_admin import credentials, firestore, storage, auth
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for session storage
-
-# Firebase Initialization
-cred = credentials.Certificate('serviceAccountKey.json')  # Replace with your service account key file
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'your-project-id.appspot.com'  # Replace with your Firebase Storage bucket
-})
 
 # SQLite Database Setup
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local_db.db'  # SQLite database file in the current directory
