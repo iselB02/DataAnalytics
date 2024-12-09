@@ -207,7 +207,7 @@ body {
 }
 
 .delete-row {
-    background-color: #e74c3c; /* Crimson - a darker pink */
+    background-color: #ff69b4; /* Crimson - a darker pink */
     color: white;
     border: none;
     cursor: pointer;
@@ -231,7 +231,7 @@ input[type="text"] {
 
 button {
     padding: 8px 15px;
-    background-color: #e91e63; /* Pinkish-purple */
+    background-color: #ff69b4; /* Pinkish-purple */
     color: white;
     border: none;
     cursor: pointer;

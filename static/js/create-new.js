@@ -1,45 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const addRowButton = document.getElementById('add-row');
-  const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+// Create new row
+document.getElementById('add-row').addEventListener('click', function() {
+  const tableBody = document.querySelector('#data-table tbody');
+  const newRow = document.createElement('tr');
+  let columns = document.querySelectorAll('#data-table thead th').length;
 
-  addRowButton.addEventListener('click', () => {
-      const newRow = dataTable.insertRow();
-      const deleteCell = newRow.insertCell();
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'X';
-      deleteButton.classList.add('delete-row');
-      deleteCell.appendChild(deleteButton);
-      deleteButton.addEventListener('click', () => {
-          dataTable.deleteRow(newRow.rowIndex);
-      });
+  newRow.innerHTML = `<td><button class="delete-row">X</button></td>`;
+  for (let i = 1; i < columns; i++) {
+      newRow.innerHTML += `<td><input type="text"></td>`;
+  }
 
-      // Add input cells for each column
-      const columnCount = dataTable.rows[0].cells.length -1; //Subtract the delete column
-      for (let i = 1; i <= columnCount; i++) {
-          const cell = newRow.insertCell();
-          const input = document.createElement('input');
-          input.type = 'text';
-          cell.appendChild(input);
-      }
+  tableBody.appendChild(newRow);
+
+  // Add delete button functionality for the new row
+  newRow.querySelector('.delete-row').addEventListener('click', function() {
+      tableBody.removeChild(newRow);
   });
+});
 
+// Add new column
+document.getElementById('add-column').addEventListener('click', function() {
+  const tableHeader = document.querySelector('#data-table thead tr');
+  const tableRows = document.querySelectorAll('#data-table tbody tr');
 
-  //Event Listener for deleting existing rows:
-  dataTable.addEventListener('click', function(event){
-      if(event.target.classList.contains('delete-row')){
-          event.target.parentNode.parentNode.remove();
-      }
-  })
+  // Add new column header
+  const newHeader = document.createElement('th');
+  newHeader.textContent = `Column${tableHeader.children.length}`;
+  tableHeader.appendChild(newHeader);
 
-
-  document.getElementById('auto-create-report').addEventListener('click', () => {
-      //Here you'd add your code to process the data and generate a report.
-      //This would typically involve sending data to a server-side script.
-      alert("Report creation logic not implemented yet."); // Placeholder
-  });
-
-  document.getElementById('cancel').addEventListener('click', () => {
-      // Add your cancel logic here (e.g., clear the table or redirect).
-      alert("Cancel logic not implemented yet."); // Placeholder
+  // Add input cells in each row
+  tableRows.forEach(row => {
+      const newCell = document.createElement('td');
+      newCell.innerHTML = `<input type="text">`;
+      row.appendChild(newCell);
   });
 });
