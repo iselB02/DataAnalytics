@@ -2,13 +2,22 @@
 
 {% block content %}
 <div class="home-container">
-    <h1 class="title">Home</h1>
-    <button id="createNew" class="new">Create</button>
-    <div class="history">
-        <h3 class="history-title">Recent Files</h3>
-        <ul class="recent">
-            <li class="file"><span class="date">12/10/2024</span><span class="file-name">Unclean Data</span></li>
-        </ul>
+    <h2 class="title">Home</h2>
+    <button id="createNew" class="new">Create Blank Report</button>
+    <div class="recent-files">
+        <div class="recent-files">
+            <table>  
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Type</th>
+                        <th>Path</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
     </div>
-</div>
+
 {% endblock %}
