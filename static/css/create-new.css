@@ -10,9 +10,10 @@ h1 {
 
 .buttons-create button {
     border-radius: 10px;
-    width: 150px;
-    height: 100px;
-    background-color: #FF698C;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+
 }
 
 .buttons-create button svg {
@@ -29,6 +30,5 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    /* background-color: aquamarine; */
     height: 90%;
 }
