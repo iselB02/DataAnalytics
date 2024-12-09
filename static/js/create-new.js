@@ -1,36 +1,102 @@
-// Create new row
-document.getElementById('add-row').addEventListener('click', function() {
-  const tableBody = document.querySelector('#data-table tbody');
-  const newRow = document.createElement('tr');
-  let columns = document.querySelectorAll('#data-table thead th').length;
+document.addEventListener('DOMContentLoaded', () => {
+  const addRowButton = document.getElementById('add-row');
+  const addColumnButton = document.getElementById('add-column');
+  const table = document.getElementById('data-table');
+  const tableNameInput = document.getElementById('tableName');
+  const previewDiv = document.getElementById('preview');
 
-  newRow.innerHTML = `<td><button class="delete-row">X</button></td>`;
-  for (let i = 1; i < columns; i++) {
-      newRow.innerHTML += `<td><input type="text"></td>`;
-  }
+  // Add Row functionality
+  addRowButton.addEventListener('click', () => {
+      const newRow = document.createElement('tr');
+      const rowCount = table.rows.length;
 
-  tableBody.appendChild(newRow);
+      // Create delete button for the first column
+      const deleteCell = document.createElement('td');
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'X';
+      deleteButton.classList.add('delete-row');
+      deleteCell.appendChild(deleteButton);
+      newRow.appendChild(deleteCell);
 
-  // Add delete button functionality for the new row
-  newRow.querySelector('.delete-row').addEventListener('click', function() {
-      tableBody.removeChild(newRow);
+      // Add editable cells to the row, including the second column
+      for (let i = 1; i < table.rows[0].cells.length; i++) {
+          const cell = document.createElement('td');
+          const input = document.createElement('input');
+          input.type = 'text';
+          cell.appendChild(input);
+          newRow.appendChild(cell);
+      }
+
+      // Append the new row to the table
+      table.querySelector('tbody').appendChild(newRow);
+
+      // Add delete functionality to the new button
+      deleteButton.addEventListener('click', () => {
+          newRow.remove();
+      });
   });
-});
 
-// Add new column
-document.getElementById('add-column').addEventListener('click', function() {
-  const tableHeader = document.querySelector('#data-table thead tr');
-  const tableRows = document.querySelectorAll('#data-table tbody tr');
+  // Add Column functionality
+  addColumnButton.addEventListener('click', () => {
+      const headers = table.querySelectorAll('th');
+      const newColumnHeader = document.createElement('th');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.classList.add('edit-column');
+      input.value = `Column${headers.length + 1}`;
+      newColumnHeader.appendChild(input);
 
-  // Add new column header
-  const newHeader = document.createElement('th');
-  newHeader.textContent = `Column${tableHeader.children.length}`;
-  tableHeader.appendChild(newHeader);
+      // Add a delete button for the column header (now just 'X')
+      const deleteColumnHeaderButton = document.createElement('button');
+      deleteColumnHeaderButton.textContent = 'X'; // Shortened text
+      deleteColumnHeaderButton.classList.add('delete-column');
+      newColumnHeader.appendChild(deleteColumnHeaderButton);
 
-  // Add input cells in each row
-  tableRows.forEach(row => {
-      const newCell = document.createElement('td');
-      newCell.innerHTML = `<input type="text">`;
-      row.appendChild(newCell);
+      table.querySelector('thead').rows[0].appendChild(newColumnHeader);
+
+      // Add editable column cells for each row
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+          const newCell = document.createElement('td');
+          const input = document.createElement('input');
+          input.type = 'text';
+          newCell.appendChild(input);
+          row.appendChild(newCell);
+      });
+
+      // Handle column header change
+      const columnInput = newColumnHeader.querySelector('input');
+      columnInput.addEventListener('change', () => {
+          const columnIndex = Array.from(table.querySelectorAll('th')).indexOf(newColumnHeader);
+          const rows = table.querySelectorAll('tbody tr');
+          rows.forEach(row => {
+              row.cells[columnIndex].querySelector('input').setAttribute('name', columnInput.value);
+          });
+      });
+
+      // Handle column deletion
+      deleteColumnHeaderButton.addEventListener('click', () => {
+          // Delete the column header
+          newColumnHeader.remove();
+
+          // Delete cells from all rows in this column
+          const columnIndex = Array.from(table.querySelectorAll('th')).indexOf(newColumnHeader);
+          const rows = table.querySelectorAll('tbody tr');
+          rows.forEach(row => {
+              row.cells[columnIndex].remove();
+          });
+      });
   });
+
+  // Update preview area
+  const updatePreview = () => {
+      const data = Array.from(table.rows).map(row => {
+          const cells = Array.from(row.cells).map(cell => cell.querySelector('input') ? cell.querySelector('input').value : cell.textContent);
+          return cells.join(' | ');
+      }).join('<br>');
+      previewDiv.innerHTML = data || "No data available";
+  };
+
+  // Update preview whenever input changes
+  table.addEventListener('input', updatePreview);
 });
