@@ -8,6 +8,7 @@
 /* Body Layout */
 body {
     font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffb6c1); /* Soft gradient */
     margin: 0;
     display: flex;
     height: 100vh;
@@ -16,15 +17,16 @@ body {
 
 /* Sidebar Layout */
 .side-bar {
+    width: 200px;
     position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 5%; /* Adjust width for better visibility */
     height: 100%;
-    background-color: #FD009B;
-    padding: 10px 0; /* Add vertical padding */
+    background: linear-gradient(to bottom, #ffb6c1, #ff69b4); 
+    padding: 10px 0; 
+    min-height: 100vh;
 }
 
 /* Main Navigation Section */
@@ -57,7 +59,7 @@ body {
 #logo-container {
     margin-top: 20px;
     margin-bottom: 30px;
-    width: 60px;
+    width: 90px;
     height: 60px;
     background-image: url("/static/images/logo2.png");
     background-size: cover;
@@ -120,10 +122,9 @@ svg {
 
 /* Main Content Layout */
 .main-content {
-    margin-left: 5%; /* Adjust margin to match sidebar width */
-    flex: 1; /* Fill remaining space */
-    height: 100%;
-    background-color: #ffffff; /* Set main content background */
-    overflow-y: auto; /* Enable vertical scrolling if needed */
+    flex: 1;
     padding: 20px;
+    background: #fff0f5;
+    border-radius: 20px; /* Rounded corners for content box */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }

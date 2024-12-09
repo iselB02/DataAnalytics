@@ -1,5 +1,4 @@
 .createNew-container {
-    background-color: rgb(175, 197, 197);
     height: 100%;
 }
 
@@ -10,10 +9,11 @@ h1 {
 }
 
 .buttons-create button {
-    border: none;
     border-radius: 10px;
-    width: 150px;
-    height: 100px;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+
 }
 
 .buttons-create button svg {
@@ -30,6 +30,5 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    /* background-color: aquamarine; */
     height: 90%;
 }
