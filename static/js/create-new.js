@@ -76,14 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Handle column deletion
       deleteColumnHeaderButton.addEventListener('click', () => {
+          // Find the index of the column to be deleted
+          const columnIndex = Array.from(table.querySelectorAll('th')).indexOf(newColumnHeader);
+
           // Delete the column header
           newColumnHeader.remove();
 
-          // Delete cells from all rows in this column
-          const columnIndex = Array.from(table.querySelectorAll('th')).indexOf(newColumnHeader);
+          // Delete cells from all rows in this column and shift subsequent cells
           const rows = table.querySelectorAll('tbody tr');
           rows.forEach(row => {
+              // Remove the cell at the columnIndex
               row.cells[columnIndex].remove();
+
+              // Shift all subsequent cells to the left by 1
+              for (let i = columnIndex; i < row.cells.length - 1; i++) {
+                  row.cells[i].innerHTML = row.cells[i + 1].innerHTML;
+                  row.cells[i].querySelector('input').setAttribute('name', row.cells[i + 1].querySelector('input').getAttribute('name'));
+              }
+              // Remove the last cell as it's now a duplicate
+              row.cells[row.cells.length - 1].remove();
           });
       });
   });

@@ -236,6 +236,7 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 3px;
+    margin: inherit;
 }
 
 #data-table thead th:first-child,
