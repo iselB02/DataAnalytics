@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const data = [ // Example data - replace with your actual data
       { icon: 'file-icon', name: 'My workspace', type: 'Workspace', opened: '10 hours ago', owner: '—', endorsement: '—', sensitivity: '—', location: 'Workspaces' },
       { icon: 'semantic-icon', name: 'cleaned_netflix_titles', type: 'Semantic model', opened: 'a month ago', owner: 'ERIKA BISOY', endorsement: '—', sensitivity: '—', location: 'My workspace' },
-      //Add More data as needed.
     ];
   
     function createTableRow(item) {
