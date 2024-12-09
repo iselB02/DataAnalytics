@@ -124,6 +124,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 20px;
-    height: 90%;
+    height: 65%;
 }
