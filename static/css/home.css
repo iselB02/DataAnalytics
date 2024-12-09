@@ -7,13 +7,13 @@
 
 .new {
     border: none;
-    background-color: blue;
+    background-color: #FF698C;
     color: white;
     font-size: 15px;
     padding: 5px;
-    width: 100px;
+    width: 150px;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-top: 20px;
 }
 
