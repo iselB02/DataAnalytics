@@ -23,6 +23,10 @@ def home():
 def createnew():
     return render_template('create-new.html')
 
+@app.route('/clean')
+def clean():
+    return render_template('data-cleaning.html')
+
 @app.route('/create')
 def create():
     return render_template('create.html')
