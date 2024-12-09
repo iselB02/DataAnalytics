@@ -20,8 +20,12 @@ def home():
     return render_template('home.html')
 
 @app.route('/create-new')
-def create():
+def createnew():
     return render_template('create-new.html')
+
+@app.route('/create')
+def create():
+    return render_template('create.html')
 
 @app.route('/browse-file')
 def browseFile():

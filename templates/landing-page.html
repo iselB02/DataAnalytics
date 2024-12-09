@@ -36,27 +36,8 @@
             <a href="{{ url_for('create') }}"> 
                 <button id="createReportButton">Create Blank Report</button> </a>
         </div>
-        
-        <div class="upload-button">
-            <select id="uploadSelect">
-                <option value="csv">Upload CSV</option>
-                <option value="xlsx">Upload XLSX</option>
-            </select>
-        </div>
     </div>
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>UPLOAD</h2>
-            <form action="/" method="POST" enctype="multipart/form-data">
-                <div class="drop-zone">
-                    <input type="file" name="file" id="file-input" accept=".csv,.xls,.xlsx" required />
-                    <p>DROP / UPLOAD <br> your file here</p>
-                </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </form>
-        </div>
-    </div>
+
     
 
     <input type="file" id="file-input" accept=".csv,.pdf" style="display: none;" />

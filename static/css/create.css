@@ -1,0 +1,129 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffb6c1); /* Soft gradient background */
+    margin: 0;
+    display: flex;
+    color: #800080;
+}
+
+.sidebar {
+    width: 200px;
+    background: linear-gradient(to bottom, #ffb6c1, #ff69b4); 
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column; /* Ensure vertical alignment */
+    align-items: center;
+    min-height: 100vh; /* Full height of the viewport */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar svg {
+    width: 30px; /* Icon size */
+    height: 30px;
+    fill: white; /* Color for icons */
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.sidebar svg:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    fill: #ff1493; /* Brighter pink hover effect for visibility */
+}
+
+.sidebar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    transform: scale(1.05); 
+    color: #ffe4e1; 
+}
+
+.sidebar-header img {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%; /* Keeps the circular shape */
+    box-shadow: 0px 4px 15px rgba(255, 182, 193, 0.6), 0px 0px 20px rgba(255, 20, 147, 0.4); /* Adds soft pink glow */
+    border: 3px solid #ffffff; /* White border for elegance */
+    padding: 10px; /* Spacing between the border and the image */
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Hover effect for the image */
+.sidebar-header img:hover {
+    transform: scale(1.1); /* Enlarges slightly on hover */
+    box-shadow: 0px 8px 25px rgba(255, 182, 193, 0.8), 0px 0px 30px rgba(255, 20, 147, 0.6); /* Enhances glow */
+}
+
+/* Adding decorative sparkles */
+.sidebar-header img::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 182, 193, 0.6) 70%, rgba(255, 20, 147, 0) 100%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 15px rgba(255, 182, 193, 0.6);
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* body */ 
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #fff0f5;
+    border-radius: 20px; /* Rounded corners for content box */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.top-bar {
+    display: flex; /* Enable flexbox */
+    flex-direction: row; /* Align children horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Add space between the buttons */
+    margin-bottom: 20px;
+}
+
+
+.buttons-create button {
+    border-radius: 10px;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+
+}
+
+.buttons-create button svg {
+    color: #800080;
+}
+
+.buttons-create button:hover {
+    cursor: pointer;
+}
+
+.buttons-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    height: 90%;
+}
