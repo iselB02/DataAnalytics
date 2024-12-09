@@ -29,20 +29,41 @@
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
         </svg><h6>PROFILE</h6></a>
     </div>
+   
 
     <div class="main-content">
-     <div class="top-bar">
-        <h2>Add data to start building a report</h2>
-
-            <div class="data-input-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
-                    <path d="M6 12v-2h3v2z"/>
-                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3z"/>
-                  </svg>
-                <p>Paste or manually enter data</p></div>
-            
-</div>
-
+        <div class="top-bar">
+            <h2>Add data to start building a report</h2>
+        </div>
+        <div class="data-entry">  <!--Now a sibling of top-bar-->
+            <div>
+                <label for="tableName">Name:</label>
+                <input type="text" id="tableName" value="Table">
+            </div>
+            <div>
+                <button id="add-row">Add Row</button>
+            </div>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Column1</th>
+                        <!--Add more columns as needed-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><button class="delete-row">X</button></td>
+                        <td><input type="text"></td>
+                        <!--Add more input cells as needed-->
+                    </tr>
+                </tbody>
+            </table>
+            <button id="auto-create-report">Auto-create report</button>
+            <button id="cancel">Cancel</button>
+        </div>
+    </div>
+    
 <script src="/static/js/create-new.js"></script>
 </body>
 </html>

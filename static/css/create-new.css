@@ -176,20 +176,64 @@ body {
     scrollbar-color: #FF85A1 #fff0f5; /* Pink thumb and soft pink track */
 }
 
-/* pop-up */ 
-.popup {
-    display: none; /* Initially hidden */
-    position: fixed; /* Or absolute, depending on your layout */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the popup */
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    z-index: 1000; /* Ensure it's on top of other elements */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Pink Theme */
+.data-entry {
+    width: 80%;
+    margin: 15px auto;
+    border: 1px solid #e6b8af; /* Light rose border */
+    padding: 15px;
+    background-color: #fff0f5; /* Very light pink background */
+    font-family: 'Arial', sans-serif; /* Or your preferred font */
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(230, 184, 175, 0.2); /* Soft rose shadow */
 }
 
-.popup-content {
-     
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+#data-table th, #data-table td {
+    border: 1px solid #e6b8af; /* Light rose border */
+    padding: 10px;
+    text-align: left;
+}
+
+#data-table th {
+    background-color: #f8d7da; /* Light pink header background */
+    font-weight: bold;
+}
+
+.delete-row {
+    background-color: #e74c3c; /* Crimson - a darker pink */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 3px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight:bold; /* adds emphasis */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e6b8af; /*Light rose border*/
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #e91e63; /* Pinkish-purple */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
 }
