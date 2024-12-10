@@ -4,26 +4,33 @@
 <div class="browse-container">
     <h2 class="title">Browse Files</h2>
 
-    <div class="recent-section bg-pink-50 rounded-lg shadow-md p-6 mb-6">
-        <h3 class="subtitle text-pink-600 font-semibold mb-4">Recent Files</h3>
-        <table class="w-full bg-white rounded-lg overflow-hidden shadow-md">
-            <thead class="bg-pink-100">
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-button active" id="recent-tab-button">Recent</button>
+        <button class="tab-button" id="history-tab-button">History</button>
+    </div>
+
+    <!-- Recent Files Tab Content -->
+    <div id="recent-tab" style="display: block;">
+
+        <table class="file-table">
+            <thead>
                 <tr>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">File Name</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Date Modified</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Size</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Actions</th>
+                    <th>File Name</th>
+                    <th>Date Modified</th>
+                    <th>Size</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for file in recent_files %}
-                <tr class="border-b border-pink-200 hover:bg-pink-50 transition duration-200">
-                    <td class="px-4 py-3">{{ file.name }}</td>
-                    <td class="px-4 py-3">{{ file.date_modified | format_date('%d %B %Y, %H:%M') }}</td>
-                    <td class="px-4 py-3">{{ file.size }} bytes</td>
-                    <td class="px-4 py-3">
-                        <button class="view-btn text-pink-600 hover:text-pink-800 mr-2" data-filename="{{ file.name }}">View</button>
-                        <button class="delete-btn text-pink-600 hover:text-pink-800" data-filename="{{ file.name }}">Delete</button>
+                <tr>
+                    <td>{{ file.name }}</td>
+                    <td>{{ file.date_modified | format_date('%d %B %Y, %H:%M') }}</td>
+                    <td>{{ file.size }} bytes</td>
+                    <td>
+                        <button class="view-btn" data-filename="{{ file.name }}">View</button>
+                        <button class="delete-btn" data-filename="{{ file.name }}">Delete</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -31,26 +38,26 @@
         </table>
     </div>
 
-    <div class="history-section bg-pink-50 rounded-lg shadow-md p-6">
-        <h3 class="subtitle text-pink-600 font-semibold mb-4">File History</h3>
-        <table class="w-full bg-white rounded-lg overflow-hidden shadow-md">
-            <thead class="bg-pink-100">
+    <!-- History Files Tab Content -->
+    <div id="history-tab" style="display: none;">
+           <table class="file-table">
+            <thead>
                 <tr>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">File Name</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Date Modified</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Size</th>
-                    <th class="px-4 py-3 text-pink-800 font-semibold">Actions</th>
+                    <th>File Name</th>
+                    <th>Date Modified</th>
+                    <th>Size</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for file in history_files %}
-                <tr class="border-b border-pink-200 hover:bg-pink-50 transition duration-200">
-                    <td class="px-4 py-3">{{ file.name }}</td>
-                    <td class="px-4 py-3">{{ file.date_modified | format_date('%d %B %Y, %H:%M') }}</td>
-                    <td class="px-4 py-3">{{ file.size }} bytes</td>
-                    <td class="px-4 py-3">
-                        <button class="view-btn text-pink-600 hover:text-pink-800 mr-2" data-filename="{{ file.name }}">View</button>
-                        <button class="delete-btn text-pink-600 hover:text-pink-800" data-filename="{{ file.name }}">Delete</button>
+                <tr>
+                    <td>{{ file.name }}</td>
+                    <td>{{ file.date_modified | format_date('%d %B %Y, %H:%M') }}</td>
+                    <td>{{ file.size }} bytes</td>
+                    <td>
+                        <button class="view-btn" data-filename="{{ file.name }}">View</button>
+                        <button class="delete-btn" data-filename="{{ file.name }}">Delete</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -59,61 +66,124 @@
     </div>
 </div>
 
+<!-- Modal for Viewing Files -->
+<div id="file-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modal-title"></h3>
+        <pre id="modal-content"></pre>
+    </div>
+</div>
 
-{% endblock %}
+<script>
+    // JavaScript for Tab Switching
+    document.addEventListener('DOMContentLoaded', function () {
+        const recentTabButton = document.getElementById('recent-tab-button');
+        const historyTabButton = document.getElementById('history-tab-button');
+        const recentTab = document.getElementById('recent-tab');
+        const historyTab = document.getElementById('history-tab');
 
-{% block styles %}
+        recentTabButton.addEventListener('click', function () {
+            recentTab.style.display = 'block';
+            historyTab.style.display = 'none';
+            recentTabButton.classList.add('active');
+            historyTabButton.classList.remove('active');
+        });
+
+        historyTabButton.addEventListener('click', function () {
+            recentTab.style.display = 'none';
+            historyTab.style.display = 'block';
+            historyTabButton.classList.add('active');
+            recentTabButton.classList.remove('active');
+        });
+
+        // Handle View Button Click
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const filename = this.dataset.filename;
+                fetch(`/view-file/${filename}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.content) {
+                            document.getElementById('modal-title').innerText = `Viewing: ${data.filename}`;
+                            document.getElementById('modal-content').innerText = data.content;
+                            document.getElementById('file-modal').style.display = 'flex';
+                        } else {
+                            alert('Error loading file content.');
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+
+        // Handle Delete Button Click
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const filename = this.dataset.filename;
+                if (confirm(`Are you sure you want to delete "${filename}"?`)) {
+                    fetch(`/delete-file/${filename}`, { method: 'POST' })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.message);
+                                location.reload(); // Reload page to refresh file list
+                            } else {
+                                alert('Error deleting file.');
+                            }
+                        })
+                        .catch(err => console.error(err));
+                }
+            });
+        });
+
+        // Handle Modal Close
+        document.querySelector('.close-modal').addEventListener('click', function () {
+            document.getElementById('file-modal').style.display = 'none';
+        });
+    });
+</script>
+
 <style>
-    .browse-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .title {
-        color: #d946ef;
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-
-    table {
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        border-collapse: collapse;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center; /* Horizontally center */
+        align-items: center; /* Vertically center */
     }
-
-    th, td {
-        text-align: center; /* Center text horizontally */
-        vertical-align: middle; /* Center text vertically */
-        padding: 12px;
+    .modal-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.3s ease; /* Optional fade-in animation */
     }
-
-    th {
-        background-color: #f8d7da;
-        color: #c0392b;
-        font-weight: bold;
-    }
-
-    tr {
-        border-bottom: 1px solid #f5c6cb;
-    }
-
-    tr:hover {
-        background-color: #fdecea;
-    }
-
-    button {
-        padding: 8px 12px;
-        font-size: 14px;
-        border: none;
-        border-radius: 4px;
+    .close-modal {
+        float: right;
         cursor: pointer;
+        font-size: 1.5rem;
+        color: #333;
+    }
+    .close-modal:hover {
+        color: #d946ef;
     }
 
-    button:hover {
-        opacity: 0.8;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 </style>
-{% endblock %}
 
+{% endblock %}

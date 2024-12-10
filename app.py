@@ -120,40 +120,28 @@ def home():
         file = request.files.get('file')
         if not file or not file.filename.endswith('.csv'):
             flash("Please upload a valid CSV file.", "error")
-            return redirect(request.url)
+            return redirect(url_for('home'))
 
-        # Save the uploaded file
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        # Save the file and update session
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
+        session['file_path'] = file_path
 
-        # Get file metadata
-        file_type = os.path.splitext(file.filename)[1].upper().replace('.', '')  # Extract file extension as type
-        session['file_metadata'] = {
-            'filename': file.filename,
-            'path': file_path,
-            'type': file_type,
-            'timestamp': timestamp
-        }
+        # Convert to JSON
+        json_path = csv_to_json(file_path)
+        session['json_file_path'] = json_path
 
-        # Convert CSV to JSON and store path in session
-        json_file_path = csv_to_json(file_path)
-        session['json_file_path'] = json_file_path
-
+        flash("File uploaded successfully.", "success")
         return redirect(url_for('cleaning'))
-    
-    # Get the list of uploaded files
-    uploaded_files = os.listdir(UPLOAD_FOLDER)
+
+    # Display uploaded files
     files = [
         {
             'filename': file,
             'path': os.path.join(UPLOAD_FOLDER, file),
-            'type': os.path.splitext(file)[1].upper().replace('.', ''),  # Extract file extension as type
-            'timestamp': datetime.datetime.fromtimestamp(
-                os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
-            ).strftime('%Y-%m-%d %H:%M:%S')  # Format timestamp
+            'timestamp': format_date(os.path.getmtime(os.path.join(UPLOAD_FOLDER, file)))
         }
-        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))
+        for file in os.listdir(UPLOAD_FOLDER) if file.endswith('.csv')
     ]
     return render_template('home.html', files=files)
 
@@ -162,18 +150,20 @@ def home():
 def cleaning():
     file_path = session.get('file_path')
     if not file_path or not os.path.exists(file_path):
-        return 'No file to display', 400
+        flash("No file to display. Please upload a CSV file first.", "error")
+        return redirect(url_for('home'))  # Redirect to the home page if no file is found
 
-    data = pd.read_csv(file_path)
+    data = pd.read_csv(file_path)  # Load the CSV data
     if request.method == 'POST':
         action = request.form.get('action')
         column_name = request.form.get('column_name')
 
+        # Perform the selected data cleaning action
         if action:
             cleaned_data = apply_data_cleaning(data, action, column_name)
             cleaned_file_path = os.path.join(UPLOAD_FOLDER, f"cleaned_{os.path.basename(file_path)}")
-            cleaned_data.to_csv(cleaned_file_path, index=False)
-            session['file_path'] = cleaned_file_path
+            cleaned_data.to_csv(cleaned_file_path, index=False)  # Save the cleaned data
+            session['file_path'] = cleaned_file_path  # Update the session with the cleaned file path
             
             # Update JSON after cleaning
             json_file_path = csv_to_json(cleaned_file_path)
@@ -182,8 +172,10 @@ def cleaning():
             flash(f"Data cleaned with action: {action}", "success")
             data = cleaned_data
 
+    # Generate the HTML table for rendering in the template
     table_html = data.to_html(classes='table table-striped', index=False)
     return render_template('data-cleaning.html', table_html=table_html)
+
 
 @app.route('/save-to-visualize', methods=['POST'])
 def save_to_visualize():
@@ -249,6 +241,34 @@ def browse_files():
     history_files = files
 
     return render_template('browse-file.html', recent_files=recent_files, history_files=history_files)
+
+@app.route('/view-file/<filename>', methods=['GET'])
+def view_file(filename):
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+
+    # Read the file content
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return jsonify({"filename": filename, "content": content})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/delete-file/<filename>', methods=['POST'])
+def delete_file(filename):
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+
+    # Delete the file
+    try:
+        os.remove(file_path)
+        return jsonify({"success": True, "message": f"File '{filename}' deleted successfully."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/account-setting')
