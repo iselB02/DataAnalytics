@@ -16,6 +16,7 @@
 
 .browse-buttons button {
     background-color: transparent;
+    color :#800080;
     border: none;
     margin-right: 30px;
 }
