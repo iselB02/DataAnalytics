@@ -12,7 +12,7 @@
                 <button class="tablinks" onclick="openTab(event, 'formatting')">Formatting</button>
                 <button class="tablinks" onclick="openTab(event, 'column-operations')">Column Operations</button>
             </div>
-            
+
             <!-- Tab Content for each Category -->
             <div id="missing-values" class="tabcontent">
                 <form method="POST">
@@ -39,12 +39,15 @@
             </div>
 
             <div id="column-operations" class="tabcontent">
-                <form method="POST">
-                    <button type="button" id="remove-column">Remove Entire Column</button>
+                <form method="POST" id="removeColumnForm">
+                    <input type="hidden" name="action" value="remove_column">
+                    <input type="hidden" id="columnNameInput" name="column_name">
+                    <button type="button" id="remove-column" onclick="promptColumnName()">Remove Entire Column</button>
                 </form>
             </div>
+            
         </div>
-        
+
         <div class="main-cleaning">
             <div class="table-container">
                 {% if table_html %}
@@ -57,10 +60,10 @@
             </div>
         </div>
     </div>
-    <button id="visualize">Visualize</button>
-<button id="download-csv" style="display: none;">Download Cleaned Data</button>
 
-</div>
+    <form method="POST" action="/save-to-storage">
+        <button id="visualize" type="submit">Visualize</button>
+    </form>    
 
 {% block styles %}
 <style>
@@ -237,6 +240,13 @@
             document.querySelector(".tablinks").click(); // Click the first tab by default
         }
     });
+    function promptColumnName() {
+        const columnName = prompt("Enter the name of the column to remove:");
+        if (columnName) {
+            document.getElementById("columnNameInput").value = columnName;
+            document.getElementById("removeColumnForm").submit();
+        }
+    }
 
 
 </script>
