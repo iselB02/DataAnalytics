@@ -122,7 +122,29 @@ def visualize(file_path):
 
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    # Create some dummy data
+    dummy_files = [
+        {
+            'filename': 'report1.pdf',
+            'type': 'CSV',
+            'path': '/documents/report1.csv',
+            'timestamp': '2024-03-15 10:30:00'
+        },
+        {
+            'filename': 'analysis.docx',
+            'type': 'CSV',
+            'path': '/documents/analysis.csv',
+            'timestamp': '2024-03-14 15:45:00'
+        },
+        {
+            'filename': 'spreadsheet.xlsx',
+            'type': 'Excel',
+            'path': '/documents/spreadsheet.xlsx',
+            'timestamp': '2024-03-13 09:15:00'
+        }
+    ]
+    
+    return render_template('home.html', files=dummy_files)
 
 @app.route('/create-new')
 def create():
