@@ -122,29 +122,17 @@ def visualize(file_path):
 
 @app.route('/home')
 def home():
-    # Create some dummy data
-    dummy_files = [
+    # Get the list of uploaded files
+    uploaded_files = os.listdir(UPLOAD_FOLDER)
+    files = [
         {
-            'filename': 'report1.pdf',
-            'type': 'CSV',
-            'path': '/documents/report1.csv',
-            'timestamp': '2024-03-15 10:30:00'
-        },
-        {
-            'filename': 'analysis.docx',
-            'type': 'CSV',
-            'path': '/documents/analysis.csv',
-            'timestamp': '2024-03-14 15:45:00'
-        },
-        {
-            'filename': 'spreadsheet.xlsx',
-            'type': 'Excel',
-            'path': '/documents/spreadsheet.xlsx',
-            'timestamp': '2024-03-13 09:15:00'
+            'filename': file,
+            'path': os.path.join(UPLOAD_FOLDER, file),
+            'timestamp': os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
         }
+        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))
     ]
-    
-    return render_template('home.html', files=dummy_files)
+    return render_template('home.html', files=files)
 
 @app.route('/create-new')
 def create():
