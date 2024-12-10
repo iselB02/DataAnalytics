@@ -32,9 +32,14 @@
 </div>
 
 <script>
-    // Redirect to the manual data input page
-    document.getElementById('input-create').addEventListener('click', function () {
-        window.location.href = '/manual-entry';
+    // Ensure the DOM is fully loaded before attaching event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputCreateButton = document.getElementById('input-create');
+        if (inputCreateButton) {
+            inputCreateButton.addEventListener('click', function () {
+                window.location.href = '/manual-entry';
+            });
+        }
     });
 </script>
 
