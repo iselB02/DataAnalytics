@@ -36,11 +36,8 @@
                 <label for="y-axis">Y-Axis:</label>
                 <select id="y-axis"></select>
 
-                <!-- Bar Chart -->
-                <div id="bar-chart-options" class="chart-options">
-                    <label for="bar-color">Bar Color:</label>
-                    <input type="color" id="bar-color" value="#007bff">
-                </div>
+                <label for="color-palette">Choose Color Palette:</label>
+                <input type="color" id="color-palette" value="#ff6384">
 
                 <button class="apply-btn" id="apply-customization">Apply</button>
             </div>
@@ -50,19 +47,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let barChart, activeChart;
+    let activeTab = 'bar-chart';  // Define activeTab globally with a default value
 
-    // Simulated chart data
-    const chartData = {
-        columns: ['Category', 'Value'],
-        data: {
-            'Category': ['A', 'B', 'C', 'D', 'E'],
-            'Value': [10, 20, 15, 30, 25]
-        }
-    };
+    let activeChart;
+
+    // Fetch chart data passed from Flask
+    const chartData = JSON.parse('{{ chart_data | safe }}');
 
     const xAxisDropdown = document.getElementById('x-axis');
     const yAxisDropdown = document.getElementById('y-axis');
+    const colorPalettePicker = document.getElementById('color-palette');
 
     function populateDropdowns() {
         chartData.columns.forEach(column => {
@@ -84,6 +78,16 @@
         }
     }
 
+    // Generate a random color for each data point
+    function generateRandomColors(count) {
+        const colors = [];
+        for (let i = 0; i < count; i++) {
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Random hue
+            colors.push(color);
+        }
+        return colors;
+    }
+
     function renderChart(type, ctx, config) {
         if (activeChart) activeChart.destroy();
         activeChart = new Chart(ctx, config);
@@ -91,6 +95,7 @@
 
     function renderBarChart() {
         const ctx = document.getElementById('bar-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
         renderChart('bar', ctx, {
             type: 'bar',
             data: {
@@ -98,15 +103,108 @@
                 datasets: [{
                     label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
                     data: chartData.data[yAxisDropdown.value],
-                    backgroundColor: document.getElementById('bar-color').value
+                    backgroundColor: colors  // Use the generated colors
                 }]
             },
             options: { responsive: true }
         });
     }
 
-    document.getElementById('apply-customization').addEventListener('click', function () {
-        renderBarChart();
+    function renderBubbleChart() {
+        const ctx = document.getElementById('bubble-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bubble
+        renderChart('bubble', ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: chartData.data[xAxisDropdown.value].map((x, i) => ({
+                        x,
+                        y: chartData.data[yAxisDropdown.value][i],
+                        r: chartData.data[yAxisDropdown.value][i] * 2
+                    })),
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { responsive: true }
+        });
+    }
+
+    function renderHistogram() {
+        const ctx = document.getElementById('histogram').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
+        renderChart('histogram', ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    label: `${xAxisDropdown.value} Histogram`,
+                    data: chartData.data[xAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { responsive: true }
+        });
+    }
+
+    function renderPieChart() {
+        const ctx = document.getElementById('pie-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
+        renderChart('pie', ctx, {
+            type: 'pie',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    data: chartData.data[yAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { responsive: true }
+        });
+    }
+
+    function renderRadarChart() {
+        const ctx = document.getElementById('radar-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.columns.length);  // Generate random colors for each segment
+        renderChart('radar', ctx, {
+            type: 'radar',
+            data: {
+                labels: chartData.columns,
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: chartData.columns.map(col => chartData.data[col].reduce((a, b) => a + b, 0) / chartData.data[col].length),
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    fill: true
+                }]
+            },
+            options: { responsive: true }
+        });
+    }
+
+    // Event listeners for tabs
+    document.querySelectorAll('.tab-vis').forEach(tab => {
+        tab.addEventListener('click', function () {
+            activeTab = tab.id.replace('-tab', '');  // Update activeTab when a tab is clicked
+            document.querySelectorAll('.chart').forEach(c => c.classList.add('hidden'));
+            document.getElementById(activeTab).classList.remove('hidden');
+            renderChartBasedOnActiveTab();
+        });
+    });
+
+    function renderChartBasedOnActiveTab() {
+        switch (activeTab) {
+            case 'bar-chart': renderBarChart(); break;
+            case 'bubble-chart': renderBubbleChart(); break;
+            case 'histogram': renderHistogram(); break;
+            case 'pie-chart': renderPieChart(); break;
+            case 'radar-chart': renderRadarChart(); break;
+        }
+    }
+
+    // Apply customization and render the selected chart
+    document.getElementById('apply-customization').addEventListener('click', () => {
+        renderChartBasedOnActiveTab();
     });
 
     // Initialize dropdowns and render default chart
@@ -115,4 +213,5 @@
         renderBarChart();
     });
 </script>
+
 {% endblock %}

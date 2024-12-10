@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Plotly Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            height: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Test Plotly Chart</h1>
+<div class="chart-container">
+    <!-- The div where the plotly chart will be rendered -->
+    <div id="chart"></div>
+</div>
+
+<script>
+    // Sample data for the chart
+    var trace = {
+        x: ['A', 'B', 'C', 'D', 'E'],
+        y: [10, 15, 13, 18, 24],
+        type: 'bar',  // bar chart
+        marker: { color: 'blue' }  // Blue color for bars
+    };
+
+    var data = [trace];
+
+    var layout = {
+        title: 'Sample Bar Chart',
+        xaxis: { title: 'Category' },
+        yaxis: { title: 'Values' }
+    };
+
+    // Render the chart
+    Plotly.newPlot('chart', data, layout);
+</script>
+
+</body>
+</html>

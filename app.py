@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for, flash, send_file, jsonify
 import os
 import pandas as pd
 import json
@@ -6,11 +6,15 @@ import json
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for session storage
 
-# Define the uploads folder
+# Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), 'json_data')
+
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
+if not os.path.exists(JSON_FOLDER):
+    os.makedirs(JSON_FOLDER)
 
 # Helper function to apply data cleaning operations
 def apply_data_cleaning(data, action, column_name=None):
@@ -36,6 +40,18 @@ def apply_data_cleaning(data, action, column_name=None):
         data = data.drop(columns=[column_name], errors='ignore')
     return data
 
+# Function to convert CSV to JSON
+def csv_to_json(csv_file_path):
+    df = pd.read_csv(csv_file_path)
+    json_data = {
+        "columns": df.columns.tolist(),
+        "data": {col: df[col].tolist() for col in df.columns}
+    }
+    json_file_path = os.path.join(JSON_FOLDER, os.path.basename(csv_file_path).replace('.csv', '.json'))
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_data, json_file, indent=4)
+    return json_file_path
+
 @app.route('/', methods=['GET', 'POST'])
 def landingPage():
     if request.method == 'POST':
@@ -47,6 +63,11 @@ def landingPage():
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
         session['file_path'] = file_path
+        
+        # Convert CSV to JSON and store path in session
+        json_file_path = csv_to_json(file_path)
+        session['json_file_path'] = json_file_path
+
         return redirect(url_for('cleaning'))
     return render_template('landing-page.html')
 
@@ -66,60 +87,52 @@ def cleaning():
             cleaned_file_path = os.path.join(UPLOAD_FOLDER, f"cleaned_{os.path.basename(file_path)}")
             cleaned_data.to_csv(cleaned_file_path, index=False)
             session['file_path'] = cleaned_file_path
+            
+            # Update JSON after cleaning
+            json_file_path = csv_to_json(cleaned_file_path)
+            session['json_file_path'] = json_file_path
+
             flash(f"Data cleaned with action: {action}", "success")
             data = cleaned_data
 
     table_html = data.to_html(classes='table table-striped', index=False)
     return render_template('data-cleaning.html', table_html=table_html)
 
-@app.route('/visualize/<file_path>', methods=['GET'])
-def visualize(file_path):
-    full_file_path = os.path.join(UPLOAD_FOLDER, file_path)
-    if not os.path.exists(full_file_path):
-        flash("File not found.", "error")
+@app.route('/save-to-visualize', methods=['POST'])
+def save_to_visualize():
+    # Redirect to visualize after ensuring cleaned data exists
+    json_file_path = session.get('json_file_path')
+    if not json_file_path or not os.path.exists(json_file_path):
+        flash("No JSON file found. Please clean data first.", "error")
+        return redirect(url_for('cleaning'))
+    return redirect(url_for('visualize'))
+
+@app.route('/visualize', methods=['GET'])
+def visualize():
+    json_file_path = session.get('json_file_path')
+    if not json_file_path or not os.path.exists(json_file_path):
+        flash("No JSON file found. Please clean data first.", "error")
         return redirect(url_for('cleaning'))
 
-    try:
-        cleaned_data = pd.read_csv(full_file_path)
-        chart_data = {
-            "columns": cleaned_data.columns.tolist(),
-            "data": {col: cleaned_data[col].tolist() for col in cleaned_data.columns}
-        }
-        return render_template(
-            'visualization.html',
-            chart_data=json.dumps(chart_data)
-        )
-    except Exception as e:
-        flash(f"Error loading data: {e}", "error")
-        return redirect(url_for('cleaning'))
-    
-# @app.route('/sign-in', methods=['POST'])
-# def signin():
-#     email = request.form['email']
-#     password = request.form['password']
+    with open(json_file_path, 'r') as json_file:
+        chart_data = json.load(json_file)
 
-#     try:
-#         # Sign in with Firebase
-#         user = auth.get_user_by_email(email)
-#         # You can add password verification here
-#         return jsonify({'success': True, 'uid': user.uid})
+    return render_template('visualization.html', chart_data=json.dumps(chart_data))
 
-#     except Exception as e:
-#         return jsonify({'success': False, 'message': str(e)})
+@app.route('/get-json-data', methods=['GET'])
+def get_json_data():
+    """Serve JSON data dynamically for visualization."""
+    json_file_path = session.get('json_file_path')
+    if not json_file_path or not os.path.exists(json_file_path):
+        return jsonify({"error": "No JSON data found"}), 404
 
-# @app.route('/sign-up', methods=['POST'])
-# def signup():
-#     email = request.form['email']
-#     password = request.form['password']
+    with open(json_file_path, 'r') as json_file:
+        chart_data = json.load(json_file)
 
-#     try:
-#         # Create a new user in Firebase Authentication
-#         user = auth.create_user(email=email, password=password)
-#         return jsonify({'success': True, 'uid': user.uid})
+    return jsonify(chart_data)
 
-#     except Exception as e:
-#         return jsonify({'success': False, 'message': str(e)})
 
+# Additional routes for other pages
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -143,11 +156,6 @@ def accountSetting():
 @app.route('/layout')
 def layout():
     return render_template('layout.html')
-
-@app.route('/manual-entry', methods=['GET'])
-def manual_entry():
-    return render_template('manual_entry.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)

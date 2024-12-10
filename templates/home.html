@@ -5,19 +5,26 @@
     <h2 class="title">Home</h2>
     <button id="createNew" class="new">Create Blank Report</button>
     <div class="recent-files">
-        <div class="recent-files">
-            <table>  
-                <thead>
-                    <tr>
-                        <th>Filename</th>
-                        <th>Type</th>
-                        <th>Path</th>
-                        <th>Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
+        <table>  
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Type</th>
+                    <th>Path</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                {% for file in files %}
+                <tr>
+                    <td>{{ file.filename }}</td>
+                    <td>{{ file.type }}</td>
+                    <td><a href="{{ file.path }}" target="_blank">{{ file.path }}</a></td>
+                    <td>{{ file.timestamp | format_date }}</td>  <!-- Use the custom filter here -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
+</div>
 {% endblock %}
