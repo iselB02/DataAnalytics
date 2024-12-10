@@ -1,0 +1,21 @@
+{
+    "columns": [
+        "name",
+        "age",
+        "course"
+    ],
+    "data": {
+        "name": [
+            "kricel",
+            "kim"
+        ],
+        "age": [
+            21,
+            23
+        ],
+        "course": [
+            "bscs",
+            "hrdm"
+        ]
+    }
+}

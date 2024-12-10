@@ -126,24 +126,11 @@ def home():
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
 
-        # Extract metadata
-        file_type = os.path.splitext(file.filename)[1].lstrip('.').upper()  # Get file extension
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
         # Store metadata in session
-        session['file_metadata'] = {
-            'filename': file.filename,
-            'path': file_path,
-            'type': file_type,
-            'timestamp': timestamp
-        }
+        session['file_path'] = file_path
 
-        # Convert to JSON
-        json_path = csv_to_json(file_path)
-        session['json_file_path'] = json_path
-
-        flash("File uploaded successfully.", "success")
-        return redirect(url_for('cleaning'))
+        flash("File uploaded successfully. Redirecting to Data Cleaning.", "success")
+        return redirect(url_for('cleaning'))  # Redirect to the data cleaning page
 
     # Display uploaded files
     uploaded_files = [
@@ -163,6 +150,8 @@ def home():
     top_files = uploaded_files[:7]
 
     return render_template('home.html', files=top_files)
+
+
 @app.route('/save-csv', methods=['POST'])
 def save_csv():
     try:
