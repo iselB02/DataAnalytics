@@ -29,7 +29,7 @@
 }
 
 #signBtn:hover {
-    transform: scale(1.1);  /* Hover effect to make the button grow */
+    transform: scale(1.1);  
     cursor: pointer;
 }
 
@@ -110,3 +110,27 @@ h1 {
         text-shadow: 0 0 10px rgba(128, 0, 128, 0.8), 0 0 20px rgba(255, 182, 193, 0.6);
     }
 }
+
+/* Apply a subtle moving gradient background */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(45deg, #FF698C, #ffb6c1);
+    background-size: 400% 400%;
+    animation: gradientMovement 6s ease infinite;
+    position: relative;
+}
+
+/* Add animation to move the gradient */
+@keyframes gradientMovement {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
