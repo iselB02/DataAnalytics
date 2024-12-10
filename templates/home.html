@@ -19,12 +19,50 @@
                 <tr>
                     <td>{{ file.filename }}</td>
                     <td>{{ file.type }}</td>
+<<<<<<< HEAD
                     <td><a href="{{ file.path }}" target="_blank">{{ file.path }}</a></td>
                     <td>{{ file.timestamp | format_date }}</td>  <!-- Use the custom filter here -->
+=======
+                    <td>{{ file.path }}</td>
+                    <td>{{ file.timestamp }}</td>
+>>>>>>> 3a7bcc8fb5968dedf6e37ada20facbb083b9ab8c
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+<<<<<<< HEAD
 {% endblock %}
+=======
+<script> document.addEventListener('DOMContentLoaded', function() {
+    const tableBody = document.getElementById('tableBody');
+    
+    const dummyFiles = [
+        {
+            filename: 'report1.csv',
+            type: 'CSV',
+            path: '/documents/report1.csv',
+            timestamp: '2024-03-15 10:30:00'
+        },
+        {
+            filename: 'analysis.csv',
+            type: 'csv',
+            path: '/documents/analysis.csv',
+            timestamp: '2024-03-14 15:45:00'
+        }
+    ];
+
+    dummyFiles.forEach(file => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${file.filename}</td>
+            <td>${file.type}</td>
+            <td>${file.path}</td>
+            <td>${file.timestamp}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+});</script>
+{% endblock %}
+>>>>>>> 3a7bcc8fb5968dedf6e37ada20facbb083b9ab8c

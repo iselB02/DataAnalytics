@@ -36,11 +36,12 @@ table {
   }
   
   th, td {
-    padding: 10px;
-
-    vertical-align: middle; /* Vertically center content within cells */
-    border-bottom: 1px solid #f2f2f2;
-  }
+      padding: 10px;
+      vertical-align: middle;
+      text-align: left;
+      border-bottom: 1px solid #f2f2f2;
+    }
+  
   
   th {
     background-color: #FFB6C1;

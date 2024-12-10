@@ -135,7 +135,17 @@ def get_json_data():
 # Additional routes for other pages
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    # Get the list of uploaded files
+    uploaded_files = os.listdir(UPLOAD_FOLDER)
+    files = [
+        {
+            'filename': file,
+            'path': os.path.join(UPLOAD_FOLDER, file),
+            'timestamp': os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
+        }
+        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))
+    ]
+    return render_template('home.html', files=files)
 
 @app.route('/create-new')
 def create():
