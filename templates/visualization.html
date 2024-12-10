@@ -39,7 +39,10 @@
                 <label for="color-palette">Choose Color Palette:</label>
                 <input type="color" id="color-palette" value="#ff6384">
 
-                <button class="apply-btn" id="apply-customization">Apply</button>
+                <div class="btns">
+                    <button class="apply-btn" id="apply-customization">Apply</button>
+                    <button class="apply-btn" id="download-image">Download Image</button>
+                </div>
             </div>
         </div>
     </div>
@@ -148,20 +151,32 @@
     }
 
     function renderPieChart() {
-        const ctx = document.getElementById('pie-chart').getContext('2d');
-        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
-        renderChart('pie', ctx, {
-            type: 'pie',
-            data: {
-                labels: chartData.data[xAxisDropdown.value],
-                datasets: [{
-                    data: chartData.data[yAxisDropdown.value],
-                    backgroundColor: colors  // Use the generated colors
-                }]
-            },
-            options: { responsive: true }
-        });
-    }
+    const ctx = document.getElementById('pie-chart').getContext('2d');
+    const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
+    renderChart('pie', ctx, {
+        type: 'pie',
+        data: {
+            labels: chartData.data[xAxisDropdown.value],
+            datasets: [{
+                data: chartData.data[yAxisDropdown.value],
+                backgroundColor: colors  // Use the generated colors
+            }]
+        },
+        options: { 
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',  // Position the legend to the right of the chart
+                    labels: {
+                        usePointStyle: true, // Optional: makes the legend items look like the chart points
+                        boxWidth: 10, // Optional: adjust the width of the legend items
+                    }
+                }
+            }
+        }
+    });
+}
+
 
     function renderRadarChart() {
         const ctx = document.getElementById('radar-chart').getContext('2d');
@@ -190,6 +205,17 @@
             document.getElementById(activeTab).classList.remove('hidden');
             renderChartBasedOnActiveTab();
         });
+    });
+
+     // functionality to download the image
+     document.getElementById('download-image').addEventListener('click', () => {
+        if (activeChart) {
+            const imageUrl = activeChart.toBase64Image();  // Get the image as base64
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'chart-image.png';  // Set the default download file name
+            link.click();  // Trigger the download
+        }
     });
 
     function renderChartBasedOnActiveTab() {
