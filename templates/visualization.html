@@ -36,11 +36,9 @@
                 <label for="y-axis">Y-Axis:</label>
                 <select id="y-axis"></select>
 
-                <label for="color-palette">Choose Color Palette:</label>
-                <input type="color" id="color-palette" value="#ff6384">
-
                 <div class="btns">
                     <button class="apply-btn" id="apply-customization">Apply</button>
+                    <button id="generate-palette" class="btn btn-primary">Generate Color</button>
                     <button class="apply-btn" id="download-image">Download Image</button>
                     <button class="apply-btn" id="generate-pdf">Generate Report (PDF)</button>
                 </div>
@@ -82,18 +80,38 @@
         if (chartData.columns.length > 0) {
             xAxisDropdown.value = chartData.columns[0];
             yAxisDropdown.value = chartData.columns[1] || chartData.columns[0];
+            }
         }
-    }
 
-    // Generate a random color for each data point
-    function generateRandomColors(count) {
-        const colors = [];
-        for (let i = 0; i < count; i++) {
-            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Random hue
-            colors.push(color);
+        document.getElementById('generate-palette').addEventListener('click', function () {
+            const paletteColors = generateRandomColors(10); // Generate a palette of 10 colors
+            applyPaletteToChart(paletteColors); // Apply the generated colors to the active chart
+        });
+
+        // Generate random colors for the palette
+        function generateRandomColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = Math.random() * 360; // Random hue
+                const saturation = 70 + Math.random() * 30; // Saturation: 70-100%
+                const lightness = 40 + Math.random() * 20; // Lightness: 40-60%
+                colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
+            }
+            return colors;
         }
-        return colors;
-    }
+
+        // Apply the generated palette to the active chart
+        function applyPaletteToChart(colors) {
+            if (!activeChart) return;
+
+            const chartData = activeChart.data;
+            if (chartData.datasets && chartData.datasets[0]) {
+                // Apply colors to the dataset background
+                chartData.datasets[0].backgroundColor = colors.slice(0, chartData.datasets[0].data.length);
+                activeChart.update(); // Update the chart with the new colors
+            }
+        }
+
 
     function renderChart(type, ctx, config) {
         if (activeChart) activeChart.destroy();
