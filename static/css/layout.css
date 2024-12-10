@@ -65,8 +65,8 @@ body {
 #logo-container {
     margin-top: 20px;
     margin-bottom: 30px;
-    width: 90px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     background-image: url("/static/images/logo2.png");
     background-size: cover;
     background-position: center;
