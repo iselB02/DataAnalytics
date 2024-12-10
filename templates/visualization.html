@@ -52,429 +52,378 @@
 <script src="https://cdn.jsdelivr.net/npm/google-generativeai"></script>
 
 <script>
-    // Large Dataset Optimization Utilities
-    const DataProcessor = {
-        // Sampling strategy for large datasets
-        sampleData(data, maxSamples = 1000) {
-            if (data.length <= maxSamples) return data;
+    let activeTab = 'bar-chart';  // Define activeTab globally with a default value
 
-            const sampleStep = Math.floor(data.length / maxSamples);
-            return data.filter((_, index) => index % sampleStep === 0);
-        },
+    let activeChart;
 
-        // Aggregate data for summary visualizations
-        aggregateData(data, aggregationType = 'mean') {
-            switch(aggregationType) {
-                case 'mean':
-                    return data.reduce((a, b) => a + b, 0) / data.length;
-                case 'median':
-                    const sorted = [...data].sort((a, b) => a - b);
-                    const middle = Math.floor(sorted.length / 2);
-                    return sorted.length % 2 
-                        ? sorted[middle] 
-                        : (sorted[middle - 1] + sorted[middle]) / 2;
-                case 'binning':
-                    const min = Math.min(...data);
-                    const max = Math.max(...data);
-                    const binCount = 10;
-                    const binSize = (max - min) / binCount;
-                    return data.reduce((bins, value) => {
-                        const binIndex = Math.min(
-                            Math.floor((value - min) / binSize), 
-                            binCount - 1
-                        );
-                        bins[binIndex] = (bins[binIndex] || 0) + 1;
-                        return bins;
-                    }, new Array(binCount).fill(0));
-            }
-        },
+    // Fetch chart data passed from Flask
+    const chartData = JSON.parse('{{ chart_data | safe }}');
 
-        // Debounce function to prevent multiple rapid renders
-        debounce(func, delay) {
-            let timeoutId;
-            return (...args) => {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => func.apply(this, args), delay);
-            };
-        }
-    };
+    const xAxisDropdown = document.getElementById('x-axis');
+    const yAxisDropdown = document.getElementById('y-axis');
+    const colorPalettePicker = document.getElementById('color-palette');
 
-    // Main Visualization Controller
-    const VisualizationController = {
-        activeTab: 'bar-chart',
-        activeChart: null,
-        chartData: null,
+    function populateDropdowns() {
+        chartData.columns.forEach(column => {
+            const xOption = document.createElement('option');
+            xOption.value = column;
+            xOption.textContent = column;
+            xAxisDropdown.appendChild(xOption);
 
-        // Initialize the visualization
-        init(data) {
-            this.chartData = JSON.parse(data);
-            this.setupDropdowns();
-            this.setupEventListeners();
-            this.renderDefaultChart();
-        },
+            const yOption = document.createElement('option');
+            yOption.value = column;
+            yOption.textContent = column;
+            yAxisDropdown.appendChild(yOption);
+        });
 
-        // Populate axis dropdowns
-        setupDropdowns() {
-            const xAxisDropdown = document.getElementById('x-axis');
-            const yAxisDropdown = document.getElementById('y-axis');
-
-            // Clear existing options
-            xAxisDropdown.innerHTML = '';
-            yAxisDropdown.innerHTML = '';
-
-            // Populate dropdowns
-            this.chartData.columns.forEach(column => {
-                const xOption = document.createElement('option');
-                xOption.value = column;
-                xOption.textContent = column;
-                xAxisDropdown.appendChild(xOption);
-
-                const yOption = document.createElement('option');
-                yOption.value = column;
-                yOption.textContent = column;
-                yAxisDropdown.appendChild(yOption);
-            });
-
-            // Set default selections
-            if (this.chartData.columns.length > 0) {
-                xAxisDropdown.value = this.chartData.columns[0];
-                yAxisDropdown.value = this.chartData.columns[1] || this.chartData.columns[0];
-            }
-        },
-
-        // Set up event listeners
-        setupEventListeners() {
-            // Tab navigation
-            document.querySelectorAll('.tab-vis').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    this.activeTab = tab.id.replace('-tab', '');
-                    this.switchTab();
-                });
-            });
-
-            // Customization apply button
-            document.getElementById('apply-customization').addEventListener('click', 
-                DataProcessor.debounce(() => this.renderChartBasedOnActiveTab(), 300)
-            );
-
-            // Color palette generation
-            document.getElementById('generate-palette').addEventListener('click', () => {
-                const paletteColors = this.generateRandomColors(10);
-                this.applyPaletteToChart(paletteColors);
-            });
-
-            // Image download
-            document.getElementById('download-image').addEventListener('click', () => {
-                if (this.activeChart) {
-                    const imageUrl = this.activeChart.toBase64Image();
-                    const link = document.createElement('a');
-                    link.href = imageUrl;
-                    link.download = `${this.activeTab}-chart-image.png`;
-                    link.click();
-                }
-            });
-        },
-
-        // Switch active tab and render chart
-        switchTab() {
-            document.querySelectorAll('.chart').forEach(c => c.classList.add('hidden'));
-            document.getElementById(this.activeTab).classList.remove('hidden');
-            this.renderChartBasedOnActiveTab();
-        },
-
-        // Render chart based on active tab
-        renderChartBasedOnActiveTab() {
-            const xAxis = document.getElementById('x-axis').value;
-            const yAxis = document.getElementById('y-axis').value;
-
-            // Show loading indicator
-            this.showLoadingIndicator();
-
-            // Render specific chart type
-            switch (this.activeTab) {
-                case 'bar-chart': 
-                    this.renderOptimizedBarChart(xAxis, yAxis); 
-                    break;
-                case 'bubble-chart': 
-                    this.renderOptimizedBubbleChart(xAxis, yAxis); 
-                    break;
-                case 'histogram': 
-                    this.renderOptimizedHistogram(xAxis, yAxis); 
-                    break;
-                case 'pie-chart': 
-                    this.renderOptimizedPieChart(xAxis, yAxis); 
-                    break;
-                case 'radar-chart': 
-                    this.renderOptimizedRadarChart(xAxis, yAxis); 
-                    break;
-            }
-        },
-
-        // Optimized Bar Chart Rendering
-        renderOptimizedBarChart(xAxis, yAxis) {
-            const ctx = document.getElementById('bar-chart').getContext('2d');
-            
-            // Sample data for large datasets
-            const xData = DataProcessor.sampleData(this.chartData.data[xAxis]);
-            const yData = DataProcessor.sampleData(this.chartData.data[yAxis]);
-            
-            // Generate optimized colors
-            const colors = this.generateRandomColors(xData.length);
-
-            // Destroy previous chart
-            if (this.activeChart) this.activeChart.destroy();
-
-            // Create new chart with performance optimizations
-            this.activeChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: xData,
-                    datasets: [{
-                        label: `${xAxis} vs ${yAxis}`,
-                        data: yData,
-                        backgroundColor: colors
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { duration: 0 }, // Disable animations for performance
-                    plugins: {
-                        legend: { position: 'top' }
-                    }
-                }
-            });
-        },
-
-        // Similar optimization methods for other chart types...
-        renderOptimizedBubbleChart(xAxis, yAxis) {
-            const ctx = document.getElementById('bubble-chart').getContext('2d');
-            
-            // Sample and process data
-            const xData = DataProcessor.sampleData(this.chartData.data[xAxis]);
-            const yData = DataProcessor.sampleData(this.chartData.data[yAxis]);
-            
-            const bubbleData = xData.map((x, i) => ({
-                x, 
-                y: yData[i], 
-                r: Math.min(Math.abs(yData[i]) * 2, 20) // Limit bubble size
-            }));
-
-            const colors = this.generateRandomColors(bubbleData.length);
-
-            if (this.activeChart) this.activeChart.destroy();
-
-            this.activeChart = new Chart(ctx, {
-                type: 'bubble',
-                data: {
-                    datasets: [{
-                        label: `${xAxis} vs ${yAxis}`,
-                        data: bubbleData,
-                        backgroundColor: colors
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { duration: 0 },
-                    plugins: {
-                        legend: { position: 'top' }
-                    }
-                }
-            });
-        },
-
-        // Add these methods to the VisualizationController object
-
-renderOptimizedHistogram(xAxis, yAxis) {
-    const ctx = document.getElementById('histogram').getContext('2d');
-    
-    // Sample and bin the data
-    const data = DataProcessor.sampleData(this.chartData.data[xAxis]);
-    const binnedData = DataProcessor.aggregateData(data, 'binning');
-    
-    // Generate bin labels
-    const min = Math.min(...data);
-    const max = Math.max(...data);
-    const binSize = (max - min) / binnedData.length;
-    const labels = binnedData.map((_, index) => {
-        const binStart = min + index * binSize;
-        const binEnd = binStart + binSize;
-        return `${binStart.toFixed(2)} - ${binEnd.toFixed(2)}`;
-    });
-
-    const colors = this.generateRandomColors(binnedData.length);
-
-    if (this.activeChart) this.activeChart.destroy();
-
-    this.activeChart = new Chart(ctx, {
-        type: 'bar', // Histogram uses bar chart type
-        data: {
-            labels: labels,
-            datasets: [{
-                label: `${xAxis} Distribution`,
-                data: binnedData,
-                backgroundColor: colors
-            }]
-        },
-        options: { 
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 0 },
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Frequency'
-                    }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: `Histogram of ${xAxis}`
-                }
+        // Set default selections
+        if (chartData.columns.length > 0) {
+            xAxisDropdown.value = chartData.columns[0];
+            yAxisDropdown.value = chartData.columns[1] || chartData.columns[0];
             }
         }
-    });
-},
 
-renderOptimizedPieChart(xAxis, yAxis) {
-    const ctx = document.getElementById('pie-chart').getContext('2d');
-    
-    // Sample and aggregate data
-    const labels = DataProcessor.sampleData(this.chartData.data[xAxis]);
-    const values = DataProcessor.sampleData(this.chartData.data[yAxis]);
-    
-    // Aggregate similar categories
-    const aggregatedData = labels.reduce((acc, label, index) => {
-        if (acc[label]) {
-            acc[label] += values[index];
-        } else {
-            acc[label] = values[index];
-        }
-        return acc;
-    }, {});
+        document.getElementById('generate-palette').addEventListener('click', function () {
+            const paletteColors = generateRandomColors(10); // Generate a palette of 10 colors
+            applyPaletteToChart(paletteColors); // Apply the generated colors to the active chart
+        });
 
-    const aggregatedLabels = Object.keys(aggregatedData);
-    const aggregatedValues = Object.values(aggregatedData);
-
-    const colors = this.generateRandomColors(aggregatedLabels.length);
-
-    if (this.activeChart) this.activeChart.destroy();
-
-    this.activeChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: aggregatedLabels,
-            datasets: [{
-                data: aggregatedValues,
-                backgroundColor: colors
-            }]
-        },
-        options: { 
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 0 },
-            plugins: {
-                legend: { position: 'bottom' },
-                title: {
-                    display: true,
-                    text: `Pie Chart: ${xAxis} vs ${yAxis}`
-                }
+        // Generate random colors for the palette
+        function generateRandomColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = Math.random() * 360; // Random hue
+                const saturation = 70 + Math.random() * 30; // Saturation: 70-100%
+                const lightness = 40 + Math.random() * 20; // Lightness: 40-60%
+                colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
             }
+            return colors;
         }
-    });
-},
-        renderOptimizedRadarChart(xAxis, yAxis) {
-            const ctx = document.getElementById('radar-chart').getContext('2d');
-            
-            // Sample data with max 10 categories to keep radar chart readable
-            const labels = DataProcessor.sampleData(this.chartData.data[xAxis], 10);
-            const values = DataProcessor.sampleData(this.chartData.data[yAxis], 10);
-            
-            // Normalize values to 0-100 range for better radar chart visualization
-            const maxValue = Math.max(...values);
-            const normalizedValues = values.map(val => Math.round((val / maxValue) * 100));
 
-            const colors = this.generateRandomColors(1)[0];
+        // Apply the generated palette to the active chart
+        function applyPaletteToChart(colors) {
+            if (!activeChart) return;
 
-            if (this.activeChart) this.activeChart.destroy();
-
-            this.activeChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: `${xAxis} vs ${yAxis}`,
-                        data: normalizedValues,
-                        backgroundColor: colors + '33', // Add transparency
-                        borderColor: colors,
-                        borderWidth: 1
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { duration: 0 },
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: `Radar Chart: ${xAxis} Comparison`
-                        }
-                    }
-                }
-            });
-        },
-
-        // Show loading indicator during chart rendering
-        showLoadingIndicator() {
-            const canvas = document.getElementById(this.activeTab);
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.font = '20px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Loading data...', canvas.width / 2, canvas.height / 2);
-        },
-
-        // Generate random color palette
-        generateRandomColors(count) {
-            return Array.from({length: count}, () => {
-                const hue = Math.random() * 360;
-                const saturation = 70 + Math.random() * 30;
-                const lightness = 40 + Math.random() * 20;
-                return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-            });
-        },
-
-        // Apply color palette to current chart
-        applyPaletteToChart(colors) {
-            if (!this.activeChart) return;
-
-            const chartData = this.activeChart.data;
+            const chartData = activeChart.data;
             if (chartData.datasets && chartData.datasets[0]) {
+                // Apply colors to the dataset background
                 chartData.datasets[0].backgroundColor = colors.slice(0, chartData.datasets[0].data.length);
-                this.activeChart.update();
+                activeChart.update(); // Update the chart with the new colors
             }
-        },
-
-        // Render default chart on initialization
-        renderDefaultChart() {
-            this.activeTab = 'bar-chart';
-            this.renderChartBasedOnActiveTab();
         }
-    };
 
-    // Initialize visualization when DOM is loaded
+
+    function renderChart(type, ctx, config) {
+        if (activeChart) activeChart.destroy();
+        activeChart = new Chart(ctx, config);
+    }
+
+    function renderBarChart() {
+        const ctx = document.getElementById('bar-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
+        renderChart('bar', ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: chartData.data[yAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
+        });
+    }
+
+    function renderBubbleChart() {
+        const ctx = document.getElementById('bubble-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bubble
+        renderChart('bubble', ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: chartData.data[xAxisDropdown.value].map((x, i) => ({
+                        x,
+                        y: chartData.data[yAxisDropdown.value][i],
+                        r: chartData.data[yAxisDropdown.value][i] * 2
+                    })),
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
+        });
+    }
+
+    function renderHistogram() {
+        const ctx = document.getElementById('histogram').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
+        renderChart('histogram', ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    label: `${xAxisDropdown.value} Histogram`,
+                    data: chartData.data[xAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
+        });
+    }
+
+    function renderPieChart() {
+        const ctx = document.getElementById('pie-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
+        renderChart('pie', ctx, {
+            type: 'pie',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    data: chartData.data[yAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom' // Position the legend to the right of the chart
+                    }
+                }
+            }
+        });
+    }
+
+    function renderRadarChart() {
+        const ctx = document.getElementById('radar-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.columns.length);  // Generate random colors for each segment
+        renderChart('radar', ctx, {
+            type: 'radar',
+            data: {
+                labels: chartData.columns,
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: chartData.columns.map(col => chartData.data[col].reduce((a, b) => a + b, 0) / chartData.data[col].length),
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    fill: true
+                }]
+            },
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
+        });
+    }
+
+
+document.getElementById('generate-pdf').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        format: 'a4', // Set the page format to A4
+        unit: 'mm',   // Use millimeters for measurements
+    });
+
+    // Define margins and page size
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const marginLeft = 15;
+    const marginTop = 20;
+    const marginBottom = 20;
+    const contentWidth = pageWidth - marginLeft * 2;
+    const maxContentHeight = pageHeight - marginTop - marginBottom;
+
+    // Set initial Y position with a margin
+    let currentY = marginTop;
+
+    // Add title with margin
+    doc.setFontSize(16);
+    doc.text('Data Visualization Report', marginLeft, currentY);
+    currentY += 10; // Move Y position down after the title
+
+    // Add chart image (convert the active chart to a base64 image)
+    let chartImage = null;
+    if (activeChart) {
+        chartImage = activeChart.toBase64Image();
+        doc.addImage(chartImage, 'PNG', marginLeft, currentY, contentWidth, 90); // Adjust image size and position
+        currentY += 100; // Move Y position down after the chart image
+    }
+
+    // Send a request to Gemini to generate the report, including the chart image and data
+    const promptMessage = `
+        Generate a detailed report about the following chart:
+        Image: ${chartImage} 
+        Description: Please provide the response in the following format:
+            1. **Report Title:** A brief title that summarizes the content of the report.
+            2. **Data Summary:** A short description of the dataset and what it represents.
+            3. **Detailed Analysis:**
+            - Describe the relationships between the different variables in the dataset.
+            - Highlight any significant trends or patterns observed in the data.
+            4. **Key Observations:** 
+            - Use bullet points to summarize key insights or observations from the data.
+            5. **Potential Implications and Further Analysis:**
+            - Discuss any further analysis that could be done with the data.
+            - Suggest potential applications or uses for the data.
+            6. **Visual Representation:** Explain the graph/chart.
+            7. **Conclusion:** A concise summary of the findings and their significance.
+
+            Please format the report with headings, bullet points, and numbered lists for better readability.
+    `;
+
+    // Function to justify text
+    function addJustifiedText(doc, text, x, y, width, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let lines = [];
+        words.forEach((word) => {
+            const testLine = line + word + ' ';
+            const testWidth = doc.getTextWidth(testLine);
+            if (testWidth > width) {
+                lines.push(line.trim());
+                line = word + ' ';
+            } else {
+                line = testLine;
+            }
+        });
+        lines.push(line.trim());
+
+        lines.forEach((line, index) => {
+            const lineWords = line.split(' ');
+            if (index === lines.length - 1 || lineWords.length === 1) {
+                // For the last line or single-word lines, align left
+                doc.text(line, x, y);
+            } else {
+                // For other lines, distribute spaces evenly
+                const totalSpace = width - doc.getTextWidth(line.replace(/ /g, ''));
+                const spaceWidth = totalSpace / (lineWords.length - 1);
+                let currentX = x;
+                lineWords.forEach((word, i) => {
+                    doc.text(word, currentX, y);
+                    if (i < lineWords.length - 1) {
+                        currentX += doc.getTextWidth(word) + spaceWidth;
+                    }
+                });
+            }
+            y += lineHeight;
+        });
+        return y; // Return the updated Y position
+    }
+
+    // Fetch the report data
+    fetch('/generate-report', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            chart_image: chartImage,
+            prompt: promptMessage,
+            chart_data: chartData,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            doc.setFontSize(12);
+            doc.text('Chart Report:', marginLeft, currentY);
+            currentY += 10; // Space before the content
+
+            if (data && data.report) {
+                const paragraphs = data.report.split('\n\n'); // Split into paragraphs
+                paragraphs.forEach((paragraph) => {
+                    if (currentY + 10 > maxContentHeight) {
+                        doc.addPage(); // Add a new page if content overflows
+                        currentY = marginTop; // Reset Y position for the new page
+                    }
+                    currentY = addJustifiedText(
+                        doc,
+                        paragraph,
+                        marginLeft,
+                        currentY,
+                        contentWidth,
+                        7 // Line height
+                    );
+                    currentY += 7; // Add spacing between paragraphs
+                });
+            } else {
+                doc.text('No report available', marginLeft, currentY);
+            }
+
+            // Save the PDF
+            doc.save('chart_report.pdf');
+        })
+        .catch((error) => {
+            console.error('Error generating report:', error);
+            alert('Error generating report');
+        });
+});
+
+
+    // Event listeners for tabs
+    document.querySelectorAll('.tab-vis').forEach(tab => {
+        tab.addEventListener('click', function () {
+            activeTab = tab.id.replace('-tab', '');  // Update activeTab when a tab is clicked
+            document.querySelectorAll('.chart').forEach(c => c.classList.add('hidden'));
+            document.getElementById(activeTab).classList.remove('hidden');
+            renderChartBasedOnActiveTab();
+        });
+    });
+
+    // functionality to download the image
+    document.getElementById('download-image').addEventListener('click', () => {
+        if (activeChart) {
+            const imageUrl = activeChart.toBase64Image();  // Get the image as base64
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'chart-image.png';  // Set the default download file name
+            link.click();  // Trigger the download
+        }
+    });
+
+    function renderChartBasedOnActiveTab() {
+        switch (activeTab) {
+            case 'bar-chart': renderBarChart(); break;
+            case 'bubble-chart': renderBubbleChart(); break;
+            case 'histogram': renderHistogram(); break;
+            case 'pie-chart': renderPieChart(); break;
+            case 'radar-chart': renderRadarChart(); break;
+        }
+    }
+
+    // Apply customization and render the selected chart
+    document.getElementById('apply-customization').addEventListener('click', () => {
+        renderChartBasedOnActiveTab();
+    });
+
+    // Initialize dropdowns and render default chart
     document.addEventListener('DOMContentLoaded', () => {
-        VisualizationController.init('{{ chart_data | safe }}');
+        populateDropdowns();
+        renderBarChart();
     });
 </script>
 
