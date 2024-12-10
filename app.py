@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 import os
 import pandas as pd
 import json
+import google.generativeai as genai
+
+genai.configure(api_key='AIzaSyAs7TiLmL-JRwRbkHo0vLC1P6XnR-P5w3Y')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for session storage
@@ -39,6 +43,42 @@ def apply_data_cleaning(data, action, column_name=None):
     elif action == 'remove_column' and column_name:
         data = data.drop(columns=[column_name], errors='ignore')
     return data
+
+@app.route('/explain', methods=['POST'])
+def explain_data():
+    # Example: Request for explanation of the chart data or some result
+    data_to_explain = request.json.get('data')  # Get the data to explain (from frontend)
+
+    # Start a new chat with the AI model
+    chat = model.start_chat(history=[])
+
+    # Sending the message to explain the data
+    prompt = f"Explain the following data analysis: {data_to_explain}"
+    response = chat.send_message(prompt)
+
+    # Return the explanation to the frontend
+    return jsonify({'explanation': response.text})
+
+@app.route('/generate-report', methods=['POST'])
+def generate_report():
+    # Get the chart image, chart data, and the prompt
+    data = request.json
+    chart_image = data.get('chart_image')  # This is the base64 image
+    prompt = data.get('prompt')
+    chart_data = data.get('chart_data')  # Chart data to help with report generation
+
+    # Create the prompt for Gemini using the provided data
+    prompt_message = f"{prompt}\nHere is the chart data:\n{chart_data}"
+
+    # Start the chat session with Gemini and send the prompt
+    chat = model.start_chat(history=[])
+    response = chat.send_message(prompt_message)  # Send the prompt message to Gemini
+    
+    # You can optionally include the chart image as part of the conversation
+    # Depending on Gemini's capabilities, you may pass the image or process it further
+    
+    return jsonify({'report': response.text})
+
 
 # Function to convert CSV to JSON
 def csv_to_json(csv_file_path):

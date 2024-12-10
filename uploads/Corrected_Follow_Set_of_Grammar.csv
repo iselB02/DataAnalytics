@@ -1,0 +1,15 @@
+Non-Terminal,Follow Set
+<program>,{'$'}
+<global_dec>,{'spell'}
+<var_dec>,"{'<condi_statement>', '<output>', 'treasures', 'spell', 'mirror', '<func_call>', '<coronation>', '<unary>', 'rose', 'return', 'scroll', 'chamber', 'ocean'}"
+<data_type>,set()
+<return_type>,set()
+<column>,{'='}
+<array_intialization>,{'<array_more>~'}
+<array_list>,set()
+<array_lit>,"{','}"
+<list_more>,set()
+<vardec_more>,set()
+<user-defined_func>,"{'<condi_statement>', '<output>', '<coronation>', '<unary>', 'treasures', 'rose', 'return', 'scroll', 'mirror', 'spell', 'castle', 'chamber', '<func_call>', 'ocean'}"
+<body>,set()
+<ret_statement>,set()

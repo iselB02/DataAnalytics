@@ -1,0 +1,40 @@
+{
+    "columns": [
+        "Non-Terminal",
+        "Follow Set"
+    ],
+    "data": {
+        "Non-Terminal": [
+            "<program>",
+            "<global_dec>",
+            "<var_dec>",
+            "<data_type>",
+            "<return_type>",
+            "<column>",
+            "<array_intialization>",
+            "<array_list>",
+            "<array_lit>",
+            "<list_more>",
+            "<vardec_more>",
+            "<user-defined_func>",
+            "<body>",
+            "<ret_statement>"
+        ],
+        "Follow Set": [
+            "{'$'}",
+            "{'spell'}",
+            "{'<condi_statement>', '<output>', 'treasures', 'spell', 'mirror', '<func_call>', '<coronation>', '<unary>', 'rose', 'return', 'scroll', 'chamber', 'ocean'}",
+            "set()",
+            "set()",
+            "{'='}",
+            "{'<array_more>~'}",
+            "set()",
+            "{','}",
+            "set()",
+            "set()",
+            "{'<condi_statement>', '<output>', '<coronation>', '<unary>', 'treasures', 'rose', 'return', 'scroll', 'mirror', 'spell', 'castle', 'chamber', '<func_call>', 'ocean'}",
+            "set()",
+            "set()"
+        ]
+    }
+}

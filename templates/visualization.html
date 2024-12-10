@@ -42,6 +42,7 @@
                 <div class="btns">
                     <button class="apply-btn" id="apply-customization">Apply</button>
                     <button class="apply-btn" id="download-image">Download Image</button>
+                    <button class="apply-btn" id="generate-pdf">Generate Report (PDF)</button>
                 </div>
             </div>
         </div>
@@ -49,6 +50,9 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-generativeai"></script>
+
 <script>
     let activeTab = 'bar-chart';  // Define activeTab globally with a default value
 
@@ -109,7 +113,14 @@
                     backgroundColor: colors  // Use the generated colors
                 }]
             },
-            options: { responsive: true }
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
         });
     }
 
@@ -129,7 +140,14 @@
                     backgroundColor: colors  // Use the generated colors
                 }]
             },
-            options: { responsive: true }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
         });
     }
 
@@ -146,37 +164,39 @@
                     backgroundColor: colors  // Use the generated colors
                 }]
             },
-            options: { responsive: true }
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
         });
     }
 
     function renderPieChart() {
-    const ctx = document.getElementById('pie-chart').getContext('2d');
-    const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
-    renderChart('pie', ctx, {
-        type: 'pie',
-        data: {
-            labels: chartData.data[xAxisDropdown.value],
-            datasets: [{
-                data: chartData.data[yAxisDropdown.value],
-                backgroundColor: colors  // Use the generated colors
-            }]
-        },
-        options: { 
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',  // Position the legend to the right of the chart
-                    labels: {
-                        usePointStyle: true, // Optional: makes the legend items look like the chart points
-                        boxWidth: 10, // Optional: adjust the width of the legend items
+        const ctx = document.getElementById('pie-chart').getContext('2d');
+        const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
+        renderChart('pie', ctx, {
+            type: 'pie',
+            data: {
+                labels: chartData.data[xAxisDropdown.value],
+                datasets: [{
+                    data: chartData.data[yAxisDropdown.value],
+                    backgroundColor: colors  // Use the generated colors
+                }]
+            },
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom' // Position the legend to the right of the chart
                     }
                 }
             }
-        }
-    });
-}
-
+        });
+    }
 
     function renderRadarChart() {
         const ctx = document.getElementById('radar-chart').getContext('2d');
@@ -193,9 +213,158 @@
                     fill: true
                 }]
             },
-            options: { responsive: true }
+            options: { 
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend to the right of the chart
+                    }
+                }
+            }
         });
     }
+
+
+document.getElementById('generate-pdf').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        format: 'a4', // Set the page format to A4
+        unit: 'mm',   // Use millimeters for measurements
+    });
+
+    // Define margins and page size
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const marginLeft = 15;
+    const marginTop = 20;
+    const marginBottom = 20;
+    const contentWidth = pageWidth - marginLeft * 2;
+    const maxContentHeight = pageHeight - marginTop - marginBottom;
+
+    // Set initial Y position with a margin
+    let currentY = marginTop;
+
+    // Add title with margin
+    doc.setFontSize(16);
+    doc.text('Data Visualization Report', marginLeft, currentY);
+    currentY += 10; // Move Y position down after the title
+
+    // Add chart image (convert the active chart to a base64 image)
+    let chartImage = null;
+    if (activeChart) {
+        chartImage = activeChart.toBase64Image();
+        doc.addImage(chartImage, 'PNG', marginLeft, currentY, contentWidth, 90); // Adjust image size and position
+        currentY += 100; // Move Y position down after the chart image
+    }
+
+    // Send a request to Gemini to generate the report, including the chart image and data
+    const promptMessage = `
+        Generate a detailed report about the following chart:
+        Image: ${chartImage} 
+        Description: Please provide the response in the following format:
+            1. **Report Title:** A brief title that summarizes the content of the report.
+            2. **Data Summary:** A short description of the dataset and what it represents.
+            3. **Detailed Analysis:**
+            - Describe the relationships between the different variables in the dataset.
+            - Highlight any significant trends or patterns observed in the data.
+            4. **Key Observations:** 
+            - Use bullet points to summarize key insights or observations from the data.
+            5. **Potential Implications and Further Analysis:**
+            - Discuss any further analysis that could be done with the data.
+            - Suggest potential applications or uses for the data.
+            6. **Visual Representation:** Explain the graph/chart.
+            7. **Conclusion:** A concise summary of the findings and their significance.
+
+            Please format the report with headings, bullet points, and numbered lists for better readability.
+    `;
+
+    // Function to justify text
+    function addJustifiedText(doc, text, x, y, width, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let lines = [];
+        words.forEach((word) => {
+            const testLine = line + word + ' ';
+            const testWidth = doc.getTextWidth(testLine);
+            if (testWidth > width) {
+                lines.push(line.trim());
+                line = word + ' ';
+            } else {
+                line = testLine;
+            }
+        });
+        lines.push(line.trim());
+
+        lines.forEach((line, index) => {
+            const lineWords = line.split(' ');
+            if (index === lines.length - 1 || lineWords.length === 1) {
+                // For the last line or single-word lines, align left
+                doc.text(line, x, y);
+            } else {
+                // For other lines, distribute spaces evenly
+                const totalSpace = width - doc.getTextWidth(line.replace(/ /g, ''));
+                const spaceWidth = totalSpace / (lineWords.length - 1);
+                let currentX = x;
+                lineWords.forEach((word, i) => {
+                    doc.text(word, currentX, y);
+                    if (i < lineWords.length - 1) {
+                        currentX += doc.getTextWidth(word) + spaceWidth;
+                    }
+                });
+            }
+            y += lineHeight;
+        });
+        return y; // Return the updated Y position
+    }
+
+    // Fetch the report data
+    fetch('/generate-report', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            chart_image: chartImage,
+            prompt: promptMessage,
+            chart_data: chartData,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            doc.setFontSize(12);
+            doc.text('Chart Report:', marginLeft, currentY);
+            currentY += 10; // Space before the content
+
+            if (data && data.report) {
+                const paragraphs = data.report.split('\n\n'); // Split into paragraphs
+                paragraphs.forEach((paragraph) => {
+                    if (currentY + 10 > maxContentHeight) {
+                        doc.addPage(); // Add a new page if content overflows
+                        currentY = marginTop; // Reset Y position for the new page
+                    }
+                    currentY = addJustifiedText(
+                        doc,
+                        paragraph,
+                        marginLeft,
+                        currentY,
+                        contentWidth,
+                        7 // Line height
+                    );
+                    currentY += 7; // Add spacing between paragraphs
+                });
+            } else {
+                doc.text('No report available', marginLeft, currentY);
+            }
+
+            // Save the PDF
+            doc.save('chart_report.pdf');
+        })
+        .catch((error) => {
+            console.error('Error generating report:', error);
+            alert('Error generating report');
+        });
+});
+
 
     // Event listeners for tabs
     document.querySelectorAll('.tab-vis').forEach(tab => {
@@ -207,8 +376,8 @@
         });
     });
 
-     // functionality to download the image
-     document.getElementById('download-image').addEventListener('click', () => {
+    // functionality to download the image
+    document.getElementById('download-image').addEventListener('click', () => {
         if (activeChart) {
             const imageUrl = activeChart.toBase64Image();  // Get the image as base64
             const link = document.createElement('a');
