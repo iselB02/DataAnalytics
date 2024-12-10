@@ -1,0 +1,106 @@
+id,label,category
+0,good morning,greeting
+1,good afternoon,greeting
+2,good evening,greeting
+3,hello,greeting
+4,how are you,greeting
+5,im fine,greeting
+6,nice to meet you,greeting
+7,thank you,greeting
+8,youre welcome,greeting
+9,see you tomorrow,greeting
+10,understand,survival
+11,don’t understand,survival
+12,know,survival
+13,don’t know,survival
+14,no,survival
+15,yes,survival
+16,wrong,survival
+17,correct,survival
+18,slow,survival
+19,fast,survival
+20,one,number
+21,two,number
+22,three,number
+23,four,number
+24,five,number
+25,six,number
+26,seven,number
+27,eight,number
+28,nine ,number
+29,ten,number
+30,january,calendar
+31,february,calendar
+32,march,calendar
+33,april,calendar
+34,may,calendar
+35,june,calendar
+36,july,calendar
+37,august,calendar
+38,september,calendar
+39,october,calendar
+40,november,calendar
+41,december,calendar
+42,monday,days
+43,tuesday,days
+44,wednesday,days
+45,thursday,days
+46,friday,days
+47,saturday,days
+48,sunday,days
+49,today,days
+50,tomorrow,days
+51,yesterday,days
+52,father,family
+53,mother,family
+54,son,family
+55,daughter,family
+56,grandfather,family
+57,grandmother,family
+58,uncle,family
+59,auntie,family
+60,cousin,family
+61,parents,family
+62,boy,relationships
+63,girl,relationships
+64,man,relationships
+65,woman,relationships
+66,deaf,relationships
+67,hard of hearing,relationships
+68,weelchair person,relationships
+69,blind,relationships
+70,deaf blind,relationships
+71,married,relationships
+72,blue,color
+73,green,color
+74,red,color
+75,brown,color
+76,black,color
+77,white,color
+78,yellow,color
+79,orange,color
+80,gray,color
+81,pink,color
+82,violet,color
+83,light,color
+84,dark,color
+85,bread,food
+86,egg,food
+87,fish,food
+88,meat,food
+89,chicken,food
+90,spaghetti,food
+91,rice,food
+92,longanisa,food
+93,shrimp,food
+94,crab,food
+95,hot,drink
+96,cold,drink
+97,juice,drink
+98,milk,drink
+99,coffee,drink
+100,tea,drink
+101,beer,drink
+102,wine,drink
+103,sugar,drink
+104,no sugar,drink

@@ -1,73 +1,110 @@
-.home-container{
-    display: flex;
-    flex-direction: column;  
-    align-items: left; 
-    width: 100%;
-    height: 100vh;
-    overflow: scroll;
+.home-container {
+  display: flex;
+  flex-direction: column;  
+  align-items: left; 
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  padding: 10px; /* Add padding for smaller screens */
 }
 
 .recent-files {
-  /* background-color: aqua; */
   width: 100% !important;
-
-  height: 100%;
+  height: auto; /* Allow height to adjust based on content */
 }
 
 .new {
-    border: none;
-    background-color: #FF698C;
-    color: white;
-    font-size: 15px;
-    padding: 5px;
-    width: 150px;
-    height: 50px;
-    border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 20px;
-
+  border: none;
+  background-color: #FF698C;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  transition: transform 0.2s; /* Add interactive hover effect */
 }
 
 .new:hover {
-    cursor: pointer;
+  cursor: pointer;
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-
-/* table */ 
-
-table {
-    /* width: 100px !important; */
-    width: 100%;
-    margin: 20px auto; /* Center the table horizontally */
-    border-collapse: collapse;
-    background-color: #FFD7E9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    overflow: scroll;
-  }
-  
-  th, td {
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .new {
+      width: 100%; /* Make button take full width */
+      height: auto;
       padding: 10px;
-      vertical-align: middle;
-      text-align: left;
-      border-bottom: 1px solid #f2f2f2;
-    }
-  
-  th {
-    background-color: #FFB6C1;
-    color: white;
-    font-weight: bold;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #F8E0E6;
-  }
-  
-  tbody tr:hover {
-    background-color: #FFC0CB;
+      font-size: 14px;
+      margin-left: 0;
+      text-align: center;
   }
 
-  a {
-    text-decoration: none;
-    color: black;
+  .home-container {
+      padding: 5px; /* Reduce padding on smaller screens */
   }
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  margin: 20px auto; /* Center the table horizontally */
+  border-collapse: collapse;
+  background-color: #FFD7E9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: scroll;
+}
+
+th, td {
+  padding: 10px;
+  vertical-align: middle;
+  text-align: left;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+th {
+  background-color: #FFB6C1;
+  color: white;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F8E0E6;
+}
+
+tbody tr:hover {
+  background-color: #FFC0CB;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Responsive table for mobile */
+@media (max-width: 768px) {
+  table {
+      width: 100%;
+      overflow-x: auto; /* Enable horizontal scrolling for overflow */
+      display: block; /* Allow table to shrink */
+  }
+
+  th, td {
+      font-size: 14px; /* Adjust font size for smaller screens */
+      padding: 8px; /* Reduce padding */
+  }
+}
+
+/* Interactive hover effects */
+.new:hover {
+  cursor: pointer;
+  background-color: #FF4A6E; /* Slightly darker shade on hover */
+}
+
+tbody tr:hover {
+  background-color: #FFAEB9; /* Slightly lighter shade on hover */
+}
