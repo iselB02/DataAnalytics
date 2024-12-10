@@ -1,38 +1,169 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="container">
+    <h1 class="text-center">Manual Data Entry</h1>
 
-<div class="manual-container">
-    <div class="data-entry"> <!-- Corrected div tag for data-entry -->
-        <div>
-            <label for="tableName">Enter Data:</label>
-            <input type="text" id="tableName" value="Table">
+    <!-- Input for Column Titles -->
+    <div class="mb-3">
+        <label for="columnTitles" class="form-label">Enter Column Titles (comma-separated):</label>
+        <input type="text" id="columnTitles" class="form-control" placeholder="e.g., Name, Age, Country">
+        <button id="setColumns" class="btn btn-primary mt-2">Set Columns</button>
+    </div>
+
+    <!-- Row Entry Section -->
+    <div id="rowInputSection" class="mb-3" style="display: none;">
+        <h3 class="enter-row">Enter Row Values</h3>
+        <div id="rowsContainer" class="rows-container mb-3">
+            <!-- New rows will be added here -->
         </div>
-        <div>
-            <button id="add-row">Add Row</button>
-            <button id="add-column">Add Column</button> <!-- New button for adding columns -->
-        </div>
-        <table id="data-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <!-- Initially only one column -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><button class="delete-row">X</button></td>
-                    <td><input type="text"></td>
-                    <!-- Initially one input cell -->
-                </tr>
-            </tbody>
-        </table>
-        <button id="auto-create-report">Auto-create report</button>
-        <button id="manual-create-report">Cancel</button>
+        <button id="addRow" class="btn btn-secondary">Add Row</button>
+        <button id="saveCsv" class="btn btn-success">Save CSV</button>
+        <button id="clearAll" class="btn btn-danger">Clear All</button>
+    </div>
+
+    <!-- Download Section -->
+    <div id="downloadSection" style="display: none;">
+        <a id="downloadLink" class="btn btn-primary" href="#">Download CSV</a>
     </div>
 </div>
 
+<style>
+    body {
+        background-color: #ffe6eb;
+    }
 
+    .text-center, .enter-row {
+        margin-bottom: 10px;
+    }
 
+    .enter-row {
+        margin-top: 10px;
+    }
+
+    .container {
+        margin-top: 50px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .rows-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .row-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .row-inputs .input-group {
+        flex: 1 1 calc(25% - 10px); /* Allow 4 inputs per row */
+        max-width: calc(25% - 10px);
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const setColumnsButton = document.getElementById('setColumns');
+        const columnTitlesInput = document.getElementById('columnTitles');
+        const rowInputSection = document.getElementById('rowInputSection');
+        const rowsContainer = document.getElementById('rowsContainer');
+        const addRowButton = document.getElementById('addRow');
+        const saveCsvButton = document.getElementById('saveCsv');
+        const clearAllButton = document.getElementById('clearAll');
+
+        let columns = [];
+        let rows = [];
+
+        // Set Columns
+        setColumnsButton.addEventListener('click', function () {
+            const titles = columnTitlesInput.value.trim();
+            if (!titles) {
+                alert("Please enter column titles.");
+                return;
+            }
+
+            columns = titles.split(',').map(title => title.trim());
+            rowsContainer.innerHTML = ""; // Clear existing rows
+
+            // Add a default row for the first entry
+            addNewRow();
+            rowInputSection.style.display = 'block';
+        });
+
+        // Add New Row
+        function addNewRow() {
+            const row = document.createElement('div');
+            row.classList.add('row-inputs');
+
+            columns.forEach(column => {
+                const inputGroup = document.createElement('div');
+                inputGroup.classList.add('input-group');
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.classList.add('form-control');
+                input.placeholder = column;
+
+                inputGroup.appendChild(input);
+                row.appendChild(inputGroup);
+            });
+
+            rowsContainer.appendChild(row);
+        }
+
+        // Add Row on Button Click
+        addRowButton.addEventListener('click', function () {
+            addNewRow();
+        });
+
+        // Save CSV
+        saveCsvButton.addEventListener('click', function () {
+            rows = Array.from(rowsContainer.children).map(row => {
+                return Array.from(row.querySelectorAll('.input-group input')).map(input => input.value.trim());
+            });
+
+            if (rows.length === 0 || rows.some(row => row.length !== columns.length)) {
+                alert("Please ensure all rows are completely filled before saving.");
+                return;
+            }
+
+            fetch('/save-csv', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ columns: columns, data: rows })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+                alert(data.message);
+                if (data.redirect_url) {
+                    window.location.href = data.redirect_url; // Redirect to data cleaning
+                }
+            })
+            .catch(err => console.error("Error saving CSV:", err));
+        });
+
+        // Clear All
+        clearAllButton.addEventListener('click', function () {
+            columns = [];
+            rows = [];
+            columnTitlesInput.value = "";
+            rowsContainer.innerHTML = "";
+            rowInputSection.style.display = 'none';
+        });
+    });
+</script>
 {% endblock %}

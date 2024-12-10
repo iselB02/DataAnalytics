@@ -14,45 +14,49 @@
                     <th>Timestamp</th>
                 </tr>
             </thead>
-            <tbody id="tableBody">
+            <tbody>
                 {% for file in files %}
                 <tr>
                     <td>{{ file.filename }}</td>
                     <td>{{ file.type }}</td>
-                    <td>{{ file.timestamp | format_date }}</td>  <!-- Use the custom filter here -->
+                    <td><a href="{{ file.path }}" target="_blank">{{ file.path }}</a></td>
+                    <td>{{ file.timestamp }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-<script> document.addEventListener('DOMContentLoaded', function() {
-    const tableBody = document.getElementById('tableBody');
-    
-    const dummyFiles = [
-        {
-            filename: 'report1.csv',
-            type: 'CSV',
-            path: '/documents/report1.csv',
-            timestamp: '2024-03-15 10:30:00'
-        },
-        {
-            filename: 'analysis.csv',
-            type: 'csv',
-            path: '/documents/analysis.csv',
-            timestamp: '2024-03-14 15:45:00'
-        }
-    ];
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tableBody = document.getElementById('tableBody');
 
-    dummyFiles.forEach(file => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${file.filename}</td>
-            <td>${file.type}</td>
-            <td>${file.path}</td>
-            <td>${file.timestamp}</td>
-        `;
-        tableBody.appendChild(row);
+        // Example of adding dummy files dynamically for testing
+        const dummyFiles = [
+            {
+                filename: 'report1.csv',
+                type: 'CSV',
+                path: '/documents/report1.csv',
+                timestamp: '2024-03-15 10:30:00'
+            },
+            {
+                filename: 'analysis.csv',
+                type: 'CSV',
+                path: '/documents/analysis.csv',
+                timestamp: '2024-03-14 15:45:00'
+            }
+        ];
+
+        dummyFiles.forEach(file => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${file.filename}</td>
+                <td>${file.type}</td>
+                <td><a href="${file.path}" target="_blank">${file.path}</a></td>
+                <td>${file.timestamp}</td>
+            `;
+            tableBody.appendChild(row);
+        });
     });
-});</script>
+</script>
 {% endblock %}

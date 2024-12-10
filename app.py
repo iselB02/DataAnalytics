@@ -125,7 +125,18 @@ def home():
         # Save the file and update session
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-        session['file_path'] = file_path
+
+        # Extract metadata
+        file_type = os.path.splitext(file.filename)[1].lstrip('.').upper()  # Get file extension
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Store metadata in session
+        session['file_metadata'] = {
+            'filename': file.filename,
+            'path': file_path,
+            'type': file_type,
+            'timestamp': timestamp
+        }
 
         # Convert to JSON
         json_path = csv_to_json(file_path)
@@ -135,15 +146,55 @@ def home():
         return redirect(url_for('cleaning'))
 
     # Display uploaded files
-    files = [
+    uploaded_files = [
         {
             'filename': file,
             'path': os.path.join(UPLOAD_FOLDER, file),
-            'timestamp': format_date(os.path.getmtime(os.path.join(UPLOAD_FOLDER, file)))
+            'type': os.path.splitext(file)[1].lstrip('.').upper(),
+            'timestamp': datetime.datetime.fromtimestamp(
+                os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
+            ).strftime('%Y-%m-%d %H:%M:%S')
         }
         for file in os.listdir(UPLOAD_FOLDER) if file.endswith('.csv')
     ]
-    return render_template('home.html', files=files)
+
+    # Sort by timestamp (newest first) and limit to the top 7
+    uploaded_files.sort(key=lambda x: x['timestamp'], reverse=True)
+    top_files = uploaded_files[:7]
+
+    return render_template('home.html', files=top_files)
+@app.route('/save-csv', methods=['POST'])
+def save_csv():
+    try:
+        # Parse JSON from request
+        data = request.get_json()
+        columns = data.get('columns', [])
+        rows = data.get('data', [])
+
+        # Validate input
+        if not columns:
+            return jsonify({"error": "No columns provided. Please ensure you set column titles."}), 400
+        if not rows or not all(len(row) == len(columns) for row in rows):
+            return jsonify({"error": "Invalid or incomplete rows. Ensure all rows match the column count."}), 400
+
+        # Save CSV file
+        timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f"manual_entry_{timestamp}.csv"
+        file_path = os.path.join(UPLOAD_FOLDER, filename)
+        pd.DataFrame(rows, columns=columns).to_csv(file_path, index=False)
+
+        # Update session for data cleaning
+        session['file_path'] = file_path
+
+        return jsonify({
+            "success": True,
+            "message": f"CSV saved as {filename}. Redirecting to Data Cleaning.",
+            "redirect_url": url_for('cleaning')  # Ensure this generates the correct URL
+        })
+
+    except Exception as e:
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
 
 
 @app.route('/data-cleaning', methods=['GET', 'POST'])

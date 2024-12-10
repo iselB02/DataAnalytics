@@ -79,3 +79,8 @@ button {
     z-index: 2;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: For a shadow effect */
 }
+
+.rowInputs{
+    display: flex;
+    flex-direction: column;
+}
