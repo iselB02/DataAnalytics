@@ -1,9 +1,7 @@
 .browse-container{
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Horizontally centers child elements */
-    justify-content: center; /* Vertically centers child elements */
+    flex-direction: column;  
+    align-items: left; 
 }
 
 .browse-history{
@@ -18,6 +16,7 @@
 
 .browse-buttons button {
     background-color: transparent;
+    color :#800080;
     border: none;
     margin-right: 30px;
 }

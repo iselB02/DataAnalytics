@@ -1,19 +1,136 @@
 {% extends "layout.html" %}
 
-
 {% block content %}
 <div class="browse-container">
-    <h1 class="title">Browse Files</h1>
-    <div class="browse-history">
-        <div class="browse-buttons">
-            <button>Recent</button>
-            <button>History</button>
+    <h2 class="title">Browse Files</h2>
+    <div class="browse-history bg-pink-50 rounded-lg shadow-md p-6">
+        <div class="browse-buttons flex justify-center space-x-4 mb-4">
+            <button class="px-4 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                Recent
+            </button>
+            <button class="px-4 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                History
+            </button>
         </div>
         <div class="browse-content">
-            <ul class="browse-lists">
-                <li class="browse-list"><span>12/10/2024</span><span>Unclean Data</span></li>
-            </ul>
+            <table class="w-full bg-white rounded-lg overflow-hidden shadow-md">
+                <thead class="bg-pink-100">
+                    <tr>
+                        <th class="px-4 py-3 text-pink-800 font-semibold">File Name</th>
+                        <th class="px-4 py-3 text-pink-800 font-semibold">Date Modified</th>
+                        <th class="px-4 py-3 text-pink-800 font-semibold">Size</th>
+                        <th class="px-4 py-3 text-pink-800 font-semibold">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="file-list">
+                    {% for file in files %}
+                    <tr class="border-b border-pink-200 hover:bg-pink-50 transition duration-200">
+                        <td class="px-4 py-3">{{ file.name }}</td>
+                        <td class="px-4 py-3">{{ file.date_modified }}</td>
+                        <td class="px-4 py-3">{{ file.size }}</td>
+                        <td class="px-4 py-3">
+                            <button class="view-btn text-pink-600 hover:text-pink-800 mr-2" data-filename="{{ file.name }}">View</button>
+                            <button class="delete-btn text-pink-600 hover:text-pink-800" data-filename="{{ file.name }}">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .browse-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .title {
+        color: #d946ef;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: center; /* Center text horizontally */
+        vertical-align: middle; /* Center text vertically */
+        padding: 12px;
+    }
+
+    th {
+        background-color: #f8d7da;
+        color: #c0392b;
+        font-weight: bold;
+    }
+
+    tr {
+        border-bottom: 1px solid #f5c6cb;
+    }
+
+    tr:hover {
+        background-color: #fdecea;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Handle the View button click
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('view-btn')) {
+            const filename = event.target.getAttribute('data-filename');
+            fetch(`/view/${filename}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.content) {
+                        alert(`File: ${data.filename}\n\nContent:\n${data.content}`);
+                    } else {
+                        alert('File content could not be loaded.');
+                    }
+                })
+                .catch(error => console.error('Error viewing file:', error));
+        }
+
+        // Handle the Delete button click
+        if (event.target.classList.contains('delete-btn')) {
+            const filename = event.target.getAttribute('data-filename');
+            if (confirm(`Are you sure you want to delete "${filename}"?`)) {
+                fetch(`/delete/${filename}`, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            event.target.closest('tr').remove(); // Remove the row from the table
+                        } else {
+                            alert('Error deleting file.');
+                        }
+                    })
+                    .catch(error => console.error('Error deleting file:', error));
+            }
+        }
+    });
+</script>
 {% endblock %}
