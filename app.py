@@ -3,12 +3,34 @@ import os
 import pandas as pd
 import json
 import google.generativeai as genai
+import datetime
 
 genai.configure(api_key='AIzaSyAs7TiLmL-JRwRbkHo0vLC1P6XnR-P5w3Y')
 model = genai.GenerativeModel('gemini-1.5-flash')
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for session storage
+
+
+def format_date(value, date_format='%Y-%m-%d'):
+    from datetime import datetime
+    if isinstance(value, (int, float)):
+        # Convert Unix timestamp (float/int) to datetime
+        value = datetime.fromtimestamp(value)
+    if isinstance(value, datetime):
+        return value.strftime(date_format)
+    if isinstance(value, str):
+        try:
+            # Attempt to parse string format
+            parsed_date = datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+            return parsed_date.strftime(date_format)
+        except ValueError:
+            return value  # Return value as-is if parsing fails
+    return value  # Return value as-is if unsupported type
+
+
+# Register the filter with Jinja2
+app.jinja_env.filters['format_date'] = format_date
+
 
 # Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
@@ -93,23 +115,48 @@ def csv_to_json(csv_file_path):
     return json_file_path
 
 @app.route('/', methods=['GET', 'POST'])
-def landingPage():
+def home():
     if request.method == 'POST':
         file = request.files.get('file')
         if not file or not file.filename.endswith('.csv'):
             flash("Please upload a valid CSV file.", "error")
             return redirect(request.url)
-        
+
+        # Save the uploaded file
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-        session['file_path'] = file_path
-        
+
+        # Get file metadata
+        file_type = os.path.splitext(file.filename)[1].upper().replace('.', '')  # Extract file extension as type
+        session['file_metadata'] = {
+            'filename': file.filename,
+            'path': file_path,
+            'type': file_type,
+            'timestamp': timestamp
+        }
+
         # Convert CSV to JSON and store path in session
         json_file_path = csv_to_json(file_path)
         session['json_file_path'] = json_file_path
 
         return redirect(url_for('cleaning'))
-    return render_template('landing-page.html')
+    
+    # Get the list of uploaded files
+    uploaded_files = os.listdir(UPLOAD_FOLDER)
+    files = [
+        {
+            'filename': file,
+            'path': os.path.join(UPLOAD_FOLDER, file),
+            'type': os.path.splitext(file)[1].upper().replace('.', ''),  # Extract file extension as type
+            'timestamp': datetime.datetime.fromtimestamp(
+                os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
+            ).strftime('%Y-%m-%d %H:%M:%S')  # Format timestamp
+        }
+        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))
+    ]
+    return render_template('home.html', files=files)
+
 
 @app.route('/data-cleaning', methods=['GET', 'POST'])
 def cleaning():
@@ -172,21 +219,6 @@ def get_json_data():
     return jsonify(chart_data)
 
 
-# Additional routes for other pages
-@app.route('/home')
-def home():
-    # Get the list of uploaded files
-    uploaded_files = os.listdir(UPLOAD_FOLDER)
-    files = [
-        {
-            'filename': file,
-            'path': os.path.join(UPLOAD_FOLDER, file),
-            'timestamp': os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
-        }
-        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))
-    ]
-    return render_template('home.html', files=files)
-
 @app.route('/create-new')
 def create():
     return render_template('create-new.html')
@@ -195,9 +227,29 @@ def create():
 def manual():
     return render_template('manual.html')
 
-@app.route('/browse-file')
-def browseFile():
-    return render_template('browse-file.html')
+@app.route('/browse-file', methods=['GET'])
+def browse_files():
+    # Get the list of files in the upload folder
+    uploaded_files = os.listdir(UPLOAD_FOLDER)
+    files = [
+        {
+            'name': file,
+            'path': os.path.join(UPLOAD_FOLDER, file),
+            'date_modified': os.path.getmtime(os.path.join(UPLOAD_FOLDER, file)),  # File modification timestamp
+            'size': os.path.getsize(os.path.join(UPLOAD_FOLDER, file))  # File size in bytes
+        }
+        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))  # Filter by allowed file types
+    ]
+
+    # Sort files by modification time (most recent first)
+    files.sort(key=lambda x: x['date_modified'], reverse=True)
+
+    # Separate into recent (top 5) and history (all files)
+    recent_files = files[:5]
+    history_files = files
+
+    return render_template('browse-file.html', recent_files=recent_files, history_files=history_files)
+
 
 @app.route('/account-setting')
 def accountSetting():

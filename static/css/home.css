@@ -2,6 +2,16 @@
     display: flex;
     flex-direction: column;  
     align-items: left; 
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.recent-files {
+  /* background-color: aqua; */
+  width: 100% !important;
+
+  height: 100%;
 }
 
 .new {
@@ -26,13 +36,14 @@
 /* table */ 
 
 table {
-    width: 80%;
+    /* width: 100px !important; */
+    width: 100%;
     margin: 20px auto; /* Center the table horizontally */
     border-collapse: collapse;
     background-color: #FFD7E9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    overflow: hidden;
+    overflow: scroll;
   }
   
   th, td {
@@ -41,7 +52,6 @@ table {
       text-align: left;
       border-bottom: 1px solid #f2f2f2;
     }
-  
   
   th {
     background-color: #FFB6C1;

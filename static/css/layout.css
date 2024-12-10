@@ -133,5 +133,6 @@ svg {
     padding: 20px;
     background: #fff0f5;
     /* border-radius: 20px; Rounded corners for content box */
+    overflow: hidden;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }

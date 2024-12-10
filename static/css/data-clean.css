@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     background-color: #fff0f5;
-    height: 100%;
+    height: 100vh;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .cleaning-container {
@@ -55,4 +56,9 @@
     margin-top: 5px;
     /* background-color: blueviolet; */
     height: 70%;
+}
+
+.table-responsive {
+    /* background-color: aqua; */
+    width: 100%;
 }

@@ -19,22 +19,13 @@
                 <tr>
                     <td>{{ file.filename }}</td>
                     <td>{{ file.type }}</td>
-<<<<<<< HEAD
-                    <td><a href="{{ file.path }}" target="_blank">{{ file.path }}</a></td>
                     <td>{{ file.timestamp | format_date }}</td>  <!-- Use the custom filter here -->
-=======
-                    <td>{{ file.path }}</td>
-                    <td>{{ file.timestamp }}</td>
->>>>>>> 3a7bcc8fb5968dedf6e37ada20facbb083b9ab8c
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-<<<<<<< HEAD
-{% endblock %}
-=======
 <script> document.addEventListener('DOMContentLoaded', function() {
     const tableBody = document.getElementById('tableBody');
     
@@ -65,4 +56,3 @@
     });
 });</script>
 {% endblock %}
->>>>>>> 3a7bcc8fb5968dedf6e37ada20facbb083b9ab8c
