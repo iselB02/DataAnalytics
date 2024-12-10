@@ -202,5 +202,10 @@ def accountSetting():
 def layout():
     return render_template('layout.html')
 
+@app.route('/manual-entry', methods=['GET'])
+def manual_entry():
+    return render_template('manual_entry.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
