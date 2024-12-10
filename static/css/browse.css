@@ -28,7 +28,7 @@
 .tab-button {
     padding: 10px 20px;
     margin: 0 5px;
-    border: none;
+    border: none !important;
     border-radius: 4px;
     background-color: transparent !important;
     color: black;
@@ -39,5 +39,6 @@
 }
 
 .tab-button.active {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: #ff69b4 !important;
 }
