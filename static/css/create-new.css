@@ -7,7 +7,7 @@
     align-items: center;
     background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url('/static/images/castle.jpg'); /* Add your image path here */
     height: 100%;
-    width: ;
+    width: 100%;
     background-size:cover;
     background-repeat: no-repeat; /* Prevents the image from repeating */
 }
