@@ -218,52 +218,58 @@
     },
 
     renderBarChart(ctx, data) {
-        const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
-        this.renderChart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.data[xAxisDropdown.value],
-                datasets: [{
-                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
-                    data: data.data[yAxisDropdown.value],
-                    backgroundColor: colors
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' }
-                },
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    },
-
-    renderBubbleChart(ctx, data) {
-    const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
-
     // Function to handle non-numeric (categorical) data
-    function convertToNumeric(value) {
+    function convertToNumeric(value, column) {
         // If the value is already numeric, return it as is
         if (typeof value === 'number') return value;
 
         // Otherwise, convert the categorical value to a unique numeric value
-        // e.g., map unique string values to a numeric code
-        const uniqueValues = [...new Set(data.data[xAxisDropdown.value])]; // Get unique values in the x-axis data
+        const uniqueValues = [...new Set(data.data[column])]; // Get unique values in the column
         const valueIndex = uniqueValues.indexOf(value);
         return valueIndex === -1 ? 0 : valueIndex; // Return the index of the unique value or 0 if not found
     }
 
-    // Map the data and handle non-numeric x and y values
+    const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
+    const barData = data.data[xAxisDropdown.value].map((x, i) => convertToNumeric(x, xAxisDropdown.value));
+
+    this.renderChart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.data[xAxisDropdown.value],
+            datasets: [{
+                label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                data: data.data[yAxisDropdown.value].map((y, i) => convertToNumeric(y, yAxisDropdown.value)),
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
+            },
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+},
+
+renderBubbleChart(ctx, data) {
+    // Function to handle non-numeric (categorical) data
+    function convertToNumeric(value, column) {
+        if (typeof value === 'number') return value;
+        const uniqueValues = [...new Set(data.data[column])]; 
+        const valueIndex = uniqueValues.indexOf(value);
+        return valueIndex === -1 ? 0 : valueIndex;
+    }
+
+    const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
     const bubbleData = data.data[xAxisDropdown.value].map((x, i) => ({
-        x: convertToNumeric(x),  // Convert x-axis value to numeric
-        y: convertToNumeric(data.data[yAxisDropdown.value][i]),  // Convert y-axis value to numeric
-        r: Math.max(5, Math.min(data.data[yAxisDropdown.value][i] * 2, 50))  // Radius of the bubble based on y value
+        x: convertToNumeric(x, xAxisDropdown.value),  
+        y: convertToNumeric(data.data[yAxisDropdown.value][i], yAxisDropdown.value),  
+        r: Math.max(5, Math.min(data.data[yAxisDropdown.value][i] * 2, 50))  
     }));
 
-    // Now render the chart
     this.renderChart(ctx, {
         type: 'bubble',
         data: {
@@ -297,98 +303,117 @@
     });
 },
 
-    renderHistogram(ctx, data) {
-        const column = xAxisDropdown.value;
-        const binCount = 10;
-        const min = Math.min(...data.data[column]);
-        const max = Math.max(...data.data[column]);
-        const binSize = (max - min) / binCount;
+renderHistogram(ctx, data) {
+    function convertToNumeric(value, column) {
+        // If the value is already numeric, return it as is
+        if (typeof value === 'number') return value;
 
-        const bins = new Array(binCount).fill(0);
-        const labels = [];
+        // Otherwise, convert the categorical value to a unique numeric value
+        const uniqueValues = [...new Set(data.data[column])]; // Get unique values in the column
+        const valueIndex = uniqueValues.indexOf(value);
+        return valueIndex === -1 ? 0 : valueIndex; // Return the index of the unique value or 0 if not found
+    }
 
-        data.data[column].forEach(value => {
-            const index = Math.min(binCount - 1, Math.floor((value - min) / binSize));
-            bins[index]++;
-        });
+    const column = xAxisDropdown.value;
+    const binCount = 10;
+    const numericData = data.data[column].map(value => convertToNumeric(value, column));  // Handle non-numeric
+    const min = Math.min(...numericData);
+    const max = Math.max(...numericData);
+    const binSize = (max - min) / binCount;
 
-        for (let i = 0; i < binCount; i++) {
-            labels.push(`${(min + i * binSize).toFixed(1)} - ${(min + (i + 1) * binSize).toFixed(1)}`);
-        }
+    const bins = new Array(binCount).fill(0);
+    const labels = [];
 
-        this.renderChart(ctx, {
-            type: 'bar',
-            data: {
-                labels,
-                datasets: [{
-                    label: `${column} Histogram`,
-                    data: bins,
-                    backgroundColor: this.generateRandomColors(binCount)
-                }]
+    numericData.forEach(value => {
+        const index = Math.min(binCount - 1, Math.floor((value - min) / binSize));
+        bins[index]++;
+    });
+
+    for (let i = 0; i < binCount; i++) {
+        labels.push(`${(min + i * binSize).toFixed(1)} - ${(min + (i + 1) * binSize).toFixed(1)}`);
+    }
+
+    this.renderChart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: `${column} Histogram`,
+                data: bins,
+                backgroundColor: this.generateRandomColors(binCount)
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' }
-                },
-                scales: {
-                    x: { title: { display: true, text: `${column} Bins` } },
-                    y: { title: { display: true, text: 'Frequency' }, beginAtZero: true }
-                }
+            scales: {
+                x: { title: { display: true, text: `${column} Bins` } },
+                y: { title: { display: true, text: 'Frequency' }, beginAtZero: true }
             }
-        });
-    },
+        }
+    });
+},
 
-    renderPieChart(ctx, data) {
-        const aggregatedData = data.data[yAxisDropdown.value].reduce((acc, value, index) => {
-            const label = data.data[xAxisDropdown.value][index];
-            if (!acc[label]) acc[label] = 0;
-            acc[label] += value;
-            return acc;
-        }, {});
+renderPieChart(ctx, data) {
+    const aggregatedData = data.data[yAxisDropdown.value].reduce((acc, value, index) => {
+        const label = data.data[xAxisDropdown.value][index];
+        if (!acc[label]) acc[label] = 0;
+        acc[label] += value;
+        return acc;
+    }, {});
 
-        const sortedData = Object.entries(aggregatedData)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 10);
+    const sortedData = Object.entries(aggregatedData)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10);
 
-        const labels = sortedData.map(([label]) => label);
-        const values = sortedData.map(([, value]) => value);
+    const labels = sortedData.map(([label]) => label);
+    const values = sortedData.map(([, value]) => value);
 
-        this.renderChart(ctx, {
-            type: 'pie',
-            data: {
-                labels,
-                datasets: [{
-                    data: values,
-                    backgroundColor: this.generateRandomColors(labels.length)
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const label = context.label || '';
-                                const value = context.raw;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(1);
-                                return `${label}: ${value} (${percentage}%)`;
-                            }
+    this.renderChart(ctx, {
+        type: 'pie',
+        data: {
+            labels,
+            datasets: [{
+                data: values,
+                backgroundColor: this.generateRandomColors(labels.length)
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.raw;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
                         }
                     }
                 }
             }
-        });
-    },
+        }
+    });
+},
 
-    renderRadarChart(ctx, data) {
+renderRadarChart(ctx, data) {
+    function convertToNumeric(value, column) {
+        // If the value is already numeric, return it as is
+        if (typeof value === 'number') return value;
+
+        // Otherwise, convert the categorical value to a unique numeric value
+        const uniqueValues = [...new Set(data.data[column])]; // Get unique values in the column
+        const valueIndex = uniqueValues.indexOf(value);
+        return valueIndex === -1 ? 0 : valueIndex; // Return the index of the unique value or 0 if not found
+    }
+
     const values = DataVisualization.fullDataset.columns.map(column => {
         const columnData = data.data[column];
-        // Filter out non-numeric values
-        const numericData = columnData.filter(value => typeof value === 'number');
-        if (numericData.length === 0) return 0; // Handle empty columns
+        const numericData = columnData.map(value => convertToNumeric(value, column));  // Handle non-numeric
         const avg = numericData.reduce((a, b) => a + b, 0) / numericData.length;
         return avg;
     });
@@ -396,9 +421,7 @@
     const maxValue = Math.max(...values);
     const normalizedValues = values.map(value => (value / maxValue) * 100);
 
-    console.log('Normalized values for radar chart:', normalizedValues);
-
-    DataVisualization.renderChart(ctx, {
+    this.renderChart(ctx, {
         type: 'radar',
         data: {
             labels: DataVisualization.fullDataset.columns,
@@ -425,7 +448,6 @@
         }
     });
 },
-
 
     renderChart(ctx, config) {
         if (this.activeChart) this.activeChart.destroy();
