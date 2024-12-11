@@ -1,0 +1,11 @@
+{
+    "columns": [
+        "course"
+    ],
+    "data": {
+        "course": [
+            "bscs",
+            "hrdm"
+        ]
+    }
+}
