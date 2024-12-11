@@ -1,0 +1,580 @@
+ID,Name,Gender,Age,Cancer Type,Treatment,Diagnosis Date,Family History,Smoking,Alcohol,Chemotherapy,Radiotherapy,Survival Status,Diabetes,Hypertension,Heart Disease,Obesity,Mental Health
+602ff2d8-afba-421b-902b-f1f38734f4cc,Antonio Lane,Female,40,Pancreatic Cancer,Hormone Therapy,2024-08-10,Yes,Never Smoked,Regularly,False,True,Survived,Unknown,No,Yes,No,Anxiety
+c507d21c-c49b-4b0d-ad87-9b564d9236b2,Austin Gonzales,Female,38,Colon Cancer,Chemotherapy,2024-06-08,Unknown,Ex-Smoker,Never,False,True,Deceased,No,No,Unknown,No,Anxiety
+7a3199f6-49f3-4a8a-b2fe-cf8f9a2edf6c,Shannon Stevens,Female,40,Leukemia,Surgery,2022-01-20,Yes,Ex-Smoker,Occasionally,True,True,Survived,No,Unknown,Yes,Unknown,Anxiety
+12db0515-a483-431d-8948-5876fa2e5af9,Cynthia Ferguson,Female,43,Pancreatic Cancer,Hormone Therapy,2020-08-04,Yes,Current Smoker,Regularly,False,False,Survived,Unknown,Unknown,No,No,Depression
+6a2ed37e-a28d-4fbe-bb53-4acf21ef4b45,Christopher Cordova,Female,68,Lung Cancer,Surgery,2024-02-22,No,Never Smoked,Regularly,True,False,Deceased,Yes,Yes,No,No,Anxiety
+163e08a6-3255-41e7-998d-5991e5711fb5,John Hutchinson,Female,60,Breast Cancer,Radiotherapy,2021-06-07,Yes,Current Smoker,Occasionally,False,False,Survived,Unknown,No,No,Yes,Anxiety
+bf57270e-b772-4e40-bc77-19f49d172925,Richard Phillips,Male,64,Breast Cancer,Surgery,2020-12-19,Yes,Ex-Smoker,Occasionally,False,False,Deceased,Unknown,Yes,No,Yes,Unknown
+3c5efd64-e4ee-4ae0-a8de-82b8fb9e9bb4,Jared Garrison,Male,74,Prostate Cancer,Hormone Therapy,2023-07-29,Yes,Ex-Smoker,Regularly,False,True,Deceased,Unknown,Yes,Yes,Yes,Unknown
+8a25fada-7584-4417-bd79-768fce858f64,Pamela Vargas,Male,45,Breast Cancer,Chemotherapy,2023-06-26,Unknown,Current Smoker,Regularly,False,True,Deceased,No,Yes,No,No,Depression
+e4d3657e-1c2f-4808-860d-4537911ac9c9,Ashley Moore,Female,80,Pancreatic Cancer,Immunotherapy,2024-04-04,Yes,Current Smoker,Regularly,True,True,Survived,Yes,Unknown,Yes,Yes,Depression
+39a6b126-9eed-4c27-b906-a2d699167aa9,Juan Alvarez,Male,44,Lung Cancer,Surgery,2023-10-25,No,Current Smoker,Never,False,False,Deceased,Yes,No,No,Unknown,Unknown
+db5dce04-e461-428b-a116-f78d8bdc469d,Jennifer Ross,Male,74,Liver Cancer,Radiotherapy,2020-01-21,Unknown,Ex-Smoker,Occasionally,False,False,Deceased,No,Unknown,No,Unknown,Unknown
+14aa2811-fb72-489a-bd75-76049f099a5a,Melinda Jones,Male,68,Prostate Cancer,Radiotherapy,2020-01-13,No,Current Smoker,Occasionally,True,False,Deceased,No,Unknown,Unknown,Yes,Depression
+6fa09735-86fa-463e-b649-218db4b5872e,John Edwards,Male,64,Liver Cancer,Immunotherapy,2022-08-02,Yes,Current Smoker,Never,True,True,Survived,No,Yes,Unknown,Yes,Anxiety
+260670f3-68ec-4acc-890d-e118707b6da1,Robert Walsh,Female,58,Pancreatic Cancer,Hormone Therapy,2022-10-10,No,Current Smoker,Never,True,True,Deceased,Unknown,Unknown,Unknown,Yes,Anxiety
+7ccb76b6-2555-4b9e-b554-a200fdec198d,Mark Woods,Male,57,Skin Cancer,Hormone Therapy,2021-09-11,Unknown,Current Smoker,Regularly,False,False,Survived,No,No,No,Unknown,Anxiety
+7b380ebd-dde1-42c7-b8e3-2a4b84e65e52,Steve Melton,Female,36,Pancreatic Cancer,Hormone Therapy,2020-04-24,Yes,Never Smoked,Regularly,True,False,Deceased,Unknown,No,No,Yes,Anxiety
+29c7b6a5-a4e1-4529-b971-3afb6ea9d3c9,Jose Jackson DDS,Female,63,Lymphoma,Hormone Therapy,2024-02-21,Unknown,Ex-Smoker,Never,True,True,Survived,Unknown,Yes,Unknown,No,Depression
+f18c0d1c-dc4f-4e92-9d65-a52b8f5b02e9,Heather Velasquez,Female,38,Lung Cancer,Radiotherapy,2020-05-06,No,Current Smoker,Regularly,True,True,Deceased,Yes,Yes,No,Unknown,Depression
+a797a2ab-b3b7-4692-a17b-9cc1c4fb2ee9,Matthew Cantrell,Male,31,Pancreatic Cancer,Immunotherapy,2020-12-28,No,Ex-Smoker,Never,False,True,Survived,No,No,Unknown,Yes,Depression
+2ae07be1-356d-4a57-b62b-eb4e96d108e1,Angel Fuller,Female,45,Ovarian Cancer,Immunotherapy,2024-09-19,Yes,Ex-Smoker,Never,False,True,Deceased,Unknown,Yes,Unknown,Unknown,Unknown
+b6ce0b34-5ef6-46e3-a48f-6e4ef6740bf2,Jake White,Male,66,Breast Cancer,Surgery,2022-03-08,Yes,Current Smoker,Regularly,True,False,Survived,Unknown,Unknown,Unknown,Unknown,Anxiety
+95cf3f9f-f061-4c9a-b9bf-6ee940747f3a,Justin Castro,Female,58,Colon Cancer,Radiotherapy,2024-01-10,Unknown,Current Smoker,Occasionally,True,True,Deceased,Yes,Yes,Yes,No,Depression
+86ec8791-93d5-43c4-ba51-bc25c492cd6a,Joseph Rivera,Female,65,Lymphoma,Hormone Therapy,2021-10-05,Yes,Current Smoker,Occasionally,False,False,Survived,Unknown,No,Unknown,Unknown,Unknown
+b42cef8e-c33b-495e-a01d-9725cc883418,Douglas Ayala,Male,62,Skin Cancer,Immunotherapy,2024-08-24,Unknown,Never Smoked,Never,False,False,Deceased,No,Yes,No,Unknown,Depression
+04e87f45-03b4-4e13-b78e-8785e33d90b1,Keith Giles,Female,52,Breast Cancer,Immunotherapy,2022-01-08,Yes,Ex-Smoker,Regularly,False,True,Deceased,Yes,No,No,Unknown,Anxiety
+f9dfe26b-3f62-4c14-8767-c2a77cdb4732,Robert Tran,Female,54,Skin Cancer,Radiotherapy,2023-07-29,Yes,Never Smoked,Never,True,False,Deceased,Unknown,Unknown,Yes,Unknown,Unknown
+e8c996a8-ed30-48d9-8ab0-f943cf768070,Ashley Taylor,Female,56,Colon Cancer,Chemotherapy,2023-01-31,Yes,Ex-Smoker,Occasionally,True,False,Survived,No,Unknown,No,No,Unknown
+70c6fff0-a86a-4407-b6f1-2d5c0f8b92a5,Ashley Wells,Male,38,Skin Cancer,Radiotherapy,2024-11-04,No,Never Smoked,Occasionally,False,True,Survived,Yes,Yes,No,No,Unknown
+6e79529b-121d-4bb6-ac6b-2ac28b796cbe,Brian Conner,Male,44,Liver Cancer,Chemotherapy,2022-05-29,Unknown,Current Smoker,Occasionally,True,True,Survived,Yes,No,Yes,Unknown,Unknown
+ada69800-e98f-4aaa-a071-6ef5ad98e275,Samantha Thompson,Male,60,Liver Cancer,Radiotherapy,2021-05-08,Unknown,Ex-Smoker,Occasionally,True,True,Survived,No,No,No,Yes,Unknown
+1ee099b8-f76a-4b71-867e-9e73ba275c86,Robert Johnson,Female,31,Pancreatic Cancer,Hormone Therapy,2024-11-02,No,Ex-Smoker,Regularly,False,True,Deceased,Unknown,No,Unknown,Unknown,Depression
+2da41632-32bd-4beb-a59f-72bccddf5601,Megan Thomas,Female,71,Liver Cancer,Chemotherapy,2023-02-12,Yes,Ex-Smoker,Regularly,True,True,Survived,No,Yes,No,No,Anxiety
+5201330e-c217-4699-ba6b-350783ae0377,Laura Walton,Female,30,Breast Cancer,Hormone Therapy,2023-05-13,Unknown,Ex-Smoker,Regularly,False,True,Survived,Unknown,Unknown,Yes,Yes,Depression
+05bbf352-009d-47d6-8e91-9c0fb420f0ea,Theresa Bolton,Male,56,Breast Cancer,Immunotherapy,2024-09-18,No,Ex-Smoker,Regularly,False,True,Deceased,Yes,No,Yes,No,Depression
+132eb97b-3ac1-43e1-bb5c-d4f113b8ea26,Amber Butler,Male,35,Colon Cancer,Immunotherapy,2024-05-21,Unknown,Current Smoker,Regularly,True,False,Deceased,No,Yes,No,No,Unknown
+f5a5d637-d83a-476c-83db-6b19f233297c,Anna Bishop,Female,53,Prostate Cancer,Radiotherapy,2022-08-15,No,Ex-Smoker,Occasionally,False,False,Deceased,Unknown,No,Unknown,Unknown,Unknown
+ed0201f4-e89a-41c6-bda7-ab1089f6bc2a,Natalie Dillon,Female,74,Colon Cancer,Surgery,2023-04-05,Unknown,Never Smoked,Never,False,False,Deceased,No,Yes,Yes,No,Unknown
+378bf5a5-2077-4306-a4c6-66706a119bb9,Cassie Wilkinson,Male,79,Lymphoma,Chemotherapy,2023-04-06,Yes,Current Smoker,Regularly,False,True,Survived,Unknown,Yes,No,No,Anxiety
+588cb943-b89b-4a37-893c-3f37c839665f,Alexander Peck,Female,53,Colon Cancer,Radiotherapy,2024-10-05,Unknown,Current Smoker,Occasionally,True,False,Survived,Yes,Unknown,Unknown,Unknown,Unknown
+8f618884-4674-47f3-89b2-2362cafc1f64,Keith Lewis,Female,38,Ovarian Cancer,Radiotherapy,2024-10-03,Unknown,Current Smoker,Never,True,True,Survived,Unknown,Yes,Unknown,Unknown,Depression
+0e142950-f39c-4a5b-9771-7cc3f62aee4a,Lisa Fox,Female,64,Ovarian Cancer,Surgery,2022-05-21,No,Ex-Smoker,Never,False,True,Survived,Unknown,Yes,Yes,Unknown,Anxiety
+695a8553-2078-4921-8eea-205a7fea4599,George Arias,Female,44,Liver Cancer,Chemotherapy,2022-07-08,Yes,Never Smoked,Regularly,True,True,Survived,No,No,Yes,No,Unknown
+f6be739e-edc2-464a-8c4f-d14740e6c632,Kenneth Morris DDS,Female,36,Lung Cancer,Surgery,2021-09-05,Unknown,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,Unknown,Yes,No,Anxiety
+c44fb202-a39f-424a-b410-1c81709e6a5a,Andrea Yang,Male,62,Lymphoma,Hormone Therapy,2024-07-25,Yes,Current Smoker,Occasionally,False,True,Deceased,No,No,No,Unknown,Anxiety
+f1c1a6b4-7533-4176-a324-b7657d8d7988,Joy Silva,Male,76,Colon Cancer,Chemotherapy,2021-01-23,No,Ex-Smoker,Never,False,True,Survived,Unknown,Yes,Unknown,Unknown,Anxiety
+c66cbbe7-3667-44e5-84d8-e34cf53130d9,Ronnie Hernandez,Male,71,Pancreatic Cancer,Surgery,2024-03-08,Yes,Current Smoker,Occasionally,True,True,Survived,No,Yes,Yes,No,Unknown
+04ed4ac9-8fdb-47ed-a070-7f6008e15dfd,Warren Yoder,Female,67,Colon Cancer,Immunotherapy,2021-01-23,No,Never Smoked,Regularly,True,False,Survived,No,Unknown,Unknown,Unknown,Unknown
+62f6734c-e9f3-4373-946b-0f05081494dd,Brandon Clark,Male,65,Leukemia,Chemotherapy,2021-06-26,No,Current Smoker,Regularly,False,True,Deceased,Unknown,Yes,Yes,Yes,Anxiety
+865775be-d1e7-42ad-b6f4-3bffef17fa36,Bobby Hernandez,Female,61,Lung Cancer,Chemotherapy,2021-09-19,No,Ex-Smoker,Never,True,True,Survived,Unknown,Unknown,Unknown,Yes,Anxiety
+24739300-4793-44be-ad86-86f88d6b9545,George Powers,Female,39,Colon Cancer,Hormone Therapy,2021-06-16,No,Never Smoked,Occasionally,False,True,Deceased,Unknown,Unknown,Unknown,Unknown,Depression
+72022aa7-076b-4de1-8d5e-ad0586b2b975,Bryan Thomas,Female,34,Lymphoma,Surgery,2021-03-05,Yes,Never Smoked,Occasionally,False,False,Survived,No,Unknown,No,Yes,Depression
+26753073-8523-4978-813f-d3f931abb092,Brandon Peters,Male,53,Prostate Cancer,Surgery,2020-05-02,No,Ex-Smoker,Never,True,True,Survived,Unknown,No,No,Unknown,Depression
+882d0a0d-2f0f-4598-9f1f-73a58cb3e448,Kayla Clay,Female,59,Lymphoma,Hormone Therapy,2022-03-27,Yes,Ex-Smoker,Never,True,False,Survived,No,No,Yes,Unknown,Unknown
+8cc79a21-3c0c-4a6f-bdf0-df40fd1dba47,David Martin,Male,43,Pancreatic Cancer,Surgery,2024-02-15,Unknown,Ex-Smoker,Never,True,True,Deceased,No,No,Unknown,Unknown,Anxiety
+27ba4ccf-190c-4796-afd4-974098b0695e,Amy Meyers,Female,32,Colon Cancer,Radiotherapy,2022-01-13,Unknown,Ex-Smoker,Occasionally,False,True,Deceased,No,Unknown,Yes,No,Anxiety
+b8ca065c-d61e-4fea-a0d8-27f61d137f9b,Aaron Peters,Female,61,Skin Cancer,Radiotherapy,2020-10-09,Yes,Never Smoked,Regularly,False,True,Survived,Yes,Unknown,Unknown,No,Unknown
+cc804739-b73a-4e9f-ad8a-d2ec1bb84064,Antonio Pratt,Female,31,Prostate Cancer,Surgery,2023-05-13,Yes,Current Smoker,Never,False,True,Deceased,Yes,Yes,No,No,Unknown
+7a78f518-56fc-4ecf-9230-a1dda442e483,Katie Murphy,Male,80,Breast Cancer,Immunotherapy,2022-02-20,Yes,Never Smoked,Occasionally,False,False,Deceased,No,No,Yes,Unknown,Depression
+1e3da280-8b4f-4f50-9f43-5253f04babba,Joanna Evans,Male,76,Leukemia,Hormone Therapy,2023-03-08,Unknown,Ex-Smoker,Occasionally,True,True,Survived,No,Yes,Yes,No,Anxiety
+175a5338-a2bc-4391-9685-661dac6d0cfc,Barbara Fernandez,Female,37,Liver Cancer,Surgery,2022-03-07,Yes,Never Smoked,Regularly,True,True,Survived,Yes,Unknown,No,Unknown,Depression
+7fe33fd2-5c29-4c7f-ba7e-150e6eca6add,Tyler Calderon,Male,54,Skin Cancer,Chemotherapy,2022-01-18,No,Current Smoker,Never,False,True,Survived,Unknown,No,Yes,Unknown,Anxiety
+50510ade-cb4c-4eed-b720-f4793eb85638,Jesse Jackson,Female,65,Ovarian Cancer,Hormone Therapy,2023-03-04,No,Current Smoker,Regularly,False,True,Deceased,Yes,No,No,Unknown,Unknown
+f80e6c80-dc6d-437d-bdec-efceb6938da1,Cheryl Gray,Male,32,Lymphoma,Surgery,2020-02-28,Unknown,Never Smoked,Never,False,True,Deceased,No,Unknown,No,Unknown,Anxiety
+5f70429a-2ffd-4fab-8a76-2c8d37a5504b,Sean Thompson,Male,45,Breast Cancer,Hormone Therapy,2024-07-08,No,Current Smoker,Occasionally,False,True,Deceased,No,Unknown,No,Unknown,Unknown
+8abf85ab-283b-4df1-a72e-e45bc88b1a69,Hunter Best,Female,48,Liver Cancer,Immunotherapy,2023-04-14,Yes,Ex-Smoker,Regularly,True,False,Deceased,Unknown,Yes,Unknown,No,Anxiety
+f53d304f-188a-4c81-970c-08b424163434,Patty White,Female,58,Liver Cancer,Surgery,2022-07-05,Unknown,Never Smoked,Never,True,False,Survived,Yes,Unknown,Unknown,No,Anxiety
+4cac1f38-084c-48c2-8ae8-3f9554237d9f,Jodi Moore,Female,48,Skin Cancer,Surgery,2023-06-02,No,Never Smoked,Never,True,False,Deceased,Unknown,Unknown,No,Unknown,Unknown
+8769bde0-4eb3-4dcc-8407-be7f29fb2aff,Steven Myers,Female,47,Skin Cancer,Hormone Therapy,2020-09-14,No,Current Smoker,Never,True,False,Survived,Unknown,Yes,Unknown,No,Unknown
+ca1b22c1-9436-433f-9be9-6166c59c95f1,Michelle Marshall,Male,46,Skin Cancer,Hormone Therapy,2023-01-16,Unknown,Never Smoked,Occasionally,True,False,Deceased,No,Unknown,Yes,Unknown,Anxiety
+50fc17bb-7959-4dbf-8267-fe4e6f6e26ee,Veronica Byrd,Female,40,Prostate Cancer,Hormone Therapy,2021-01-24,Unknown,Current Smoker,Regularly,True,False,Deceased,Yes,No,Yes,Yes,Unknown
+6ae92f70-9f07-4346-9599-032a6cb65ffa,Matthew Mathis,Male,79,Lymphoma,Immunotherapy,2020-06-22,No,Current Smoker,Never,True,True,Deceased,Yes,Unknown,Unknown,Unknown,Anxiety
+d05343ac-3cf0-425f-835e-f8fefc3b4818,Cory Molina,Male,72,Leukemia,Chemotherapy,2023-03-04,Yes,Ex-Smoker,Regularly,False,False,Survived,Unknown,Unknown,No,Yes,Anxiety
+0443b42e-6c2e-4093-84f6-7f4fb7334d14,Tina Cole,Female,35,Colon Cancer,Surgery,2021-08-11,Unknown,Never Smoked,Never,False,True,Survived,No,Unknown,No,Yes,Anxiety
+f9f12714-38ef-4077-a1ce-b20a8cb3abd6,Stephanie Morrison,Female,59,Skin Cancer,Immunotherapy,2022-10-30,Yes,Current Smoker,Occasionally,True,True,Deceased,Yes,No,Yes,Unknown,Depression
+20023398-5e43-4032-b6a0-0ad6b428d365,Dennis Rich,Male,73,Skin Cancer,Radiotherapy,2023-12-13,No,Never Smoked,Never,True,False,Survived,Yes,No,Unknown,Unknown,Depression
+82e7f7b8-919c-4f48-ad65-b45b80ff3fea,Michael Alexander,Male,32,Lung Cancer,Hormone Therapy,2021-02-22,Yes,Never Smoked,Regularly,True,False,Deceased,No,Unknown,No,No,Anxiety
+f5540093-5cc8-4f30-abdf-8e1cb96f6d3f,Brianna Mclean,Female,31,Leukemia,Radiotherapy,2024-04-18,Unknown,Ex-Smoker,Never,True,True,Deceased,Yes,No,Yes,Unknown,Depression
+9fecfd77-2a70-49ef-b800-2dfe06cf146d,Lauren Johnson,Male,33,Liver Cancer,Hormone Therapy,2021-06-29,Unknown,Current Smoker,Never,False,True,Survived,Yes,Unknown,Unknown,No,Depression
+6797a910-d8ea-45e3-8ea8-27ba3e158e36,Christopher Peterson,Female,46,Liver Cancer,Surgery,2021-04-26,Yes,Never Smoked,Never,False,True,Survived,No,No,No,Yes,Unknown
+68ee30f9-dc0f-447b-9882-79bfa305987d,Angie Carrillo,Male,46,Colon Cancer,Immunotherapy,2020-07-18,Yes,Ex-Smoker,Never,False,True,Survived,Unknown,No,Unknown,No,Unknown
+05f3ae02-38aa-4aa6-ba26-1dcd054bacb0,Denise Myers,Female,33,Prostate Cancer,Hormone Therapy,2023-07-26,Yes,Current Smoker,Regularly,False,False,Survived,Unknown,No,Yes,Unknown,Depression
+a74c7ea4-943e-48ae-8250-030d1faa73dd,Sean Stephens,Female,38,Colon Cancer,Radiotherapy,2023-02-20,No,Never Smoked,Regularly,True,True,Deceased,Unknown,Yes,No,Yes,Anxiety
+b7a664ac-ea4e-468c-86cb-8e83e18b74fc,Thomas Chambers,Female,52,Liver Cancer,Hormone Therapy,2021-07-22,No,Ex-Smoker,Occasionally,True,True,Survived,Yes,Yes,Yes,Unknown,Depression
+17406b4f-b7e2-44ae-ac65-df6641f222c1,Matthew Anderson,Male,44,Lung Cancer,Surgery,2020-12-06,Unknown,Never Smoked,Regularly,True,True,Survived,Yes,No,Yes,Yes,Depression
+90a7cf5a-e87b-41ec-9789-5f4561841955,Kelly Rogers,Female,57,Lymphoma,Hormone Therapy,2020-10-31,No,Current Smoker,Never,False,True,Survived,No,No,No,Unknown,Depression
+0839b08a-120e-4d28-b9fb-b4b93ee354f8,Christopher Price,Male,33,Ovarian Cancer,Surgery,2024-03-22,Yes,Current Smoker,Never,True,True,Deceased,No,Yes,Unknown,No,Unknown
+7f1acd23-30ac-4726-8473-9792be408f07,Jacob Thomas,Male,44,Prostate Cancer,Immunotherapy,2023-05-19,Unknown,Ex-Smoker,Never,False,True,Survived,No,Yes,Unknown,No,Depression
+b23f3330-6107-4ba2-8227-3654e3759f54,Andrea Woods,Female,34,Ovarian Cancer,Chemotherapy,2024-06-12,No,Never Smoked,Never,False,True,Survived,Yes,Yes,Yes,Yes,Anxiety
+64995247-b598-4716-a6ae-4101eb49513a,William Sanders,Female,55,Lymphoma,Chemotherapy,2021-01-19,No,Never Smoked,Regularly,True,True,Survived,Yes,Unknown,Yes,Unknown,Anxiety
+bcf5df15-b618-451e-a828-5c9376c239fe,Emily Roberts,Female,45,Colon Cancer,Radiotherapy,2020-02-20,Unknown,Current Smoker,Never,True,True,Survived,No,Yes,No,Yes,Unknown
+0d7e1651-4c5e-4fc0-bc5f-30ecc374ff40,Drew Hood,Female,44,Colon Cancer,Immunotherapy,2022-09-06,Yes,Current Smoker,Never,False,True,Survived,No,Unknown,Unknown,Yes,Depression
+f4a699b8-4837-4e09-8b78-12dc587b005c,Nancy Cochran,Female,66,Skin Cancer,Chemotherapy,2024-09-11,No,Never Smoked,Never,True,False,Survived,Yes,No,Yes,Yes,Unknown
+0f2c5f38-87e8-436a-98a3-594e4234381b,James Abbott,Female,47,Prostate Cancer,Surgery,2024-08-26,No,Ex-Smoker,Regularly,False,False,Survived,Yes,Yes,Unknown,No,Depression
+53530446-e734-4fff-b56a-0984f4478a26,Michael Petty,Male,43,Colon Cancer,Surgery,2022-05-31,Unknown,Never Smoked,Occasionally,False,True,Deceased,Unknown,Yes,No,No,Depression
+29d69aa0-3e7b-49ff-9e30-60b26adada1f,Kathy Wheeler,Female,75,Ovarian Cancer,Hormone Therapy,2022-12-16,Unknown,Never Smoked,Never,True,True,Deceased,No,No,Yes,No,Anxiety
+af5daf75-ecba-4ed3-8caf-d51f7416802e,Lydia Hall,Male,65,Lymphoma,Chemotherapy,2020-11-16,No,Never Smoked,Occasionally,False,False,Deceased,Yes,No,Yes,Yes,Unknown
+c2caaefa-2bee-43cd-ba96-2413c3f5cf0d,Jeffrey Duffy,Male,63,Colon Cancer,Radiotherapy,2020-04-30,Unknown,Never Smoked,Never,True,False,Survived,No,Unknown,Yes,Unknown,Depression
+2db7bdd0-e719-430d-a5e8-823d7d48ca29,Emily Barajas,Female,53,Liver Cancer,Surgery,2022-08-18,Unknown,Ex-Smoker,Never,False,True,Deceased,Unknown,Unknown,Unknown,Yes,Depression
+87553bfc-60f9-4b19-a40b-bbe6240d2958,Eric Leonard,Female,36,Ovarian Cancer,Radiotherapy,2022-03-05,Yes,Ex-Smoker,Occasionally,True,False,Survived,No,Yes,No,Unknown,Depression
+c8bedd5f-a68a-4c0e-9217-e16195e58c3d,Janice Allison,Male,75,Colon Cancer,Surgery,2023-08-16,No,Never Smoked,Never,False,False,Deceased,Yes,Yes,Unknown,Unknown,Unknown
+7f2d7c52-fdb9-4e00-8d03-52eb8d981ec4,John Moore,Male,41,Leukemia,Chemotherapy,2024-05-07,No,Never Smoked,Regularly,True,True,Survived,No,Unknown,Yes,No,Depression
+a55f41ba-ed9d-43ce-9192-97eab3a86655,Barbara Phillips,Female,55,Skin Cancer,Hormone Therapy,2022-07-20,Unknown,Ex-Smoker,Never,False,True,Survived,Unknown,No,Unknown,Yes,Depression
+1f329279-3ab8-4c8d-a3d6-ac5190d22631,Angela Chang,Female,53,Breast Cancer,Radiotherapy,2022-11-20,Unknown,Never Smoked,Never,True,True,Survived,Yes,No,Yes,Yes,Anxiety
+44f36e39-b282-4538-96ba-c2b53da2d895,Donald Hayes,Female,48,Leukemia,Hormone Therapy,2021-10-30,No,Ex-Smoker,Occasionally,True,False,Deceased,Unknown,Yes,Unknown,Unknown,Anxiety
+c51413e6-1209-493a-a0f0-21e6d79120cd,Sherry Butler,Male,53,Lung Cancer,Chemotherapy,2024-11-24,Unknown,Ex-Smoker,Never,False,False,Deceased,No,No,Unknown,Yes,Unknown
+30cd9149-3687-4637-95f4-a00d21485132,John Lewis,Female,68,Breast Cancer,Surgery,2021-06-16,Yes,Never Smoked,Occasionally,False,True,Deceased,No,Yes,No,No,Depression
+a096d606-f1d2-4aaa-93c8-69adcb7b8d5b,Emily Wilson,Female,46,Skin Cancer,Surgery,2024-01-15,No,Never Smoked,Regularly,True,False,Survived,No,Yes,Yes,Unknown,Anxiety
+915dcf88-9bab-4e36-8133-2cd81ba9bb5e,Stephanie Alvarez,Female,61,Prostate Cancer,Chemotherapy,2024-05-10,No,Ex-Smoker,Regularly,False,True,Survived,Unknown,Unknown,Yes,Yes,Depression
+1008eea1-8364-4be3-b182-540e9b206318,William Juarez,Female,38,Lymphoma,Radiotherapy,2021-08-18,No,Current Smoker,Occasionally,False,True,Survived,No,Yes,Yes,Unknown,Unknown
+72d8106e-b23d-40b1-a0ad-30a4864c728b,Jason Perez,Male,63,Colon Cancer,Surgery,2023-08-30,Unknown,Ex-Smoker,Regularly,False,False,Survived,Yes,No,Unknown,Yes,Unknown
+3eb23648-a576-4d6d-9890-e271a3a6d17d,Russell Howe,Female,36,Lymphoma,Immunotherapy,2020-01-18,No,Ex-Smoker,Regularly,True,False,Survived,Yes,Yes,Unknown,Unknown,Unknown
+6dbcf905-01fb-4286-9fd1-0d575fcbe5fe,Ellen Smith,Male,58,Lung Cancer,Hormone Therapy,2021-03-28,Yes,Current Smoker,Never,False,False,Survived,No,Unknown,Unknown,Yes,Depression
+0fc948cf-6667-43f6-b08c-6905d41109fc,Joe James,Male,34,Pancreatic Cancer,Chemotherapy,2023-07-06,Unknown,Current Smoker,Never,False,True,Survived,No,Unknown,Unknown,Unknown,Unknown
+5e8d0bae-9b8f-4761-87c7-cae6f1f48bbb,Ryan Hebert,Male,74,Breast Cancer,Surgery,2021-06-24,Unknown,Ex-Smoker,Never,True,False,Deceased,No,Yes,No,Yes,Anxiety
+90fecd70-36cd-433e-8d61-0409ab4d8933,Jasmine Hampton,Female,41,Skin Cancer,Radiotherapy,2020-03-10,No,Ex-Smoker,Never,True,True,Survived,Yes,Yes,Unknown,Yes,Anxiety
+0b49873b-f408-46d6-8499-3b7656a15dff,Maria Taylor,Female,77,Liver Cancer,Chemotherapy,2020-11-21,Yes,Never Smoked,Regularly,False,True,Survived,Unknown,No,Yes,Unknown,Anxiety
+a1c48989-d3d1-4d2a-a429-b8a0081cd1e3,Paul Morris,Male,52,Pancreatic Cancer,Immunotherapy,2024-07-01,No,Ex-Smoker,Regularly,False,False,Survived,Unknown,No,Yes,Yes,Unknown
+d076948d-fa49-43b2-8a3a-95b5562cb9ba,Kathryn Hughes,Male,67,Leukemia,Chemotherapy,2023-02-22,Unknown,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,No,Unknown,Yes,Unknown
+1cbf8a2e-965a-4a4d-8737-41d34d0bc496,Amber Fitzpatrick,Female,80,Pancreatic Cancer,Hormone Therapy,2021-01-02,Yes,Current Smoker,Never,True,True,Survived,Unknown,Unknown,Yes,No,Anxiety
+31518697-fd92-45c8-b951-89e804df80a3,Rhonda Bowman,Male,60,Prostate Cancer,Immunotherapy,2023-12-06,Yes,Never Smoked,Never,False,True,Survived,Yes,No,No,No,Unknown
+1ca84a35-617c-44c9-910a-286f27bfecdf,Kelly Williams,Female,64,Ovarian Cancer,Chemotherapy,2024-08-24,No,Ex-Smoker,Never,False,False,Survived,Yes,No,Yes,Unknown,Anxiety
+36784dd0-ae69-41d3-a1db-911a33af79be,Jessica Perkins,Female,49,Prostate Cancer,Immunotherapy,2024-05-21,No,Never Smoked,Never,True,True,Deceased,Unknown,Unknown,No,Yes,Anxiety
+65ed7339-8193-45ec-8d13-b7618c6b7c2a,Charles Parks,Male,52,Prostate Cancer,Hormone Therapy,2021-05-20,Yes,Never Smoked,Never,False,False,Deceased,Yes,No,Yes,Unknown,Anxiety
+4e7837d1-19cb-41a1-89d7-5e3178611749,Michael Moss,Male,67,Prostate Cancer,Chemotherapy,2022-10-20,Yes,Current Smoker,Regularly,True,False,Survived,No,No,Yes,No,Anxiety
+a568b5cf-2766-491f-a044-694faff68675,Curtis Bentley,Male,63,Pancreatic Cancer,Surgery,2022-05-20,Yes,Ex-Smoker,Occasionally,False,True,Survived,Yes,Yes,Yes,Yes,Anxiety
+a1202267-a44c-4e11-9dc4-eeb2ea7fa2c1,Margaret Lewis,Male,73,Prostate Cancer,Immunotherapy,2020-04-26,Unknown,Current Smoker,Regularly,True,True,Deceased,Yes,Yes,Unknown,Unknown,Anxiety
+34637819-4058-44e0-a3b7-05d489766733,Christopher Garner,Male,66,Pancreatic Cancer,Chemotherapy,2023-04-25,Unknown,Current Smoker,Occasionally,True,True,Deceased,No,No,Yes,No,Anxiety
+9f996237-bea3-413d-a58a-d4ca2c6193bc,Mr. Justin Krause,Male,38,Skin Cancer,Immunotherapy,2021-02-03,Unknown,Ex-Smoker,Regularly,True,False,Deceased,No,Unknown,Yes,Yes,Depression
+4e9ce8d1-3cb0-4957-bf82-99e87bbe0a4a,Lisa Gilmore,Male,61,Ovarian Cancer,Immunotherapy,2023-02-08,No,Ex-Smoker,Never,True,True,Deceased,Yes,Unknown,Yes,Unknown,Depression
+c148ffe8-b475-4990-b44e-d29a424ee575,Krystal Taylor,Male,55,Liver Cancer,Radiotherapy,2023-07-04,No,Ex-Smoker,Never,False,False,Survived,No,Yes,No,Yes,Anxiety
+ff237cc1-b10c-4c8d-a73d-7b980851c8c7,Charles Evans,Female,62,Ovarian Cancer,Hormone Therapy,2020-11-02,Unknown,Never Smoked,Never,False,False,Survived,Yes,No,Yes,No,Depression
+7ac9492b-e9be-4ad3-93aa-056c7934d7c7,Shannon Clark,Female,33,Pancreatic Cancer,Radiotherapy,2022-03-08,Unknown,Current Smoker,Regularly,False,True,Survived,Yes,Unknown,No,No,Depression
+60c985f5-4497-487b-9e44-70b5f7af8b4f,Cindy Gray,Male,60,Pancreatic Cancer,Immunotherapy,2024-08-05,Unknown,Never Smoked,Never,True,False,Survived,Yes,No,No,Unknown,Anxiety
+58196868-95ea-42ce-bde6-b8e843b028e9,Elizabeth Richmond,Male,64,Lung Cancer,Chemotherapy,2022-05-07,Unknown,Current Smoker,Regularly,True,True,Deceased,Unknown,No,No,Unknown,Anxiety
+51221906-1699-445f-af73-9c61777b7fa2,Cassandra Wilkinson,Female,46,Prostate Cancer,Immunotherapy,2024-08-30,Unknown,Never Smoked,Occasionally,True,False,Survived,No,Yes,No,Yes,Unknown
+5f945901-da97-4ec5-a7c5-50d23b34076b,Michael Abbott,Female,66,Lymphoma,Chemotherapy,2020-01-30,No,Ex-Smoker,Never,False,True,Survived,Yes,No,Unknown,No,Unknown
+db75b130-08ad-4bf5-91aa-9736bcb350e0,Ariana Graves,Male,38,Leukemia,Hormone Therapy,2024-07-10,Unknown,Never Smoked,Never,False,True,Survived,No,Unknown,No,No,Unknown
+343fccf0-fd77-4733-b513-547f8def6801,Ruben Le,Female,63,Leukemia,Surgery,2020-09-07,Unknown,Ex-Smoker,Regularly,True,True,Survived,No,Unknown,No,No,Depression
+08acfc0c-0487-4ee2-89a8-a98a566f9ba7,Phyllis Rangel,Male,54,Lung Cancer,Immunotherapy,2024-11-14,Unknown,Ex-Smoker,Regularly,False,True,Survived,No,Unknown,Unknown,No,Anxiety
+0a238072-2fca-4817-b931-8955965ad510,Madison Cervantes,Male,51,Colon Cancer,Surgery,2021-10-13,Unknown,Ex-Smoker,Never,False,False,Deceased,Yes,No,Yes,Unknown,Unknown
+d88ac57a-2df9-4bd0-8c0a-fa19c24093ae,Stephanie Johnson,Female,33,Ovarian Cancer,Hormone Therapy,2022-06-26,Unknown,Ex-Smoker,Never,False,False,Survived,Unknown,Yes,No,No,Unknown
+da1bb0fc-a7c6-4034-b005-d05147062662,Michael Maynard,Female,53,Skin Cancer,Radiotherapy,2024-10-12,Unknown,Ex-Smoker,Never,True,False,Survived,Unknown,Yes,Unknown,Unknown,Unknown
+f5110f7e-ab25-4b4d-88c2-440454ca24c0,Allison Holt,Male,60,Pancreatic Cancer,Immunotherapy,2024-01-18,Yes,Never Smoked,Never,True,True,Survived,Unknown,Unknown,Unknown,No,Anxiety
+06c39e62-f994-4c06-815f-1828872bd40b,Sarah Hale,Male,43,Liver Cancer,Immunotherapy,2020-01-20,No,Never Smoked,Regularly,True,False,Survived,Yes,Unknown,Yes,No,Depression
+3cf4847f-c961-4033-bf8b-d4aec4a752bb,Tracy Young,Male,49,Ovarian Cancer,Radiotherapy,2022-01-09,No,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,Yes,No,Yes,Depression
+9b426774-1345-47be-8e24-84a72f005528,Diane Brown,Female,71,Leukemia,Immunotherapy,2023-07-21,No,Ex-Smoker,Never,True,True,Survived,Unknown,Unknown,No,Unknown,Unknown
+16c99af5-d741-40de-842a-9512cfb65d47,Lisa Lowe,Female,77,Leukemia,Surgery,2024-02-28,Unknown,Current Smoker,Never,False,True,Deceased,Unknown,Unknown,Unknown,Unknown,Unknown
+3cca43f3-8a9f-4694-a9f1-eb17925df3fc,Lisa Perez,Male,73,Pancreatic Cancer,Hormone Therapy,2024-01-30,No,Never Smoked,Never,False,False,Survived,Unknown,Yes,Unknown,Yes,Depression
+d2cdc856-c86e-423f-a4de-a34ad5a433b4,Patty Ritter,Male,59,Lung Cancer,Radiotherapy,2020-11-14,No,Current Smoker,Occasionally,True,True,Survived,No,No,Yes,Yes,Depression
+639f7f1c-13ab-4e43-bd8e-37499e945c41,Richard Robbins,Female,32,Lymphoma,Immunotherapy,2024-12-06,Unknown,Current Smoker,Regularly,False,True,Deceased,Unknown,Yes,No,Unknown,Unknown
+9ba65651-08e6-4d0c-80e9-49bf73a0830c,Gregory Taylor Jr.,Male,64,Lung Cancer,Immunotherapy,2024-10-05,No,Never Smoked,Regularly,True,False,Survived,No,No,Unknown,Yes,Depression
+d9780bc0-5c19-4839-99cc-3429f300ff80,Rachel Forbes,Female,78,Prostate Cancer,Surgery,2020-11-27,Yes,Never Smoked,Never,True,False,Survived,No,Unknown,Yes,Unknown,Anxiety
+c98c6b52-01fb-4f90-b734-0ec6f39f6406,Andrew Soto,Male,48,Skin Cancer,Immunotherapy,2023-07-17,Yes,Current Smoker,Never,False,False,Deceased,Unknown,No,Yes,Unknown,Unknown
+1d276376-27ef-401f-ba4e-b708459d5c41,Bailey Lucas,Male,57,Lymphoma,Chemotherapy,2021-05-13,Yes,Ex-Smoker,Occasionally,False,False,Survived,Unknown,Yes,Yes,No,Depression
+c85ecc53-b97b-471e-9e8b-c7830c7d4a41,Jennifer Wright,Female,70,Ovarian Cancer,Chemotherapy,2022-04-06,Yes,Never Smoked,Regularly,False,False,Deceased,No,No,Yes,No,Unknown
+722b6314-60ba-4cec-b54e-d1e2c8a45d18,Olivia Guzman DDS,Male,80,Lymphoma,Hormone Therapy,2021-05-30,Unknown,Current Smoker,Occasionally,True,False,Survived,Unknown,Unknown,No,No,Depression
+eef69b9f-cd80-4ce3-affb-1c54558b79aa,Whitney Knight,Female,55,Ovarian Cancer,Surgery,2024-02-25,Yes,Current Smoker,Regularly,True,True,Survived,No,Yes,Unknown,No,Unknown
+8d3a15d1-3953-460a-a125-1fc8b61c94f9,Emily Moses,Female,35,Lymphoma,Radiotherapy,2020-01-28,No,Current Smoker,Never,True,False,Deceased,Unknown,No,No,Yes,Depression
+5ab1a1bb-8ffa-4e3f-a5ab-1da05a538c21,Jeremy Alvarez,Female,39,Liver Cancer,Radiotherapy,2023-12-20,No,Ex-Smoker,Never,False,True,Deceased,Unknown,No,Unknown,No,Anxiety
+c22d2fbb-53a3-4746-a3af-eb4b8f57eebd,Heather Miles,Female,53,Breast Cancer,Radiotherapy,2023-08-21,No,Never Smoked,Never,True,True,Survived,Unknown,Yes,Unknown,Yes,Anxiety
+8dbf5d1a-81d6-4e70-8e79-a680c992bf3f,Lauren York,Female,52,Colon Cancer,Hormone Therapy,2024-04-09,Unknown,Ex-Smoker,Regularly,False,False,Deceased,Unknown,Yes,Unknown,Yes,Unknown
+91e49683-bf1d-4eec-adb1-ce58ae4b998b,Barbara Jones,Male,43,Leukemia,Immunotherapy,2022-06-27,Yes,Never Smoked,Never,False,True,Deceased,Unknown,Yes,Unknown,Yes,Anxiety
+53c408f9-2843-49b9-91e5-fef1014559e4,Timothy Sanders,Female,67,Pancreatic Cancer,Radiotherapy,2021-08-19,No,Ex-Smoker,Regularly,True,False,Deceased,Yes,Yes,Yes,No,Unknown
+e0f05653-b10e-4b08-a4ec-d574f2eba53d,Christopher Schneider,Female,36,Ovarian Cancer,Surgery,2022-01-10,Yes,Current Smoker,Never,True,False,Deceased,No,No,Unknown,Unknown,Unknown
+e04454d5-4181-46ba-96ff-f5aafacf2d0c,Margaret Hebert,Female,43,Lung Cancer,Surgery,2024-01-20,No,Current Smoker,Occasionally,True,True,Survived,Unknown,Unknown,Unknown,Unknown,Unknown
+e4c324b6-c473-4ba1-8f70-43087d7f9971,Stephanie Hall,Male,37,Leukemia,Radiotherapy,2022-01-23,Yes,Current Smoker,Never,True,False,Deceased,Yes,Unknown,Yes,Yes,Anxiety
+b0ae9b9a-92ad-4459-bbea-d7789de3d16c,Amber Day,Female,31,Liver Cancer,Surgery,2021-03-26,Yes,Never Smoked,Regularly,True,True,Deceased,No,No,Yes,Yes,Depression
+a7e19e33-62fb-465b-ad64-de804e2ed114,Fred Elliott,Male,71,Prostate Cancer,Surgery,2023-10-25,No,Ex-Smoker,Occasionally,False,True,Survived,No,No,Unknown,No,Anxiety
+47d2d33e-3c60-4945-9236-e404d3645b9b,Erin Park,Male,35,Pancreatic Cancer,Radiotherapy,2024-02-28,Yes,Current Smoker,Never,True,True,Survived,No,Yes,No,Unknown,Depression
+016cb120-bc5e-4659-98ff-e7f87f69dbb6,Angela Jacobs,Male,49,Lymphoma,Surgery,2022-03-30,No,Current Smoker,Occasionally,True,True,Deceased,Yes,Yes,No,Yes,Anxiety
+77676a48-2eda-4e7c-88f5-e17f2707bd96,Brooke Beltran,Male,41,Skin Cancer,Hormone Therapy,2024-06-04,No,Current Smoker,Regularly,False,False,Deceased,Unknown,No,No,Yes,Unknown
+7f5c11f0-1678-4bdf-9f2a-7cc73707d364,Brianna Brooks,Female,68,Skin Cancer,Radiotherapy,2024-01-28,Unknown,Current Smoker,Never,False,True,Deceased,No,Yes,Yes,No,Depression
+50f0f1bf-e8b1-4a58-9c13-cd22650016b3,Joshua Schmidt,Male,41,Pancreatic Cancer,Surgery,2022-10-03,Unknown,Current Smoker,Never,False,True,Deceased,Yes,Unknown,Unknown,Yes,Depression
+6233bab5-5d5c-4234-8686-5875636b264c,Randall Anderson,Female,45,Colon Cancer,Surgery,2021-10-28,No,Current Smoker,Regularly,True,False,Deceased,Unknown,Unknown,Unknown,No,Depression
+d7e0f437-71d7-4794-a752-197124ceeb46,Morgan Little,Male,62,Skin Cancer,Radiotherapy,2020-12-05,Yes,Current Smoker,Occasionally,True,True,Deceased,Yes,No,Yes,No,Anxiety
+9137619a-2069-4079-bdef-68a1ea7365a5,Jonathan Romero,Male,79,Lung Cancer,Surgery,2021-11-25,Unknown,Ex-Smoker,Regularly,True,False,Deceased,Unknown,No,No,No,Depression
+cb6c335c-486e-45ca-be5e-b1032f097dc6,Mrs. Vanessa Krause,Male,63,Leukemia,Hormone Therapy,2020-06-27,Yes,Current Smoker,Occasionally,True,False,Survived,Unknown,Yes,Yes,No,Anxiety
+32dc31f6-9cb3-49a6-a3f3-c0a1772204c9,Nicole Wallace,Male,54,Pancreatic Cancer,Radiotherapy,2023-02-10,Unknown,Never Smoked,Regularly,False,False,Survived,No,Yes,Yes,Yes,Anxiety
+7f6d5e35-8b8c-4e37-a539-63f5bf60cd47,Lynn Ward,Female,78,Lymphoma,Immunotherapy,2021-11-02,Unknown,Never Smoked,Occasionally,True,True,Survived,No,Yes,Yes,Unknown,Depression
+62b17380-faf2-4218-b734-9fc3fdf8bf80,Rachel Hubbard,Female,49,Lymphoma,Chemotherapy,2022-09-03,No,Ex-Smoker,Occasionally,True,False,Survived,Unknown,Yes,Yes,Yes,Depression
+0922968a-02d4-47e3-b51c-13de4bf75969,Angela Simmons,Male,71,Colon Cancer,Immunotherapy,2020-03-13,Unknown,Never Smoked,Never,False,False,Survived,Yes,Yes,Yes,No,Depression
+13668a60-51a7-4bc9-a630-f6d63846de8f,John Montoya,Female,74,Colon Cancer,Immunotherapy,2021-10-04,Unknown,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,Unknown,Yes,Yes,Unknown
+8429d344-a68f-4029-b63d-2c87ae0313b1,Rebecca Scott,Female,30,Pancreatic Cancer,Chemotherapy,2024-11-17,Yes,Ex-Smoker,Never,False,False,Survived,Yes,No,Yes,Unknown,Depression
+978a3ec1-3898-4006-9d9c-00e7521baf20,Gregory Singh,Male,69,Colon Cancer,Radiotherapy,2022-11-10,Unknown,Ex-Smoker,Regularly,True,True,Survived,Yes,Unknown,No,Yes,Depression
+703d6e38-4295-4f8e-ab6f-d0b248b4b8da,Travis Hart,Female,51,Lymphoma,Radiotherapy,2023-04-10,Unknown,Current Smoker,Occasionally,True,False,Survived,Unknown,Yes,Unknown,Yes,Unknown
+f2151db9-50ed-49ee-ab90-1f46a7a795b7,David Mayo,Male,67,Colon Cancer,Radiotherapy,2023-11-26,Unknown,Never Smoked,Never,True,False,Deceased,Yes,No,Yes,No,Anxiety
+7a439faf-7d9e-42f6-8559-270e02269f54,Jacob Stark,Male,30,Leukemia,Radiotherapy,2023-10-25,No,Current Smoker,Regularly,True,False,Deceased,No,No,No,Unknown,Anxiety
+eb49d401-6b2b-4ae0-aece-946dddefd182,Todd Moore,Male,56,Lung Cancer,Surgery,2020-04-16,No,Current Smoker,Never,True,True,Deceased,No,Yes,Unknown,Unknown,Anxiety
+da51066c-6509-4548-9b3a-1d3a3de49bb5,Melissa Barber,Male,42,Ovarian Cancer,Immunotherapy,2023-12-31,Unknown,Current Smoker,Regularly,True,True,Survived,Unknown,No,Yes,Yes,Anxiety
+aae75857-6130-464b-acbd-bee766604b6d,Paul Hickman,Female,35,Liver Cancer,Radiotherapy,2022-06-13,Unknown,Never Smoked,Regularly,True,True,Deceased,No,Unknown,Unknown,No,Unknown
+d3223e20-5604-401f-92bd-182f9ef1c9ce,Rachel Townsend,Female,37,Ovarian Cancer,Surgery,2024-06-05,Yes,Never Smoked,Regularly,False,False,Deceased,No,No,No,Unknown,Unknown
+b0ad4ff9-481f-43e4-9724-ef89597398a9,Katrina Ortiz,Female,55,Leukemia,Chemotherapy,2021-11-05,Yes,Current Smoker,Never,False,True,Survived,No,No,Unknown,Unknown,Anxiety
+7df1046f-43fc-4b37-bdae-a99c98870e82,Susan Sanders,Male,48,Colon Cancer,Chemotherapy,2021-12-11,Unknown,Ex-Smoker,Regularly,True,False,Survived,Yes,Unknown,Yes,No,Unknown
+4f161f1c-b358-4c26-a484-772b6c46206e,Katie Marshall,Female,67,Liver Cancer,Radiotherapy,2023-07-31,No,Ex-Smoker,Never,False,False,Deceased,Yes,Unknown,No,No,Depression
+f42da95b-868b-4a19-a880-fa6850875fc8,Joshua Mejia,Male,56,Skin Cancer,Hormone Therapy,2020-05-25,Unknown,Ex-Smoker,Occasionally,True,True,Survived,Yes,Yes,Unknown,Yes,Anxiety
+b911c380-9e7f-4dc9-91c4-0a5245f31e2d,Rachel Wilson,Male,41,Lymphoma,Chemotherapy,2020-03-06,No,Ex-Smoker,Occasionally,False,False,Survived,Unknown,No,No,No,Anxiety
+12c39dae-fe24-4a5b-9dd0-aaa5883a297d,Albert Morton,Male,64,Leukemia,Radiotherapy,2021-07-01,No,Current Smoker,Occasionally,True,True,Deceased,Unknown,Unknown,Unknown,Yes,Anxiety
+96856f71-e62f-4c72-b15c-3afff0060b1c,Yolanda Henry,Female,32,Lung Cancer,Surgery,2022-11-09,Yes,Current Smoker,Regularly,False,False,Survived,Yes,Yes,No,Yes,Anxiety
+0de2dac2-e229-4a8b-8b05-133cc01f0347,Aaron Garcia,Male,68,Prostate Cancer,Surgery,2024-05-19,Yes,Ex-Smoker,Regularly,True,False,Survived,No,Unknown,Yes,Yes,Depression
+89c86389-3da9-40a1-8e25-957a464dfb69,David Miller,Male,30,Skin Cancer,Surgery,2023-08-19,Unknown,Current Smoker,Occasionally,True,False,Deceased,Yes,No,Yes,Yes,Unknown
+3f9fa1d1-a32c-4a95-bac2-9c4ba619394d,Christina Hunter,Female,57,Liver Cancer,Immunotherapy,2020-07-19,Unknown,Never Smoked,Never,True,False,Survived,No,No,No,Yes,Depression
+8f78e10a-15da-45ef-a275-709be02f147b,Adrienne Allen,Female,59,Ovarian Cancer,Surgery,2023-12-12,Unknown,Ex-Smoker,Never,True,False,Survived,Yes,Yes,No,Unknown,Anxiety
+2161120b-3f5e-4ca1-b64a-843bb78fc564,Brian Sanders,Female,41,Liver Cancer,Radiotherapy,2020-03-09,Unknown,Current Smoker,Occasionally,True,True,Survived,Yes,No,No,Unknown,Depression
+9ca3ff7a-36fd-4100-8a8a-6a658cf227da,Lori Washington,Female,34,Liver Cancer,Hormone Therapy,2024-08-07,Yes,Ex-Smoker,Regularly,True,False,Survived,Yes,Yes,Yes,Yes,Anxiety
+e394da6e-9312-401b-88f3-6adfa36354ed,Timothy Riley,Female,71,Pancreatic Cancer,Chemotherapy,2023-06-08,Yes,Never Smoked,Never,False,False,Survived,Yes,Unknown,No,Unknown,Unknown
+f85ada7e-41f1-4436-8c6f-71acbbf368cc,Tanya Ingram,Male,55,Lung Cancer,Surgery,2021-02-08,Yes,Current Smoker,Occasionally,True,True,Survived,Unknown,Unknown,Yes,No,Depression
+80d97089-ce65-47e6-ba54-cea22bb7696f,Michael Gonzalez,Male,79,Leukemia,Radiotherapy,2024-09-14,No,Current Smoker,Regularly,False,True,Deceased,Yes,Yes,No,Yes,Anxiety
+49afe0e3-9120-42a2-99a0-5f2f18ff9efc,Amber Stone,Female,56,Ovarian Cancer,Hormone Therapy,2020-01-22,No,Current Smoker,Occasionally,True,True,Deceased,Unknown,Yes,No,No,Depression
+0dfe1ae1-a001-4db1-804a-90d678178ac5,Crystal Everett,Male,37,Ovarian Cancer,Radiotherapy,2023-04-21,Yes,Current Smoker,Occasionally,False,True,Survived,Unknown,Unknown,No,Unknown,Unknown
+c2052dcb-d628-43d0-93f5-2ee0e14a6fb0,Ashley Hill,Female,61,Ovarian Cancer,Hormone Therapy,2023-09-29,Unknown,Never Smoked,Never,False,True,Deceased,Yes,Yes,No,No,Unknown
+995b7038-3be1-4cb6-9f5e-5e3e315b5176,Daniel Smith,Male,44,Prostate Cancer,Chemotherapy,2022-02-19,Yes,Never Smoked,Never,False,True,Survived,Yes,Unknown,Unknown,No,Anxiety
+77732a5d-ccc2-4ba4-841c-da101c22ea98,Kenneth Allen,Male,78,Lung Cancer,Immunotherapy,2020-05-29,No,Ex-Smoker,Occasionally,False,True,Deceased,No,No,Unknown,Yes,Anxiety
+fac6e81b-288d-42e9-83c8-1020072ea559,Mr. Brent Mcdonald MD,Male,67,Leukemia,Radiotherapy,2021-03-11,Yes,Never Smoked,Never,False,True,Deceased,Yes,No,No,No,Anxiety
+1555bd72-0157-49d2-baac-eb87f9746949,Barbara Pierce,Female,71,Lung Cancer,Surgery,2021-12-29,Yes,Current Smoker,Occasionally,True,False,Survived,No,Yes,Unknown,Unknown,Unknown
+addccb8c-2d13-4f76-9875-7150c7f458a4,Sherri Graham,Female,70,Lymphoma,Immunotherapy,2020-08-30,No,Never Smoked,Never,False,True,Survived,Yes,No,Unknown,Yes,Unknown
+7e749fc8-8238-4008-91c7-19b42f331c39,Andrea Douglas,Male,44,Skin Cancer,Surgery,2020-09-23,No,Ex-Smoker,Regularly,False,False,Deceased,Yes,Unknown,Unknown,Yes,Anxiety
+3304a7c0-59d9-4755-93aa-8cf7adb8025f,Lisa Peterson,Female,70,Leukemia,Radiotherapy,2020-09-17,Unknown,Ex-Smoker,Occasionally,False,False,Deceased,No,Unknown,No,Yes,Unknown
+21f9e0d6-8a55-4037-b9da-cb4d7044ad42,Terri Rivera,Male,36,Skin Cancer,Chemotherapy,2021-01-18,Yes,Never Smoked,Occasionally,False,False,Deceased,Unknown,Yes,Yes,Unknown,Depression
+e427ac0b-685e-4702-9517-729b5f947eb3,Thomas Wood,Female,52,Ovarian Cancer,Immunotherapy,2021-11-26,No,Ex-Smoker,Occasionally,False,False,Survived,Unknown,Unknown,Yes,No,Depression
+7498f961-a5ba-44be-864e-7045a585b101,Adam Bowers Jr.,Male,80,Liver Cancer,Immunotherapy,2021-01-28,Unknown,Current Smoker,Never,False,True,Survived,Unknown,No,Yes,No,Anxiety
+e03f6af2-f76f-4edf-9812-3c39cbaf7a17,Alexis Nguyen,Female,71,Ovarian Cancer,Hormone Therapy,2024-01-08,Unknown,Current Smoker,Occasionally,True,True,Deceased,Unknown,No,Yes,Yes,Anxiety
+304f03a2-e7c7-4ed0-ab1a-16b91e816ccc,Barbara Phillips,Female,44,Lung Cancer,Radiotherapy,2020-02-11,Yes,Current Smoker,Occasionally,True,True,Deceased,No,Yes,Yes,No,Unknown
+29fa17e1-ede3-4a4f-8f2f-ad559dd04a3a,Anthony Costa,Male,70,Skin Cancer,Hormone Therapy,2023-07-10,No,Current Smoker,Occasionally,False,True,Deceased,Unknown,Yes,Unknown,Unknown,Unknown
+758c7507-3176-40e7-b6ef-fe3894c3e72a,Brian Myers,Female,75,Ovarian Cancer,Immunotherapy,2023-07-05,Unknown,Current Smoker,Regularly,True,False,Deceased,Yes,Yes,No,No,Anxiety
+d591be58-c70a-4c0b-9acc-374d761324cf,Derek Flynn,Male,47,Breast Cancer,Radiotherapy,2024-09-29,No,Never Smoked,Regularly,False,False,Deceased,Yes,No,Unknown,Yes,Anxiety
+07b41bee-0745-47e8-b6de-cae082ef2bc1,Anthony Lindsey,Female,53,Liver Cancer,Surgery,2020-04-03,Unknown,Current Smoker,Regularly,True,False,Survived,Unknown,No,Unknown,No,Depression
+a32d0116-8086-4a88-b298-9b7717f18285,Edward Jimenez,Female,52,Colon Cancer,Surgery,2022-03-31,No,Ex-Smoker,Regularly,True,False,Survived,Unknown,Yes,No,Unknown,Depression
+ece8bd83-5801-4d82-b430-c7fe0bd2a943,James Moore,Male,42,Lymphoma,Hormone Therapy,2023-10-09,Yes,Ex-Smoker,Regularly,True,False,Survived,Unknown,Yes,Yes,Yes,Depression
+22fced26-ebcb-4ea3-a00b-94a52e046e74,Mr. Jeffrey Miller,Male,32,Pancreatic Cancer,Immunotherapy,2021-04-21,Yes,Current Smoker,Regularly,False,False,Deceased,Yes,Yes,Unknown,No,Unknown
+902c97e2-ab48-41e1-9406-d6ab5b1ed7f7,Rachel Walls,Female,61,Breast Cancer,Chemotherapy,2022-01-06,Yes,Ex-Smoker,Occasionally,False,True,Deceased,Yes,Unknown,Yes,Unknown,Anxiety
+838e91e9-146f-4274-93d1-ceae34adc4d7,Amy Baldwin,Female,37,Leukemia,Chemotherapy,2023-05-04,Unknown,Current Smoker,Never,True,True,Deceased,Yes,No,No,Yes,Anxiety
+0a43775f-bc30-47ce-aff6-c91f0e96326c,David Cherry,Male,80,Prostate Cancer,Hormone Therapy,2024-05-29,Yes,Never Smoked,Never,False,False,Deceased,Yes,No,Unknown,Unknown,Depression
+420140ef-7513-4c58-b0bd-103510b25b1d,Stephanie Henderson,Male,55,Ovarian Cancer,Radiotherapy,2024-04-21,Yes,Never Smoked,Regularly,True,True,Survived,Unknown,No,Unknown,Unknown,Anxiety
+bba67d01-d854-45af-9afc-aa1f7ee28cb2,Paula Fletcher,Male,53,Ovarian Cancer,Hormone Therapy,2022-12-08,Unknown,Ex-Smoker,Occasionally,True,False,Survived,No,No,Yes,Unknown,Unknown
+90ef2207-6ee8-4fed-a648-cfe066ab0c37,Mckenzie Young,Female,39,Liver Cancer,Surgery,2023-03-25,Yes,Never Smoked,Regularly,False,False,Survived,No,Yes,Yes,Yes,Depression
+2d0196c7-8cd7-4e78-afb4-0ce2fd8d2b37,James Powell,Female,44,Lymphoma,Surgery,2022-08-08,No,Current Smoker,Never,True,False,Deceased,No,Unknown,Unknown,No,Anxiety
+3a3df28c-e95a-4b22-889e-8ff98374b815,John Kent,Male,46,Lymphoma,Hormone Therapy,2024-01-09,No,Current Smoker,Regularly,False,True,Survived,No,Unknown,No,Unknown,Depression
+876cac48-1183-4bee-ab8a-ba934a1a393a,Matthew Mendez,Female,39,Colon Cancer,Surgery,2020-12-08,Yes,Never Smoked,Occasionally,False,False,Deceased,Unknown,Yes,Unknown,Unknown,Depression
+8e909d6b-f230-406a-b92f-e38c2e7bdde3,Gary Shaw,Male,63,Ovarian Cancer,Immunotherapy,2020-08-21,Yes,Ex-Smoker,Occasionally,True,False,Survived,Unknown,No,Yes,Yes,Depression
+21f72e4f-8549-47d7-9c62-76b64dcc9ec7,Carolyn Norman,Male,73,Lymphoma,Surgery,2022-08-15,Yes,Current Smoker,Regularly,False,True,Survived,Yes,No,Yes,Yes,Anxiety
+8fbac8e5-9e7c-4d85-9c97-9870a6eadbca,Christina Johnson,Female,58,Lung Cancer,Radiotherapy,2020-03-07,Unknown,Ex-Smoker,Regularly,False,True,Deceased,Unknown,No,No,Unknown,Depression
+589c428c-5f9f-4389-8149-4d13430a4142,Andrew Campos,Female,70,Breast Cancer,Hormone Therapy,2023-01-23,Unknown,Current Smoker,Never,True,True,Deceased,Yes,Yes,Unknown,Yes,Anxiety
+539501e2-231e-445f-a08a-6155e0402c99,Kelly James,Male,56,Skin Cancer,Chemotherapy,2023-05-05,No,Current Smoker,Occasionally,False,True,Deceased,No,Unknown,No,No,Depression
+e46228bf-0f28-46e6-96c4-32183750b6e3,Christine Cain,Male,71,Leukemia,Chemotherapy,2022-05-09,Yes,Ex-Smoker,Never,False,True,Survived,No,Yes,Unknown,Unknown,Anxiety
+9fe4e7b0-51b5-4126-b27a-dd88b12678f0,Nancy Lowery,Male,38,Leukemia,Surgery,2021-12-07,Unknown,Current Smoker,Regularly,True,False,Deceased,Yes,No,No,Yes,Unknown
+816d5478-2094-4d7c-826a-07f41529f546,Rickey Oconnor,Female,44,Prostate Cancer,Chemotherapy,2023-12-10,Unknown,Never Smoked,Never,True,True,Survived,Unknown,Unknown,Yes,Unknown,Anxiety
+23c9cd62-166b-4f3a-ad9a-e011e5bbdf8b,Carly White,Male,37,Liver Cancer,Immunotherapy,2023-03-10,No,Never Smoked,Occasionally,False,True,Deceased,No,Unknown,Yes,Unknown,Anxiety
+593fb4af-78a7-4392-9e37-0da1dcdfe1f6,Christy Cortez,Female,66,Liver Cancer,Hormone Therapy,2021-08-03,Yes,Never Smoked,Never,False,True,Survived,Unknown,No,No,Yes,Unknown
+f7bc71cb-ec48-4e5c-ac28-6e4676c640f7,Kevin Black,Female,42,Lung Cancer,Radiotherapy,2023-07-14,Yes,Current Smoker,Regularly,True,False,Deceased,Unknown,Unknown,Unknown,Yes,Anxiety
+8547863c-a2ea-487d-b4ca-4773381c593d,Emily Stokes,Female,41,Skin Cancer,Immunotherapy,2023-10-22,No,Never Smoked,Never,True,True,Deceased,Yes,No,Yes,Unknown,Depression
+947b74e9-42b0-4e0d-8e4d-2f91746c8ea0,Kimberly Harper,Female,46,Prostate Cancer,Surgery,2023-01-02,No,Ex-Smoker,Occasionally,False,False,Deceased,Yes,Unknown,No,Yes,Unknown
+78869de8-5ce4-4380-b8de-11f44d8d40d7,Dr. Mark Fernandez,Male,47,Colon Cancer,Immunotherapy,2023-11-16,Unknown,Current Smoker,Never,False,True,Survived,Yes,No,Unknown,Yes,Anxiety
+21e1164b-7f76-4327-9159-783d51e6d2ec,Elizabeth Le,Male,33,Prostate Cancer,Hormone Therapy,2024-03-10,Yes,Current Smoker,Occasionally,False,False,Deceased,No,Unknown,Unknown,No,Depression
+4ed0f874-9a94-4ea1-9765-5a5a66a09ef4,Carl Franklin,Male,32,Colon Cancer,Chemotherapy,2024-06-14,Yes,Never Smoked,Regularly,False,True,Survived,Yes,Yes,Yes,Unknown,Anxiety
+71087be0-d8ae-4722-a006-49beebeab76d,Daniel Farrell,Female,57,Leukemia,Surgery,2024-07-01,No,Ex-Smoker,Never,True,True,Deceased,Unknown,Unknown,Yes,No,Unknown
+6421b411-9244-41a2-9872-0973dd6fc0a0,Ryan Wilson,Female,69,Pancreatic Cancer,Hormone Therapy,2024-02-03,No,Current Smoker,Occasionally,False,False,Deceased,No,Yes,No,No,Unknown
+a0c03b9e-9b85-4227-a1b0-88ebf07e355a,Jacob Young,Male,31,Lymphoma,Radiotherapy,2022-10-08,No,Never Smoked,Regularly,True,False,Survived,No,No,No,Unknown,Anxiety
+7bcb8a83-7edc-4164-a922-8f792efacbdb,Carlos Chavez,Male,44,Pancreatic Cancer,Chemotherapy,2022-02-10,No,Ex-Smoker,Never,True,False,Deceased,Unknown,No,No,Yes,Depression
+13fe2d35-9880-4bce-9a50-afb4254db8b6,Chad Long,Female,42,Skin Cancer,Hormone Therapy,2023-07-14,No,Ex-Smoker,Never,True,False,Deceased,Yes,No,No,Unknown,Unknown
+b702fa6d-ddad-4030-a1b9-2919b69e05e6,Shannon Welch,Male,35,Colon Cancer,Surgery,2023-06-26,Unknown,Never Smoked,Occasionally,True,False,Deceased,Unknown,Unknown,Yes,Unknown,Depression
+12817e50-a46c-469d-a579-15f647a67a2a,Bryan Brown,Female,58,Skin Cancer,Surgery,2022-03-16,No,Never Smoked,Regularly,True,True,Survived,Unknown,Yes,Yes,Unknown,Anxiety
+d1ddf46f-4ee1-452a-8aff-a4433bd33274,Michael Blair,Female,63,Ovarian Cancer,Surgery,2021-07-24,Unknown,Ex-Smoker,Regularly,True,True,Deceased,Unknown,Yes,Yes,Unknown,Anxiety
+717f3b6c-4ba0-4ce0-beb3-f51e0b5e3153,Elizabeth Smith,Male,66,Skin Cancer,Chemotherapy,2023-12-04,Yes,Current Smoker,Occasionally,False,False,Survived,No,Yes,Unknown,No,Depression
+45fccb53-5e89-40ac-a5b6-0cd4607cc811,Jacqueline Walls,Female,63,Pancreatic Cancer,Immunotherapy,2021-02-13,No,Never Smoked,Regularly,True,True,Deceased,No,Unknown,Yes,No,Unknown
+301e5a07-1e8d-473b-89f1-25853a5f2daf,Paul Watson MD,Male,62,Breast Cancer,Chemotherapy,2022-01-12,Unknown,Never Smoked,Never,False,True,Survived,Unknown,No,Unknown,No,Depression
+99118f38-2034-4e8a-9b06-3ba104e7b360,Rebecca Blake,Male,77,Colon Cancer,Immunotherapy,2021-02-17,Unknown,Never Smoked,Never,False,False,Deceased,Yes,Yes,Yes,Yes,Unknown
+433bc6ab-ac0a-487e-b023-dfc51cb48c40,Jennifer Henderson,Female,60,Prostate Cancer,Immunotherapy,2023-08-09,Yes,Never Smoked,Never,True,False,Deceased,Yes,Yes,No,No,Depression
+8cc6789d-b1fb-40f1-8829-1dc5584c5c4a,Michael Davis,Female,45,Leukemia,Chemotherapy,2024-05-14,No,Never Smoked,Never,False,True,Survived,Unknown,Unknown,Yes,Unknown,Anxiety
+7e9a3914-0824-4540-a487-94e9682f925f,Ryan Davis,Female,64,Leukemia,Chemotherapy,2022-10-02,No,Never Smoked,Never,False,False,Survived,Unknown,Yes,Unknown,Unknown,Unknown
+a6924720-279f-44e0-b2e0-9a449059a6f1,Rachel Acosta,Female,39,Colon Cancer,Hormone Therapy,2023-08-01,Yes,Current Smoker,Occasionally,False,False,Survived,No,Unknown,Yes,Yes,Unknown
+0ddb1fe3-3751-42c4-82b1-d2e4ec777bd3,Scott Flores,Male,60,Colon Cancer,Immunotherapy,2022-08-22,No,Current Smoker,Regularly,True,True,Survived,Yes,No,Yes,No,Anxiety
+ff7d67b6-ca25-4b87-97a2-53f7aab9806a,Lawrence Arnold,Male,55,Ovarian Cancer,Surgery,2021-08-26,Yes,Ex-Smoker,Regularly,False,True,Deceased,Unknown,Yes,Yes,Unknown,Unknown
+b93505bb-da22-41f7-b281-0fce9f98adfe,Anthony Mitchell,Female,35,Lung Cancer,Immunotherapy,2021-03-15,Unknown,Ex-Smoker,Regularly,True,True,Survived,Unknown,Unknown,Unknown,No,Anxiety
+de968bd9-b8d8-49c2-89c0-85ff8d827668,Jessica Diaz,Female,45,Lung Cancer,Surgery,2022-03-08,Yes,Never Smoked,Occasionally,True,True,Survived,Yes,No,No,Yes,Unknown
+5dbf2872-caca-4c2c-9552-53a749df94a1,Cynthia Carrillo,Female,44,Lung Cancer,Chemotherapy,2022-03-31,Yes,Never Smoked,Never,False,False,Deceased,Unknown,No,Yes,Unknown,Anxiety
+826e472b-403e-4b18-a684-f1a25c2353f5,Anthony Wilson,Female,47,Skin Cancer,Chemotherapy,2022-11-24,Unknown,Never Smoked,Regularly,True,False,Deceased,No,No,Unknown,Unknown,Unknown
+f2c9a3c5-d157-4052-97e5-f3d05ec0db2e,Michael Crawford,Male,60,Lymphoma,Immunotherapy,2022-10-27,Unknown,Ex-Smoker,Regularly,False,True,Survived,Yes,No,No,Yes,Depression
+7282d155-efa7-4620-9f21-64b42705b6ce,Kaylee Lewis,Male,78,Prostate Cancer,Immunotherapy,2022-11-21,Yes,Ex-Smoker,Regularly,True,False,Survived,Yes,No,No,Unknown,Depression
+56efc73d-64f2-4c85-8061-25807a95f1f7,Carlos Graham,Male,31,Prostate Cancer,Radiotherapy,2023-09-22,Yes,Current Smoker,Regularly,True,True,Deceased,No,Yes,No,No,Unknown
+682dce7f-7422-49c2-9345-d8c58b0e94ae,Alexa Aguilar,Male,42,Skin Cancer,Immunotherapy,2021-05-07,Unknown,Never Smoked,Never,True,False,Survived,Unknown,Unknown,Yes,No,Unknown
+7a87ef0a-dcd8-4d03-8031-4549ef2ff41f,Katelyn Franklin,Male,37,Lung Cancer,Chemotherapy,2020-06-20,Unknown,Current Smoker,Regularly,True,True,Deceased,No,No,Unknown,Yes,Anxiety
+1bad09c6-ce1b-4ded-bfef-faa40a506e06,Christian Parker,Male,74,Leukemia,Chemotherapy,2022-07-29,Unknown,Ex-Smoker,Occasionally,True,True,Survived,No,Unknown,Yes,No,Unknown
+dbf6e6c8-9400-4b15-bae1-7b0d921f9f10,Megan Gates,Female,71,Lung Cancer,Surgery,2021-12-06,Unknown,Ex-Smoker,Occasionally,False,False,Survived,Yes,Unknown,Unknown,No,Anxiety
+8fa3ccd0-a790-4ef8-a9c4-55771de7f221,Katherine Walker,Male,49,Ovarian Cancer,Radiotherapy,2023-09-02,No,Never Smoked,Regularly,True,False,Survived,Yes,No,Unknown,Unknown,Unknown
+45a9d44d-491d-4560-9588-f24fdc3527a0,Calvin Romero,Female,65,Colon Cancer,Hormone Therapy,2023-06-28,Yes,Never Smoked,Never,False,True,Survived,Unknown,No,No,Unknown,Depression
+5e743e20-8628-420d-acda-08ba06e3e23d,Kristine Arnold,Male,71,Lung Cancer,Hormone Therapy,2020-06-18,No,Never Smoked,Never,False,True,Deceased,Yes,No,Unknown,Yes,Unknown
+147f1d60-a59c-4a43-ba4a-13151f9894bd,Anthony Villarreal,Female,78,Breast Cancer,Chemotherapy,2020-12-06,Unknown,Current Smoker,Occasionally,True,True,Deceased,No,Unknown,Yes,Unknown,Anxiety
+0bb7186e-8ce8-4c4b-912b-2830161c57a8,Jenny Schmidt,Female,70,Lung Cancer,Hormone Therapy,2024-01-11,Unknown,Current Smoker,Regularly,False,True,Survived,Unknown,Yes,Yes,No,Depression
+5d2464cb-4e0a-4844-80a0-02bcbeb7ed04,Gregory Dixon,Female,73,Liver Cancer,Radiotherapy,2021-05-25,No,Never Smoked,Occasionally,True,True,Survived,No,No,Unknown,Yes,Depression
+c5b95e3d-891a-4221-92ed-2e5c26ac86d1,Linda Hodge,Female,34,Lymphoma,Surgery,2021-06-17,Yes,Current Smoker,Regularly,False,False,Deceased,Unknown,Unknown,No,Yes,Unknown
+b735d1f5-885c-4689-ad21-ce6e70b3cee2,Wayne Phillips,Male,55,Ovarian Cancer,Radiotherapy,2024-11-11,Yes,Ex-Smoker,Occasionally,True,True,Survived,No,Yes,No,Unknown,Depression
+20d0c99c-3d69-4444-9b90-1faff68e6541,Luis Carey,Female,44,Colon Cancer,Radiotherapy,2022-01-03,Yes,Current Smoker,Never,False,True,Deceased,Yes,Unknown,Unknown,Yes,Depression
+5cb038d6-e822-4d88-806b-963cfcd1c66d,Andrew Carrillo,Male,70,Breast Cancer,Chemotherapy,2021-03-03,No,Never Smoked,Occasionally,False,False,Deceased,Unknown,Yes,Unknown,Unknown,Anxiety
+52ba6d77-a500-4b21-8a50-85c6a69d1934,Julie Green,Male,64,Breast Cancer,Immunotherapy,2022-04-04,Yes,Ex-Smoker,Never,False,True,Survived,Yes,Yes,Yes,Yes,Anxiety
+ff8ffe77-1a56-4cd8-a476-bbd0b37a4ceb,Kimberly Williams,Female,66,Prostate Cancer,Immunotherapy,2024-12-10,Yes,Ex-Smoker,Regularly,True,True,Deceased,Unknown,Unknown,Unknown,No,Unknown
+7134dbbf-6b2d-4915-be26-0fc335913fd1,Lindsay Singleton,Male,80,Lung Cancer,Immunotherapy,2023-01-30,No,Ex-Smoker,Occasionally,False,True,Deceased,No,No,No,Unknown,Depression
+a73633ae-14be-4fb8-b9e2-d2c514d68737,Mandy Mathews,Male,36,Leukemia,Radiotherapy,2020-03-10,No,Ex-Smoker,Never,False,False,Survived,Yes,Unknown,Yes,Yes,Unknown
+8992689d-c582-4eb3-975f-a5c47ada6d20,Mark Smith,Female,73,Liver Cancer,Hormone Therapy,2023-02-04,Yes,Current Smoker,Regularly,True,True,Survived,Unknown,Yes,Yes,Unknown,Anxiety
+9a51344d-b653-466a-a21b-6f00349de34a,Stacey Gay,Female,68,Breast Cancer,Chemotherapy,2024-05-27,Unknown,Ex-Smoker,Never,False,True,Survived,Unknown,Yes,Yes,Yes,Depression
+fb58fcad-fa0d-4810-bc7a-408146cc2eff,David Wilson,Female,58,Pancreatic Cancer,Surgery,2020-04-21,Yes,Never Smoked,Regularly,True,True,Deceased,No,No,No,No,Anxiety
+cda9d3d2-cf9a-4942-8a2b-104967549998,Briana Hart,Female,79,Lung Cancer,Surgery,2023-05-13,Yes,Current Smoker,Occasionally,True,False,Survived,Unknown,Unknown,Yes,Unknown,Depression
+8b29dcb9-bf50-4c92-a4b8-085e3fb510b9,Robert Knight,Female,42,Leukemia,Immunotherapy,2023-12-06,No,Ex-Smoker,Regularly,False,True,Deceased,Unknown,Yes,Unknown,Unknown,Unknown
+c3e1019f-c516-417c-9e6d-7ced7b18c586,Daniel Boyd,Male,38,Lung Cancer,Chemotherapy,2022-05-14,Yes,Never Smoked,Never,True,True,Deceased,No,No,No,Unknown,Depression
+290d2c43-dd5d-4c92-b399-3207caf9454b,Melissa Powers,Female,32,Skin Cancer,Chemotherapy,2022-10-06,Yes,Current Smoker,Regularly,True,False,Survived,Yes,Unknown,Yes,Unknown,Depression
+27098023-290d-44a7-8ca0-cccb722f5a34,Jonathan Nelson,Female,45,Breast Cancer,Hormone Therapy,2022-08-21,No,Current Smoker,Never,False,True,Deceased,No,Unknown,Yes,Yes,Unknown
+383fd868-ddad-46ff-9352-76a586e92ac5,Jacob Ayala,Male,54,Pancreatic Cancer,Surgery,2022-03-11,Yes,Ex-Smoker,Never,True,True,Survived,No,Yes,No,No,Anxiety
+fc6442a9-2ecf-42b0-8798-da15ca3450bb,Austin Jones,Female,39,Prostate Cancer,Chemotherapy,2023-06-23,Unknown,Never Smoked,Regularly,False,True,Survived,No,Yes,No,No,Anxiety
+2970fabf-6c50-4a76-80e0-a18ecc502d60,Jennifer Jones,Female,45,Breast Cancer,Radiotherapy,2024-09-21,Unknown,Never Smoked,Occasionally,False,True,Survived,Yes,No,No,Unknown,Depression
+e492f9f9-4751-4282-9c3d-20fe6f23cf96,Justin Hays,Female,61,Colon Cancer,Immunotherapy,2021-07-13,Unknown,Never Smoked,Regularly,True,False,Survived,Unknown,Unknown,No,No,Anxiety
+f2c40d41-1941-4b98-b794-8ea3d26a35a6,Ryan Campbell,Female,40,Pancreatic Cancer,Surgery,2020-04-18,No,Ex-Smoker,Occasionally,True,True,Deceased,No,Yes,No,No,Unknown
+5fbf35f7-f241-465e-a1ac-033a7e2a32df,Raymond Davis,Male,41,Breast Cancer,Radiotherapy,2022-01-05,Yes,Never Smoked,Occasionally,True,True,Deceased,Yes,No,Yes,Yes,Anxiety
+a0aadf91-ee93-441f-9b4f-48aa11ab62e1,Anne Rollins,Female,78,Leukemia,Surgery,2021-04-03,Unknown,Never Smoked,Never,True,False,Deceased,Yes,Unknown,No,No,Anxiety
+2b6738f0-261f-4a5d-80f9-d6ac99b7e21e,Robin Mcgee,Male,51,Skin Cancer,Radiotherapy,2021-03-03,Yes,Current Smoker,Occasionally,True,True,Deceased,Unknown,No,Unknown,Yes,Anxiety
+0a212b33-aa53-4bf1-a754-1a3f21bba574,Dean Bird,Male,74,Lymphoma,Surgery,2020-11-04,Unknown,Current Smoker,Regularly,True,True,Survived,Yes,Yes,Unknown,Yes,Depression
+468b0e6d-f377-4192-b0fc-1860ff877906,Stephanie Banks,Male,52,Lymphoma,Immunotherapy,2023-05-12,Unknown,Never Smoked,Never,False,False,Deceased,Yes,No,No,Yes,Anxiety
+f334e5c8-b137-46fc-9d75-e8dba1cd9045,Steven Hinton,Male,71,Leukemia,Radiotherapy,2020-11-27,No,Never Smoked,Never,True,False,Deceased,Unknown,Unknown,No,Yes,Depression
+02008fe7-969e-4dc9-8779-193ff1a70d1e,Julie Johnson,Male,43,Colon Cancer,Immunotherapy,2020-05-11,Unknown,Never Smoked,Occasionally,False,False,Survived,Unknown,Yes,No,No,Unknown
+287bc9fe-417b-400e-b94a-7d4385477ee2,Haley Miranda,Female,70,Liver Cancer,Surgery,2020-08-26,Yes,Current Smoker,Regularly,False,True,Deceased,No,Unknown,Yes,Yes,Anxiety
+b08f9543-ec1a-42d9-b529-44e584e5338d,Laura Martin,Male,53,Leukemia,Radiotherapy,2021-05-25,No,Never Smoked,Regularly,True,False,Deceased,Unknown,Unknown,No,No,Unknown
+3dab37a4-841e-41ac-961f-f69466d3fd93,Chad Rivera,Male,67,Leukemia,Radiotherapy,2023-10-27,Yes,Never Smoked,Never,False,False,Deceased,Yes,Yes,No,Unknown,Depression
+9fa467a8-7ce1-4985-81d3-69a428531092,Zachary Terry,Male,48,Lymphoma,Hormone Therapy,2024-04-03,No,Never Smoked,Occasionally,False,False,Deceased,No,No,No,Yes,Unknown
+9c33c208-aacb-4465-b3a6-e4c5d481c0cf,Richard Murphy,Male,77,Prostate Cancer,Surgery,2023-11-13,Unknown,Never Smoked,Regularly,False,True,Survived,No,Unknown,No,Yes,Anxiety
+f64dcd19-16ed-464a-9025-6caf667edeaf,Ernest Taylor,Male,66,Ovarian Cancer,Immunotherapy,2022-01-29,Unknown,Current Smoker,Regularly,False,False,Survived,Yes,No,Yes,Unknown,Unknown
+bc0bba7b-e18b-402e-a4b4-14bc25a567db,Megan Taylor,Female,59,Prostate Cancer,Immunotherapy,2020-10-03,No,Never Smoked,Regularly,False,False,Deceased,Unknown,No,Unknown,No,Unknown
+7006c400-0f38-4b5d-a864-def48bc1dbef,Jennifer Gray,Female,42,Colon Cancer,Chemotherapy,2022-01-20,Unknown,Current Smoker,Never,True,True,Deceased,No,Yes,No,Unknown,Unknown
+f1df75c5-157b-4432-ba96-45234038dd8f,Randy Johnson,Female,43,Lymphoma,Surgery,2024-07-28,No,Ex-Smoker,Occasionally,True,False,Deceased,Yes,Unknown,No,Unknown,Anxiety
+fe1bb3cb-f698-4d2f-9d2b-d9a986d3b7ff,Brent Cooper,Male,61,Prostate Cancer,Radiotherapy,2022-03-03,Yes,Current Smoker,Regularly,False,False,Deceased,Unknown,No,Yes,No,Unknown
+a09c0e36-560b-409a-b445-86c72e0de40b,Rebecca Smith,Male,68,Leukemia,Surgery,2021-01-07,Unknown,Current Smoker,Occasionally,False,True,Deceased,No,Unknown,Unknown,Yes,Depression
+a787a17b-420a-4f8f-9a67-a4f460bd5c78,Scott Davis,Female,79,Lymphoma,Chemotherapy,2024-05-27,Unknown,Never Smoked,Never,False,False,Survived,No,Unknown,Unknown,Yes,Anxiety
+27b5e5d4-6d09-417e-85a4-6b2066cc76ed,Tyler Phillips,Male,51,Colon Cancer,Hormone Therapy,2024-06-21,Unknown,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,No,No,No,Depression
+ae171324-9189-4436-b6f1-274302ea446b,Erik Rojas,Female,52,Pancreatic Cancer,Radiotherapy,2021-03-26,No,Current Smoker,Occasionally,True,False,Survived,Unknown,Yes,Yes,No,Anxiety
+550223b6-0d91-4179-855f-23f5cb1cd9f9,Lisa Jensen,Female,42,Skin Cancer,Immunotherapy,2020-06-24,Unknown,Current Smoker,Occasionally,False,True,Survived,Unknown,Unknown,Unknown,Yes,Anxiety
+9a5cc0a5-f8f7-4ce7-ab8f-dae9e5197f21,Kristin Ferguson,Male,38,Lymphoma,Immunotherapy,2024-02-19,Yes,Current Smoker,Regularly,False,True,Deceased,Yes,Yes,Yes,No,Anxiety
+710baa02-b2c8-4db9-9ee2-e8e24dcabe3f,Holly Juarez,Male,70,Liver Cancer,Surgery,2021-02-03,No,Current Smoker,Occasionally,True,True,Deceased,Yes,No,No,Unknown,Unknown
+4609be7d-a939-47ec-a1c3-3bf48fbc6797,Ryan Macdonald,Female,70,Breast Cancer,Chemotherapy,2021-10-14,Unknown,Ex-Smoker,Regularly,True,False,Survived,No,Yes,Unknown,No,Anxiety
+37fd6acc-5094-4159-8174-2654c0bd0a9a,Veronica Wilcox,Female,78,Lung Cancer,Radiotherapy,2021-08-08,Yes,Current Smoker,Never,True,True,Survived,Unknown,Unknown,Yes,No,Anxiety
+9c9b5bef-bccb-4bf7-a10d-a0629e01b652,Elizabeth Nguyen DVM,Female,30,Colon Cancer,Immunotherapy,2020-05-25,Yes,Ex-Smoker,Never,False,False,Deceased,Yes,No,Yes,Unknown,Depression
+a6248c62-4393-4d92-9000-3d32c3cdff30,Mary Terrell,Male,79,Ovarian Cancer,Radiotherapy,2020-11-19,Yes,Never Smoked,Occasionally,False,False,Deceased,Yes,No,Unknown,Yes,Anxiety
+7dedeab4-97e9-4f34-8202-0a51c35e7f49,Rachel Greer,Male,57,Breast Cancer,Chemotherapy,2024-05-20,Yes,Ex-Smoker,Never,False,True,Deceased,Unknown,No,Yes,No,Depression
+73fa05ec-6b97-4771-ba3a-59e338d5533f,Pedro Cole,Male,79,Colon Cancer,Immunotherapy,2023-06-16,Unknown,Never Smoked,Regularly,False,True,Survived,No,No,No,No,Unknown
+eaa5dcb7-6f18-460e-966a-04250b0cb54f,Roger Ewing,Female,69,Lymphoma,Radiotherapy,2022-02-15,Unknown,Current Smoker,Occasionally,False,False,Survived,No,No,Yes,No,Unknown
+f24e952e-b35d-4a4d-b643-1e45b53d33ab,Matthew French,Female,34,Pancreatic Cancer,Radiotherapy,2024-09-24,No,Ex-Smoker,Never,False,True,Survived,Unknown,No,No,No,Depression
+00a6948e-932f-44a9-a082-70b5194339b7,James Sullivan,Female,48,Liver Cancer,Surgery,2021-07-18,No,Never Smoked,Regularly,True,True,Survived,Yes,Unknown,No,No,Unknown
+5daaa8fd-6ebc-4ef6-b842-6b73da2d4947,John Riley,Male,77,Lymphoma,Chemotherapy,2024-04-10,Yes,Current Smoker,Occasionally,False,False,Deceased,No,No,Unknown,Yes,Depression
+9eee5a42-d068-45c4-8db1-60987362bffa,Christopher Martin,Female,49,Lung Cancer,Immunotherapy,2024-04-28,Unknown,Ex-Smoker,Never,True,False,Survived,Yes,Unknown,Unknown,Unknown,Anxiety
+bbe53eca-ad68-4c18-9085-a02d50a59231,Christian Anderson,Male,53,Leukemia,Surgery,2024-05-05,Yes,Current Smoker,Regularly,False,False,Deceased,Unknown,Yes,Yes,Yes,Unknown
+b992284f-f174-4f48-ade0-14576333323c,Matthew Hahn,Male,52,Skin Cancer,Surgery,2020-02-05,Yes,Never Smoked,Never,False,True,Survived,Yes,Yes,Unknown,Yes,Anxiety
+3c0aa703-88dd-4e03-90f7-a3df5ce542fe,Adam Tucker,Male,77,Pancreatic Cancer,Radiotherapy,2021-04-22,Unknown,Ex-Smoker,Never,True,False,Deceased,Yes,Yes,Yes,Unknown,Unknown
+42c07891-f4c7-4027-80bb-acd5a82ed61a,Robert Fox,Female,34,Skin Cancer,Radiotherapy,2021-01-27,No,Current Smoker,Regularly,False,False,Survived,Yes,Yes,Unknown,Unknown,Unknown
+7e84cf05-dd02-4b95-960e-7a5ad57dd43a,Mary Blanchard,Male,52,Leukemia,Immunotherapy,2022-01-26,No,Ex-Smoker,Never,False,True,Survived,No,Unknown,No,No,Unknown
+4478c0b4-08a3-41fc-9aeb-b4fc0c771e9a,Maria Williams,Male,63,Liver Cancer,Chemotherapy,2020-05-07,Unknown,Never Smoked,Never,False,False,Deceased,Unknown,No,No,Unknown,Anxiety
+e533c772-7a69-4c32-a2b8-c59f73a0cded,Frank Wilson,Male,60,Lymphoma,Immunotherapy,2021-05-02,Unknown,Ex-Smoker,Never,True,False,Deceased,Unknown,No,Unknown,Unknown,Anxiety
+0988e225-6690-499f-adff-227d00f33cd8,Kathleen Bates,Female,46,Ovarian Cancer,Surgery,2024-09-27,No,Ex-Smoker,Never,True,True,Survived,Unknown,Unknown,No,Unknown,Depression
+8259c079-6506-45ba-86e0-331444c3e3a5,Claudia Cabrera,Female,32,Ovarian Cancer,Surgery,2024-02-02,Yes,Never Smoked,Never,True,True,Survived,Unknown,No,No,Unknown,Unknown
+a94f712b-692a-4b57-9177-0b53e9ab13b2,Ryan Allen,Male,42,Lung Cancer,Chemotherapy,2020-11-27,Unknown,Current Smoker,Never,False,True,Deceased,Yes,No,No,No,Depression
+19d5aaf8-ff43-438e-8b38-b0a4ec5bc906,Victor Wood,Male,69,Pancreatic Cancer,Hormone Therapy,2023-01-19,Yes,Ex-Smoker,Never,False,True,Survived,Unknown,Yes,No,No,Unknown
+ccf3961b-a89a-4cce-bb99-813a5996b539,Jason Cox,Female,70,Skin Cancer,Immunotherapy,2020-02-10,No,Current Smoker,Never,True,True,Deceased,Unknown,Yes,Yes,Yes,Depression
+a00c7317-6b54-4ab9-83d2-7b2c3c6f25bd,Timothy Blackburn,Male,39,Lung Cancer,Surgery,2024-08-12,Unknown,Current Smoker,Never,True,True,Survived,No,Yes,No,Yes,Depression
+48906f9c-ba82-46c1-8efb-7f46a5c7f62b,Sheri Henson,Male,74,Ovarian Cancer,Surgery,2020-03-27,Yes,Ex-Smoker,Occasionally,False,True,Survived,Unknown,Unknown,Yes,Yes,Depression
+c4e4557d-c14c-4248-a8b3-b4cf75032dd8,Mark Smith,Female,61,Pancreatic Cancer,Radiotherapy,2021-04-06,Yes,Ex-Smoker,Occasionally,True,True,Deceased,Yes,Yes,No,Yes,Depression
+dc46a7db-273c-4e18-8f2e-f907d7943a31,Aaron Alexander,Female,39,Pancreatic Cancer,Radiotherapy,2020-05-13,Yes,Ex-Smoker,Occasionally,False,True,Deceased,No,No,Yes,Unknown,Depression
+389e1ff4-c6fb-48d8-b9dd-782c3330d170,David Williams,Female,33,Prostate Cancer,Immunotherapy,2020-08-07,Yes,Current Smoker,Occasionally,False,True,Survived,Unknown,No,No,Unknown,Unknown
+b1a71c78-54fa-4532-9039-49c21c67713d,Katrina Washington,Male,52,Lung Cancer,Surgery,2021-01-16,Yes,Never Smoked,Regularly,False,True,Survived,No,No,No,No,Depression
+3ea6b0f7-1897-4f4e-841c-77b539350f8a,Kathy Juarez,Male,63,Colon Cancer,Immunotherapy,2024-03-09,No,Never Smoked,Never,True,True,Deceased,No,No,Yes,Yes,Anxiety
+a05962ee-d816-4592-a093-a77915cb6d66,Charles Pittman,Male,68,Colon Cancer,Radiotherapy,2023-10-06,Unknown,Ex-Smoker,Regularly,True,True,Survived,Yes,No,Unknown,No,Unknown
+4e8ea16e-6073-4415-b6e4-da5733a0b094,Jeffrey Barnett,Female,36,Lymphoma,Immunotherapy,2021-03-10,No,Never Smoked,Never,False,False,Deceased,Yes,Yes,Yes,Unknown,Anxiety
+b10932ca-3135-4b0f-84cc-8eac6b3b22d7,Gregg Anderson,Male,35,Skin Cancer,Chemotherapy,2024-02-15,Yes,Current Smoker,Never,True,False,Survived,Yes,Yes,Unknown,No,Depression
+32b6f600-b8b0-4f89-989f-a1d8fdb99f6f,Christopher Oliver,Male,58,Liver Cancer,Chemotherapy,2021-06-04,No,Ex-Smoker,Regularly,True,True,Survived,Yes,Unknown,Unknown,Yes,Anxiety
+c19e8504-9afd-49ab-b1e2-3c7db4ef780d,Michael Clements,Female,62,Lung Cancer,Hormone Therapy,2024-06-16,Unknown,Never Smoked,Never,False,False,Deceased,Yes,No,No,Unknown,Unknown
+a931210f-5c08-4cc9-b1ca-1fa4084408c4,Michael Munoz,Female,55,Lung Cancer,Radiotherapy,2022-12-27,Unknown,Ex-Smoker,Regularly,False,True,Deceased,No,No,Unknown,Unknown,Unknown
+0a8ba082-b90b-4ca2-b9f0-0a40add59464,Jennifer Martinez,Female,62,Ovarian Cancer,Hormone Therapy,2024-05-16,Yes,Current Smoker,Never,True,True,Survived,No,Yes,No,Unknown,Depression
+d8a07bec-14a9-43c4-8efe-075450afc712,Diana Briggs,Female,38,Liver Cancer,Chemotherapy,2024-04-12,Yes,Current Smoker,Regularly,False,False,Survived,Yes,Yes,No,Yes,Unknown
+3da4749e-8a74-4963-92f5-caa506a524d9,Kevin Ochoa,Male,59,Pancreatic Cancer,Immunotherapy,2022-07-16,Yes,Never Smoked,Never,False,False,Survived,Yes,Yes,Unknown,Yes,Unknown
+e60a0c33-ac04-46d7-8e11-770be634dfc4,Erik Ross,Female,74,Skin Cancer,Surgery,2020-07-05,No,Never Smoked,Never,False,True,Deceased,No,No,Yes,No,Anxiety
+01b8a3cb-a472-4bb5-a16d-8ef52351fb64,Alexandra Mccarty,Male,67,Leukemia,Surgery,2022-04-10,No,Never Smoked,Never,True,True,Survived,Yes,Yes,Yes,No,Unknown
+7fb023ee-519a-43be-bb70-abda86d1ff49,Angel Mendoza,Female,66,Prostate Cancer,Radiotherapy,2021-03-23,Yes,Current Smoker,Regularly,False,True,Survived,Yes,Unknown,No,Yes,Depression
+1dd16427-5929-437e-955b-759c8669fc30,Melissa Taylor,Female,58,Lymphoma,Hormone Therapy,2023-04-29,Unknown,Current Smoker,Never,True,False,Survived,Unknown,Unknown,Unknown,Yes,Unknown
+36040a9a-0321-4340-b0ac-55801efab28e,Kristine Daniel,Male,69,Leukemia,Chemotherapy,2022-12-05,No,Ex-Smoker,Never,False,True,Deceased,Yes,Unknown,Yes,Yes,Depression
+f174e45b-4671-4ea2-9d26-39fd0f2f50a7,Lynn Woods,Male,30,Lymphoma,Immunotherapy,2024-04-25,Yes,Never Smoked,Occasionally,False,True,Survived,No,Yes,No,Yes,Unknown
+8521f18d-fdf3-47c9-a2ac-547543ee2284,Lisa Ferguson,Female,59,Pancreatic Cancer,Radiotherapy,2020-04-18,Yes,Never Smoked,Regularly,False,False,Deceased,Unknown,No,No,Yes,Depression
+f737ebb1-da87-435f-99cb-18d7d0bf9e28,Kara Thompson,Male,67,Colon Cancer,Radiotherapy,2022-12-01,Unknown,Current Smoker,Never,True,True,Deceased,Yes,Yes,Unknown,No,Anxiety
+a3f35840-ac7e-482a-a77c-538cd50e1601,Thomas Buchanan,Male,60,Lymphoma,Radiotherapy,2022-04-12,No,Never Smoked,Regularly,True,False,Survived,Unknown,No,Unknown,Yes,Unknown
+3e907c0a-1fb5-40ff-8a80-82d63de2b80f,Jose Klein,Female,74,Lung Cancer,Immunotherapy,2024-03-08,Yes,Never Smoked,Never,False,True,Survived,No,Unknown,Unknown,Yes,Anxiety
+99af1483-c103-40e3-9d1d-e8f5f2ebd1a7,Catherine Vasquez,Male,39,Lymphoma,Hormone Therapy,2020-09-13,Unknown,Never Smoked,Never,False,False,Survived,Yes,Yes,Yes,No,Unknown
+9fb8617a-445e-46e5-92ca-8c9857588693,Matthew Carter,Male,39,Pancreatic Cancer,Hormone Therapy,2024-02-05,No,Ex-Smoker,Never,False,True,Survived,Yes,No,No,Unknown,Unknown
+0a388b5d-40c6-4021-b53d-fe4b3a4af781,Jason George,Female,65,Skin Cancer,Surgery,2020-08-10,Unknown,Never Smoked,Never,True,False,Survived,Unknown,Unknown,Yes,Yes,Depression
+812df8e0-3b66-4e5c-8af3-39598e0f0f17,Deborah Velez,Female,80,Lung Cancer,Surgery,2020-11-13,Unknown,Ex-Smoker,Regularly,True,True,Deceased,Unknown,No,Yes,Unknown,Unknown
+6fb5a7fa-779b-481c-bfdd-f23b33c5bd2d,Amber Barnes,Male,59,Prostate Cancer,Immunotherapy,2023-11-12,Yes,Current Smoker,Occasionally,False,False,Survived,Unknown,Yes,No,No,Depression
+cf4f1c47-a05f-40f8-aff4-e86cb2a84807,Ashley Rodriguez,Female,40,Lung Cancer,Chemotherapy,2023-01-25,Yes,Never Smoked,Occasionally,True,True,Survived,No,No,Unknown,Yes,Anxiety
+f4a68e5c-8d12-483b-9b5b-ac24f16fab10,Christopher Patel,Female,72,Ovarian Cancer,Chemotherapy,2024-04-05,Yes,Current Smoker,Never,True,False,Deceased,No,Yes,No,Unknown,Depression
+9dc0ead5-004f-4919-b38e-b94fa6076673,Julia Harvey,Female,64,Breast Cancer,Surgery,2020-10-11,Unknown,Never Smoked,Occasionally,True,False,Survived,No,Unknown,Unknown,Unknown,Depression
+32239191-8984-4c54-878c-a382fda2154c,Malik Brown,Male,63,Breast Cancer,Chemotherapy,2024-04-14,Yes,Never Smoked,Regularly,False,False,Survived,Yes,No,Unknown,Yes,Unknown
+b763347d-42d7-4244-a977-64df827962c7,Mr. Robert Mendoza,Female,35,Prostate Cancer,Radiotherapy,2022-11-19,No,Current Smoker,Regularly,True,False,Deceased,Unknown,Yes,Yes,No,Anxiety
+fe76d169-66a8-4338-8661-58b5cdffc450,Joseph Stevens,Male,51,Skin Cancer,Immunotherapy,2022-07-25,Unknown,Never Smoked,Regularly,False,False,Survived,Unknown,Yes,Yes,No,Depression
+ccc6bbb5-4700-4a74-9dbc-ebdfaeecf6ac,Harold Johnson,Female,73,Lymphoma,Immunotherapy,2023-02-25,Yes,Current Smoker,Regularly,True,True,Survived,No,Yes,Unknown,Unknown,Anxiety
+4b2fee56-ada7-47b3-bee7-713152c3a80a,Brent Nelson,Female,56,Pancreatic Cancer,Radiotherapy,2022-11-29,No,Current Smoker,Occasionally,True,False,Deceased,Yes,Unknown,Yes,Unknown,Depression
+24a07ec3-2558-4cc0-9ff3-6df42e2565b7,Erin Lawrence,Female,36,Skin Cancer,Radiotherapy,2024-05-07,No,Ex-Smoker,Never,True,True,Survived,Unknown,No,No,Yes,Anxiety
+9bab7fc9-0268-4c00-b5dc-1cfa50e3fea8,Joseph Robinson,Female,72,Skin Cancer,Chemotherapy,2023-11-16,No,Current Smoker,Occasionally,False,True,Survived,Unknown,Yes,No,No,Unknown
+ce7a8fa9-4a61-47b2-9dfd-ba3701aff973,Joshua Allen,Female,54,Colon Cancer,Chemotherapy,2023-11-16,Unknown,Ex-Smoker,Occasionally,True,False,Survived,No,Unknown,Unknown,No,Depression
+4dd9aec9-b148-485a-b955-c65bdc30eca9,Rebecca Carpenter,Female,71,Lung Cancer,Chemotherapy,2020-05-07,Unknown,Ex-Smoker,Regularly,False,True,Survived,No,No,Yes,No,Anxiety
+6854cbba-1f19-4aa4-b8a4-f4d44e8e65f0,Shannon King,Female,46,Ovarian Cancer,Radiotherapy,2020-09-09,Yes,Current Smoker,Never,False,True,Survived,Unknown,Unknown,Yes,Unknown,Anxiety
+fa586d73-c1de-44db-9eaf-fc723ed4b129,Claudia Thompson,Male,37,Liver Cancer,Radiotherapy,2023-07-01,No,Never Smoked,Never,True,False,Survived,Unknown,Unknown,Unknown,No,Depression
+f7bed2fe-25b6-44e6-8d13-251e1a986010,Daniel Ellis,Female,36,Lung Cancer,Hormone Therapy,2022-12-14,No,Current Smoker,Never,True,False,Deceased,Yes,No,No,No,Depression
+db7545a4-f125-421a-83d8-9f2066c3097f,Michael Williams,Male,80,Colon Cancer,Chemotherapy,2020-12-26,No,Current Smoker,Regularly,True,False,Survived,Unknown,Unknown,Unknown,Yes,Depression
+0a396569-3535-4023-ab35-113bd0796556,Aaron Thomas,Female,54,Breast Cancer,Immunotherapy,2021-10-06,No,Never Smoked,Occasionally,False,True,Survived,Unknown,No,No,Unknown,Unknown
+9a6d9922-a4ab-446c-b4fc-afb4b0153ee1,Hailey Hernandez,Female,71,Leukemia,Surgery,2023-04-29,Yes,Never Smoked,Occasionally,False,True,Survived,No,No,Unknown,Yes,Depression
+8bdb7588-f981-4fde-b8f0-ef13bef37f93,Jocelyn Wood,Female,75,Lung Cancer,Radiotherapy,2020-07-11,No,Current Smoker,Never,True,False,Survived,Unknown,Yes,Yes,Yes,Anxiety
+a58db841-56a8-453e-b19c-42965f86da71,Jonathan Perez,Male,71,Ovarian Cancer,Surgery,2022-08-08,No,Ex-Smoker,Never,True,False,Survived,No,Unknown,Yes,No,Depression
+2d1303c2-4aa0-4498-b1dc-447cd7380f60,Shaun Turner,Female,70,Prostate Cancer,Surgery,2020-09-13,Yes,Never Smoked,Regularly,False,False,Survived,Yes,Unknown,Unknown,No,Anxiety
+d9a3028a-53ca-4bbb-ae28-27743e4b22a6,Larry Young,Male,46,Leukemia,Radiotherapy,2023-09-30,Yes,Never Smoked,Never,True,True,Deceased,Unknown,Yes,Yes,Unknown,Depression
+814d42aa-85bb-41fb-b8c2-a7f92ea2e9e6,Paul Byrd,Female,62,Pancreatic Cancer,Hormone Therapy,2022-10-17,Yes,Ex-Smoker,Occasionally,True,False,Survived,No,No,No,Unknown,Depression
+12b36d2e-38ca-4ba2-838c-28181a8ce405,Mrs. Amanda Parker PhD,Female,45,Ovarian Cancer,Hormone Therapy,2020-01-25,Unknown,Current Smoker,Regularly,False,True,Survived,No,Unknown,No,No,Unknown
+42fc6298-359f-41fb-96e4-88047913dae7,Troy Wilkinson,Female,57,Prostate Cancer,Surgery,2023-06-10,No,Current Smoker,Occasionally,False,False,Deceased,Unknown,Yes,No,Yes,Depression
+321aa378-0200-490a-95e0-e09bce8ac305,Alexis Faulkner,Male,65,Ovarian Cancer,Radiotherapy,2021-06-20,No,Ex-Smoker,Occasionally,True,True,Survived,Unknown,Unknown,Unknown,No,Depression
+c57f237b-0e84-441f-bfee-b06cd1cfefdc,Timothy Lowery,Male,52,Colon Cancer,Surgery,2024-03-28,Yes,Ex-Smoker,Never,True,False,Deceased,Unknown,Unknown,Unknown,No,Unknown
+4fa6beca-d782-480e-a065-138240b104a4,George Ryan,Female,79,Breast Cancer,Immunotherapy,2024-01-26,Unknown,Never Smoked,Never,True,True,Deceased,No,Yes,Unknown,No,Anxiety
+27847bcb-a0c0-4516-9efb-b568e10d19cb,Kristen Ross,Female,49,Lung Cancer,Hormone Therapy,2021-09-08,Unknown,Current Smoker,Occasionally,False,False,Survived,No,Yes,No,No,Depression
+77f67f56-87ab-4eee-bcb3-af0b67004eba,Timothy Hayes,Female,79,Lymphoma,Hormone Therapy,2024-03-10,No,Never Smoked,Never,False,False,Deceased,No,Unknown,No,No,Unknown
+60a4f94d-1089-4a0c-93bd-d451536705a1,Tommy Lewis,Male,71,Prostate Cancer,Radiotherapy,2024-09-27,Yes,Ex-Smoker,Regularly,False,True,Deceased,No,No,Unknown,Yes,Depression
+4eeffac8-21bf-4416-9529-98af19035c2d,David Flores,Female,46,Leukemia,Surgery,2021-08-11,Unknown,Current Smoker,Never,True,False,Deceased,No,Unknown,Unknown,Yes,Unknown
+4d1c8eae-38e1-4244-80a7-070a406e7468,Nicholas Tucker,Female,36,Colon Cancer,Hormone Therapy,2020-09-17,No,Ex-Smoker,Never,True,False,Survived,No,Yes,Yes,Unknown,Anxiety
+0da0d8c3-67a1-4312-8197-a6753dbd690b,Jeremy Wilson,Male,47,Prostate Cancer,Radiotherapy,2021-04-25,Yes,Ex-Smoker,Regularly,False,True,Survived,Yes,Unknown,Unknown,No,Depression
+5d7589ad-c8f3-418e-b23c-f5cc0a0a6af3,Jeff Morrison,Male,37,Lung Cancer,Immunotherapy,2022-05-18,Yes,Ex-Smoker,Occasionally,False,True,Deceased,No,No,Yes,Yes,Depression
+7eca1cf7-6953-4714-9f06-6c8e0807e721,Maria Bowman,Female,62,Skin Cancer,Surgery,2023-08-20,Yes,Current Smoker,Occasionally,False,True,Survived,Yes,No,Yes,Unknown,Anxiety
+3dd2d79b-d6da-4cac-a6ca-404c941f5d04,Stacy Frazier,Male,76,Breast Cancer,Chemotherapy,2021-11-03,No,Ex-Smoker,Occasionally,True,False,Deceased,Unknown,Yes,No,Yes,Unknown
+2dea793e-74f1-432c-99c8-d420d804ed37,Shane Bowen,Male,31,Prostate Cancer,Radiotherapy,2022-10-09,Unknown,Current Smoker,Occasionally,True,False,Deceased,No,No,No,Yes,Unknown
+92629c6d-3228-470c-bb55-6a9a13ec925e,Elizabeth Benson,Male,42,Lymphoma,Immunotherapy,2024-01-09,Unknown,Ex-Smoker,Occasionally,True,True,Deceased,No,Yes,Unknown,No,Anxiety
+3b8d9aca-4afc-4cf2-8c19-e9f7fb90e93d,Megan Black,Female,44,Liver Cancer,Chemotherapy,2021-06-20,No,Never Smoked,Regularly,True,True,Survived,Yes,Yes,Unknown,No,Unknown
+144b0958-9709-4ea6-a846-dca8f31fb3b2,Anthony Garcia,Male,53,Colon Cancer,Hormone Therapy,2023-02-10,Unknown,Ex-Smoker,Regularly,True,True,Survived,No,Unknown,Unknown,Yes,Depression
+cd98ea31-6632-431f-b663-4ad330f24f7a,Tyler Robinson,Male,39,Liver Cancer,Radiotherapy,2023-08-08,Yes,Ex-Smoker,Occasionally,True,True,Deceased,Yes,Unknown,Unknown,Unknown,Anxiety
+34a55014-02a3-4297-87b6-6c624d066078,Joseph Cochran,Male,65,Ovarian Cancer,Surgery,2020-02-16,No,Never Smoked,Regularly,True,False,Survived,Yes,Unknown,Yes,Yes,Unknown
+acb32806-ef27-4812-b750-fc71329e1c89,Wanda Downs,Female,46,Prostate Cancer,Radiotherapy,2021-01-24,Yes,Never Smoked,Regularly,True,True,Deceased,Yes,Unknown,Unknown,Unknown,Anxiety
+f2e7ceab-fe51-4145-a61e-b11dc9f22dde,Anna Phillips,Male,66,Prostate Cancer,Chemotherapy,2022-12-21,Unknown,Current Smoker,Regularly,False,True,Deceased,Unknown,Unknown,Unknown,Yes,Anxiety
+e059009c-e222-4071-94a8-7664852c709b,Sydney Kennedy,Male,72,Lymphoma,Hormone Therapy,2020-10-04,No,Current Smoker,Never,True,False,Deceased,Yes,Yes,Unknown,Unknown,Unknown
+64ef0458-ddd3-43c0-af22-c348cb8f4f3e,Lori Mullen,Male,36,Prostate Cancer,Immunotherapy,2020-05-03,Yes,Never Smoked,Never,True,False,Deceased,Unknown,Unknown,Yes,Unknown,Anxiety
+a9c3d6fe-3bb1-40ad-aeb3-1c837b9dc3e4,Julia Soto,Female,69,Prostate Cancer,Immunotherapy,2022-01-22,Yes,Current Smoker,Regularly,False,False,Deceased,No,Unknown,No,Unknown,Unknown
+a4db18aa-2dbb-4336-a290-2972123e9728,Justin Johnson,Male,56,Lymphoma,Immunotherapy,2021-10-07,Unknown,Never Smoked,Never,True,True,Survived,Unknown,No,Yes,Yes,Unknown
+bbc3c77d-d4fd-49da-b2cb-6c1a39e65000,Joseph Suarez,Male,78,Breast Cancer,Immunotherapy,2020-07-11,No,Current Smoker,Regularly,True,False,Deceased,Yes,No,Yes,Yes,Anxiety
+c4791bb0-f84c-41b3-bf18-d3b9783fb123,Tiffany Williams,Female,38,Prostate Cancer,Immunotherapy,2021-07-18,Yes,Never Smoked,Never,True,False,Deceased,Yes,Yes,Yes,No,Unknown
+29309b56-4abd-4de5-aebd-3e454ecd1855,Sharon Meyer,Male,48,Skin Cancer,Radiotherapy,2020-03-19,Unknown,Never Smoked,Never,False,False,Survived,Yes,Yes,Yes,No,Depression
+ce020041-2bac-4c51-aaf8-0ce5faf8dcab,Donna Glover,Female,31,Prostate Cancer,Hormone Therapy,2024-03-15,Unknown,Current Smoker,Never,True,True,Survived,Unknown,No,No,Yes,Unknown
+de3efa04-8f9e-4b68-b9aa-cca36de68bf5,Trevor Smith,Female,47,Prostate Cancer,Immunotherapy,2021-06-17,Yes,Never Smoked,Never,True,False,Survived,Yes,No,Yes,Unknown,Depression
+a863eddc-ee31-42d7-a85c-35349831d14f,Erica Gonzalez DDS,Male,39,Liver Cancer,Radiotherapy,2020-01-23,Yes,Never Smoked,Never,True,False,Survived,Unknown,Yes,Yes,No,Unknown
+cac77f71-1f63-4704-a307-74b2004b6c27,Joseph Thompson,Female,65,Breast Cancer,Hormone Therapy,2021-09-24,Yes,Current Smoker,Never,False,False,Deceased,Unknown,Unknown,Yes,No,Anxiety
+64630b2a-43f8-405e-bdc7-37e02b3fc4b0,Richard Cochran,Male,42,Leukemia,Chemotherapy,2022-07-21,Yes,Never Smoked,Regularly,False,False,Survived,Unknown,Unknown,No,No,Depression
+f78d0690-d868-43c0-a9fd-32d0821546e7,Kelly Collins,Female,57,Colon Cancer,Radiotherapy,2022-05-21,No,Ex-Smoker,Occasionally,True,True,Deceased,Yes,Yes,Yes,Unknown,Unknown
+52e164d4-5634-4032-87d4-119f5a36e785,Timothy Miller,Female,38,Pancreatic Cancer,Surgery,2020-01-08,Unknown,Never Smoked,Occasionally,True,False,Deceased,No,Yes,No,Unknown,Anxiety
+afdbb5ee-b428-45c4-990b-970c778e7777,Donald Arnold,Male,30,Lymphoma,Immunotherapy,2024-11-29,Unknown,Ex-Smoker,Regularly,True,True,Survived,Unknown,No,Unknown,No,Unknown
+111ed403-5ed1-467e-b1b0-49f40894b7ac,Anthony Mitchell,Female,53,Skin Cancer,Radiotherapy,2024-10-08,No,Never Smoked,Occasionally,True,True,Survived,Yes,No,No,Yes,Anxiety
+fecb2318-62fa-4ec0-a9dd-fdf6e6880a54,Corey Jackson,Male,67,Leukemia,Surgery,2020-09-12,Yes,Ex-Smoker,Regularly,True,False,Survived,No,No,Yes,No,Unknown
+a88cae50-acea-4277-8268-ede05086c0ee,Ashley Richardson,Male,42,Pancreatic Cancer,Hormone Therapy,2020-05-25,Yes,Current Smoker,Never,True,False,Deceased,Yes,Unknown,Yes,Yes,Anxiety
+60271e86-8e75-4a07-a7ba-53679a6e79c1,Sandra Choi,Male,32,Prostate Cancer,Immunotherapy,2021-03-27,Unknown,Never Smoked,Occasionally,True,False,Deceased,Yes,Unknown,No,Unknown,Unknown
+490700e9-99b6-45df-9265-168519f83ead,Eric Bell,Female,41,Pancreatic Cancer,Surgery,2023-01-26,No,Never Smoked,Never,False,True,Survived,No,Yes,Yes,Yes,Unknown
+967f2f58-abe5-4879-8fcd-65e89ef22b70,Erica Cunningham,Female,76,Skin Cancer,Chemotherapy,2021-10-20,Unknown,Never Smoked,Regularly,False,False,Survived,Yes,Yes,No,No,Depression
+c17f31f5-4180-4c24-856b-44d6b8319618,Tina Whitehead MD,Female,47,Liver Cancer,Immunotherapy,2022-04-10,No,Current Smoker,Never,False,False,Deceased,Yes,Yes,No,Unknown,Anxiety
+9aecd3df-cde0-499f-b06c-3009a88c485a,Nicole Cooper,Male,59,Colon Cancer,Radiotherapy,2021-05-19,Yes,Ex-Smoker,Never,False,True,Deceased,Yes,Unknown,No,Yes,Depression
+c1197994-98a7-4e83-97af-ec3073b14682,Sheila Cordova,Female,49,Lung Cancer,Radiotherapy,2024-07-21,Unknown,Never Smoked,Occasionally,True,True,Survived,Unknown,Yes,Yes,Yes,Unknown
+314f2065-b471-4382-97e8-4deb5a9df291,Randy Lewis,Female,63,Colon Cancer,Surgery,2020-03-27,Unknown,Current Smoker,Never,False,False,Deceased,Unknown,Unknown,Yes,Unknown,Unknown
+cc2cfb55-387b-4346-8a84-8852a0ae8a2d,Barbara Jenkins,Male,30,Ovarian Cancer,Radiotherapy,2020-01-20,Unknown,Never Smoked,Never,True,False,Deceased,Unknown,Unknown,No,Unknown,Anxiety
+4bf4a025-5954-45c6-b10e-8cb34979d6cc,Timothy Mendoza,Female,33,Liver Cancer,Immunotherapy,2023-11-30,No,Never Smoked,Occasionally,True,False,Survived,No,No,Yes,Unknown,Depression
+31be06af-5e9e-4824-a432-d973a47829c5,Kyle Graham,Male,51,Ovarian Cancer,Chemotherapy,2020-10-26,Unknown,Ex-Smoker,Occasionally,False,False,Survived,Yes,Unknown,Unknown,Yes,Unknown
+c2c088ab-37f2-481e-abd1-0a5df9b02809,Joel Gilmore,Male,40,Pancreatic Cancer,Hormone Therapy,2024-11-14,No,Current Smoker,Never,False,True,Deceased,Yes,Yes,Yes,No,Anxiety
+f4041eca-1da3-47c5-ab47-d134a1279b0f,Carol Howell,Male,42,Liver Cancer,Radiotherapy,2022-07-19,No,Ex-Smoker,Occasionally,True,False,Survived,Unknown,Unknown,Yes,Unknown,Unknown
+25cdc332-4e05-444b-b4e8-1e7b95b9e55c,Vanessa Fletcher,Female,80,Lymphoma,Immunotherapy,2022-10-20,Yes,Current Smoker,Never,True,False,Survived,Yes,No,Unknown,Unknown,Unknown
+06e15656-3697-439d-9f26-51bcd7b6a43d,John Morales,Male,32,Breast Cancer,Chemotherapy,2023-05-29,No,Never Smoked,Regularly,False,True,Deceased,No,No,Unknown,Unknown,Unknown
+c96516a9-fc77-4a3f-870b-ba7ae97d1d8c,Andrew Garcia,Male,65,Ovarian Cancer,Hormone Therapy,2021-03-06,Unknown,Current Smoker,Occasionally,True,False,Survived,Unknown,Yes,Yes,No,Depression
+1720c892-675b-48f0-a9e3-f721772db441,Shawn Jenkins,Female,33,Breast Cancer,Chemotherapy,2020-03-01,Yes,Ex-Smoker,Never,False,True,Survived,Unknown,Yes,No,Yes,Anxiety
+a716aceb-0d6b-4265-b37b-aeac185ea9c1,Patrick Richard,Female,31,Leukemia,Chemotherapy,2021-07-13,No,Ex-Smoker,Never,False,False,Deceased,No,Unknown,Yes,Unknown,Unknown
+19822828-91e2-41a3-9aac-0e3bbe85af71,Courtney Evans,Male,45,Pancreatic Cancer,Radiotherapy,2024-06-30,Yes,Ex-Smoker,Regularly,True,False,Survived,No,Unknown,No,Yes,Unknown
+a0646d22-e656-4f58-8300-8786cd80d585,Dr. Robert Bradley,Male,37,Ovarian Cancer,Surgery,2022-06-03,Unknown,Ex-Smoker,Regularly,True,False,Survived,No,Unknown,No,No,Unknown
+3886b3f1-a1d5-46b1-9e05-ed777410f219,Cassandra Cardenas,Female,60,Colon Cancer,Radiotherapy,2023-12-08,Unknown,Ex-Smoker,Never,False,False,Survived,Yes,No,Unknown,Yes,Unknown
+c8923632-dd30-4669-8f85-f8c5a983bb14,Heidi Franco,Female,40,Colon Cancer,Immunotherapy,2024-04-23,Unknown,Never Smoked,Occasionally,True,False,Survived,Yes,Unknown,Yes,Unknown,Anxiety
+0186d809-b34b-4659-b03c-1bfa7f158a8a,Laura Tran,Female,62,Colon Cancer,Surgery,2022-01-01,Yes,Ex-Smoker,Occasionally,True,True,Deceased,No,No,No,Unknown,Depression
+ebc5f56a-b074-4041-803b-e008d886998d,Crystal Krause,Male,71,Lung Cancer,Immunotherapy,2021-12-06,Yes,Never Smoked,Occasionally,False,False,Survived,No,Unknown,Yes,No,Anxiety
+0a10cff4-7591-45f4-a7a4-e36ded140f20,Meghan Davis,Female,62,Skin Cancer,Chemotherapy,2023-12-15,No,Never Smoked,Never,True,True,Deceased,Yes,Unknown,Unknown,Unknown,Anxiety
+3d676dd9-81f9-454a-b26a-92e788c00dbc,Jason Manning,Male,48,Colon Cancer,Radiotherapy,2021-02-20,Yes,Current Smoker,Occasionally,True,False,Survived,Unknown,Yes,Yes,No,Anxiety
+77099a72-047d-4d85-b2ca-8162dbe7e065,Andrew Hardy,Male,76,Lung Cancer,Chemotherapy,2023-12-31,Unknown,Never Smoked,Occasionally,False,True,Deceased,Unknown,No,No,Unknown,Depression
+4fd717bd-a6c2-4464-a4e0-516f7704d771,Daniel Humphrey Jr.,Male,33,Liver Cancer,Chemotherapy,2020-05-05,Yes,Ex-Smoker,Occasionally,True,False,Deceased,Unknown,Yes,Yes,Unknown,Depression
+48b1ff4f-6436-4e9a-8df7-bc1639927415,Megan Owens,Female,48,Lymphoma,Hormone Therapy,2020-02-13,Unknown,Never Smoked,Never,True,False,Survived,Unknown,No,No,Unknown,Anxiety
+61b7bb19-a25b-4a1a-9ca6-70a1fdee84a7,Timothy Velasquez,Female,48,Lung Cancer,Surgery,2020-03-14,Yes,Never Smoked,Never,False,True,Deceased,Unknown,Unknown,No,Yes,Depression
+eb459e72-ea2b-45df-b1dd-7b100c44d2c9,Travis Johnson,Male,55,Pancreatic Cancer,Chemotherapy,2024-03-05,Yes,Current Smoker,Occasionally,True,False,Survived,Unknown,Unknown,No,No,Depression
+bb02e414-0608-4f5b-86d2-557a87114253,Daniel Herrera,Female,72,Liver Cancer,Surgery,2021-06-23,No,Current Smoker,Never,True,True,Deceased,Unknown,Unknown,Yes,Unknown,Anxiety
+b4b0146a-4744-4b02-bd94-218c9009a27e,Brenda Ross,Male,41,Colon Cancer,Surgery,2022-02-01,Unknown,Ex-Smoker,Never,True,True,Deceased,No,No,Unknown,Yes,Unknown
+38ceea36-ae53-4205-a1b3-5d666882e9dd,Brian Anderson,Female,30,Colon Cancer,Immunotherapy,2023-08-15,Yes,Current Smoker,Regularly,False,False,Deceased,Unknown,Yes,Unknown,Yes,Anxiety
+a7fe15ea-8a9b-4907-99a4-0dce6f72c3dc,Paul Cooper,Female,50,Breast Cancer,Surgery,2023-01-23,Yes,Never Smoked,Regularly,False,True,Survived,Yes,Unknown,Yes,Unknown,Unknown
+85473eeb-64f5-4459-94c0-f8433f29d3b5,Jeremiah Lozano,Female,72,Prostate Cancer,Surgery,2022-04-21,Unknown,Ex-Smoker,Occasionally,False,True,Survived,Yes,No,No,Unknown,Depression
+f22cb21c-9578-4676-b6e3-72370ac0e23d,Robert Grant,Female,51,Lung Cancer,Immunotherapy,2022-10-22,Yes,Ex-Smoker,Never,False,False,Survived,Unknown,Unknown,Unknown,Unknown,Anxiety
+fcd53cf1-a47d-407d-b9f4-af182a98c547,Thomas Johnson,Female,78,Leukemia,Chemotherapy,2024-08-02,Yes,Never Smoked,Never,False,False,Deceased,Yes,Yes,Yes,No,Anxiety
+fce0095e-a887-481b-b4f7-d2aefac437fb,Juan Bell,Male,65,Ovarian Cancer,Hormone Therapy,2020-03-27,Yes,Never Smoked,Occasionally,True,False,Survived,Yes,Yes,Unknown,No,Anxiety
+6b5222fb-7960-4063-87d6-704f05c3b8e3,Jennifer Ritter,Female,63,Liver Cancer,Chemotherapy,2020-02-12,No,Current Smoker,Occasionally,True,True,Deceased,Yes,No,Yes,Unknown,Unknown
+c642a18d-2ae9-4168-90d7-1670b26d0904,Bruce Kennedy,Female,34,Lymphoma,Hormone Therapy,2022-02-16,Yes,Current Smoker,Regularly,True,True,Survived,No,Yes,Yes,Yes,Depression
+9fdea39e-9758-4ee0-9380-4c612c157ae1,Michael Wheeler,Male,48,Ovarian Cancer,Radiotherapy,2023-10-07,No,Current Smoker,Regularly,True,True,Survived,Yes,Yes,No,Unknown,Unknown
+145a41a1-89f5-405d-9c72-35f318b6abf7,Tammy Jordan,Female,46,Colon Cancer,Immunotherapy,2022-06-01,Yes,Ex-Smoker,Regularly,False,True,Survived,Unknown,Yes,Yes,Yes,Depression
+d25e9652-98ce-4d58-a365-3a4c96cdab92,Lacey Bentley,Female,71,Lymphoma,Radiotherapy,2022-06-05,No,Never Smoked,Regularly,True,False,Survived,Yes,Unknown,Yes,Unknown,Unknown
+1c135e47-60a5-41dd-b954-4997e9464f19,Eric Thomas,Female,39,Pancreatic Cancer,Radiotherapy,2021-12-10,Yes,Current Smoker,Regularly,False,False,Survived,No,Unknown,No,No,Depression
+2b978b10-c460-485c-aacd-2b99c2718ae7,Danny Sanchez,Female,66,Liver Cancer,Surgery,2023-02-10,Unknown,Current Smoker,Regularly,False,False,Survived,Unknown,Unknown,Yes,Unknown,Anxiety
+13a7bfa8-da01-4eff-a9ed-6422b0a391ff,Ashley Huber,Female,61,Ovarian Cancer,Chemotherapy,2020-01-03,Unknown,Current Smoker,Never,True,True,Survived,No,No,Yes,Unknown,Anxiety
+9f5921d6-86a8-400c-8c32-0bf69930aced,Shannon Woodard,Female,70,Skin Cancer,Hormone Therapy,2020-12-23,No,Never Smoked,Occasionally,True,True,Deceased,No,Unknown,Unknown,No,Depression
+4f8cc13e-61f6-4f17-bbef-48fdfaa35d4b,Debra Warner,Female,35,Pancreatic Cancer,Hormone Therapy,2024-07-08,Unknown,Current Smoker,Never,True,True,Deceased,No,No,No,Yes,Anxiety
+4b5f9ba9-6184-4406-bc07-d9d9715e9300,Brian Moore,Male,57,Breast Cancer,Radiotherapy,2022-10-23,Unknown,Current Smoker,Regularly,False,False,Deceased,Yes,Yes,Yes,No,Unknown
+b7f1bffd-a175-4a82-884c-efb5c341d407,Alyssa Pacheco,Female,30,Liver Cancer,Radiotherapy,2023-08-22,Yes,Ex-Smoker,Occasionally,True,True,Survived,Unknown,Yes,No,Unknown,Depression
+814bc843-fa00-4008-aaf6-9fc6ce75209c,Holly Gutierrez,Male,66,Ovarian Cancer,Immunotherapy,2020-10-16,Unknown,Never Smoked,Occasionally,True,False,Deceased,No,Unknown,Unknown,Unknown,Unknown
+bc85839f-40c5-4a9b-92b3-0583a018f142,Tiffany Marshall,Male,68,Lymphoma,Chemotherapy,2022-11-03,No,Current Smoker,Regularly,False,True,Survived,Unknown,Yes,No,Yes,Unknown
+c4351e3d-6c27-4624-8456-bafa4b32fc89,Timothy Warren,Female,57,Pancreatic Cancer,Hormone Therapy,2020-06-20,Yes,Ex-Smoker,Occasionally,False,True,Deceased,Unknown,No,Yes,No,Unknown
+333eddd5-3ba8-4102-83c1-4194f7d7cabd,Eric Johnson,Male,31,Prostate Cancer,Immunotherapy,2024-12-04,No,Never Smoked,Regularly,True,True,Survived,Yes,Yes,Yes,Yes,Unknown
+501b6dd3-fc3b-4bee-a581-b408d25e3792,Ryan Phillips,Female,51,Prostate Cancer,Hormone Therapy,2021-12-29,Unknown,Ex-Smoker,Never,True,False,Deceased,Yes,No,No,Unknown,Depression
+76da30b7-17f7-4aea-bd39-74b8ae011051,Dr. Jaime Rivers,Female,53,Ovarian Cancer,Hormone Therapy,2024-11-09,No,Never Smoked,Regularly,False,True,Survived,No,No,No,No,Unknown
+e89c431b-0e29-485f-8ac5-9cab806dcc34,Roger Hanna,Male,43,Prostate Cancer,Hormone Therapy,2023-02-09,No,Never Smoked,Regularly,True,False,Deceased,No,Yes,Unknown,Yes,Depression
+63f64330-ad46-4d0c-b389-51116e854228,Virginia Phillips,Female,79,Lymphoma,Radiotherapy,2024-11-05,No,Ex-Smoker,Occasionally,False,False,Deceased,Yes,Yes,Unknown,No,Anxiety
+624992e8-3a45-4738-a641-87028e2dce57,Andrea Vargas,Female,33,Liver Cancer,Surgery,2022-01-29,Yes,Ex-Smoker,Regularly,True,False,Deceased,Yes,Yes,Unknown,Yes,Depression
+c80943cf-8b75-4697-94b3-220d84175b2a,Sarah Anderson,Male,49,Breast Cancer,Surgery,2023-04-29,Yes,Never Smoked,Never,False,False,Survived,Yes,Unknown,Unknown,Unknown,Unknown
+1f80494b-f342-4fe6-a05f-9bb7c7a7e36b,Samuel Snow,Female,41,Breast Cancer,Hormone Therapy,2020-09-16,Unknown,Current Smoker,Regularly,False,True,Deceased,Unknown,Yes,Unknown,Unknown,Depression
+77785355-abdd-484d-a99d-df69eeb36f0c,Alicia Sawyer,Male,39,Ovarian Cancer,Radiotherapy,2023-07-22,Yes,Never Smoked,Occasionally,True,False,Deceased,Unknown,No,No,No,Unknown
+4b6026cd-0827-43ab-a5d2-70664b777494,Tanya Reynolds,Female,77,Prostate Cancer,Immunotherapy,2023-08-29,Unknown,Never Smoked,Regularly,False,True,Deceased,No,Unknown,No,Unknown,Depression
+8b3f4112-6706-48ea-94fe-ec8ff1d4c31d,John Hernandez,Female,75,Prostate Cancer,Immunotherapy,2021-06-18,No,Ex-Smoker,Occasionally,True,False,Deceased,Yes,Yes,No,No,Anxiety
+daee3312-9d84-45e8-84e8-9fff4f51fd20,Antonio Morris,Male,74,Lymphoma,Hormone Therapy,2022-08-21,No,Ex-Smoker,Never,True,True,Survived,Yes,Yes,Yes,No,Anxiety
+2045bc4b-a2d6-4fd7-841e-818ddca32910,Lisa Mccormick,Female,38,Leukemia,Surgery,2022-05-18,Yes,Current Smoker,Never,False,False,Deceased,Yes,No,No,No,Depression
+dae1cb0f-2180-4398-851e-4ea20081742c,Dawn Johnson,Male,39,Ovarian Cancer,Radiotherapy,2021-05-17,No,Never Smoked,Never,False,False,Survived,Unknown,No,Yes,Yes,Anxiety
+3bbd1801-7076-44c3-8d9a-e66331f0d7ba,Daniel Francis,Male,34,Ovarian Cancer,Immunotherapy,2020-04-29,No,Ex-Smoker,Occasionally,True,True,Deceased,Unknown,Unknown,No,Unknown,Depression
+1fbf2ae0-13b4-4fc7-a6da-4f6ccb81b85c,Carol Jordan,Male,58,Skin Cancer,Surgery,2024-08-17,Yes,Ex-Smoker,Occasionally,False,True,Deceased,No,Yes,No,Yes,Unknown
+2f91ae84-2863-414d-96c5-47c35901b3f0,Christina Mills,Female,31,Breast Cancer,Chemotherapy,2024-12-04,No,Current Smoker,Regularly,True,False,Deceased,Unknown,Unknown,No,Unknown,Unknown
+8a622f2e-071f-4551-8acc-b733ed8de760,Kristopher Farmer,Female,71,Ovarian Cancer,Immunotherapy,2022-06-13,Yes,Ex-Smoker,Regularly,True,False,Survived,Yes,No,Unknown,No,Unknown
+95bf2639-9552-4de3-b70d-ebf6268f7abe,Sean Gutierrez,Female,53,Colon Cancer,Surgery,2023-04-03,Yes,Never Smoked,Occasionally,False,True,Deceased,No,Unknown,Unknown,No,Anxiety
+39e0fa72-79c6-4103-90f8-27c687cd487c,Ashley Hanson,Female,32,Leukemia,Immunotherapy,2024-02-09,Unknown,Never Smoked,Regularly,True,False,Survived,Yes,No,Yes,Unknown,Anxiety
+42b561f2-cdde-4c91-b28e-c1d9ec515f9d,Amanda Sanchez,Male,63,Lung Cancer,Hormone Therapy,2022-07-20,Unknown,Never Smoked,Never,False,False,Deceased,Yes,No,No,No,Anxiety
+0ccbc762-9091-45e6-aaf7-b11b549bfae9,John Romero,Female,32,Pancreatic Cancer,Surgery,2024-01-11,Yes,Never Smoked,Never,True,False,Survived,Yes,No,No,No,Depression
+3d28382d-626f-4ab3-b72f-6c1ff38cb487,Brandon Colon,Male,39,Ovarian Cancer,Hormone Therapy,2022-12-31,No,Never Smoked,Never,False,False,Deceased,Yes,No,Yes,Unknown,Anxiety
+cfe7ff02-23bf-4a34-b960-56ad72973b83,Jeffrey Zuniga,Male,50,Ovarian Cancer,Surgery,2020-06-03,Yes,Ex-Smoker,Never,True,False,Survived,Yes,Unknown,Yes,Unknown,Depression
+03199897-a797-4efe-ab8c-2dc7097158ce,Joshua Lewis,Female,42,Liver Cancer,Surgery,2021-08-23,Yes,Current Smoker,Never,False,True,Deceased,Unknown,Yes,Unknown,Yes,Anxiety
+e41f1d4e-67a5-493b-bf3f-112efd87cc58,Kayla Cooper,Female,76,Prostate Cancer,Surgery,2021-09-24,No,Ex-Smoker,Never,False,False,Deceased,Yes,Unknown,Unknown,No,Anxiety
+1cccf009-fc3f-4c2d-a88c-076bfb776163,Johnny Mercado,Female,42,Colon Cancer,Chemotherapy,2024-09-01,No,Current Smoker,Occasionally,True,True,Survived,Yes,No,No,No,Anxiety
+3a8864ab-9821-476c-8a98-692f96c801e0,Elizabeth Taylor,Female,62,Prostate Cancer,Surgery,2024-06-21,Unknown,Never Smoked,Regularly,True,True,Deceased,Yes,Yes,Unknown,Unknown,Unknown
+4d3523e5-772a-4389-acfb-0138c7fa5b4f,Jennifer Bright,Female,48,Prostate Cancer,Chemotherapy,2020-03-24,Unknown,Never Smoked,Regularly,False,True,Survived,Yes,Unknown,No,No,Unknown
+94315d98-6836-49e0-a98e-560ff2413485,Kara Salinas DVM,Male,33,Pancreatic Cancer,Chemotherapy,2024-08-31,No,Ex-Smoker,Never,True,False,Deceased,No,No,Unknown,Yes,Depression
+63d2fc12-4c3f-43fe-88dc-858e30c52264,Joshua Sharp,Female,64,Leukemia,Surgery,2022-09-23,Unknown,Ex-Smoker,Never,True,True,Survived,Unknown,Unknown,No,Yes,Unknown
+26065e0b-039e-471c-b255-179047e4615e,William Cole,Female,32,Leukemia,Immunotherapy,2023-12-05,No,Never Smoked,Never,True,False,Survived,No,Yes,No,Yes,Depression
+4a3b204c-aac8-4bb5-8aa6-d85fc4ab040b,Krystal Martinez,Female,50,Lymphoma,Surgery,2020-07-27,No,Current Smoker,Regularly,False,False,Deceased,Unknown,Unknown,Yes,Unknown,Anxiety
+6464cdf3-9765-4d0d-9e00-ca23be138174,Andrew Anderson,Male,70,Prostate Cancer,Surgery,2020-03-16,Yes,Never Smoked,Never,True,False,Deceased,Unknown,No,Yes,Unknown,Unknown
+216a07c1-a9b5-448e-9b41-75a95b7624ed,Patrick Young,Female,63,Skin Cancer,Immunotherapy,2020-08-08,Yes,Current Smoker,Never,True,True,Deceased,No,Unknown,No,No,Unknown
+7681a81f-11c9-4b0f-942c-459fc2fc27d7,Alison Garcia,Male,41,Breast Cancer,Radiotherapy,2023-02-04,Unknown,Ex-Smoker,Never,False,True,Deceased,Yes,Yes,No,Unknown,Unknown
+b4c5e3c3-3f8c-4572-9f97-5ddc80ff3ba7,David Mcgee,Female,60,Ovarian Cancer,Immunotherapy,2023-12-08,No,Ex-Smoker,Regularly,True,False,Survived,No,Yes,Unknown,No,Unknown
+3491b56d-e01f-4796-9433-45f347a8f70a,Amber Smith,Male,60,Liver Cancer,Chemotherapy,2023-05-29,Unknown,Current Smoker,Occasionally,False,True,Survived,No,Yes,Yes,Unknown,Anxiety
+823e40f5-da21-44fa-9f9d-1bd53104bf45,Anna Roth,Male,61,Pancreatic Cancer,Surgery,2023-09-19,Yes,Never Smoked,Occasionally,True,True,Survived,No,No,Unknown,Yes,Unknown
+873b2b6d-c03b-4936-889e-11a430c5b673,Matthew Mendez,Female,51,Lymphoma,Surgery,2024-01-23,Unknown,Ex-Smoker,Never,True,False,Survived,Yes,No,Unknown,No,Depression
+db3bfa53-f9c5-453e-9071-82045afbe00a,Kyle Barron PhD,Female,34,Leukemia,Chemotherapy,2021-02-16,Unknown,Ex-Smoker,Never,False,True,Survived,No,No,No,Unknown,Depression
+b6272437-cec8-4cbb-9b98-fb57759bcdbc,Alison Johnson,Female,66,Colon Cancer,Immunotherapy,2021-08-27,Yes,Current Smoker,Occasionally,True,False,Deceased,No,No,No,Unknown,Unknown
+2e439460-d3fe-4815-96af-864e4650545b,Lori Williams,Male,61,Liver Cancer,Immunotherapy,2024-12-01,Yes,Ex-Smoker,Occasionally,False,True,Survived,Yes,No,Yes,No,Unknown
+ebb54fb2-61ab-4ddd-b1f0-751ff2875f24,Steven Griffin,Female,71,Breast Cancer,Chemotherapy,2024-12-04,No,Ex-Smoker,Occasionally,True,False,Deceased,Yes,Yes,Unknown,Yes,Depression
+7455927b-bab0-40f9-adcd-3342cc6ed976,Benjamin Bridges Jr.,Female,30,Lymphoma,Surgery,2020-09-29,No,Current Smoker,Never,False,True,Deceased,Unknown,Unknown,Yes,No,Depression
+e3f95442-508d-4f81-9e5f-9cd3b8ecbad9,Brent Hudson,Male,64,Prostate Cancer,Radiotherapy,2020-02-01,No,Never Smoked,Occasionally,True,False,Survived,No,No,No,No,Unknown
+24b064d9-4265-40fa-9de1-05d0ac7108b6,Barbara Garcia,Male,31,Colon Cancer,Radiotherapy,2023-11-21,Yes,Never Smoked,Never,True,False,Deceased,Unknown,Yes,No,Unknown,Anxiety
+d5c7e2d5-3fa7-4d2f-aaa7-e29b11189a38,Joseph Jones,Female,47,Breast Cancer,Chemotherapy,2022-03-04,Yes,Ex-Smoker,Never,False,False,Survived,No,No,Unknown,No,Unknown
+45499a76-9957-4143-a947-2fc7d5081e31,Rebecca Davidson,Female,59,Skin Cancer,Surgery,2020-02-05,No,Never Smoked,Occasionally,False,False,Survived,Yes,Unknown,Unknown,Yes,Depression
+6caf18ff-8fdf-41fe-ac1e-6e9fd8bc36d9,Sara Baker,Male,32,Pancreatic Cancer,Immunotherapy,2023-08-04,Yes,Ex-Smoker,Occasionally,True,True,Survived,Yes,No,Unknown,Yes,Anxiety
+12df9617-ae3b-4544-979e-f782437944f8,Michael Reynolds,Male,45,Lung Cancer,Surgery,2024-09-20,Yes,Current Smoker,Never,False,False,Survived,No,No,Unknown,Yes,Anxiety
+2b2806e6-7450-4d74-a4c8-e8e0d55e610a,Edwin Washington,Female,76,Pancreatic Cancer,Surgery,2021-09-16,Unknown,Never Smoked,Never,False,True,Deceased,Unknown,No,Unknown,Unknown,Anxiety
+a1d2bc44-af52-452e-9e2a-da778934465a,Melissa Hill,Female,45,Prostate Cancer,Immunotherapy,2022-11-11,Unknown,Current Smoker,Never,False,True,Deceased,No,Unknown,Yes,Yes,Anxiety
+6e6b58e1-6744-4319-814a-5909d22084dc,Kimberly Warner,Female,74,Ovarian Cancer,Chemotherapy,2024-08-06,Unknown,Never Smoked,Never,True,False,Deceased,Unknown,No,Yes,Yes,Depression
+3532c447-bbdb-4df0-bccd-51407672482e,Amanda Wilson,Female,73,Ovarian Cancer,Hormone Therapy,2020-05-10,Unknown,Ex-Smoker,Occasionally,False,True,Deceased,Yes,Yes,Yes,Yes,Anxiety
+3883f4e2-9231-4863-b753-c13bd5af3612,Angelica Salazar,Male,60,Liver Cancer,Immunotherapy,2024-07-13,No,Never Smoked,Occasionally,False,True,Survived,No,No,Yes,Unknown,Anxiety
+8e822be7-d93c-47b4-a638-da162a18952e,Robert Harper,Male,39,Lung Cancer,Radiotherapy,2022-05-27,No,Ex-Smoker,Occasionally,True,False,Survived,No,Unknown,Yes,Unknown,Depression
+ba242b7e-bc5c-4d23-ac32-8a5436899f4d,Michael Erickson,Female,36,Lung Cancer,Immunotherapy,2024-06-20,Unknown,Current Smoker,Regularly,True,True,Deceased,No,Yes,No,Yes,Depression
+eefb0838-28a4-47a0-b6dd-c767118d1e2d,Jason Parks,Male,34,Pancreatic Cancer,Hormone Therapy,2024-05-30,No,Ex-Smoker,Occasionally,False,True,Deceased,No,Yes,No,Unknown,Anxiety
+6d6417de-2ab7-4dbe-ac7a-e5bbc077d9df,Taylor Madden,Male,59,Pancreatic Cancer,Surgery,2020-02-16,Yes,Current Smoker,Occasionally,False,True,Survived,Unknown,Unknown,No,No,Depression
+3595b4eb-1962-416f-a9e6-e8fd41fd405b,Troy Williams,Female,49,Colon Cancer,Surgery,2023-09-03,Unknown,Current Smoker,Occasionally,True,False,Deceased,Yes,Yes,Yes,Yes,Anxiety
+39c7fab2-33b7-441b-bb25-35c6bcf3f48c,Carrie Gibson,Female,54,Skin Cancer,Hormone Therapy,2020-03-06,No,Current Smoker,Never,False,False,Survived,No,Yes,Unknown,Unknown,Anxiety
+86374511-e6ab-4c5a-94e1-dc4b38e4c169,Laura Pitts,Female,40,Lymphoma,Surgery,2023-03-13,No,Never Smoked,Never,False,True,Survived,Yes,No,Unknown,No,Depression
+9e5f0dd0-1a05-46f5-a848-f3519c37e240,Shannon Lee,Female,55,Prostate Cancer,Radiotherapy,2024-10-21,Unknown,Ex-Smoker,Never,True,False,Survived,Unknown,No,No,No,Depression
+6f33b780-a70c-4fa5-bbef-7591476ea27e,Paul Powell,Male,76,Lung Cancer,Immunotherapy,2020-10-31,Yes,Never Smoked,Never,False,False,Deceased,No,No,No,No,Depression
+8d0674aa-2e60-4c13-9b4b-e7f938a5db02,Brenda Wilson,Female,76,Skin Cancer,Radiotherapy,2021-01-20,Unknown,Never Smoked,Occasionally,False,False,Deceased,No,Unknown,Unknown,Unknown,Depression
+a534e584-21f7-4cd6-a9ea-3f77684f5b8c,Joseph Walker,Male,48,Liver Cancer,Radiotherapy,2023-04-13,No,Never Smoked,Regularly,False,True,Survived,Yes,No,Unknown,Unknown,Anxiety
+7a70c448-6a48-479e-ba6c-ec68f4a01f0c,Frank Salazar,Male,41,Leukemia,Hormone Therapy,2024-04-22,Yes,Ex-Smoker,Never,False,False,Survived,No,Unknown,No,Yes,Depression
+2bcdb2c4-58fb-4b27-8517-0a63c0abf8aa,Anna Green,Male,55,Lymphoma,Chemotherapy,2021-09-20,Yes,Current Smoker,Regularly,True,False,Deceased,Yes,Unknown,Unknown,Unknown,Depression
+480c75db-0e59-44e6-9103-95608500cfcf,Marc Garcia,Male,31,Lymphoma,Immunotherapy,2023-05-12,Yes,Ex-Smoker,Occasionally,True,False,Survived,Yes,No,Yes,Unknown,Unknown
+18be920c-57fd-445f-9b99-2e04531f82b7,Ashley Alvarado,Male,45,Liver Cancer,Radiotherapy,2022-08-18,No,Current Smoker,Never,True,False,Deceased,Yes,Yes,Unknown,Yes,Anxiety
+77e16713-4576-46b2-a964-8d0c19d41135,Lisa Roach,Male,38,Skin Cancer,Surgery,2021-03-03,No,Ex-Smoker,Never,True,False,Deceased,Unknown,Yes,No,Yes,Anxiety
+a42d284b-3ed4-4c07-8914-e1b6e22c13a0,Tara Cantrell,Female,40,Lymphoma,Surgery,2023-12-12,Yes,Ex-Smoker,Never,True,True,Deceased,No,Yes,No,Yes,Depression
+ce3910a5-bd8a-4e25-9fec-922e2a1c42ed,Lisa Wright,Male,66,Lymphoma,Hormone Therapy,2024-08-21,Unknown,Never Smoked,Occasionally,False,True,Survived,Unknown,No,Unknown,Yes,Unknown
