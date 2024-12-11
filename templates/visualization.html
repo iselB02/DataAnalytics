@@ -420,11 +420,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.getElementById('generate-pdf').addEventListener('click', () => { 
+document.getElementById('generate-pdf').addEventListener('click', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
-        format: 'a4', // Set the page format to A4
-        unit: 'mm',   // Use millimeters for measurements
+        format: 'a4',
+        unit: 'mm',
     });
 
     // Define margins and page size
@@ -442,109 +442,124 @@ document.getElementById('generate-pdf').addEventListener('click', () => {
     // Add title with margin
     doc.setFontSize(16);
     doc.text('Data Visualization Report', marginLeft, currentY);
-    currentY += 10; // Move Y position down after the title
+    currentY += 10;
 
-    // Get the active tab chart container
+    // Get the active chart container and context
     const activeTabContainer = document.getElementById(DataVisualization.activeTab);
     const ctx = activeTabContainer ? activeTabContainer.getContext('2d') : null;
 
-    // Add chart image (convert the active chart to a base64 JPEG image)
+    // Add chart image
     let chartImage = null;
+    let selectedX = [];  // To hold the selected x values
+    let selectedY = [];  // To hold the selected y values
+
+    function splitTextIntoLines(text, maxWidth, doc) {
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+
+  words.forEach((word) => {
+    const testLine = `${line}${word} `;
+    const testWidth = doc.getTextWidth(testLine);
+
+    if (testWidth <= maxWidth) {
+      line = testLine;
+    } else {
+      lines.push(line.trim());
+      line = `${word} `;
+    }
+  });
+
+  lines.push(line.trim());
+  return lines;
+}
+
+function addJustifiedParagraph(
+  doc,
+  text,
+  x,
+  y,
+  maxWidth,
+  lineHeight,
+  marginTop,
+  maxContentHeight
+) {
+  const lines = splitTextIntoLines(text, maxWidth, doc);
+
+  lines.forEach((lineText, index) => {
+    if (y + lineHeight > maxContentHeight) {
+      doc.addPage();
+      y = marginTop;
+    }
+    doc.text(lineText, x, y, { align: 'justify', maxWidth });
+    y += lineHeight;
+  });
+
+  return y;
+}
     if (ctx && DataVisualization.activeChart) {
-        // Convert chart to JPEG base64
-        chartImage = DataVisualization.activeChart.toBase64Image('image/jpeg'); // Set format to 'image/jpeg'
-        doc.addImage(chartImage, 'JPEG', marginLeft, currentY, contentWidth, 90); // Insert JPEG image in the PDF
-        currentY += 100; // Move Y position down after the chart image
+        // Extract x and y values from the chart data
+        selectedX = DataVisualization.activeChart.data.labels;  // x-axis values (labels)
+        selectedY = DataVisualization.activeChart.data.datasets.map(dataset => dataset.data);  // y-axis values (dataset)
+
+        // Convert chart to base64 image
+        chartImage = DataVisualization.activeChart.toBase64Image('image/jpeg');
+        doc.addImage(chartImage, 'JPEG', marginLeft, currentY, contentWidth, 90);
+        currentY += 100;
     }
 
-    // Send a request to Gemini to generate the report, including the chart image and data
+    // Send only selected x and y values (not the whole chartData) to the server
     const promptMessage = `
         Generate a detailed report about the following chart:
         Image: ${chartImage} 
-        Description: Please provide the response in the following format:
-            1. **Report Title:** A brief title that summarizes the content of the report.
-            2. **Data Summary:** A short description of the dataset and what it represents.
-            3. **Detailed Analysis:**
-            - Describe the relationships between the different variables in the dataset.
-            - Highlight any significant trends or patterns observed in the data.
-            4. **Key Observations:** 
-            - Use bullet points to summarize key insights or observations from the data.
-            5. **Potential Implications and Further Analysis:**
-            - Discuss any further analysis that could be done with the data.
-            - Suggest potential applications or uses for the data.
-            6. **Visual Representation:** The provided data is not in a chart format suitable for direct interpretation. 
-            The chart is encoded as a base64 string and would need to be decoded and displayed as a visual chart before analysis could be conducted. 
-            The description indicates that the data consists of multiple variables related to students, suggesting a visual representation could include histograms, scatter plots, or bar charts to display the distributions and relationships between the variables.
-            7. **Conclusion:** A concise summary of the findings and their significance.
-
-            Please format the report with headings, bullet points, and numbered lists for better readability.
+        Description: Report Title: A brief title that summarizes the content of the report.In one paragraph explain the relationship between the x and y. Interpret also the graph. Max of 5-10 sentences, indented
     `;
+    // Get the column names from the dropdowns (x and y axis)
+    let xTitle = xAxisDropdown.value;  // The name of the selected column for x-axis
+    let yTitle = yAxisDropdown.value;  // The name of the selected column for y-axis
 
-    // Function to justify text in the PDF
-    function addJustifiedText(doc, text, x, y, width, lineHeight) {
-        const words = text.split(' ');
-        let line = '';
-        let lines = [];
-        words.forEach((word) => {
-            const testLine = line + word + ' ';
-            const testWidth = doc.getTextWidth(testLine);
-            if (testWidth > width) {
-                lines.push(line.trim());
-                line = word + ' ';
-            } else {
-                line = testLine;
+
+// Log the titles and the data to check
+console.log("X Axis Title: ", xTitle);
+console.log("X Axis Data: ", selectedX);
+console.log("Y Axis Title: ", yTitle);
+console.log("Y Axis Data: ", selectedY);
+
+// Send to Gemini with the corrected titles and data
+fetch('/generate-report', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        chart_image: chartImage,
+        prompt: promptMessage,
+        chart_data: {
+            x: {
+                title: xTitle,  // Correctly pass the column title
+                data: selectedX  // Pass the corresponding data for x-axis
+            },
+            y: {
+                title: yTitle,  // Correctly pass the column title
+                data: selectedY  // Pass the corresponding data for y-axis
             }
-        });
-        lines.push(line.trim());
-
-        lines.forEach((line, index) => {
-            const lineWords = line.split(' ');
-            if (index === lines.length - 1 || lineWords.length === 1) {
-                // For the last line or single-word lines, align left
-                doc.text(line, x, y);
-            } else {
-                // For other lines, distribute spaces evenly
-                const totalSpace = width - doc.getTextWidth(line.replace(/ /g, ''));
-                const spaceWidth = totalSpace / (lineWords.length - 1);
-                let currentX = x;
-                lineWords.forEach((word, i) => {
-                    doc.text(word, currentX, y);
-                    if (i < lineWords.length - 1) {
-                        currentX += doc.getTextWidth(word) + spaceWidth;
-                    }
-                });
-            }
-            y += lineHeight;
-        });
-        return y; // Return the updated Y position
-    }
-
-    // Fetch the report data
-    fetch('/generate-report', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            chart_image: chartImage,  // Send the JPEG base64 image to Gemini
-            prompt: promptMessage,
-            chart_data: chartData,
-        }),
-    })
+    }),
+})
     .then((response) => response.json())
     .then((data) => {
         doc.setFontSize(12);
         doc.text('Chart Report:', marginLeft, currentY);
-        currentY += 10; // Space before the content
+        currentY += 10;
 
         if (data && data.report) {
-            const paragraphs = data.report.split('\n\n'); // Split into paragraphs
+            const paragraphs = data.report.split('\n\n');
             paragraphs.forEach((paragraph) => {
                 if (currentY + 10 > maxContentHeight) {
-                    doc.addPage(); // Add a new page if content overflows
-                    currentY = marginTop; // Reset Y position for the new page
+                    doc.addPage();
+                    currentY = marginTop;
                 }
-                currentY = addJustifiedText(
+                currentY = addJustifiedParagraph(
                     doc,
                     paragraph,
                     marginLeft,
