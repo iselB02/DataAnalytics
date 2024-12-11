@@ -5,6 +5,11 @@
     /* background-color: aqua;   */
     height: 95VH;
     overflow-y: scroll;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url('/static/images/castle.jpg'); /* Add your image path here */
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-repeat: no-repeat; 
 }
 
 
