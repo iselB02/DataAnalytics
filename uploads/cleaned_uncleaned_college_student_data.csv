@@ -1,0 +1,496 @@
+ID,Name,Course,Department,Age,City,Hobby,Allowance,Salary of Parents
+a94f873c-7938-4b59-8cf7-89a1014d41a9,Scott Morris,Electrical Engineering,Engineering,25,Houston,Traveling,4512.0,45343.0
+95d2d60d-8ff1-46b2-897d-0dd393fefa0b,Rose Norton,Physics,Arts,25,Houston,Traveling,1104.0,124463.0
+188f0973-3e5f-4c0a-b81b-1cabfb9408d8,Yvette Russell,Biology,Science,21,Remote,Cooking,3602.0,85795.0
+0bcff9c5-4219-4921-9f55-c1c79d6e9018,John Morris MD,Chemistry,Law,18,Remote,Sports,3455.0,59278.0
+0c3e6fc2-9730-46f9-9387-a1e629d379b9,Kurt Marks,Psychology,Arts,24,New York,Sports,2434.0,40846.0
+af9c9360-bb87-4b76-a541-18fc7a1bc247,Stephanie Miller,Mathematics,Health,24,Remote,Gaming,2685.0,71525.0
+b557866f-9e4b-4c25-806e-66fa155ac33c,Dalton Peterson,Nursing,Engineering,19,New York,Reading,2789.0,120500.0
+74b3d14f-d7e4-438b-afe0-21cdaba20546,Evan Dyer,Computer Science,Law,25,New York,Sports,3948.0,123855.0
+4294d30a-ae87-45a7-8fea-d053f9fd6556,Brittany Stephenson,Biology,Arts,21,Chicago,Sports,2310.0,126107.0
+b7bc9cac-da4b-4d2b-8c05-7d8203580b37,Dennis Juarez,Law,Science,19,San Francisco,Gaming,2910.0,107212.0
+0f6b3218-897c-49a5-9a04-b6cc8e895e33,Carmen Anderson,Law,Engineering,21,Houston,Gaming,1068.0,99325.0
+453fdbe7-9242-46d1-b731-23d592c24dc6,Christina Luna,Physics,Health,22,Houston,Sports,1137.0,133481.0
+90b27b45-09c0-4700-a510-49548c08103d,Paige Miller,Business Administration,Health,25,Boston,Sports,4401.0,57371.0
+37aee321-765e-49b3-a4c6-1faa0cfc1c99,Trevor Burns,Mathematics,Arts,20,Remote,Traveling,3599.0,42240.0
+c8ce26eb-163c-4764-bfb6-90952597fa91,Jessica Boyd,Chemistry,Science,21,New York,Gaming,1604.0,107088.0
+8d9c54c9-95b7-483e-9a67-a36246a07dfe,Joseph Dawson,Mechanical Engineering,Law,25,Boston,Traveling,1984.0,74034.0
+1288e199-be16-4f29-82ee-51ee2f099677,Wanda Williams,Business Administration,Engineering,20,Remote,Traveling,2935.0,131645.0
+4ef28469-0e17-464c-a3e0-e47ebce06e7b,Autumn Hayden,Electrical Engineering,Law,23,Remote,Sports,2995.0,35218.0
+6f4d130b-4219-47b4-b92d-2a00880b6295,Stephen Robinson,Philosophy,Arts,19,New York,Cooking,4612.0,69954.0
+39150f99-7046-4510-b586-ea4e6d38ecf8,James Harris,Biology,Health,23,San Francisco,Sports,3000.0,76591.0
+d6202c6c-0dce-4045-b29e-233434e4e3c1,Alexandra Long,Biology,Business,23,Chicago,Cooking,3439.0,69566.0
+1b7c8524-8d24-4dcf-b8c0-db9f8cf089e4,Paul Scott,Biology,Business,22,Remote,Sports,1023.0,63782.0
+bfdd6050-a582-4fe5-a235-f465a3597088,Scott Huynh,Architecture,Health,22,Chicago,Reading,2909.0,92018.0
+91b671c9-62d3-4d99-a782-bbf684543a97,Andrew Chambers,Information Technology,Arts,22,Houston,Sports,2575.0,68501.0
+dbf20af5-d19e-4567-b800-bddffaabdfc8,James Reid,Physics,Business,24,Houston,Traveling,3010.0,134296.0
+180b433a-8b69-4079-8584-8b514706f1b6,Jacob Wood,Mathematics,Science,18,San Francisco,Reading,4544.0,108637.0
+be1abfe5-c0ea-4b7f-baad-5544c6258cfd,Chad Evans,Information Technology,Business,18,Remote,Cooking,2644.0,148892.0
+658f606d-ec22-4c0c-ac19-9139ae1fc74f,Cynthia Ball,Philosophy,Engineering,23,Boston,Gaming,3034.0,73355.0
+4abe311b-a350-4fcc-ae26-229d87465823,Jason Carr,Psychology,Arts,25,Boston,Cooking,3908.0,37792.0
+157d6c6f-96fe-4ae4-b896-f5e1f574db0b,Natasha Hamilton,Electrical Engineering,Health,23,New York,Sports,4910.0,102975.0
+90800eed-b271-45e0-bb3a-6078aebdb418,Jared Webb,Psychology,Health,19,New York,Traveling,1232.0,50414.0
+615f9aac-87b7-4115-9bf6-94fe656db3f0,Bradley Mitchell,Electrical Engineering,Law,21,Los Angeles,Cooking,2093.0,38597.0
+5d0a5467-4ff0-4dba-9441-47be32347bc1,Shannon Carrillo,Philosophy,Law,25,Los Angeles,Traveling,3916.0,100356.0
+84726649-b50f-4be5-812e-ad510de33bf9,Jessica Davis,Information Technology,Law,23,Boston,Traveling,3888.0,94799.0
+a01f8ca9-c921-435d-af17-749d387d29b1,Anna Cunningham,Nursing,Business,21,San Francisco,Cooking,4899.0,67214.0
+55404f92-f389-4c36-900d-9dadafcfcc6b,Mindy Bailey,Mathematics,Business,24,San Francisco,Gaming,2500.0,111692.0
+33ffa50a-b73f-4243-bd25-a330e9e7026b,Timothy Fields,Law,Engineering,18,Boston,Reading,4553.0,149734.0
+5841bda6-1422-4818-bb39-aa76ee6cc427,Darrell Merritt,Electrical Engineering,Arts,25,Boston,Traveling,2024.0,79638.0
+3824509a-546a-44b1-afc2-724890adc9a5,Jennifer Oliver,Psychology,Law,19,San Francisco,Sports,3966.0,68521.0
+4055056a-00f6-438f-a2f1-0da47ee363ad,Christopher Fox,Business Administration,Law,24,San Francisco,Reading,2734.0,119558.0
+8ce803d5-3b0a-462b-9baf-c3565e7130c1,Joanna Best,Physics,Engineering,18,Houston,Cooking,4133.0,119059.0
+8831f2b1-d3c0-4598-ac96-d5fa561d10e1,Breanna Perez,Computer Science,Business,19,Houston,Traveling,4072.0,83473.0
+ed28cef8-fbe0-47b2-a6c8-6061583c846a,Kyle Burns,Nursing,Science,19,New York,Music,2582.0,113942.0
+d9177004-5e8d-4b1f-81a8-9a582db102c3,Joshua Williams,Physics,Science,23,Remote,Music,3223.0,39841.0
+1196bcc2-e916-4bd1-8677-f090d5ed499d,Latoya Peters,Computer Science,Business,20,New York,Cooking,2513.0,133153.0
+290805e3-53b1-47e8-ba40-94bf1c054f6c,Tammy Rodriguez,Biology,Health,22,San Francisco,Cooking,2637.0,124953.0
+34d7871b-4a41-4a14-8e6a-a23056d5933b,Douglas Myers,Physics,Science,20,New York,Gaming,3269.0,114437.0
+6e36a008-05d6-4a51-93a2-0961ff76d607,Christy Wright,Chemistry,Engineering,19,New York,Cooking,1340.0,53080.0
+b3e43a55-6144-4f2a-9d6f-2e99d2d87785,Yvonne Dillon,Business Administration,Law,20,Chicago,Cooking,1335.0,70649.0
+ee53c3fb-8bb1-4151-9839-bd5404567e8f,Lawrence Vasquez,Biology,Engineering,21,Remote,Traveling,3112.0,106746.0
+cae0929c-b2ec-4d4d-a134-40554b2ad14c,Annette Thomas,Chemistry,Arts,22,Boston,Music,3968.0,60629.0
+837ca5cd-da75-46cf-93cc-97f00cb5fa01,Timothy Anderson,Psychology,Engineering,19,Remote,Cooking,1106.0,114056.0
+32913b56-ed14-42dc-9550-6acb0e9806da,Megan Ray,Law,Health,18,Chicago,Cooking,3268.0,122607.0
+d3c2566c-d67e-4976-a664-353aabfcb304,Jacob Mora MD,Law,Health,23,San Francisco,Cooking,3089.0,77587.0
+82f3df88-7ba4-4841-b875-ac796bb388c3,Michael Elliott,Biology,Engineering,19,Los Angeles,Music,4342.0,130773.0
+d5d6cb89-7ae8-4e84-b1e7-6a4aed73fa6b,Henry Nelson,Biology,Engineering,21,Boston,Sports,3208.0,56536.0
+7de53b78-ccd2-476e-8423-f470edfeba73,Jason Hughes,Law,Business,20,Chicago,Gaming,2830.0,51884.0
+337b1110-85b0-434a-9562-aadab4e73784,Timothy Rivera,Psychology,Business,25,Los Angeles,Music,3871.0,120020.0
+27e3275f-b9de-49f8-9bc2-3cbc581dbd98,Michelle Clayton,Business Administration,Arts,20,Houston,Cooking,1363.0,67414.0
+4fc3fa95-b36a-4779-abcb-5d2c32e915f2,Michelle Wright,Information Technology,Engineering,23,New York,Music,2897.0,40619.0
+954f71d3-c1ad-4b6e-93e7-8d5039636100,Katie Williams,Biology,Business,23,Boston,Sports,2212.0,148881.0
+666c1d9a-e7e8-43b6-bdf1-89792725746f,Kelly Horn,Psychology,Arts,23,San Francisco,Gaming,4927.0,91599.0
+b0af4562-3115-4ea9-ad5b-0ba744d238ef,Stephanie Richmond,Electrical Engineering,Law,25,New York,Gaming,2894.0,117078.0
+13b746a5-a8d0-4998-b7e1-c489d63f5f39,Mary Nicholson,Chemistry,Arts,19,New York,Music,4514.0,131149.0
+3dafac3b-a440-4a40-bb0b-adcfbbbb15ca,Amy Campos,Business Administration,Health,21,Boston,Reading,4373.0,54988.0
+0b7b31b1-e616-409c-b6c2-954db755c04e,Sarah Yates,Mathematics,Business,25,San Francisco,Reading,2833.0,84470.0
+64983251-2bba-4528-b58b-67c4ed4ba822,Julia Lewis,Law,Arts,20,San Francisco,Reading,4469.0,75137.0
+61802eda-0805-4a89-9838-e9416d27fed9,Ana Baird,Physics,Science,24,New York,Traveling,1930.0,77937.0
+c95f0726-d44c-44b8-855d-f68f3ed5259b,Mrs. Alejandra Cameron,Nursing,Law,21,San Francisco,Gaming,3669.0,95955.0
+bba5311a-9486-4474-bb12-3dea4d0d16ec,Matthew Pacheco,Architecture,Law,19,Los Angeles,Sports,4969.0,64816.0
+aea25b97-050d-4f60-b837-5833fee17c73,Matthew Kerr,Mechanical Engineering,Science,25,Houston,Music,4758.0,49193.0
+635868d7-3388-48b1-86a8-eb9ac309bc5f,James Duarte,Law,Arts,19,Chicago,Gaming,3333.0,30939.0
+fe726da7-725d-4be7-81a9-6d9c5f6c1f02,Kimberly Acosta,Mathematics,Arts,19,Remote,Reading,2088.0,41299.0
+4516e6b5-a99d-4fdb-917f-42867f836652,Patricia Logan,Law,Law,22,San Francisco,Reading,1129.0,105240.0
+456c6da6-5cd9-44f4-9067-d2f8a72a04b4,Desiree Bruce,Psychology,Business,18,Los Angeles,Sports,1869.0,49808.0
+c381e44a-9625-4894-8c43-f979296a854a,Victoria Blackburn,Business Administration,Health,24,Chicago,Cooking,3736.0,96042.0
+17d80862-9ae5-4af6-8e05-1d1cfd699d7b,Tammy Chapman,Law,Business,23,San Francisco,Music,4508.0,145183.0
+83ec36eb-8c18-4cb5-8d78-481436f497a2,Laurie Crawford,Computer Science,Engineering,24,Remote,Traveling,3336.0,67536.0
+c07e5c42-4c5d-41ad-ae1a-64a7cc9cf5b6,Zachary Macias,Chemistry,Arts,25,Houston,Sports,3712.0,115710.0
+bb85f933-fdb0-4209-8977-f12b7e76059c,William Kelly,Biology,Law,21,Boston,Traveling,4058.0,44421.0
+ad146f17-655a-4fcb-9d4e-2a89b1952c6d,Scott Wilson,Electrical Engineering,Arts,25,New York,Reading,4448.0,123308.0
+333ee72c-7bee-4d9c-a33c-ee138e903851,Jack Mason,Mathematics,Engineering,19,New York,Sports,3194.0,132048.0
+39129d82-cf28-4e84-9d65-e918ce27e345,Michelle Harris,Architecture,Law,24,Los Angeles,Music,4324.0,62031.0
+daf25f78-531d-423f-a9cf-e4cf0669c8e2,Dustin Bennett,Electrical Engineering,Health,22,Chicago,Traveling,1552.0,65241.0
+dc5da467-eb31-4b0b-931b-0ba8c2ec56d4,Paul Rodriguez,Law,Engineering,23,San Francisco,Cooking,2468.0,122180.0
+f45e80a6-4961-4cf1-87dd-ca397e38d46c,Miguel Allen,Chemistry,Law,21,Los Angeles,Reading,3250.0,122064.0
+6addda1a-ff2c-458c-94b6-891cf8b8f8a2,Kevin Owen,Chemistry,Science,19,San Francisco,Cooking,2194.0,69216.0
+c944150a-1a10-4118-a942-db9aee56752d,James Torres,Computer Science,Business,23,Remote,Reading,3297.0,103428.0
+38386835-172b-443c-9798-2d4dd0c2cda5,Troy Poole,Mechanical Engineering,Business,21,Remote,Music,3809.0,145310.0
+22ceb53f-2e31-4a8b-a5f2-45cbb6de7728,Brianna Russell,Physics,Science,20,Boston,Traveling,2354.0,71939.0
+b7e06890-462e-4c77-9de1-539ef585b63c,Meghan Knapp,Philosophy,Science,21,New York,Traveling,1430.0,33572.0
+84bd88ae-ba41-463b-8dd8-3238507a07ed,John Aguirre,Law,Engineering,19,San Francisco,Reading,3831.0,86734.0
+0bd1db56-8035-42e9-bb3d-b8a64620339c,James Zimmerman,Physics,Science,22,New York,Cooking,1525.0,130626.0
+0cb6cd78-1765-4024-ae69-e44a2dcc3d9b,Megan Vang,Mathematics,Engineering,20,Houston,Traveling,1324.0,128219.0
+8424d29b-d4b8-49fd-941a-a117ec918e55,Brittany Cain,Electrical Engineering,Health,24,New York,Sports,2505.0,112410.0
+af002e83-67c7-446a-95f0-48f2f567d79f,Joanna Wilkinson,Computer Science,Arts,21,Chicago,Music,1353.0,34289.0
+096016e6-0782-4580-a5df-241753c9570f,Sheila Campbell,Mechanical Engineering,Law,20,San Francisco,Music,2518.0,100360.0
+9ecd92a2-e060-4db1-8258-4a1715363a5e,Michelle Johnson,Chemistry,Science,23,New York,Traveling,3260.0,95577.0
+ac72f6aa-7717-4fa8-9376-664573356c1d,Sydney Fletcher,Electrical Engineering,Arts,23,Remote,Music,3444.0,138250.0
+707ca9b2-ff82-4c38-b333-05593a76289f,George Hughes MD,Business Administration,Health,19,Los Angeles,Reading,4154.0,44789.0
+bcc4bbb7-266b-4f83-83e0-86d80e4f8318,Matthew Hoffman,Philosophy,Engineering,24,Chicago,Gaming,3653.0,81108.0
+4c21b1e5-0970-41f9-84c2-a8f7ebdead59,Lynn Anderson,Electrical Engineering,Law,19,Remote,Cooking,4335.0,137504.0
+a8cd6c81-667d-4287-bbb4-3449872cfaaa,Sean Wade PhD,Electrical Engineering,Arts,21,Remote,Sports,3325.0,97415.0
+46024e14-19e7-42b4-baf6-05aef0feed55,Mark Jones,Computer Science,Engineering,19,New York,Cooking,2947.0,82195.0
+35c1907a-a5b0-4cc8-8bf2-12516405e81d,Isaiah Simon,Mechanical Engineering,Arts,23,Boston,Gaming,4527.0,122971.0
+23631332-d24d-48fa-82cb-539ebd5e3208,Dylan Fleming,Philosophy,Business,20,Los Angeles,Gaming,1152.0,144086.0
+52a490f7-2ee7-4f41-ae24-479a4ef8d178,David Mills,Chemistry,Arts,18,Remote,Cooking,4416.0,53259.0
+bfe6a875-bfe4-493d-a529-69e274af6024,Darryl Gonzales,Philosophy,Arts,25,San Francisco,Cooking,1463.0,122665.0
+3e409b18-9657-4e49-927d-fe7f5dec48b9,Jake Smith,Chemistry,Business,24,Chicago,Gaming,1323.0,119330.0
+d1b56d3d-846d-4425-a4fa-56c8582a9257,Erica Carson,Computer Science,Science,21,Los Angeles,Music,4059.0,118003.0
+c1170b54-5f2e-424d-ba8c-cd3302689677,Kimberly Gutierrez,Nursing,Business,20,Remote,Music,4703.0,141414.0
+e6f022ef-6a7f-48ba-bcb7-eb7fb981f0f5,John Green,Business Administration,Business,19,San Francisco,Traveling,2000.0,67400.0
+9874aece-0801-4307-9d10-56e174e15e14,Renee Young,Law,Health,22,Chicago,Cooking,4104.0,108583.0
+67195cbf-8491-4f0a-9d51-8fc1280b79af,Michelle Stone,Computer Science,Business,18,Chicago,Music,4273.0,53712.0
+94772f03-5900-4f62-91c8-70cf047347d0,Michael Willis,Architecture,Health,18,Houston,Sports,2026.0,33198.0
+5cd1667d-00b3-4070-9723-d5debcc7a0f2,Terrance Leonard,Information Technology,Health,19,Los Angeles,Music,2780.0,38459.0
+310f5cce-5031-4117-b44a-87b609380dff,Candice Jackson,Law,Science,24,Los Angeles,Sports,2598.0,106194.0
+381404c3-00d3-48d0-83f5-3fc8590b64c8,Michael Robbins,Physics,Engineering,21,Chicago,Music,2446.0,83963.0
+58c43352-23f1-4a32-a4a3-bca0d83f9f6b,John Harris,Computer Science,Law,21,Chicago,Cooking,1000.0,105439.0
+993313f5-9bc2-49ac-b415-489fe8aebf13,Kristie Walker DVM,Physics,Law,25,Los Angeles,Gaming,1068.0,91871.0
+e08a2a21-fcec-42e1-bb2c-22c696aea6d2,Eric Macias,Computer Science,Engineering,19,Boston,Traveling,2237.0,128045.0
+e977b11b-8a1f-4bc4-b403-6eead909ed2c,Kelly Jones,Nursing,Science,21,Remote,Sports,4211.0,57308.0
+49de4dfa-036b-4d60-af6b-657621f68ae8,Shannon Gonzalez,Biology,Arts,18,San Francisco,Reading,4814.0,133238.0
+e9440b91-9990-4b7e-8739-d434a310ab16,Alexander Hernandez,Philosophy,Business,24,New York,Gaming,3816.0,136375.0
+b41c0202-1ecc-487c-a62a-cd692d74703f,Roger Dudley,Psychology,Engineering,20,San Francisco,Cooking,3269.0,97898.0
+86c525e5-da6c-41c7-bc0a-92e0dd231668,Cassandra Bell,Chemistry,Law,24,Los Angeles,Reading,1666.0,104114.0
+04763a39-b0a9-4f7a-9258-324a1713b999,Juan Paul,Business Administration,Business,24,Los Angeles,Music,4881.0,56314.0
+1f58afd5-8184-48e4-95f0-f80c3fd75f16,Stephen Webb,Business Administration,Science,18,Boston,Reading,2538.0,62638.0
+5f7a0cfe-391e-4c7f-81a7-ab646ee10812,Justin Reeves,Electrical Engineering,Business,22,Los Angeles,Reading,4769.0,67920.0
+c530e3f4-c2b2-4f33-8a2a-f13d168c5bd1,Jose Brown,Information Technology,Business,18,Los Angeles,Music,1642.0,119079.0
+637ceb3e-46a8-4b9b-b7aa-972e6bb194a1,Daniel Thompson,Biology,Business,18,Los Angeles,Music,1952.0,97008.0
+0997535e-4ca4-4450-b3a9-498c163b722c,Jessica Fernandez,Business Administration,Arts,21,Los Angeles,Reading,2276.0,72745.0
+c1bcaa18-bc61-4fa5-9c7f-d1b302b5b23c,Dennis Nelson,Law,Business,19,Boston,Sports,4626.0,139872.0
+3c4053a1-36e2-4d25-9d95-bac180e5c690,Stacey Barrett,Business Administration,Science,25,New York,Sports,4797.0,92765.0
+1b7d3225-2d45-47e1-bb99-113d657ea236,Jessica Singleton,Business Administration,Engineering,20,San Francisco,Music,3033.0,57089.0
+357a99f3-45c8-4032-9689-2db9f738f575,Nathaniel Welch,Biology,Health,18,New York,Reading,4618.0,67537.0
+fc8878cd-e06d-405c-acd6-48c3f8321253,Traci Terrell,Law,Law,25,Remote,Reading,2312.0,35448.0
+9d154b69-2a5a-43ed-b379-b8c91265dc58,Billy Smith,Electrical Engineering,Law,23,Los Angeles,Traveling,1991.0,115410.0
+e57e4f3c-9e55-47b9-833b-8a57892beb07,Jessica Anderson,Mechanical Engineering,Law,22,Los Angeles,Cooking,2236.0,31973.0
+b278758a-44cb-4da5-9f00-e6eef126b1f3,Christopher Bird MD,Architecture,Law,24,New York,Traveling,1114.0,73233.0
+c3830450-24ec-4812-a43f-3b9f4a3cff19,Joseph Marsh,Mechanical Engineering,Law,25,New York,Gaming,4491.0,146204.0
+dfbe7d96-5600-4db5-ad6f-2efdbc031ca7,Thomas Wilson,Law,Business,23,Houston,Cooking,3558.0,124418.0
+146616ed-dea5-4cb9-8419-dbe28bde2973,Matthew Brown,Information Technology,Business,20,Houston,Gaming,2903.0,138672.0
+aed24e7b-e14f-4d8e-8e95-359dbdf5a53f,Erika Daniels,Business Administration,Arts,25,Boston,Reading,3851.0,96277.0
+8bdfd3d8-c59d-4867-baa9-551afe85743d,Bobby Cruz,Mechanical Engineering,Business,25,Chicago,Reading,3149.0,68282.0
+c8a3d5f4-3336-40ff-9598-88136c8a3714,Sandra Thomas,Mechanical Engineering,Business,19,Remote,Gaming,3893.0,85141.0
+a06a2629-ee33-4551-b9ab-476551a20d26,Sheila Hall,Electrical Engineering,Health,24,Remote,Music,4477.0,145485.0
+f0b1c5d7-bc8b-42fb-ad0b-bc6f399baf6d,Ian Wright,Philosophy,Health,19,San Francisco,Sports,2583.0,41957.0
+706c0e73-b7e7-443b-a1d5-162fc55f149c,Kimberly Dickerson,Computer Science,Business,25,Remote,Cooking,1334.0,88688.0
+d16071da-c11e-4b49-bec7-e464aaa3d951,Cory Soto,Biology,Law,23,Los Angeles,Cooking,4800.0,127469.0
+b249ed8d-4fc4-421f-a398-2023103ef856,Julie Hess,Electrical Engineering,Science,20,Boston,Sports,3548.0,47066.0
+03563b72-21d2-429f-bd6f-0bee0c21ca3e,Lori Jones,Chemistry,Arts,23,Boston,Gaming,2676.0,71398.0
+7445010e-9d6e-4428-ae9f-806f23fe94f7,Robert Kemp,Architecture,Science,19,Boston,Reading,2477.0,34753.0
+98e4381f-a8ed-4e08-ac52-94346e6c813e,Brian Burton,Architecture,Law,19,Houston,Gaming,1140.0,42974.0
+dae2afff-9adf-460d-bb2a-25ac4967bc0c,Debra Brooks,Philosophy,Engineering,24,Houston,Traveling,4600.0,95719.0
+12d87e1a-bc05-40b3-a197-769824ff15f9,Janet Rice,Psychology,Law,21,New York,Sports,2107.0,68932.0
+defe3713-99ad-483b-93d9-700aa8cf0105,Elizabeth Wolf,Computer Science,Law,20,Boston,Reading,1548.0,113395.0
+bd23ef42-5bab-483d-9b7f-d498064b5ca8,Shawn Mckee,Biology,Engineering,25,Remote,Music,1186.0,146263.0
+53ccf20e-50b5-43fd-8fbe-951694703451,Jennifer Whitaker,Biology,Science,19,Remote,Sports,2572.0,90453.0
+f03a4621-1e88-4bc0-81c8-67d1aea40f35,Jennifer Jones,Mathematics,Business,22,Houston,Reading,2379.0,145632.0
+e5e357e6-565a-4346-9e9c-64c08f0b9ca6,Christine Anderson,Computer Science,Law,22,Houston,Reading,1906.0,139631.0
+c395d74b-93e1-40f0-880c-c59d31d91a1c,Samantha Blake,Nursing,Engineering,20,Remote,Gaming,4786.0,72276.0
+66e27be9-281b-4e25-8bb4-21d566117a8a,Courtney Richardson,Business Administration,Law,23,Chicago,Reading,2379.0,100056.0
+b0566019-f673-48c9-ab6b-8c23fbd8f31f,Nicholas Landry,Physics,Health,23,Houston,Music,2335.0,116965.0
+52563413-d8b1-4fe1-b72a-5a085229aee1,Matthew Dudley,Chemistry,Health,24,Los Angeles,Reading,2472.0,64385.0
+7013eda6-9745-405e-adaf-4f5ba20d26fc,William Walters,Mechanical Engineering,Law,22,San Francisco,Sports,3708.0,81736.0
+34c5f7c8-0a38-44a3-9174-dad22582fe0f,Larry Ho,Business Administration,Engineering,18,Chicago,Traveling,4088.0,71424.0
+b1164cda-fa32-447d-9534-01bb6e5ca872,Kathleen Davidson,Biology,Science,25,San Francisco,Traveling,1320.0,55616.0
+bc00aa4e-4275-4397-bbde-9a25379b70f5,Sara Brown,Chemistry,Science,23,Los Angeles,Reading,3558.0,48376.0
+91d066c1-76fe-416b-8571-e3416e3dfbc0,Bradley Williams,Information Technology,Health,19,Remote,Music,1453.0,62627.0
+5173fc1e-0c60-4335-a88f-98bc499cb81e,Daniel Patterson DVM,Physics,Engineering,18,Los Angeles,Cooking,2655.0,135039.0
+2b1fd33d-2d45-478a-a0b8-fd00e5442296,Melanie Kennedy,Law,Health,24,Houston,Sports,4937.0,126966.0
+f2242d13-c229-4fde-b708-5edb8d0a75df,Larry Lee,Mechanical Engineering,Engineering,20,Chicago,Gaming,2744.0,100402.0
+9eca3862-6dcd-4ec4-9587-9593ac14b77d,Taylor Shaffer,Information Technology,Arts,25,Houston,Reading,1430.0,108850.0
+f7e3d52e-06b9-4943-bb8b-abb2b079ecbe,Heather Murray,Law,Business,18,Chicago,Sports,3700.0,50010.0
+01557f66-7fef-4ffb-bc23-401c57fd253f,Erika Brooks,Business Administration,Science,24,Houston,Cooking,1799.0,75969.0
+71a8e819-b50a-4325-850c-df3613992ff5,James Perry,Chemistry,Science,19,Houston,Traveling,2672.0,92753.0
+4baac436-ea7c-48c1-8173-3bc7980a3d22,Alexis Taylor,Information Technology,Science,22,Chicago,Traveling,3997.0,131273.0
+3e0ded11-cd3e-4946-8d84-1d174c95be6f,Robert Williams,Philosophy,Law,19,Remote,Cooking,3779.0,51889.0
+bb2588d7-43cc-4825-8bac-fe541e5a8c8f,Kathy Williams,Biology,Law,21,Chicago,Gaming,3373.0,50634.0
+0e7610c5-3c0b-4dab-a149-113d1ccf8ded,Ronald Steele,Law,Health,22,Remote,Gaming,4545.0,131276.0
+b55c2188-92b5-413a-88ea-7288780e82d5,Amber French,Architecture,Business,22,New York,Sports,3327.0,91562.0
+9448122b-5b2a-47bc-8a47-3e63179e3bb3,Monique Rodgers,Electrical Engineering,Health,21,San Francisco,Sports,3022.0,119435.0
+659dee6d-ba7d-486f-8741-b1860db856e9,James Mckay,Chemistry,Business,19,Boston,Reading,2753.0,141364.0
+11069d02-3357-4ed5-b878-438c687df65b,Dr. Tiffany Good MD,Philosophy,Engineering,25,Houston,Gaming,2151.0,35117.0
+b8ecff3b-47d6-4e2b-827d-d4dbe62684e3,John Patel,Biology,Arts,24,Los Angeles,Traveling,4261.0,92396.0
+919f1a87-1c8c-4cc9-9559-08628982b255,Mr. Cody Chavez PhD,Mathematics,Health,18,San Francisco,Music,2884.0,141984.0
+0165d7d6-5403-4ed0-aee4-f438105543ba,Steven Powell,Mechanical Engineering,Business,22,San Francisco,Reading,2403.0,34916.0
+650cd46e-571c-44ec-a61f-4de1a16178ee,Stacey Fuller,Computer Science,Science,18,Los Angeles,Gaming,4283.0,148057.0
+82c0859f-9dae-4820-8cc8-ac0a5bcee5f0,Donald Church,Nursing,Engineering,23,San Francisco,Music,2107.0,130256.0
+09e7f246-b0cb-486e-8806-cbbaaa14568c,Ronald Gross,Mechanical Engineering,Arts,23,Remote,Gaming,2667.0,135203.0
+6b06a9cf-4e76-422c-ae37-4dc7091fc3ec,David Allen,Business Administration,Engineering,24,Houston,Traveling,1129.0,53878.0
+dbb2176f-b8b1-4971-85f5-82efee324dd1,Alexander Reyes MD,Law,Arts,18,Los Angeles,Reading,2960.0,103245.0
+3d1b6add-6470-4ef3-a37f-9293d09bec5d,Angie Brown,Mathematics,Business,24,Chicago,Music,4890.0,39155.0
+5e6874a8-f1d4-4267-8348-f53dbcb61831,Clayton Haynes,Nursing,Law,21,Chicago,Cooking,3261.0,147539.0
+73a3d119-a8d5-42ca-bb65-606c8306fbeb,Jason Gonzales,Nursing,Arts,22,Chicago,Music,4260.0,125952.0
+19fa9e3b-00f8-4976-9987-13f53bf0a655,Andrew Cox,Biology,Health,20,Houston,Gaming,2829.0,136304.0
+111171e9-63d6-4413-a5d3-02028ca81a14,Amy Meyers,Biology,Business,24,Chicago,Reading,4586.0,30532.0
+111039ce-5515-4eda-8c52-41faf50eea3b,April Coleman,Business Administration,Law,25,New York,Cooking,3980.0,45187.0
+888b7229-7785-47df-b472-5992dedc60a8,Christina Reynolds,Architecture,Law,22,New York,Traveling,1214.0,139665.0
+29c07825-421b-4569-af9a-23b743d9696a,Chris Bates,Architecture,Arts,19,San Francisco,Cooking,2025.0,122231.0
+1e24fb43-2b41-4233-976b-390504fd6002,Megan Black,Computer Science,Health,23,Houston,Sports,4690.0,52125.0
+89479767-118d-4f79-b2aa-3fd8fdef74e5,Kim Ramirez,Chemistry,Engineering,22,Chicago,Music,3421.0,109569.0
+36673160-13fd-4fa0-a72a-ec472c9526b6,Blake Maldonado,Physics,Engineering,20,New York,Sports,1077.0,102407.0
+2eba525a-5202-4277-bd1e-8cc25b9d8195,Crystal Alexander,Physics,Engineering,18,Remote,Traveling,2811.0,143355.0
+cb32798e-1803-4e6f-9cf7-d2854a08bf6f,Cory Manning,Law,Business,22,New York,Traveling,3587.0,80432.0
+241894a5-b251-4612-a490-f27188245147,Jacob Fernandez,Computer Science,Business,18,Houston,Traveling,3547.0,134895.0
+bc05c6a7-811c-4ca2-9a61-de967df84b57,Joshua Lee,Physics,Business,21,Houston,Reading,1576.0,68136.0
+bc83408b-0563-4276-b7c0-7e9dbc54c353,Mark Swanson,Nursing,Engineering,18,Remote,Traveling,2522.0,93688.0
+591e7ff3-6da4-449a-bf21-116b6e88de85,Kristen Carter,Law,Engineering,21,Remote,Music,4674.0,94654.0
+26dfdc1d-0e96-431f-b674-df2744595f17,Lisa Russell,Electrical Engineering,Business,20,Los Angeles,Gaming,4624.0,54971.0
+5ed7ad0c-93f4-4ca2-a478-6b5dc3fbb273,Cody Davis,Business Administration,Engineering,24,Remote,Traveling,3520.0,86593.0
+951751f2-4897-4e96-a4b0-4a6a1001d74f,Edward Chapman,Electrical Engineering,Business,18,Boston,Cooking,3268.0,75877.0
+e46e2a92-40a4-49b1-8cdd-ca8849412403,Krystal Wilkinson,Architecture,Arts,25,Remote,Music,4202.0,129020.0
+99d5934a-ec9b-48ad-aadd-1021b03cd95d,Stephanie Lawson,Chemistry,Arts,25,New York,Music,4489.0,108094.0
+c63a8afa-ced1-4ceb-a066-7d27e64244b3,Kelly Parker,Mechanical Engineering,Health,25,Los Angeles,Gaming,2489.0,74043.0
+0fa13686-ea10-4dac-9b77-e50778780640,Paul Davis,Architecture,Health,24,San Francisco,Traveling,4106.0,66111.0
+e2b46fca-8447-4a65-ada1-cdf09dd82c72,Kevin Saunders,Business Administration,Health,24,Boston,Cooking,4030.0,100404.0
+d345f5ec-fa33-4c42-a152-a7e3d716aedd,Michael Lewis,Psychology,Law,23,Los Angeles,Gaming,4091.0,127996.0
+42b7a132-d427-4336-a2a0-a2010ff1ae3a,Peggy Hendricks,Nursing,Science,21,Los Angeles,Traveling,3274.0,46979.0
+2ee465de-399a-469d-aef0-6a750c639ee7,Jennifer Adams,Information Technology,Law,18,Boston,Cooking,4569.0,74417.0
+cfe66fd5-e685-4686-9548-f56772f6de00,Natasha Reed,Law,Health,24,San Francisco,Music,1512.0,131550.0
+e710f987-6bce-48e1-928c-87a35923c1df,Ryan Williams,Philosophy,Science,21,San Francisco,Gaming,1826.0,133415.0
+686bb1f4-90e4-4f3f-acea-485ef3ca6f79,Gina Wilson,Mechanical Engineering,Business,24,Los Angeles,Sports,4873.0,93123.0
+fc47a9d8-2563-4ba6-b6f0-e5cc6e5d114d,Amanda Villarreal,Law,Arts,18,New York,Gaming,1565.0,114911.0
+d13450d1-3e51-4151-9ee3-72afa4411238,Kelly Lee,Physics,Health,23,Chicago,Gaming,2287.0,114729.0
+6d592961-a18e-488c-adaf-97b43a842e05,Amanda Barnes,Biology,Science,25,Remote,Traveling,2259.0,107077.0
+bae5140a-395c-43e4-ab0e-4b6403b78d25,Annette Bowers,Law,Engineering,25,Los Angeles,Traveling,4971.0,41747.0
+69cef3a2-55be-4b9f-a74d-0a86b6c46f79,Dennis Ross,Mechanical Engineering,Engineering,23,Remote,Music,2339.0,74054.0
+2e19cfe3-780d-4d9b-b715-15a433aafdf3,Craig Sanchez,Biology,Arts,19,Houston,Reading,3414.0,39473.0
+0de1c2c9-976c-40a9-83c3-b4e5c7033227,Anna Gregory,Nursing,Business,18,Los Angeles,Reading,4904.0,138219.0
+9ba6aff3-e775-4835-820d-ed8399e0ebad,Maria Sims,Philosophy,Science,25,Houston,Reading,3561.0,140455.0
+0f90a5f2-8f63-46bd-b36f-eddc9da2f31c,Hannah Bautista,Mechanical Engineering,Arts,25,Chicago,Sports,3492.0,135744.0
+417f29d0-436b-4bdd-867c-66072c15c92d,Joe Campbell,Information Technology,Arts,20,San Francisco,Reading,2684.0,32539.0
+e11d57c3-980b-44f5-a14f-0d7a34552115,Heather Lee,Business Administration,Health,24,Chicago,Music,4224.0,103910.0
+f2fb7f8f-4365-472b-888b-be7aa41d3528,Laura Silva,Nursing,Law,22,Houston,Sports,2166.0,40736.0
+6a629034-1ef1-4e38-8c88-7a440d375f74,Corey Black,Chemistry,Arts,18,New York,Reading,4593.0,43700.0
+5dc1cd2e-0401-4896-94c3-7a3fa0c2f90f,Sarah Thomas,Philosophy,Engineering,23,Chicago,Cooking,1495.0,115638.0
+1dfa078d-3791-45fb-8be8-32aa63498d6b,Maria Khan,Mathematics,Health,18,Remote,Reading,4945.0,53484.0
+e56edaee-b0c0-4c32-8480-afa1800a9a70,Jonathan Johnson,Psychology,Health,22,Houston,Sports,1640.0,101155.0
+1956d502-a6d0-4593-ab19-2435b7719cf4,Heidi Alvarez,Law,Science,21,San Francisco,Traveling,3698.0,57883.0
+7719e2b6-58de-4a75-8d23-058a410cafeb,Brandy Lowe,Chemistry,Law,21,Remote,Gaming,4259.0,100070.0
+80810bc0-ee76-4474-9e88-c32fd5d5e350,Jill Patrick,Information Technology,Business,24,Remote,Gaming,3566.0,79983.0
+9e9e4a94-62e4-4f21-a742-fd78e2659375,Hector Hunt,Business Administration,Law,20,Remote,Cooking,1793.0,44769.0
+7f1ff6a7-18e7-4239-a17f-0573c856768f,Autumn Hawkins,Mathematics,Arts,23,Houston,Gaming,3773.0,103726.0
+7d217a2f-20d2-4d26-8fcb-72c2d5cdd60c,Jennifer Carrillo,Biology,Science,23,Remote,Gaming,2275.0,71046.0
+fa0a1a32-2ccf-4135-84c2-dcca0c862eed,Gregory Giles,Physics,Arts,25,Los Angeles,Music,1986.0,129514.0
+b19a297d-6f6e-430d-b99e-7c2af7034dd8,Bonnie Jones,Biology,Health,23,San Francisco,Traveling,4139.0,75479.0
+954123e4-c9ba-4486-b546-eaa4e3b39074,Adam Wolfe,Philosophy,Health,21,Boston,Reading,1043.0,55540.0
+04da4d50-e8b8-4d83-aa4a-00f5fccd7743,Matthew Porter,Mathematics,Business,23,Chicago,Cooking,1895.0,98922.0
+39f18f75-b229-465b-b4fb-348126128489,Kelly Lopez,Biology,Arts,22,Chicago,Sports,3803.0,57451.0
+2ef01ed1-6413-455c-818b-9c9321c6f90f,George Soto,Mathematics,Health,24,San Francisco,Gaming,4158.0,83688.0
+1070ee93-b43e-4983-938f-f337754b49bd,Rose Hale,Business Administration,Health,18,Chicago,Gaming,1503.0,58318.0
+56e4a7dd-2a26-480a-b4b1-ecb42d96ca4c,Vincent Silva,Physics,Science,23,Boston,Music,1684.0,66360.0
+1eb22bca-f49f-438d-907f-ddad2249d7d2,Christopher Barker,Law,Law,20,Los Angeles,Sports,3349.0,73376.0
+549e0f74-af59-4e29-a735-1f25d2d4097a,Paige Scott,Psychology,Law,21,Remote,Gaming,1715.0,106261.0
+a4a2ca9e-3b81-4f5d-a660-d6ae3a071832,Mr. Jonathan Mcconnell,Mechanical Engineering,Arts,24,Remote,Traveling,2918.0,126301.0
+a28a6c9c-e8cf-4419-b988-5ef3c3a9e722,Natasha Black,Physics,Engineering,20,San Francisco,Traveling,4113.0,83952.0
+67d601b7-808d-4676-b426-294b24f01287,Heather Miller,Architecture,Arts,20,Boston,Music,2768.0,41148.0
+0200024e-fcbb-4cb2-91cb-ed5738fcaff7,Yvette Lyons,Philosophy,Health,20,Boston,Sports,3601.0,54941.0
+95466ee7-8dc6-4eba-865c-55ef5bfc7a22,Brittany Ramirez,Psychology,Science,21,Los Angeles,Traveling,4261.0,31414.0
+af21cfc3-7242-451f-a4ec-eb3d3508ed51,Aaron Ewing,Electrical Engineering,Health,20,Boston,Sports,1141.0,38070.0
+9c820d0e-c07d-4e4a-95c2-5f78c96fc059,Margaret Lynch,Law,Science,19,New York,Cooking,3340.0,49706.0
+c0891089-7c56-4b89-a6cc-f4931f6f9153,Jerry Briggs,Architecture,Law,22,San Francisco,Gaming,1822.0,110963.0
+3774b4ce-762e-4d03-aedc-8bc1d884a57b,Suzanne Bauer,Philosophy,Engineering,25,Chicago,Reading,4166.0,108486.0
+d42d1492-1301-4e48-82a3-410362a0e509,Allison Turner,Electrical Engineering,Health,18,Boston,Sports,1408.0,99698.0
+8a9421cd-2c51-4fbb-ab7d-3c1f5d18c193,Kristin Nicholson,Computer Science,Engineering,23,Los Angeles,Music,3556.0,96771.0
+02087088-6a3c-4e11-b2f6-4eb1528fe215,Robert Smith,Psychology,Engineering,24,Boston,Sports,1175.0,130503.0
+610f1f5e-e5a1-4f43-b0b1-686323b6b9e7,Allen Adkins,Computer Science,Science,22,Boston,Traveling,1060.0,105394.0
+3eaf0270-ec9b-4c52-ba88-8f1369dbd841,Sheila Martin,Mathematics,Health,22,Chicago,Sports,2772.0,69320.0
+5bd83017-974a-455b-bdfc-f90cae1c58ea,Shannon Taylor,Physics,Engineering,25,Boston,Music,4868.0,123547.0
+4ce791d9-a276-46cf-9a63-9966c9e38902,Heather Perez,Mathematics,Engineering,25,Boston,Reading,3130.0,93729.0
+eb33d3f4-3ce9-43e1-b80b-9a3c2f5b0a2e,Ebony Flowers,Psychology,Health,19,Chicago,Traveling,3439.0,50753.0
+be7e466c-7706-45a1-9b75-99d8766a8a7c,Jenna Wright,Philosophy,Business,24,Los Angeles,Gaming,2368.0,63009.0
+b8194c02-b42b-48ae-9538-4209b5f6e74e,Lauren Pierce,Physics,Business,25,Boston,Gaming,4768.0,104969.0
+db594941-8216-464c-b855-c782332e5012,Stephanie Salas DDS,Computer Science,Science,19,New York,Gaming,4315.0,40338.0
+a08ce729-f1c4-4e03-9c1a-3eff93d2d838,Renee Le,Electrical Engineering,Arts,25,Los Angeles,Gaming,1528.0,132013.0
+b995271d-a612-4eb4-82b1-883c0a5a3fa8,Dan Moss,Architecture,Business,19,New York,Cooking,3719.0,101793.0
+60505289-3d1b-4a48-9b0a-b7b7140a8d06,Jennifer Gibbs,Psychology,Engineering,25,Los Angeles,Traveling,3579.0,56046.0
+cf67f26f-b2a5-4b8d-97c2-ae7c64ede03a,Johnathan Porter,Law,Science,22,Houston,Sports,3079.0,96610.0
+e2ec04bb-3178-44ff-ad2a-67716e47aace,Blake Roman,Psychology,Arts,22,Chicago,Gaming,2015.0,78950.0
+a5276df1-20a8-48b6-bf61-1ebb0e446365,Kathleen Mitchell,Mathematics,Engineering,23,Houston,Reading,3906.0,117697.0
+56d7290c-bd74-407e-b3a7-5c58025dfecf,Eric Clark,Psychology,Business,19,Remote,Traveling,4381.0,86894.0
+ef0c5104-6bf0-4f8a-a239-5697b895a8ea,Chad Brown,Psychology,Engineering,20,Los Angeles,Traveling,3047.0,34870.0
+6ced3c9b-37dc-487f-b224-e4a9a7f55e82,Joyce Jones,Computer Science,Engineering,24,San Francisco,Sports,3087.0,143600.0
+6fd39bca-a5e6-4cc5-8caf-da9108dcf4e7,Jordan Hicks,Biology,Law,21,Boston,Reading,4961.0,66369.0
+f84e3833-d08d-4aae-8e09-0d48bedd7bde,Dylan Perez,Nursing,Law,18,Boston,Reading,1565.0,105085.0
+91ac586e-08bb-4554-b6cb-5dae49259482,Haley Trevino,Electrical Engineering,Engineering,24,Chicago,Cooking,2997.0,72843.0
+3e00dc6b-534d-417b-9950-4d3b65d2d418,Carla Johns,Law,Health,24,Houston,Gaming,3317.0,116901.0
+57bc0c1a-e35c-4b17-a45a-104321fcdcab,John Lopez,Biology,Engineering,19,Remote,Gaming,1199.0,120781.0
+68faa06b-8727-4f2b-a14b-42efab044bc4,Scott Williams,Information Technology,Business,25,Houston,Reading,4782.0,107433.0
+580c3b79-7183-4dda-b395-5dbdd53baf17,Jody Chen,Biology,Law,22,Remote,Sports,2605.0,44245.0
+87b3c6ff-ce86-4531-8551-cbdb7922d67d,Chase Willis,Electrical Engineering,Business,20,Boston,Traveling,3389.0,142884.0
+ebe8b59e-b124-4441-b86b-090f5a177b02,Joe Gamble,Mechanical Engineering,Law,19,Chicago,Gaming,4661.0,149485.0
+adf41038-5abf-43a8-82ac-bcbce9f2dfba,Chad Elliott,Physics,Engineering,20,Chicago,Traveling,1973.0,124829.0
+804f9af7-e0c8-4ba4-8f8a-a09295c47eb3,Michael Brown,Philosophy,Engineering,23,Los Angeles,Sports,1386.0,74316.0
+b8e762cd-f892-4291-94a0-82b8c6a7cf85,Cindy Davis,Chemistry,Science,24,Boston,Sports,1793.0,47294.0
+2ebb162b-2fdb-4704-bf76-a81e5210ceda,Dr. Jamie Kramer MD,Chemistry,Law,24,Houston,Reading,4606.0,81163.0
+f208224e-97e3-4015-9dd3-c8139462dbaf,Lisa Gutierrez,Information Technology,Arts,24,Chicago,Gaming,2904.0,59400.0
+7139f924-f229-406b-933a-9d581a8d59f6,Sherry Kirk,Mechanical Engineering,Arts,19,Houston,Traveling,4202.0,49186.0
+4a1ba43e-0156-4c67-8ee0-7415590cfe75,Edward Morgan,Architecture,Health,25,Los Angeles,Sports,4788.0,55347.0
+7e2bcff0-5911-4425-89c5-0e5bd4bb2944,Kelly Harris,Mechanical Engineering,Health,19,Houston,Cooking,3033.0,92774.0
+707bdf50-071b-43cd-993c-201c30ae5d22,Joel Gonzalez,Biology,Business,24,San Francisco,Traveling,2285.0,120549.0
+0d6cf714-fa75-46b2-8570-277ba06e0732,Andrew Welch,Information Technology,Engineering,20,Chicago,Reading,1628.0,108515.0
+e500f0ee-3959-47df-ac78-7feb8b77a82c,Melissa Wilson,Architecture,Engineering,20,Boston,Reading,4267.0,51656.0
+55803c79-dc27-49da-958b-caebe1774881,Melissa Golden,Business Administration,Law,20,Chicago,Music,3843.0,31144.0
+5eb9edfb-8587-4954-b345-a554a992e3aa,Stacy Jensen,Philosophy,Engineering,21,Chicago,Reading,1471.0,30815.0
+4befc3e6-f521-445e-9d0f-732cdf3a85d9,Sarah Brooks,Information Technology,Arts,21,Los Angeles,Traveling,2114.0,96282.0
+aa2aa840-553b-44b5-bb4d-18c3333fa948,Stephanie Cardenas,Nursing,Law,21,Houston,Music,2275.0,139489.0
+c00aa357-49d9-4354-8b27-fa306c3b624c,Gabriel Jackson,Electrical Engineering,Health,24,Houston,Gaming,1970.0,146219.0
+72760527-c60c-4e2b-8b41-bd76a2fd93c0,Johnny White,Mechanical Engineering,Engineering,23,Remote,Music,3421.0,119255.0
+9522bb9d-c0ca-463e-bceb-7188de9fb48d,Christopher Beck,Physics,Arts,22,New York,Traveling,1399.0,134484.0
+726f0204-3cca-4f77-bea0-fdcc5a629fe0,Taylor Cole,Computer Science,Arts,21,Chicago,Cooking,4188.0,126344.0
+e81952c0-36ff-494a-961b-a7b92c451ff6,Charles Barr,Physics,Arts,24,Chicago,Sports,1135.0,62792.0
+d6b1600c-f312-4cc4-807f-6d57ae4aced4,Rachel Monroe,Nursing,Business,20,Boston,Cooking,2435.0,33913.0
+bd54d036-29c7-46b9-bb9f-7f9073a0e57f,Diane King,Architecture,Health,18,Remote,Music,3155.0,61156.0
+dfe9fc03-9669-411a-97c0-34304bc250c4,Anthony Wright,Business Administration,Science,22,Houston,Cooking,2983.0,61257.0
+1ca7266f-3c65-44eb-8dde-34743f7745b6,Daniel Perkins,Nursing,Law,22,Los Angeles,Gaming,3470.0,66944.0
+72796468-ce24-418b-9942-babb3a8e0acd,Alicia Miller,Philosophy,Business,18,New York,Music,1826.0,40791.0
+bcbab10c-80fb-490e-973e-8ee48108fc59,Judy White,Mechanical Engineering,Arts,21,Boston,Sports,3865.0,40729.0
+fe1eaba7-3e43-4662-9f20-04bacedad33e,Thomas Landry,Philosophy,Engineering,25,New York,Reading,3917.0,131230.0
+2b56c8e5-92ce-4281-8b48-b5993d83ef33,Robert Edwards,Business Administration,Engineering,22,Boston,Sports,1970.0,97926.0
+b47d2da6-8a8b-41a3-921e-8bbee006aa17,Daryl Drake,Mechanical Engineering,Law,22,San Francisco,Reading,2126.0,60623.0
+73d5e174-0b96-426f-bf4d-0b5293384ae3,Raymond Rogers,Philosophy,Health,18,Remote,Music,1921.0,121141.0
+c7851555-a009-4bf5-a078-a1eba0374df1,Brianna Dixon,Architecture,Science,18,New York,Music,4677.0,55120.0
+9594994f-4066-474a-816b-d64770036830,Robert Johnson,Physics,Science,18,Chicago,Reading,1710.0,62933.0
+c8f9f495-9ceb-4c19-ae5a-f2343e7c9123,Jerry Williams,Philosophy,Science,20,Remote,Music,1583.0,133141.0
+e628d231-02d4-48a8-9abe-94527f3a13b0,Tina Henry,Business Administration,Science,18,Los Angeles,Music,4264.0,74007.0
+ff24c19d-51cb-4bdb-895b-ebcd6298d739,Brandon Scott,Mathematics,Health,23,New York,Traveling,2595.0,124500.0
+1bcb4427-5e47-4f57-bd42-23af4f6c7861,Karen Gomez,Information Technology,Health,21,Los Angeles,Reading,2088.0,67840.0
+e51adefd-2f13-4df8-aebc-9bf108587a11,Donald Robertson,Chemistry,Business,21,Remote,Sports,2390.0,103965.0
+a1c7fef2-25e0-4949-8c55-d80269d621b7,Fernando Smith,Physics,Law,24,Houston,Sports,2155.0,94379.0
+7fe7d6d7-7d63-406e-8e47-729615ecf3fa,Bradley Mccormick,Architecture,Health,23,Houston,Sports,2213.0,147426.0
+38e87546-2272-4c27-b386-d9aa2387c18b,Tyler Howell,Physics,Engineering,18,New York,Traveling,1394.0,50823.0
+7347d405-7109-43a8-baff-a9eaccb8746c,Tara Perez,Biology,Engineering,19,Boston,Music,2116.0,73932.0
+de0d8724-8f03-4939-90ae-370160e22019,Kelly Johnson,Mathematics,Health,23,Los Angeles,Traveling,1292.0,147608.0
+392abb73-bdf5-4d64-a82d-5e6521d1aec2,Jesse Santos,Business Administration,Science,23,New York,Reading,2034.0,148111.0
+f4a9c463-9e8c-4f80-b224-edc4bcbb13e7,Ryan Moreno,Psychology,Engineering,23,San Francisco,Music,2661.0,79417.0
+adb85a76-ad75-45be-bdfe-65a0bd5038b3,Robert Gonzalez,Philosophy,Engineering,25,Remote,Traveling,2186.0,49858.0
+a522b029-2a85-4c5a-a788-64d3ecda9bda,Morgan Weber,Computer Science,Health,23,Houston,Sports,2768.0,96612.0
+50323f86-cbfb-463f-9284-094c49dffb05,Blake Thompson,Mechanical Engineering,Engineering,25,Remote,Gaming,2872.0,115815.0
+07a60146-781e-4042-b2ba-6c4de08d6fb9,Grace Henry,Computer Science,Arts,23,Houston,Reading,1256.0,146238.0
+311eeac6-9c8a-4edd-9caa-67cf5631d16f,Scott Strong,Chemistry,Science,22,Houston,Music,2287.0,145084.0
+4581af69-ee7f-4aaa-8d4b-c52dce15099c,Tyler Williams,Philosophy,Science,21,New York,Gaming,1733.0,111092.0
+56f22ad2-7cfc-4841-a602-6df8fc975bca,Mary Caldwell,Psychology,Health,25,Houston,Cooking,3539.0,123714.0
+de7b7e8a-e076-4ae3-b3aa-1ec7d99f598d,Debra Fields,Information Technology,Business,19,Boston,Music,2859.0,115758.0
+4d486b9e-7ed6-4f7f-95fe-0e99a240acdb,Vincent Smith,Philosophy,Law,18,Remote,Gaming,4076.0,128381.0
+4912c1a6-a380-4f57-bcfa-4d4cfaffdf6f,Shannon Banks,Information Technology,Science,24,Chicago,Cooking,3752.0,46429.0
+534f1f95-e080-4d67-bdcc-99a9a5bcbd49,Lindsay Navarro,Nursing,Business,20,Chicago,Cooking,1748.0,79403.0
+5d4e16e0-80d2-488c-aef0-0845c3a0bef6,Ashley Schmidt,Nursing,Engineering,21,Houston,Sports,1994.0,99053.0
+c893e1ba-2ca1-4788-8d18-53c28f510f81,Megan Palmer,Physics,Business,19,Boston,Music,3950.0,95573.0
+99062ede-de16-4f7b-b74d-d7e6c83bed7f,Rhonda Graves,Psychology,Business,21,San Francisco,Music,4392.0,58002.0
+5b527911-40ad-439b-94fe-7c6f0f30f598,David Thomas,Mechanical Engineering,Business,23,Los Angeles,Traveling,3431.0,63063.0
+9c59b33b-99ab-400c-bcd6-05e23338bf84,John Simon,Mathematics,Arts,23,Chicago,Music,1370.0,59577.0
+369a55c9-27e7-4fb1-ae6b-9da37077d133,Jason Leblanc,Biology,Business,25,Los Angeles,Reading,1938.0,35188.0
+d994d8bf-82bb-4f7e-b76c-33d9636c6397,Raymond Montgomery,Mathematics,Science,25,New York,Music,4785.0,49023.0
+e73544a1-7f20-4378-b153-2a5cb0d85db1,Jordan Wiggins,Electrical Engineering,Business,23,Boston,Reading,3792.0,139256.0
+44eb0621-5256-4a88-a536-a0feab5dd47c,Miguel Wells,Information Technology,Engineering,22,Remote,Traveling,3038.0,106452.0
+9e4f586e-9033-4e53-ac47-c6056cd4ed82,Heather Pratt,Psychology,Science,20,San Francisco,Sports,4017.0,51668.0
+8bb25ad9-c95e-44b6-aa87-52bbfaca110e,Penny Hensley,Law,Science,19,New York,Cooking,2562.0,46921.0
+b43ecc72-3eed-4d2d-a9c2-3d9d8cb2f319,Luke Kerr,Philosophy,Health,25,Boston,Music,2557.0,100460.0
+e66f81f0-2563-4ad1-ae3d-ea14586d3919,Cynthia Rangel,Psychology,Arts,18,Remote,Music,3175.0,62728.0
+e79c1b1f-f85e-481b-bc24-afb92c0d6464,Kristi Powell,Psychology,Science,19,Remote,Music,1582.0,88822.0
+2d56119e-0d5c-4427-9c11-0120bf3c1ae3,Thomas Carpenter,Computer Science,Business,21,Boston,Cooking,4926.0,149289.0
+3dec24e0-e3f1-4560-90ac-93178051a86c,Robert Cordova,Psychology,Arts,18,Chicago,Cooking,3921.0,68191.0
+26598b34-6689-42a2-bdd2-3df27d9e18eb,Steven Smith,Electrical Engineering,Arts,24,Chicago,Cooking,1756.0,98025.0
+8c0945ef-7577-4690-ab60-4d5bd4db87bf,Renee Salas,Computer Science,Health,19,Boston,Music,2186.0,90268.0
+5e910e52-f264-40cf-85bf-0b2f03e9d548,Mary Martinez,Mechanical Engineering,Law,22,Houston,Gaming,2567.0,62235.0
+5f4824f5-a29e-45b3-b21b-39352147bc84,Rodney Garrison,Philosophy,Arts,23,Remote,Cooking,2451.0,45107.0
+1f504191-9551-49cb-8ec3-bce530e466d1,Timothy Hart,Psychology,Arts,25,Chicago,Sports,3594.0,61435.0
+a52abe49-bf03-4efd-b785-1da59eabcde3,Zachary Smith,Law,Science,24,Remote,Gaming,1837.0,90463.0
+c1525271-d63b-4fb4-943b-1fea2708790a,Alexandra Wells,Physics,Engineering,23,Los Angeles,Sports,4464.0,138090.0
+4b3e4488-019b-4149-a308-895613bf1ec9,Kathy Butler,Business Administration,Health,20,Remote,Traveling,3466.0,69714.0
+021ddbaa-93ed-4c9d-a74e-bb94bdaf2804,Amy Goodwin,Philosophy,Engineering,22,Remote,Traveling,1117.0,114931.0
+9e87ecd8-a8c2-4bc0-b080-86c116646e74,Patricia Baker,Mathematics,Arts,21,Chicago,Music,2834.0,30458.0
+c63b36d3-69b9-40ff-ae25-6cc75ba1b670,Kim Campbell,Architecture,Science,22,Boston,Sports,3451.0,79119.0
+ea99c375-bd60-4656-b1a2-1d00fd20d9b9,Derrick Mcclain,Chemistry,Engineering,21,Chicago,Sports,2981.0,141973.0
+fb703961-f2c9-4ecb-8abb-2b76d8b5a827,Kelly Weaver,Information Technology,Health,19,Remote,Sports,2340.0,57168.0
+5fc3ae42-6ca0-4507-8c7e-c05792498c3a,Brittany Blackwell,Mechanical Engineering,Health,18,Houston,Cooking,1770.0,109882.0
+0627ae92-2d2d-4380-b6bd-e1f1a6dace38,Chase Mcclain,Computer Science,Law,20,Chicago,Gaming,4333.0,52084.0
+143b495c-e25d-4871-8883-e81c4ac3fd43,Philip Gilmore,Architecture,Business,19,New York,Gaming,1311.0,113155.0
+e66ac08a-66ce-41ff-9e46-1b91e277222e,Dylan Cunningham,Mathematics,Science,23,Houston,Sports,3916.0,95341.0
+4d918c0f-c942-44cd-acb4-1a003edf7d69,Robert Davis,Mechanical Engineering,Arts,23,Remote,Traveling,4650.0,70616.0
+fca50839-70b2-47fd-ac70-f669063c1308,Diana Newton,Psychology,Business,20,Remote,Music,1833.0,135114.0
+4c777af1-b657-4b96-ad8d-2b84594fef13,Robert Henderson,Nursing,Business,19,New York,Sports,1334.0,102043.0
+212d8e06-5b82-4d84-b11e-49057b351ec8,Tina Singh,Chemistry,Law,22,Boston,Sports,4060.0,80396.0
+c2f9f806-e136-450e-8495-f9335aa7b482,Kenneth Hernandez,Psychology,Arts,21,Chicago,Cooking,1756.0,54029.0
+798c82f8-b641-43cd-b98c-cc8dce21bc0e,Jay Farmer,Biology,Science,25,New York,Cooking,3880.0,85710.0
+bc70a7c7-6e79-4820-91b2-5f5cf2d80f43,Matthew Jackson,Biology,Science,23,San Francisco,Reading,2082.0,146986.0
+900336a8-cdbc-4146-a99e-211a83171361,Alexis Powers,Psychology,Arts,24,Remote,Music,4089.0,79499.0
+96464378-d29f-422c-b966-ca4dcfb5a676,Frank Lara,Computer Science,Health,23,Houston,Music,2167.0,55840.0
+2616615e-8757-4f3c-9a16-6cf3f6dc7296,Claire Walls,Electrical Engineering,Health,25,Boston,Music,1689.0,41079.0
+555da894-1830-465b-9718-d87292a67974,Joel Dudley,Nursing,Law,23,Los Angeles,Cooking,3300.0,145275.0
+5bb8865f-5bb8-4fa3-b934-647aee2f7cbd,Mrs. Shelley Adams,Psychology,Arts,18,Houston,Sports,1743.0,138257.0
+57a3b450-0804-439b-8c28-1a64166a8bd3,Eric Simpson,Mathematics,Health,24,San Francisco,Cooking,1116.0,64239.0
+54573bde-1cf3-40ff-b78d-ae9066c2c823,Edwin Flowers,Biology,Law,24,Remote,Reading,3079.0,143177.0
+8363e469-a30c-46b3-938c-fd43a7ec1c04,Richard Hutchinson,Law,Business,18,Remote,Music,1130.0,120932.0
+d231493b-b961-4f5c-a25b-a5e70bfbbcfc,Mitchell Livingston,Architecture,Business,20,Boston,Traveling,1879.0,34716.0
+52f531e3-116d-4026-a9a6-ad17bd008f3f,Tyler Hernandez,Computer Science,Health,24,Houston,Cooking,4410.0,103145.0
+ee0fb6ef-c40b-4e80-97d8-13dd00083f8b,Karen Santiago,Philosophy,Science,21,Chicago,Gaming,3877.0,30915.0
+24b20aa3-e953-4a7b-b2cd-3e3bf27df06a,Mitchell Johnston,Architecture,Science,19,Boston,Reading,3881.0,142751.0
+2757c329-cc0e-40df-8d89-0625736d1e9c,Stephanie Barker,Architecture,Health,25,Los Angeles,Music,1731.0,148407.0
+33b43db1-15c7-4064-86b9-84fd43ee92a7,Kathleen Haas,Psychology,Law,20,New York,Music,3222.0,89534.0
+f56ba72e-70de-4165-8ade-e379dfeae3fc,Mathew Evans,Architecture,Arts,22,San Francisco,Cooking,4393.0,41720.0
+c5ee955c-d772-4858-b7cc-0032f6380a6c,Alicia Howard,Physics,Law,22,Chicago,Traveling,1289.0,78164.0
+2008c54a-7d7f-4f11-a6ed-ed3f09120fe9,Chloe Travis,Biology,Engineering,19,Houston,Gaming,1586.0,97094.0
+b34c9b4c-47d2-472b-bad5-62e7c8ae9cc2,Andrew Morris,Physics,Business,23,Chicago,Reading,1279.0,71145.0
+46c37d9f-f9c0-41ad-8a82-700fe049d350,Roger Ferguson,Mechanical Engineering,Arts,24,Los Angeles,Sports,4233.0,138511.0
+15614257-c389-4661-840b-7d324522a854,Amy Mills,Mathematics,Law,24,San Francisco,Gaming,4696.0,144173.0
+146953ef-b5a6-432a-bc6a-e670503d244f,Jessica Bishop,Biology,Science,20,Boston,Gaming,2206.0,75153.0
+b2a5884f-d2b1-4ee0-8638-b6fb3087f15a,Maria Blackwell,Mathematics,Engineering,24,Boston,Traveling,2080.0,139961.0
+17febffb-b6a7-440e-b30f-4907d1846e27,Tara Miller,Psychology,Science,21,Chicago,Cooking,4642.0,65447.0
+dd892fb8-c0f1-42d2-8501-5ce742ed698c,Sandra Rosales,Computer Science,Law,24,Houston,Cooking,3967.0,83473.0
+5e951be5-3bd3-4388-8c81-8dbf044a1b0e,Angela Allen,Law,Arts,20,Houston,Gaming,2451.0,59948.0
+8e863cfc-41bf-46fe-9061-378714ff03d5,David Phelps,Philosophy,Business,23,Remote,Gaming,2952.0,45501.0
+d534daf2-b10c-4193-b2a2-b4705c6a63db,Matthew Garcia,Mechanical Engineering,Engineering,23,Houston,Cooking,2152.0,140165.0
+0daadeef-5833-43d8-853e-a8e35841b788,Chad Ballard,Physics,Arts,22,Houston,Reading,1531.0,121935.0
+58bd2216-8afd-4010-b76b-9adc3c3d0cb6,Jeffrey Johnson,Biology,Business,22,Remote,Sports,3609.0,38639.0
+e804c754-3922-4cea-a14a-51dfc6252603,Randy Jenkins,Chemistry,Business,25,Remote,Cooking,1554.0,135390.0
+a98ae9f1-c12b-499b-8304-10b709b2bbec,Yvonne Stone,Business Administration,Law,22,San Francisco,Cooking,4561.0,71135.0
+f744daa8-fd56-4b9f-85d5-60e7991c87d0,Jose Harris,Law,Science,20,Remote,Cooking,4825.0,118160.0
+61b57d04-e372-4428-981e-bf5e7e3b1101,Adam Scott,Information Technology,Business,18,San Francisco,Sports,1410.0,141194.0
+35275e28-7625-4705-9349-86ef838a7511,Teresa Fields,Psychology,Engineering,22,Remote,Music,3316.0,128594.0
+0b8a9592-eee8-4401-9a90-79f1c58107ad,Kevin Stout,Architecture,Business,22,Los Angeles,Reading,3723.0,46162.0
+f7b9b068-4fd5-41fd-8a1c-00d667e25725,Thomas Shepherd,Electrical Engineering,Health,24,Los Angeles,Gaming,3936.0,118128.0
+a6d36813-a0ce-4ace-897d-f5dda07b70ad,Jordan Ramirez,Psychology,Health,24,New York,Gaming,2504.0,47659.0
+5597731b-cc71-4733-9e93-11035a076873,Rita Hall,Mathematics,Business,24,New York,Reading,3226.0,126842.0
+bf5471a1-8cfc-4705-90cf-f926f2afaacf,Renee Robinson,Physics,Health,21,Chicago,Cooking,1816.0,69910.0
+56c9ef0c-63d8-46bf-b7ce-f959609b2047,Monique Jones,Mechanical Engineering,Engineering,25,Boston,Music,4333.0,114364.0
+3a262248-f556-4233-936d-486119a8acef,Bradley Fletcher,Mathematics,Business,22,Remote,Sports,2122.0,98035.0
+0d2db1e6-505b-4b30-8a49-17e9c9abf36f,Brandon Jensen,Physics,Science,24,Houston,Sports,2896.0,34495.0
+84ce1a9f-f4e5-47fb-b6de-63d6a32b1f49,David Taylor,Information Technology,Law,19,Remote,Reading,1283.0,98922.0
+41e0662b-bc55-4ee4-9a45-3c21c44e3c21,Mr. Mark Wilson,Computer Science,Business,25,Boston,Sports,2553.0,42664.0
+f3e56cc1-9c20-4ed2-88e7-f2ae11866649,Raymond Jones,Philosophy,Arts,19,Los Angeles,Traveling,1644.0,45064.0
+5f7ec218-d36b-46bc-96f8-563475e5ed94,William Smith,Philosophy,Business,24,San Francisco,Music,2668.0,44868.0
+03c5d92d-25b0-4b8e-a815-7b3aed35db55,Benjamin Franco,Biology,Business,23,San Francisco,Music,1788.0,41094.0
+0d49effd-5da7-4fe4-b609-73f353c219b4,Michael Boyd,Nursing,Engineering,22,Remote,Gaming,4774.0,83275.0
+444f4eef-a4bb-4537-99e6-c8f8b1620847,Jessica Compton,Computer Science,Health,22,Houston,Cooking,2520.0,85951.0
+30b8c7c3-19d0-4a0e-91cc-e1c6dae4b90f,Howard Williams,Philosophy,Science,24,Remote,Music,1913.0,92088.0
+b249ff47-ed7c-4a37-b10a-a3f036166906,Kathy Patterson,Architecture,Arts,24,New York,Music,4449.0,112304.0
+d1fd39b7-5f67-4e48-ad72-8158b28545e0,Steven Olson,Biology,Business,19,Los Angeles,Traveling,3247.0,38473.0
+dfdd73a2-29fd-49ed-a7a8-85274c4bcabe,Ryan Sanchez,Philosophy,Arts,22,Boston,Gaming,4843.0,30989.0
+e08cac62-e166-4978-9278-3d6fc2eedff1,Kelsey Mccarthy,Business Administration,Engineering,24,Remote,Cooking,1944.0,42879.0
+6b5495f7-5153-4402-95bd-d4f72713a5d6,Jerry Pierce,Nursing,Engineering,24,San Francisco,Reading,3215.0,80837.0
+2fcf5cb8-f765-411e-94ea-c17c39b1fbc4,Tami Miller,Mathematics,Arts,20,San Francisco,Reading,2444.0,113859.0
+c37e22e9-03cc-4985-b612-6b9c0e50e20a,Elizabeth Fuentes,Physics,Arts,25,Chicago,Music,2573.0,56816.0
+b4c93310-e391-4c39-a0e5-443a67ad3ae9,James Miller,Physics,Health,18,Los Angeles,Traveling,4442.0,86415.0
+5dcf541b-7fdf-4133-9b6a-a31f1258a2ca,James Estrada,Mechanical Engineering,Arts,23,Houston,Traveling,4687.0,79291.0
+a291c099-bd14-4d54-8a38-d309c95f3f8d,Valerie Parrish,Architecture,Science,24,Los Angeles,Sports,3541.0,121800.0
+d0c73cc5-c8c6-4c36-897e-6b324bd8602d,Lindsey Crawford,Psychology,Engineering,20,Remote,Sports,1988.0,34343.0
+575ae90c-f2b9-4f59-92b6-02f26ace2333,Kyle Arnold,Physics,Engineering,19,Houston,Reading,1753.0,112712.0
+968fb2d6-69c7-4958-a775-d22589ac5c02,Mark Hoover,Nursing,Science,20,Boston,Cooking,3785.0,71097.0
+589afba6-cb4d-4df4-80f3-ec1bdb405c4f,Carolyn Lopez,Chemistry,Engineering,19,Los Angeles,Traveling,2552.0,144391.0
+03aa14f8-cf4a-499e-aae2-5e087da624e7,Jennifer Beck,Biology,Health,23,Boston,Cooking,2043.0,67546.0
+f7da7abc-abc5-4d43-a803-0659b352549d,Adam Duncan,Biology,Health,19,New York,Sports,1646.0,53573.0
+c99ce60b-afa9-4f77-a5f9-44ddf754db3f,Melissa May,Biology,Law,21,Chicago,Reading,1271.0,102759.0
+bbaacc04-81bc-4f92-9024-fdb8d0660df0,Brittany Zhang,Computer Science,Science,24,Boston,Reading,4486.0,53432.0
+4760e108-46a4-40ed-b6fc-f207f55aa32b,Kristen King,Mechanical Engineering,Engineering,23,Chicago,Reading,3954.0,113351.0
+34747940-9499-4cf8-8794-50857f0ef159,Stephen Johnson,Information Technology,Science,25,Chicago,Traveling,3639.0,135491.0
+c1d17df6-178a-498b-9c11-c633b707dd48,Jacob Freeman,Mathematics,Engineering,18,Remote,Traveling,3715.0,120920.0
+435e4d41-8ba0-4637-a7c4-c86714e4c651,Lisa Cooke,Biology,Business,22,Boston,Cooking,3631.0,47833.0
+0e6e14dc-27aa-48db-ba10-43a0763ca479,David Simpson,Business Administration,Law,24,Remote,Cooking,2151.0,122710.0
+50042654-44f7-4e50-930d-bac629df017d,Troy Davis,Information Technology,Engineering,24,New York,Cooking,1249.0,40888.0
+9f4e3fe5-d0c8-430f-8672-49ddec3d9c67,Catherine Harris,Mechanical Engineering,Health,22,Remote,Traveling,3008.0,91376.0
+6a207b6a-b771-4a2c-a5a8-6ceb760a12a9,Christina Edwards,Architecture,Law,25,New York,Music,4888.0,74171.0
+4ade3d13-4fca-4cf6-af8f-0a0313c1e810,Zachary Williams,Law,Law,25,Houston,Traveling,1033.0,133815.0
+e901aafb-79c1-49ec-94fa-5be2c35ffae1,Cameron Woods,Biology,Engineering,24,Remote,Reading,1822.0,65345.0
+57d35a30-203a-42b0-a8bd-97285496590f,Nicholas Carter,Biology,Business,25,Boston,Gaming,1832.0,121172.0
+3a25b80f-ba69-4dd1-9d94-f5e3f4380721,Casey Ellison,Information Technology,Arts,21,Boston,Traveling,1946.0,56856.0
+66be9d5b-6ba1-40cc-848f-1da91d9c22ec,John Harris,Philosophy,Health,24,New York,Reading,2406.0,110136.0
+28794836-6ab5-4ad8-a228-d0aecb0c6087,Carrie Burgess,Information Technology,Science,19,Houston,Music,2314.0,136696.0
+2157f82d-3ad2-460a-9074-8ad21c524447,Edward Anderson,Computer Science,Health,24,Boston,Gaming,2370.0,85753.0
+f41d3b0a-2fda-4020-b7a6-613ddfd2b6a0,Kimberly Hill,Electrical Engineering,Health,23,Los Angeles,Sports,4048.0,58832.0
+de9550dc-11a6-4d64-a638-3393ee54eeaf,Connie Brock,Law,Health,21,Remote,Cooking,3227.0,127322.0
+1509e7e1-53f1-4511-973a-a2d99118ce32,Olivia James,Psychology,Engineering,25,Remote,Sports,4931.0,135558.0
+c9407aa6-f472-4219-bed3-12e4ead3f279,Monica Hogan,Biology,Business,24,Houston,Traveling,2385.0,144439.0
+7daec588-1f36-413d-93c0-0a8503a5cd36,James Cisneros,Biology,Health,24,New York,Cooking,3861.0,107041.0
+6335c062-4285-46f8-ba1f-7d3442ad3a85,Brandi Moore,Chemistry,Arts,25,Boston,Sports,1281.0,63633.0
+7867130d-1e31-4658-8626-8221299700da,Heather Santiago,Nursing,Health,18,San Francisco,Reading,3583.0,64446.0
+c42ca86c-bd5d-45c7-a199-a849b61132b9,Roger Rhodes,Biology,Science,23,Los Angeles,Traveling,1362.0,75368.0
+37b4c819-97ae-4a19-a47d-3c22767a23d6,Tiffany Stephenson,Psychology,Engineering,23,Houston,Music,3030.0,49673.0
+74a7a2e6-317a-4dfe-b384-dcd72d044805,Derek White,Psychology,Health,25,Chicago,Cooking,3370.0,149764.0
+40362cd6-f29f-4c9e-a90a-7678f30b834d,Mark Henry Jr.,Chemistry,Law,23,New York,Sports,2870.0,82933.0
+f62be585-4b49-49ad-a1d7-829fdae2e4c5,Teresa Carter,Mathematics,Arts,25,Chicago,Reading,2776.0,122146.0
+27fa53d5-8549-486c-82d5-0071d998d25a,Jill Johnson,Information Technology,Engineering,22,Boston,Gaming,3570.0,104426.0
+44ec0d4f-ecc6-42f1-a68f-6b89c3c3830a,Katherine Park,Computer Science,Health,25,New York,Music,1075.0,114153.0
+6c337847-78bf-4499-821e-156360314694,Tanya Lynch,Nursing,Health,19,Remote,Gaming,4303.0,121548.0
+bbc5d683-4041-413b-a426-42d9a5a89638,Aaron Reyes,Psychology,Science,23,Houston,Traveling,2069.0,35487.0
+00083421-764b-4674-8d5c-a79c9c1ba4b0,Loretta Johnson,Law,Science,24,Remote,Cooking,1806.0,139121.0
+ee4fc4da-8b7e-4035-9c80-a021dcaba3ff,Shirley Kelly,Philosophy,Business,19,Houston,Traveling,3595.0,133948.0
+751b40e2-d365-4c68-adf1-46d6098487fe,Alexander Mathis,Psychology,Arts,21,Remote,Traveling,1256.0,64415.0
+c4798d13-e8c8-4f28-bb5c-fd107c5b15a7,Veronica Morgan,Mathematics,Business,18,Houston,Gaming,2666.0,40711.0
+2bad77e4-5eb4-448e-ae68-0da75dfbd5de,David Ingram,Computer Science,Law,19,Los Angeles,Gaming,4776.0,124817.0
+5dafb51a-1191-48b6-8d6a-c95615e2c05a,Robert Jones,Law,Health,19,Los Angeles,Music,3761.0,117791.0
+2445bba9-c02a-42a5-a996-d4dfbe8042f4,Angela Kelley,Philosophy,Arts,18,San Francisco,Reading,1176.0,93220.0

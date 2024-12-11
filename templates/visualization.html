@@ -58,427 +58,578 @@
 
         // Fetch chart data passed from Flask
         const chartData = JSON.parse('{{ chart_data | safe }}');
-
+        console.log(chartData); 
         const xAxisDropdown = document.getElementById('x-axis');
         const yAxisDropdown = document.getElementById('y-axis');
         const colorPalettePicker = document.getElementById('color-palette');
 
-        function populateDropdowns() {
-            chartData.columns.forEach(column => {
-                const xOption = document.createElement('option');
-                xOption.value = column;
-                xOption.textContent = column;
-                xAxisDropdown.appendChild(xOption);
+        const DataVisualization = {
+            activeTab: 'bar-chart',
+            activeChart: null,
+            chartData: null,
+            fullDataset: null,
+            currentPage: 1,
+            itemsPerPage: 100,
+            maxDataPoints: 1000,
 
-                const yOption = document.createElement('option');
-                yOption.value = column;
-                yOption.textContent = column;
-                yAxisDropdown.appendChild(yOption);
-            });
-
-            // Set default selections
-            if (chartData.columns.length > 0) {
-                xAxisDropdown.value = chartData.columns[0];
-                yAxisDropdown.value = chartData.columns[1] || chartData.columns[0];
-                }
-            }
-
-            document.getElementById('generate-palette').addEventListener('click', function () {
-                const paletteColors = generateRandomColors(10); // Generate a palette of 10 colors
-                applyPaletteToChart(paletteColors); // Apply the generated colors to the active chart
-            });
-
-            // Generate random colors for the palette
-            function generateRandomColors(count) {
-                const colors = [];
-                for (let i = 0; i < count; i++) {
-                    const hue = Math.random() * 360; // Random hue
-                    const saturation = 70 + Math.random() * 30; // Saturation: 70-100%
-                    const lightness = 40 + Math.random() * 20; // Lightness: 40-60%
-                    colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
-                }
-                return colors;
-            }
-
-            // Apply the generated palette to the active chart
-            function applyPaletteToChart(colors) {
-                if (!activeChart) return;
-
-                const chartData = activeChart.data;
-                if (chartData.datasets && chartData.datasets[0]) {
-                    // Apply colors to the dataset background
-                    chartData.datasets[0].backgroundColor = colors.slice(0, chartData.datasets[0].data.length);
-                    activeChart.update(); // Update the chart with the new colors
-                }
-            }
-
-        // Add data loading and pagination functionality
-        let fullDataset = null;
-        let currentPage = 1;
-        const itemsPerPage = 100;
-
-        function loadDatasetInChunks(data) {
-            fullDataset = data;
-            renderPaginatedData();
+    loadDataset(dataset) {
+        if (!dataset || !dataset.columns || !dataset.data) {
+            console.error('Invalid dataset structure');
+            return;
         }
 
-        function renderPaginatedData() {
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            
-            const paginatedData = {
-                columns: chartData.columns,
-                data: {}
-            };
+        this.fullDataset = {
+            columns: dataset.columns,
+            data: {}
+        };
 
-            chartData.columns.forEach(column => {
-                paginatedData.data[column] = chartData.data[column].slice(startIndex, endIndex);
-            });
-
-            return paginatedData;
-        }
-
-        function createPaginationControls() {
-            const totalPages = Math.ceil(fullDataset.data[fullDataset.columns[0]].length / itemsPerPage);
-            
-            const paginationContainer = document.createElement('div');
-            paginationContainer.classList.add('pagination-controls');
-            
-            // Previous button
-            const prevButton = document.createElement('button');
-            prevButton.textContent = 'Previous';
-            prevButton.disabled = currentPage === 1;
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderChartBasedOnActiveTab();
-                }
-            });
-            
-            // Next button
-            const nextButton = document.createElement('button');
-            nextButton.textContent = 'Next';
-            nextButton.disabled = currentPage === totalPages;
-            nextButton.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderChartBasedOnActiveTab();
-                }
-            });
-            
-            // Page info
-            const pageInfo = document.createElement('span');
-            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-            
-            paginationContainer.appendChild(prevButton);
-            paginationContainer.appendChild(pageInfo);
-            paginationContainer.appendChild(nextButton);
-            
-            document.querySelector('.customization').appendChild(paginationContainer);
-        }
-
-        function renderChart(type, ctx, config) {
-            if (activeChart) activeChart.destroy();
-            activeChart = new Chart(ctx, config);
-        }
-
-        function renderBarChart() {
-            const ctx = document.getElementById('bar-chart').getContext('2d');
-            const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
-            renderChart('bar', ctx, {
-                type: 'bar',
-                data: {
-                    labels: chartData.data[xAxisDropdown.value],
-                    datasets: [{
-                        label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
-                        data: chartData.data[yAxisDropdown.value],
-                        backgroundColor: colors  // Use the generated colors
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top' // Position the legend to the right of the chart
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderBubbleChart() {
-            const ctx = document.getElementById('bubble-chart').getContext('2d');
-            const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bubble
-            renderChart('bubble', ctx, {
-                type: 'bubble',
-                data: {
-                    datasets: [{
-                        label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
-                        data: chartData.data[xAxisDropdown.value].map((x, i) => ({
-                            x,
-                            y: chartData.data[yAxisDropdown.value][i],
-                            r: chartData.data[yAxisDropdown.value][i] * 2
-                        })),
-                        backgroundColor: colors  // Use the generated colors
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top' // Position the legend to the right of the chart
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderHistogram() {
-            const ctx = document.getElementById('histogram').getContext('2d');
-            const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each bar
-            renderChart('histogram', ctx, {
-                type: 'bar',
-                data: {
-                    labels: chartData.data[xAxisDropdown.value],
-                    datasets: [{
-                        label: `${xAxisDropdown.value} Histogram`,
-                        data: chartData.data[xAxisDropdown.value],
-                        backgroundColor: colors  // Use the generated colors
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top' // Position the legend to the right of the chart
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderPieChart() {
-            const ctx = document.getElementById('pie-chart').getContext('2d');
-            const colors = generateRandomColors(chartData.data[xAxisDropdown.value].length);  // Generate random colors for each slice
-            renderChart('pie', ctx, {
-                type: 'pie',
-                data: {
-                    labels: chartData.data[xAxisDropdown.value],
-                    datasets: [{
-                        data: chartData.data[yAxisDropdown.value],
-                        backgroundColor: colors  // Use the generated colors
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom' // Position the legend to the right of the chart
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderRadarChart() {
-            const ctx = document.getElementById('radar-chart').getContext('2d');
-            const colors = generateRandomColors(chartData.columns.length);  // Generate random colors for each segment
-            renderChart('radar', ctx, {
-                type: 'radar',
-                data: {
-                    labels: chartData.columns,
-                    datasets: [{
-                        label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
-                        data: chartData.columns.map(col => chartData.data[col].reduce((a, b) => a + b, 0) / chartData.data[col].length),
-                        backgroundColor: colors,
-                        borderColor: colors,
-                        fill: true
-                    }]
-                },
-                options: { 
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top' // Position the legend to the right of the chart
-                        }
-                    }
-                }
-            });
-        }
-
-
-    document.getElementById('generate-pdf').addEventListener('click', () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            format: 'a4', // Set the page format to A4
-            unit: 'mm',   // Use millimeters for measurements
+        dataset.columns.forEach(column => {
+            const originalData = dataset.data[column];
+            this.fullDataset.data[column] = originalData.length > this.maxDataPoints
+                ? this.sampleData(originalData, this.maxDataPoints)
+                : originalData;
         });
 
-        // Define margins and page size
-        const pageWidth = 210; // A4 width in mm
-        const pageHeight = 297; // A4 height in mm
-        const marginLeft = 15;
-        const marginTop = 20;
-        const marginBottom = 20;
-        const contentWidth = pageWidth - marginLeft * 2;
-        const maxContentHeight = pageHeight - marginTop - marginBottom;
+        this.populateDropdowns();
+        this.createPaginationControls();
+        this.renderChartBasedOnActiveTab();
+    },
 
-        // Set initial Y position with a margin
-        let currentY = marginTop;
+    setMaxDataPoints(maxPoints) {
+        this.maxDataPoints = maxPoints;
+    },
 
-        // Add title with margin
-        doc.setFontSize(16);
-        doc.text('Data Visualization Report', marginLeft, currentY);
-        currentY += 10; // Move Y position down after the title
+    sampleData(data, targetSize) {
+        if (data.length <= targetSize) return data;
 
-        // Add chart image (convert the active chart to a base64 image)
-        let chartImage = null;
-        if (activeChart) {
-            chartImage = activeChart.toBase64Image();
-            doc.addImage(chartImage, 'PNG', marginLeft, currentY, contentWidth, 90); // Adjust image size and position
-            currentY += 100; // Move Y position down after the chart image
+        const sampledData = [];
+        const step = Math.floor(data.length / targetSize);
+
+        for (let i = 0; i < data.length; i += step) {
+            sampledData.push(data[i]);
+            if (sampledData.length >= targetSize) break;
         }
 
-        // Send a request to Gemini to generate the report, including the chart image and data
-        const promptMessage = `
-            Generate a detailed report about the following chart:
-            Image: ${chartImage} 
-            Description: Please provide the response in the following format:
-                1. **Report Title:** A brief title that summarizes the content of the report.
-                2. **Data Summary:** A short description of the dataset and what it represents.
-                3. **Detailed Analysis:**
-                - Describe the relationships between the different variables in the dataset.
-                - Highlight any significant trends or patterns observed in the data.
-                4. **Key Observations:** 
-                - Use bullet points to summarize key insights or observations from the data.
-                5. **Potential Implications and Further Analysis:**
-                - Discuss any further analysis that could be done with the data.
-                - Suggest potential applications or uses for the data.
-                6. **Visual Representation:** Explain the graph/chart.
-                7. **Conclusion:** A concise summary of the findings and their significance.
+        return sampledData;
+    },
 
-                Please format the report with headings, bullet points, and numbered lists for better readability.
-        `;
+    getPaginatedData() {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
 
-        // Function to justify text
-        function addJustifiedText(doc, text, x, y, width, lineHeight) {
-            const words = text.split(' ');
-            let line = '';
-            let lines = [];
-            words.forEach((word) => {
-                const testLine = line + word + ' ';
-                const testWidth = doc.getTextWidth(testLine);
-                if (testWidth > width) {
-                    lines.push(line.trim());
-                    line = word + ' ';
-                } else {
-                    line = testLine;
-                }
-            });
-            lines.push(line.trim());
+        const paginatedData = {
+            columns: this.fullDataset.columns,
+            data: {}
+        };
 
-            lines.forEach((line, index) => {
-                const lineWords = line.split(' ');
-                if (index === lines.length - 1 || lineWords.length === 1) {
-                    // For the last line or single-word lines, align left
-                    doc.text(line, x, y);
-                } else {
-                    // For other lines, distribute spaces evenly
-                    const totalSpace = width - doc.getTextWidth(line.replace(/ /g, ''));
-                    const spaceWidth = totalSpace / (lineWords.length - 1);
-                    let currentX = x;
-                    lineWords.forEach((word, i) => {
-                        doc.text(word, currentX, y);
-                        if (i < lineWords.length - 1) {
-                            currentX += doc.getTextWidth(word) + spaceWidth;
-                        }
-                    });
-                }
-                y += lineHeight;
-            });
-            return y; // Return the updated Y position
+        this.fullDataset.columns.forEach(column => {
+            paginatedData.data[column] = this.fullDataset.data[column].slice(startIndex, endIndex);
+        });
+
+        return paginatedData;
+    },
+
+    createPaginationControls() {
+        const totalPages = Math.ceil(this.fullDataset.data[this.fullDataset.columns[0]].length / this.itemsPerPage);
+
+        const paginationContainer = document.querySelector('.pagination-controls');
+        paginationContainer.innerHTML = '';
+
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Previous';
+        prevButton.disabled = this.currentPage === 1;
+        prevButton.addEventListener('click', () => {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.renderChartBasedOnActiveTab();
+            }
+        });
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.disabled = this.currentPage === totalPages;
+        nextButton.addEventListener('click', () => {
+            if (this.currentPage < totalPages) {
+                this.currentPage++;
+                this.renderChartBasedOnActiveTab();
+            }
+        });
+
+        const pageInfo = document.createElement('span');
+        pageInfo.textContent = `Page ${this.currentPage} of ${totalPages}`;
+
+        paginationContainer.appendChild(prevButton);
+        paginationContainer.appendChild(pageInfo);
+        paginationContainer.appendChild(nextButton);
+    },
+
+    populateDropdowns() {
+        const xAxisDropdown = document.getElementById('x-axis');
+        const yAxisDropdown = document.getElementById('y-axis');
+
+        xAxisDropdown.innerHTML = '';
+        yAxisDropdown.innerHTML = '';
+
+        this.fullDataset.columns.forEach(column => {
+            const xOption = document.createElement('option');
+            xOption.value = column;
+            xOption.textContent = column;
+            xAxisDropdown.appendChild(xOption);
+
+            const yOption = document.createElement('option');
+            yOption.value = column;
+            yOption.textContent = column;
+            yAxisDropdown.appendChild(yOption);
+        });
+
+         // Set default values for x and y axis
+         if (this.fullDataset.columns.length > 0) {
+                // Set default x-axis and y-axis values (you can change these defaults based on your requirements)
+                xAxisDropdown.value = this.fullDataset.columns[0];
+                yAxisDropdown.value = this.fullDataset.columns[1] || this.fullDataset.columns[0];
         }
+    },
 
-        // Fetch the report data
-        fetch('/generate-report', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+    renderChartBasedOnActiveTab() {
+        const chartContainer = document.getElementById(this.activeTab);
+        if (!chartContainer) return;
+
+        const ctx = chartContainer.getContext('2d');
+        const paginatedData = this.getPaginatedData();
+
+        switch (this.activeTab) {
+            case 'bar-chart':
+                this.renderBarChart(ctx, paginatedData);
+                break;
+            case 'bubble-chart':
+                this.renderBubbleChart(ctx, paginatedData);
+                break;
+            case 'histogram':
+                this.renderHistogram(ctx, paginatedData);
+                break;
+            case 'pie-chart':
+                this.renderPieChart(ctx, paginatedData);
+                break;
+            case 'radar-chart':
+                this.renderRadarChart(ctx, paginatedData);
+                break;
+        }
+    },
+
+    renderBarChart(ctx, data) {
+        const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
+        this.renderChart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.data[xAxisDropdown.value],
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: data.data[yAxisDropdown.value],
+                    backgroundColor: colors
+                }]
             },
-            body: JSON.stringify({
-                chart_image: chartImage,
-                prompt: promptMessage,
-                chart_data: chartData,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                doc.setFontSize(12);
-                doc.text('Chart Report:', marginLeft, currentY);
-                currentY += 10; // Space before the content
-
-                if (data && data.report) {
-                    const paragraphs = data.report.split('\n\n'); // Split into paragraphs
-                    paragraphs.forEach((paragraph) => {
-                        if (currentY + 10 > maxContentHeight) {
-                            doc.addPage(); // Add a new page if content overflows
-                            currentY = marginTop; // Reset Y position for the new page
-                        }
-                        currentY = addJustifiedText(
-                            doc,
-                            paragraph,
-                            marginLeft,
-                            currentY,
-                            contentWidth,
-                            7 // Line height
-                        );
-                        currentY += 7; // Add spacing between paragraphs
-                    });
-                } else {
-                    doc.text('No report available', marginLeft, currentY);
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
                 }
+            }
+        });
+    },
 
-                // Save the PDF
-                doc.save('chart_report.pdf');
-            })
-            .catch((error) => {
-                console.error('Error generating report:', error);
-                alert('Error generating report');
-            });
+    renderBubbleChart(ctx, data) {
+        const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
+        const bubbleData = data.data[xAxisDropdown.value].map((x, i) => ({
+            x,
+            y: data.data[yAxisDropdown.value][i],
+            r: Math.max(5, Math.min(data.data[yAxisDropdown.value][i] * 2, 50))
+        }));
+
+        this.renderChart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                    data: bubbleData,
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    },
+
+    renderHistogram(ctx, data) {
+        const column = xAxisDropdown.value;
+        const binCount = 10;
+        const min = Math.min(...data.data[column]);
+        const max = Math.max(...data.data[column]);
+        const binSize = (max - min) / binCount;
+
+        const bins = new Array(binCount).fill(0);
+        const labels = [];
+
+        data.data[column].forEach(value => {
+            const index = Math.min(binCount - 1, Math.floor((value - min) / binSize));
+            bins[index]++;
+        });
+
+        for (let i = 0; i < binCount; i++) {
+            labels.push(`${(min + i * binSize).toFixed(1)} - ${(min + (i + 1) * binSize).toFixed(1)}`);
+        }
+
+        this.renderChart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: `${column} Histogram`,
+                    data: bins,
+                    backgroundColor: this.generateRandomColors(binCount)
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    x: { title: { display: true, text: `${column} Bins` } },
+                    y: { title: { display: true, text: 'Frequency' }, beginAtZero: true }
+                }
+            }
+        });
+    },
+
+    renderPieChart(ctx, data) {
+        const aggregatedData = data.data[yAxisDropdown.value].reduce((acc, value, index) => {
+            const label = data.data[xAxisDropdown.value][index];
+            if (!acc[label]) acc[label] = 0;
+            acc[label] += value;
+            return acc;
+        }, {});
+
+        const sortedData = Object.entries(aggregatedData)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10);
+
+        const labels = sortedData.map(([label]) => label);
+        const values = sortedData.map(([, value]) => value);
+
+        this.renderChart(ctx, {
+            type: 'pie',
+            data: {
+                labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: this.generateRandomColors(labels.length)
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    },
+
+    renderRadarChart(ctx, data) {
+    const values = DataVisualization.fullDataset.columns.map(column => {
+        const columnData = data.data[column];
+        // Filter out non-numeric values
+        const numericData = columnData.filter(value => typeof value === 'number');
+        if (numericData.length === 0) return 0; // Handle empty columns
+        const avg = numericData.reduce((a, b) => a + b, 0) / numericData.length;
+        return avg;
     });
+
+    const maxValue = Math.max(...values);
+    const normalizedValues = values.map(value => (value / maxValue) * 100);
+
+    console.log('Normalized values for radar chart:', normalizedValues);
+
+    DataVisualization.renderChart(ctx, {
+        type: 'radar',
+        data: {
+            labels: DataVisualization.fullDataset.columns,
+            datasets: [{
+                label: 'Normalized Values',
+                data: normalizedValues,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
+            },
+            scales: {
+                r: {
+                    angleLines: { display: true },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+},
+
+
+    renderChart(ctx, config) {
+        if (this.activeChart) this.activeChart.destroy();
+        try {
+            this.activeChart = new Chart(ctx, config);
+        } catch (error) {
+            console.error('Error rendering chart:', error);
+        }
+    },
+
+    generateRandomColors(count) {
+        return Array.from({ length: count }, () => {
+            const hue = Math.random() * 360;
+            const saturation = 70 + Math.random() * 30;
+            const lightness = 40 + Math.random() * 20;
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        });
+    }
+};
+document.addEventListener('DOMContentLoaded', () => {
+    DataVisualization.loadDataset(chartData);
+});
+
+
+
+document.getElementById('generate-pdf').addEventListener('click', () => { 
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        format: 'a4', // Set the page format to A4
+        unit: 'mm',   // Use millimeters for measurements
+    });
+
+    // Define margins and page size
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const marginLeft = 15;
+    const marginTop = 20;
+    const marginBottom = 20;
+    const contentWidth = pageWidth - marginLeft * 2;
+    const maxContentHeight = pageHeight - marginTop - marginBottom;
+
+    // Set initial Y position with a margin
+    let currentY = marginTop;
+
+    // Add title with margin
+    doc.setFontSize(16);
+    doc.text('Data Visualization Report', marginLeft, currentY);
+    currentY += 10; // Move Y position down after the title
+
+    // Get the active tab chart container
+    const activeTabContainer = document.getElementById(DataVisualization.activeTab);
+    const ctx = activeTabContainer ? activeTabContainer.getContext('2d') : null;
+
+    // Add chart image (convert the active chart to a base64 JPEG image)
+    let chartImage = null;
+    if (ctx && DataVisualization.activeChart) {
+        // Convert chart to JPEG base64
+        chartImage = DataVisualization.activeChart.toBase64Image('image/jpeg'); // Set format to 'image/jpeg'
+        doc.addImage(chartImage, 'JPEG', marginLeft, currentY, contentWidth, 90); // Insert JPEG image in the PDF
+        currentY += 100; // Move Y position down after the chart image
+    }
+
+    // Send a request to Gemini to generate the report, including the chart image and data
+    const promptMessage = `
+        Generate a detailed report about the following chart:
+        Image: ${chartImage} 
+        Description: Please provide the response in the following format:
+            1. **Report Title:** A brief title that summarizes the content of the report.
+            2. **Data Summary:** A short description of the dataset and what it represents.
+            3. **Detailed Analysis:**
+            - Describe the relationships between the different variables in the dataset.
+            - Highlight any significant trends or patterns observed in the data.
+            4. **Key Observations:** 
+            - Use bullet points to summarize key insights or observations from the data.
+            5. **Potential Implications and Further Analysis:**
+            - Discuss any further analysis that could be done with the data.
+            - Suggest potential applications or uses for the data.
+            6. **Visual Representation:** The provided data is not in a chart format suitable for direct interpretation. 
+            The chart is encoded as a base64 string and would need to be decoded and displayed as a visual chart before analysis could be conducted. 
+            The description indicates that the data consists of multiple variables related to students, suggesting a visual representation could include histograms, scatter plots, or bar charts to display the distributions and relationships between the variables.
+            7. **Conclusion:** A concise summary of the findings and their significance.
+
+            Please format the report with headings, bullet points, and numbered lists for better readability.
+    `;
+
+    // Function to justify text in the PDF
+    function addJustifiedText(doc, text, x, y, width, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let lines = [];
+        words.forEach((word) => {
+            const testLine = line + word + ' ';
+            const testWidth = doc.getTextWidth(testLine);
+            if (testWidth > width) {
+                lines.push(line.trim());
+                line = word + ' ';
+            } else {
+                line = testLine;
+            }
+        });
+        lines.push(line.trim());
+
+        lines.forEach((line, index) => {
+            const lineWords = line.split(' ');
+            if (index === lines.length - 1 || lineWords.length === 1) {
+                // For the last line or single-word lines, align left
+                doc.text(line, x, y);
+            } else {
+                // For other lines, distribute spaces evenly
+                const totalSpace = width - doc.getTextWidth(line.replace(/ /g, ''));
+                const spaceWidth = totalSpace / (lineWords.length - 1);
+                let currentX = x;
+                lineWords.forEach((word, i) => {
+                    doc.text(word, currentX, y);
+                    if (i < lineWords.length - 1) {
+                        currentX += doc.getTextWidth(word) + spaceWidth;
+                    }
+                });
+            }
+            y += lineHeight;
+        });
+        return y; // Return the updated Y position
+    }
+
+    // Fetch the report data
+    fetch('/generate-report', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            chart_image: chartImage,  // Send the JPEG base64 image to Gemini
+            prompt: promptMessage,
+            chart_data: chartData,
+        }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        doc.setFontSize(12);
+        doc.text('Chart Report:', marginLeft, currentY);
+        currentY += 10; // Space before the content
+
+        if (data && data.report) {
+            const paragraphs = data.report.split('\n\n'); // Split into paragraphs
+            paragraphs.forEach((paragraph) => {
+                if (currentY + 10 > maxContentHeight) {
+                    doc.addPage(); // Add a new page if content overflows
+                    currentY = marginTop; // Reset Y position for the new page
+                }
+                currentY = addJustifiedText(
+                    doc,
+                    paragraph,
+                    marginLeft,
+                    currentY,
+                    contentWidth,
+                    7 // Line height
+                );
+                currentY += 7; // Add spacing between paragraphs
+            });
+        } else {
+            doc.text('No report available', marginLeft, currentY);
+        }
+
+        // Save the PDF
+        doc.save('chart_report.pdf');
+    })
+    .catch((error) => {
+        console.error('Error generating report:', error);
+        alert('Error generating report');
+    });
+});
 
 
         // Event listeners for tabs
         document.querySelectorAll('.tab-vis').forEach(tab => {
             tab.addEventListener('click', function () {
-                activeTab = tab.id.replace('-tab', '');  // Update activeTab when a tab is clicked
-                document.querySelectorAll('.chart').forEach(c => c.classList.add('hidden'));
-                document.getElementById(activeTab).classList.remove('hidden');
-                renderChartBasedOnActiveTab();
+                DataVisualization.activeTab = this.id.replace('-tab', '');  // Update activeTab based on the clicked tab
+                document.querySelectorAll('.chart').forEach(chart => chart.classList.add('hidden'));
+                document.getElementById(DataVisualization.activeTab).classList.remove('hidden');
+                DataVisualization.renderChartBasedOnActiveTab();
             });
         });
 
         // functionality to download the image
         document.getElementById('download-image').addEventListener('click', () => {
-            if (activeChart) {
-                const imageUrl = activeChart.toBase64Image();  // Get the image as base64
-                const link = document.createElement('a');
-                link.href = imageUrl;
-                link.download = 'chart-image.png';  // Set the default download file name
-                link.click();  // Trigger the download
+            if (DataVisualization.activeChart) {
+                try {
+                    // Convert chart to a base64 image
+                    const imageUrl = DataVisualization.activeChart.toBase64Image();
+
+                    // Create a temporary anchor element
+                    const link = document.createElement('a');
+                    link.href = imageUrl;
+                    link.download = `${DataVisualization.activeTab}-chart.png`; // Set a default filename
+
+                    // Trigger the download
+                    link.click();
+                } catch (error) {
+                    console.error('Error generating image for download:', error);
+                    alert('Failed to download chart image. Please try again.');
+                }
+            } else {
+                alert('No active chart to download.');
             }
         });
 
+
         function renderChartBasedOnActiveTab() {
-            switch (activeTab) {
-                case 'bar-chart': renderBarChart(); break;
-                case 'bubble-chart': renderBubbleChart(); break;
-                case 'histogram': renderHistogram(); break;
-                case 'pie-chart': renderPieChart(); break;
-                case 'radar-chart': renderRadarChart(); break;
+            const ctx = document.getElementById(DataVisualization.activeTab).getContext('2d');
+            const paginatedData = DataVisualization.getPaginatedData();
+
+            switch (DataVisualization.activeTab) {
+                case 'bar-chart':
+                    DataVisualization.renderBarChart(ctx, paginatedData);
+                    break;
+                case 'bubble-chart':
+                    DataVisualization.renderBubbleChart(ctx, paginatedData);
+                    break;
+                case 'histogram':
+                    DataVisualization.renderHistogram(ctx, paginatedData);
+                    break;
+                case 'pie-chart':
+                    DataVisualization.renderPieChart(ctx, paginatedData);
+                    break;
+                case 'radar-chart':
+                    DataVisualization.renderRadarChart(ctx, paginatedData);
+                    break;
+                default:
+                    console.error('No render function found for active tab:', DataVisualization.activeTab);
             }
         }
 
+
+
+        
         // Apply customization and render the selected chart
         document.getElementById('apply-customization').addEventListener('click', () => {
             renderChartBasedOnActiveTab();
