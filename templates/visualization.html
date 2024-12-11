@@ -48,7 +48,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/google-generativeai"></script>
 
     <script>
@@ -241,30 +242,60 @@
     },
 
     renderBubbleChart(ctx, data) {
-        const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
-        const bubbleData = data.data[xAxisDropdown.value].map((x, i) => ({
-            x,
-            y: data.data[yAxisDropdown.value][i],
-            r: Math.max(5, Math.min(data.data[yAxisDropdown.value][i] * 2, 50))
-        }));
+    const colors = this.generateRandomColors(data.data[xAxisDropdown.value].length);
 
-        this.renderChart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [{
-                    label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
-                    data: bubbleData,
-                    backgroundColor: colors
-                }]
+    // Function to handle non-numeric (categorical) data
+    function convertToNumeric(value) {
+        // If the value is already numeric, return it as is
+        if (typeof value === 'number') return value;
+
+        // Otherwise, convert the categorical value to a unique numeric value
+        // e.g., map unique string values to a numeric code
+        const uniqueValues = [...new Set(data.data[xAxisDropdown.value])]; // Get unique values in the x-axis data
+        const valueIndex = uniqueValues.indexOf(value);
+        return valueIndex === -1 ? 0 : valueIndex; // Return the index of the unique value or 0 if not found
+    }
+
+    // Map the data and handle non-numeric x and y values
+    const bubbleData = data.data[xAxisDropdown.value].map((x, i) => ({
+        x: convertToNumeric(x),  // Convert x-axis value to numeric
+        y: convertToNumeric(data.data[yAxisDropdown.value][i]),  // Convert y-axis value to numeric
+        r: Math.max(5, Math.min(data.data[yAxisDropdown.value][i] * 2, 50))  // Radius of the bubble based on y value
+    }));
+
+    // Now render the chart
+    this.renderChart(ctx, {
+        type: 'bubble',
+        data: {
+            datasets: [{
+                label: `${xAxisDropdown.value} vs ${yAxisDropdown.value}`,
+                data: bubbleData,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' }
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: xAxisDropdown.value
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: yAxisDropdown.value
+                    },
+                    beginAtZero: true
                 }
             }
-        });
-    },
+        }
+    });
+},
 
     renderHistogram(ctx, data) {
         const column = xAxisDropdown.value;
@@ -421,82 +452,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.getElementById('generate-pdf').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({
-        format: 'a4',
-        unit: 'mm',
-    });
+    // Initialize content for the PDF
+    const content = [];
 
-    // Define margins and page size
+    // Define margins and page size (PDFMake handles it automatically)
     const pageWidth = 210; // A4 width in mm
     const pageHeight = 297; // A4 height in mm
     const marginLeft = 15;
     const marginTop = 20;
     const marginBottom = 20;
     const contentWidth = pageWidth - marginLeft * 2;
-    const maxContentHeight = pageHeight - marginTop - marginBottom;
-
-    // Set initial Y position with a margin
-    let currentY = marginTop;
 
     // Add title with margin
-    doc.setFontSize(16);
-    doc.text('Data Visualization Report', marginLeft, currentY);
-    currentY += 10;
+    content.push({
+        text: 'Data Visualization Report',
+        fontSize: 16,
+        margin: [marginLeft, marginTop, 0, 10],  // Left, top, right, bottom
+        alignment: 'center',  // Center the title
+    });
 
     // Get the active chart container and context
     const activeTabContainer = document.getElementById(DataVisualization.activeTab);
     const ctx = activeTabContainer ? activeTabContainer.getContext('2d') : null;
 
-    // Add chart image
+    // Add chart image (base64 encoded image)
     let chartImage = null;
     let selectedX = [];  // To hold the selected x values
     let selectedY = [];  // To hold the selected y values
 
-    function splitTextIntoLines(text, maxWidth, doc) {
-  const words = text.split(' ');
-  let line = '';
-  const lines = [];
-
-  words.forEach((word) => {
-    const testLine = `${line}${word} `;
-    const testWidth = doc.getTextWidth(testLine);
-
-    if (testWidth <= maxWidth) {
-      line = testLine;
-    } else {
-      lines.push(line.trim());
-      line = `${word} `;
-    }
-  });
-
-  lines.push(line.trim());
-  return lines;
-}
-
-function addJustifiedParagraph(
-  doc,
-  text,
-  x,
-  y,
-  maxWidth,
-  lineHeight,
-  marginTop,
-  maxContentHeight
-) {
-  const lines = splitTextIntoLines(text, maxWidth, doc);
-
-  lines.forEach((lineText, index) => {
-    if (y + lineHeight > maxContentHeight) {
-      doc.addPage();
-      y = marginTop;
-    }
-    doc.text(lineText, x, y, { align: 'justify', maxWidth });
-    y += lineHeight;
-  });
-
-  return y;
-}
     if (ctx && DataVisualization.activeChart) {
         // Extract x and y values from the chart data
         selectedX = DataVisualization.activeChart.data.labels;  // x-axis values (labels)
@@ -504,77 +487,102 @@ function addJustifiedParagraph(
 
         // Convert chart to base64 image
         chartImage = DataVisualization.activeChart.toBase64Image('image/jpeg');
-        doc.addImage(chartImage, 'JPEG', marginLeft, currentY, contentWidth, 90);
-        currentY += 100;
+        content.push({
+            image: chartImage,
+            width: contentWidth,
+            height: 90, // You can adjust the size as per your requirement
+            margin: [marginLeft, 0, 0, 10],
+        });
     }
 
-    // Send only selected x and y values (not the whole chartData) to the server
-    const promptMessage = `
-        Generate a detailed report about the following chart:
+    // Send only selected x and y values to the server
+    const promptMessage = `Generate a detailed report about the following chart:
         Image: ${chartImage} 
-        Description: Report Title: A brief title that summarizes the content of the report.In one paragraph explain the relationship between the x and y. Interpret also the graph. Max of 5-10 sentences, indented
-    `;
+        Description: Report Title: A brief title that summarizes the content of the report. 
+        In one paragraph explain the relationship between the x and y. Interpret the graph. Max of 5-10 sentences, indented.`;
+
     // Get the column names from the dropdowns (x and y axis)
     let xTitle = xAxisDropdown.value;  // The name of the selected column for x-axis
     let yTitle = yAxisDropdown.value;  // The name of the selected column for y-axis
 
-
-// Log the titles and the data to check
-console.log("X Axis Title: ", xTitle);
-console.log("X Axis Data: ", selectedX);
-console.log("Y Axis Title: ", yTitle);
-console.log("Y Axis Data: ", selectedY);
-
-// Send to Gemini with the corrected titles and data
-fetch('/generate-report', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        chart_image: chartImage,
-        prompt: promptMessage,
-        chart_data: {
-            x: {
-                title: xTitle,  // Correctly pass the column title
-                data: selectedX  // Pass the corresponding data for x-axis
-            },
-            y: {
-                title: yTitle,  // Correctly pass the column title
-                data: selectedY  // Pass the corresponding data for y-axis
-            }
+    // Send to server (API call for generating report)
+    fetch('/generate-report', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-    }),
-})
+        body: JSON.stringify({
+            chart_image: chartImage,
+            prompt: promptMessage,
+            chart_data: {
+                x: {
+                    title: xTitle,  // Correctly pass the column title
+                    data: selectedX  // Pass the corresponding data for x-axis
+                },
+                y: {
+                    title: yTitle,  // Correctly pass the column title
+                    data: selectedY  // Pass the corresponding data for y-axis
+                }
+            },
+        }),
+    })
     .then((response) => response.json())
     .then((data) => {
-        doc.setFontSize(12);
-        doc.text('Chart Report:', marginLeft, currentY);
-        currentY += 10;
+        // Initialize content array for PDF document
+        const content = [];
 
-        if (data && data.report) {
-            const paragraphs = data.report.split('\n\n');
-            paragraphs.forEach((paragraph) => {
-                if (currentY + 10 > maxContentHeight) {
-                    doc.addPage();
-                    currentY = marginTop;
-                }
-                currentY = addJustifiedParagraph(
-                    doc,
-                    paragraph,
-                    marginLeft,
-                    currentY,
-                    contentWidth,
-                    7 // Line height
-                );
-                currentY += 7; // Add spacing between paragraphs
+        // Check if Gemini has generated a title
+        const reportTitle = 'Data Visualization Report';  // Use the title from Gemini or a default
+
+        // Define the title for the report (centered and bold)
+        content.push({
+            text: reportTitle,
+            fontSize: 16,
+            alignment: 'center',
+            bold: true,  // Make the title bold
+            margin: [0, 20],  // Margin from top
+        });
+
+        // Add chart image (base64 encoded image) with transparent background
+        let chartImage = null;
+        if (ctx && DataVisualization.activeChart) {
+            chartImage = DataVisualization.activeChart.toBase64Image('image/png');  // Use 'image/png' for transparency
+            content.push({
+                image: chartImage,
+                width: 500,  // Set width of the image
+                height: 250,  // Set height of the image
+                alignment: 'center',  // Center the image
+                margin: [0, 10],  // Margin below the image
             });
-        } else {
-            doc.text('No report available', marginLeft, currentY);
         }
 
-        // Save the PDF
-        doc.save('chart_report.pdf');
+        // Add the Gemini-generated report text to the PDF
+        if (data && data.report) {
+            content.push({
+            });
+
+            const paragraphs = data.report.split('\n\n'); // Split the text into paragraphs
+            paragraphs.forEach((paragraph) => {
+                content.push({
+                    text: paragraph,
+                    alignment: 'justify',  // Justify the paragraph
+                    margin: [30, 0, 30, 5],  // Add margins for indentation and spacing
+                    fontSize: 12,  // Font size for the body text
+                    lineHeight: 1.5,  // Line height for better readability
+                    indent: 20,  // Indentation for each paragraph
+                });
+            });
+        } else {
+            content.push({
+                text: 'No report available',
+                margin: [30, 0, 30, 5],
+                fontSize: 12,
+                italics: true,
+            });
+        }
+
+        // Create and download the PDF using PDFMake
+        pdfMake.createPdf({ content }).download('chart_report.pdf');
     })
     .catch((error) => {
         console.error('Error generating report:', error);

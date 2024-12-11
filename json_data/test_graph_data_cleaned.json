@@ -1,0 +1,52 @@
+{
+    "columns": [
+        "Category",
+        "Value1",
+        "Value2",
+        "Value3"
+    ],
+    "data": [
+        {
+            "Category": "A",
+            "Value1": 10,
+            "Value2": 5,
+            "Value3": 2
+        },
+        {
+            "Category": "B",
+            "Value1": 15,
+            "Value2": 10,
+            "Value3": 4
+        },
+        {
+            "Category": "C",
+            "Value1": 20,
+            "Value2": 15,
+            "Value3": 6
+        },
+        {
+            "Category": "D",
+            "Value1": 25,
+            "Value2": 20,
+            "Value3": 8
+        },
+        {
+            "Category": "E",
+            "Value1": 30,
+            "Value2": 25,
+            "Value3": 10
+        },
+        {
+            "Category": "F",
+            "Value1": 35,
+            "Value2": 30,
+            "Value3": 12
+        },
+        {
+            "Category": "G",
+            "Value1": 40,
+            "Value2": 35,
+            "Value3": 14
+        }
+    ]
+}

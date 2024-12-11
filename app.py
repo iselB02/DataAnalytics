@@ -4,6 +4,8 @@ import pandas as pd
 import json
 import google.generativeai as genai
 import datetime
+import numpy as np
+
 
 genai.configure(api_key='AIzaSyAs7TiLmL-JRwRbkHo0vLC1P6XnR-P5w3Y')
 model = genai.GenerativeModel('gemini-1.5-flash')
@@ -31,6 +33,21 @@ def format_date(value, date_format='%Y-%m-%d'):
 # Register the filter with Jinja2
 app.jinja_env.filters['format_date'] = format_date
 
+# Helper function to clean missing data based on mean, median, or mode
+def clean_missing_data(df):
+    for column in df.columns:
+        if df[column].dtype == 'object':  # Categorical column
+            mode_value = df[column].mode()[0]  # Fill with mode (most frequent value)
+            df[column].fillna(mode_value, inplace=True)
+        else:  # Numerical column
+            skewness = df[column].skew()
+            if np.abs(skewness) < 0.5:
+                mean_value = df[column].mean()  # Fill with mean for roughly normal distributions
+                df[column].fillna(mean_value, inplace=True)
+            else:
+                median_value = df[column].median()  # Fill with median for skewed distributions
+                df[column].fillna(median_value, inplace=True)
+    return df
 
 # Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
@@ -41,30 +58,6 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 if not os.path.exists(JSON_FOLDER):
     os.makedirs(JSON_FOLDER)
-
-# Helper function to apply data cleaning operations
-def apply_data_cleaning(data, action, column_name=None):
-    if action == 'remove_missing_rows':
-        data = data.dropna()
-    elif action == 'remove_missing_columns':
-        data = data.dropna(axis=1)
-    elif action == 'fill_forward':
-        data = data.fillna(method='ffill')
-    elif action == 'fill_backward':
-        data = data.fillna(method='bfill')
-    elif action == 'interpolate':
-        data = data.interpolate()
-    elif action == 'remove_duplicates':
-        data = data.drop_duplicates()
-    elif action == 'uppercase':
-        data = data.applymap(lambda x: x.upper() if isinstance(x, str) else x)
-    elif action == 'lowercase':
-        data = data.applymap(lambda x: x.lower() if isinstance(x, str) else x)
-    elif action == 'capitalize':
-        data = data.applymap(lambda x: x.capitalize() if isinstance(x, str) else x)
-    elif action == 'remove_column' and column_name:
-        data = data.drop(columns=[column_name], errors='ignore')
-    return data
 
 @app.route('/explain', methods=['POST'])
 def explain_data():
@@ -107,13 +100,14 @@ def csv_to_json(csv_file_path):
     df = pd.read_csv(csv_file_path)
     json_data = {
         "columns": df.columns.tolist(),
-        "data": {col: df[col].tolist() for col in df.columns}
+        "data": df.to_dict(orient='records')  # Each row as a dictionary
     }
     json_file_path = os.path.join(JSON_FOLDER, os.path.basename(csv_file_path).replace('.csv', '.json'))
     with open(json_file_path, 'w') as json_file:
         json.dump(json_data, json_file, indent=4)
     return json_file_path
 
+# Route: Home (File Upload)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -122,17 +116,15 @@ def home():
             flash("Please upload a valid CSV file.", "error")
             return redirect(url_for('home'))
 
-        # Save the file and update session
+        # Save the file
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-
-        # Store metadata in session
         session['file_path'] = file_path
 
         flash("File uploaded successfully. Redirecting to Data Cleaning.", "success")
-        return redirect(url_for('cleaning'))  # Redirect to the data cleaning page
+        return redirect(url_for('cleaning'))
 
-    # Display uploaded files
+    # Optionally, display a list of uploaded files
     uploaded_files = [
         {
             'filename': file,
@@ -187,37 +179,66 @@ def save_csv():
 
 
 
-@app.route('/data-cleaning', methods=['GET', 'POST'])
+@app.route('/cleaning', methods=['GET', 'POST'])
 def cleaning():
-    file_path = session.get('file_path')
-    if not file_path or not os.path.exists(file_path):
-        flash("No file to display. Please upload a CSV file first.", "error")
-        return redirect(url_for('home'))  # Redirect to the home page if no file is found
+    if request.method == 'POST' and request.form.get('action') == 'clean_data':
+        file_path = session.get('file_path')
+        if not file_path:
+            flash("No file uploaded", "error")
+            return redirect(url_for('home'))
 
-    data = pd.read_csv(file_path)  # Load the CSV data
-    if request.method == 'POST':
-        action = request.form.get('action')
-        column_name = request.form.get('column_name')
+        # Read the CSV file into DataFrame
+        try:
+            df = pd.read_csv(file_path)
+        except Exception as e:
+            flash(f"Error reading CSV file: {e}", "error")
+            return redirect(url_for('home'))
 
-        # Perform the selected data cleaning action
-        if action:
-            cleaned_data = apply_data_cleaning(data, action, column_name)
-            cleaned_file_path = os.path.join(UPLOAD_FOLDER, f"cleaned_{os.path.basename(file_path)}")
-            cleaned_data.to_csv(cleaned_file_path, index=False)  # Save the cleaned data
-            session['file_path'] = cleaned_file_path  # Update the session with the cleaned file path
-            
-            # Update JSON after cleaning
+        # Clean missing data using the helper function
+        df = clean_missing_data(df)
+
+        # Save cleaned DataFrame with the same name but with "_cleaned" suffix
+        original_filename = os.path.basename(file_path)
+        cleaned_filename = f"{os.path.splitext(original_filename)[0]}_cleaned.csv"
+        cleaned_file_path = os.path.join(UPLOAD_FOLDER, cleaned_filename)
+
+        try:
+            df.to_csv(cleaned_file_path, index=False)
+        except Exception as e:
+            flash(f"Error saving cleaned CSV file: {e}", "error")
+            return redirect(url_for('home'))
+
+        # Convert cleaned CSV to JSON and save
+        try:
             json_file_path = csv_to_json(cleaned_file_path)
             session['json_file_path'] = json_file_path
+        except Exception as e:
+            flash(f"Error converting CSV to JSON: {e}", "error")
+            return redirect(url_for('cleaning'))
 
-            flash(f"Data cleaned with action: {action}", "success")
-            data = cleaned_data
+        # Optionally, update 'file_path' to point to the cleaned file
+        session['file_path'] = cleaned_file_path
 
-    # Generate the HTML table for rendering in the template
-    table_html = data.to_html(classes='table table-striped', index=False)
+        flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
+        return render_template('data-cleaning.html', table_html=df.to_html(classes='table table-striped'))
+
+    # Handle GET request
+    file_path = session.get('file_path')
+    if not file_path:
+        return render_template('data-cleaning.html', table_html=None)
+
+    # Read the CSV file into DataFrame to display
+    try:
+        df = pd.read_csv(file_path)
+        table_html = df.to_html(classes='table table-striped')
+    except Exception as e:
+        flash(f"Error reading CSV file: {e}", "error")
+        table_html = None
+
     return render_template('data-cleaning.html', table_html=table_html)
 
 
+# Route: Save to Visualize
 @app.route('/save-to-visualize', methods=['POST'])
 def save_to_visualize():
     # Redirect to visualize after ensuring cleaned data exists
@@ -230,14 +251,28 @@ def save_to_visualize():
 @app.route('/visualize', methods=['GET'])
 def visualize():
     json_file_path = session.get('json_file_path')
+    
+    # Check if the file exists
     if not json_file_path or not os.path.exists(json_file_path):
         flash("No JSON file found. Please clean data first.", "error")
         return redirect(url_for('cleaning'))
 
+    # Read the JSON data
     with open(json_file_path, 'r') as json_file:
-        chart_data = json.load(json_file)
+        json_data = json.load(json_file)
+
+    # Assuming json_data is structured with 'columns' and 'data' keys, convert to pandas DataFrame
+    df = pd.DataFrame(json_data['data'])
+
+    # Prepare the chart data to pass to the template
+    chart_data = {
+        "columns": list(df.columns),  # Get column names
+        "data": df.to_dict(orient='list')  # Convert the DataFrame to a dictionary
+    }
 
     return render_template('visualization.html', chart_data=json.dumps(chart_data))
+
+
 
 @app.route('/get-json-data', methods=['GET'])
 def get_json_data():
