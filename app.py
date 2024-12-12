@@ -181,7 +181,14 @@ def save_csv():
 
 @app.route('/cleaning', methods=['GET', 'POST'])
 def cleaning():
-    if request.method == 'POST' and request.form.get('action') == 'clean_data':
+    def is_data_clean(df):
+        """
+        Check if the dataset is already clean (no missing values)
+        Returns True if no missing values, False otherwise
+        """
+        return df.isnull().sum().sum() == 0
+
+    if request.method == 'POST':
         file_path = session.get('file_path')
         if not file_path:
             flash("No file uploaded", "error")
@@ -193,6 +200,21 @@ def cleaning():
         except Exception as e:
             flash(f"Error reading CSV file: {e}", "error")
             return redirect(url_for('home'))
+
+        # Check if data is already clean
+        if is_data_clean(df):
+            flash("The dataset is already clean. No further cleaning required.", "info")
+            
+            # Convert to JSON and save (in case it wasn't done before)
+            try:
+                json_file_path = csv_to_json(file_path)
+                session['json_file_path'] = json_file_path
+            except Exception as e:
+                flash(f"Error converting CSV to JSON: {e}", "error")
+                return redirect(url_for('cleaning'))
+
+            return render_template('data-cleaning.html', 
+                                   table_html=df.to_html(classes='table table-striped', index=False))
 
         # Clean missing data using the helper function
         df = clean_missing_data(df)
@@ -220,7 +242,8 @@ def cleaning():
         session['file_path'] = cleaned_file_path
 
         flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
-        return render_template('data-cleaning.html', table_html=df.to_html(classes='table table-striped'))
+        return render_template('data-cleaning.html', 
+                               table_html=df.to_html(classes='table table-striped', index=False))
 
     # Handle GET request
     file_path = session.get('file_path')
@@ -230,7 +253,8 @@ def cleaning():
     # Read the CSV file into DataFrame to display
     try:
         df = pd.read_csv(file_path)
-        table_html = df.to_html(classes='table table-striped')
+        # Remove index for cleaner display
+        table_html = df.to_html(classes='table table-striped', index=False)
     except Exception as e:
         flash(f"Error reading CSV file: {e}", "error")
         table_html = None

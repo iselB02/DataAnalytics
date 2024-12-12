@@ -3,6 +3,16 @@
 {% block content %}
 <div class="main-cleaning-container">
     <h1 class="title">Data Cleaning</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
     <div class="main-cleaning">
         <div class="table-container">
@@ -22,11 +32,12 @@
     <form method="POST">
         <button type="submit" name="action" value="clean_data">Clean Data</button>
     </form>
-
+    
     <form method="POST" action="/save-to-visualize">
         <button id="visualize" type="submit">Visualize</button>
     </form>
 </div>
+{% endblock %}
 
 {% block styles %}
 <style>
@@ -42,13 +53,43 @@
         transition: background-color 0.3s ease;
         font-weight: bold;
     }
-
+    
     .main-cleaning-container {
-        /* background-color: aqua; */
         margin-bottom: 20px;
-        /* overflow-y: scroll; */
         height: 85vh !important;
     }
+
+    .flash-messages {
+        margin-bottom: 15px;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .alert-info {
+    background-color: #ffb6c1; /* a pink background to match the header */
+    color: white;             /* white text for contrast */
+    border: none;             /* remove any border if you don't want it */
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    }
+
+    .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    }
+
 </style>
 {% endblock %}
 
@@ -56,5 +97,4 @@
 <script>
     // JavaScript code if needed for extra functionality
 </script>
-{% endblock %}
 {% endblock %}

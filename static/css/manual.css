@@ -64,14 +64,16 @@ input[type="text"] {
 
 button {
     padding: 8px 15px;
-    background-color: #FF698C; /* Pinkish-purple */
+    background-color: #FF698C;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 3px;
     margin: inherit;
     font-weight: bold;
+    margin-left: 20px;
 }
+
 
 #data-table thead th:first-child,
 #data-table tbody td:first-child {
