@@ -7,6 +7,7 @@
 .vis-title {
     text-align: center;
     height: 5%;
+    color: #800080;
 }
 
 .main {
@@ -66,6 +67,8 @@
 .cust-title {
     font-size: 20px;
     margin-top: 10px;
+    color: #800080;
+    padding: 12px;
 }
 
 .customization {
