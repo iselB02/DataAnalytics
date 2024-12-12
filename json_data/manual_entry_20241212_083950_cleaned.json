@@ -1,0 +1,19 @@
+{
+    "columns": [
+        "name",
+        "age",
+        "course"
+    ],
+    "data": [
+        {
+            "name": "Kricel",
+            "age": 21,
+            "course": "BSCS"
+        },
+        {
+            "name": "Kim",
+            "age": 23,
+            "course": "HRDM"
+        }
+    ]
+}

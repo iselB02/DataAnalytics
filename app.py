@@ -33,13 +33,28 @@ def format_date(value, date_format='%Y-%m-%d'):
 # Register the filter with Jinja2
 app.jinja_env.filters['format_date'] = format_date
 
-# Helper function to clean missing data based on mean, median, or mode
-def clean_missing_data(df):
+
+# Combined function to clean missing data and handle outliers
+def clean_and_handle_outliers(df):
     for column in df.columns:
         if df[column].dtype == 'object':  # Categorical column
             mode_value = df[column].mode()[0]  # Fill with mode (most frequent value)
             df[column].fillna(mode_value, inplace=True)
         else:  # Numerical column
+            Q1 = df[column].quantile(0.25)
+            Q3 = df[column].quantile(0.75)
+            IQR = Q3 - Q1
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+            
+            # Identify outliers
+            outliers = (df[column] < lower_bound) | (df[column] > upper_bound)
+            if np.abs(df[column].skew()) < 0.5:
+                df.loc[outliers, column] = df[column].mean()  # Replace outliers with mean for roughly normal distributions
+            else:
+                df.loc[outliers, column] = df[column].median()  # Replace outliers with median for skewed distributions
+
+            # Fill remaining missing values based on skewness
             skewness = df[column].skew()
             if np.abs(skewness) < 0.5:
                 mean_value = df[column].mean()  # Fill with mean for roughly normal distributions
@@ -47,7 +62,9 @@ def clean_missing_data(df):
             else:
                 median_value = df[column].median()  # Fill with median for skewed distributions
                 df[column].fillna(median_value, inplace=True)
+
     return df
+
 
 # Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
@@ -195,7 +212,7 @@ def cleaning():
             return redirect(url_for('home'))
 
         # Clean missing data using the helper function
-        df = clean_missing_data(df)
+        df = clean_and_handle_outliers(df)
 
         # Save cleaned DataFrame with the same name but with "_cleaned" suffix
         original_filename = os.path.basename(file_path)
