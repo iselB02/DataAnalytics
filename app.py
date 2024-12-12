@@ -35,19 +35,36 @@ app.jinja_env.filters['format_date'] = format_date
 
 # Helper function to clean missing data based on mean, median, or mode
 def clean_missing_data(df):
+    cleaning_actions = []
     for column in df.columns:
         if df[column].dtype == 'object':  # Categorical column
-            mode_value = df[column].mode()[0]  # Fill with mode (most frequent value)
-            df[column].fillna(mode_value, inplace=True)
+            missing_count = df[column].isnull().sum()
+            if missing_count > 0:
+                mode_value = df[column].mode()[0]  # Fill with mode (most frequent value)
+                df[column].fillna(mode_value, inplace=True)
+                cleaning_actions.append({
+                    'column': column,
+                    'action': f"Filled {missing_count} missing values with mode: '{mode_value}'."
+                })
         else:  # Numerical column
-            skewness = df[column].skew()
-            if np.abs(skewness) < 0.5:
-                mean_value = df[column].mean()  # Fill with mean for roughly normal distributions
-                df[column].fillna(mean_value, inplace=True)
-            else:
-                median_value = df[column].median()  # Fill with median for skewed distributions
-                df[column].fillna(median_value, inplace=True)
-    return df
+            missing_count = df[column].isnull().sum()
+            if missing_count > 0:
+                skewness = df[column].skew()
+                if np.abs(skewness) < 0.5:
+                    mean_value = df[column].mean()  # Fill with mean for roughly normal distributions
+                    df[column].fillna(mean_value, inplace=True)
+                    cleaning_actions.append({
+                        'column': column,
+                        'action': f"Filled {missing_count} missing values with mean: {mean_value:.2f}."
+                    })
+                else:
+                    median_value = df[column].median()  # Fill with median for skewed distributions
+                    df[column].fillna(median_value, inplace=True)
+                    cleaning_actions.append({
+                        'column': column,
+                        'action': f"Filled {missing_count} missing values with median: {median_value:.2f}."
+                    })
+    return df, cleaning_actions
 
 # Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
@@ -59,16 +76,110 @@ if not os.path.exists(UPLOAD_FOLDER):
 if not os.path.exists(JSON_FOLDER):
     os.makedirs(JSON_FOLDER)
 
+def analyze_data(data):
+    """
+    Analyzes the given data for duplicates, missing values, outliers, and wrong formats.
+    Data is expected to be a list of dictionaries, each representing a row.
+    """
+    if not isinstance(data, list) or len(data) == 0 or not all(isinstance(row, dict) for row in data):
+        return "No valid data provided to analyze."
+
+    columns = data[0].keys()
+    analysis = {
+        'duplicates': {},
+        'missing': {},
+        'outliers': {},
+        'wrongFormat': {}
+    }
+
+    # Helper functions
+    def is_numeric(val):
+        try:
+            float(val)
+            return True
+        except (ValueError, TypeError):
+            return False
+
+    # Sample format validator (email)
+    def is_valid_email(val):
+        if val is None or val == '':
+            return True  # Missing is handled separately, here we just check format
+        import re
+        pattern = r"^\S+@\S+\.\S+$"
+        return bool(re.match(pattern, str(val)))
+
+    # Analyze each column
+    for col in columns:
+        values = [row[col] for row in data]
+        
+        # Count duplicates
+        value_counts = {}
+        for val in values:
+            value_counts[val] = value_counts.get(val, 0) + 1
+        duplicate_count = sum(1 for c in value_counts.values() if c > 1)
+        if duplicate_count > 0:
+            analysis['duplicates'][col] = duplicate_count
+
+        # Missing data count
+        missing_count = sum(1 for val in values if val is None or val == '')
+        if missing_count > 0:
+            analysis['missing'][col] = missing_count
+
+        # Detect outliers (for numeric columns)
+        numeric_values = [float(v) for v in values if is_numeric(v)]
+        if len(numeric_values) == len(values) and len(numeric_values) > 1:
+            numeric_values.sort()
+            q1 = np.percentile(numeric_values, 25)
+            q3 = np.percentile(numeric_values, 75)
+            iqr = q3 - q1
+            lower_bound = q1 - 1.5 * iqr
+            upper_bound = q3 + 1.5 * iqr
+            outlier_count = sum(1 for v in numeric_values if v < lower_bound or v > upper_bound)
+            if outlier_count > 0:
+                analysis['outliers'][col] = outlier_count
+
+        # Wrong format: For demonstration, check email columns
+        if 'email' in col.lower():
+            invalid_count = sum(1 for val in values if not is_valid_email(val))
+            # Exclude missing because it's already counted in 'missing'
+            if invalid_count > 0:
+                analysis['wrongFormat'][col] = invalid_count
+
+    # Format the analysis message
+    def format_analysis(title, d):
+        if not d:
+            return ''
+        total = sum(d.values())
+        msg = f"**{title.upper()}**\nTotal: {total}\nColumns:\n"
+        for c, count in d.items():
+            msg += f"- {c}: {count}\n"
+        msg += "\n"
+        return msg
+
+    message_parts = []
+    message_parts.append(format_analysis('duplicates', analysis['duplicates']))
+    message_parts.append(format_analysis('missing data', analysis['missing']))
+    message_parts.append(format_analysis('outliers', analysis['outliers']))
+    message_parts.append(format_analysis('wrong format', analysis['wrongFormat']))
+
+    final_message = ''.join(message_parts)
+    if final_message.strip() == '':
+        final_message = 'No issues found in the data.'
+    return final_message
+
 @app.route('/explain', methods=['POST'])
 def explain_data():
     # Example: Request for explanation of the chart data or some result
     data_to_explain = request.json.get('data')  # Get the data to explain (from frontend)
 
+    # Analyze the data
+    analysis_summary = analyze_data(data_to_explain)
+
     # Start a new chat with the AI model
     chat = model.start_chat(history=[])
 
-    # Sending the message to explain the data
-    prompt = f"Explain the following data analysis: {data_to_explain}"
+    # Sending the message to explain the data along with the analysis summary
+    prompt = f"Explain the following data analysis:\n{analysis_summary}"
     response = chat.send_message(prompt)
 
     # Return the explanation to the frontend
@@ -214,10 +325,16 @@ def cleaning():
                 return redirect(url_for('cleaning'))
 
             return render_template('data-cleaning.html', 
-                                   table_html=df.to_html(classes='table table-striped', index=False))
+                                   table_html=df.to_html(classes='table table-striped', index=False),
+                                   original_table_html=None,
+                                   cleaned_table_html=None,
+                                   cleaning_summary=None)
+
+        # Capture the original data before cleaning
+        original_df = df.copy()
 
         # Clean missing data using the helper function
-        df = clean_missing_data(df)
+        df, cleaning_summary = clean_missing_data(df)
 
         # Save cleaned DataFrame with the same name but with "_cleaned" suffix
         original_filename = os.path.basename(file_path)
@@ -242,13 +359,21 @@ def cleaning():
         session['file_path'] = cleaned_file_path
 
         flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
+
+        # Convert DataFrames to HTML
+        original_table_html = original_df.to_html(classes='table table-striped', index=False)
+        cleaned_table_html = df.to_html(classes='table table-striped', index=False)
+
         return render_template('data-cleaning.html', 
-                               table_html=df.to_html(classes='table table-striped', index=False))
+                               original_table_html=original_table_html,
+                               cleaned_table_html=cleaned_table_html,
+                               table_html=df.to_html(classes='table table-striped', index=False),
+                               cleaning_summary=cleaning_summary)
 
     # Handle GET request
     file_path = session.get('file_path')
     if not file_path:
-        return render_template('data-cleaning.html', table_html=None)
+        return render_template('data-cleaning.html', table_html=None, original_table_html=None, cleaned_table_html=None, cleaning_summary=None)
 
     # Read the CSV file into DataFrame to display
     try:
@@ -259,7 +384,8 @@ def cleaning():
         flash(f"Error reading CSV file: {e}", "error")
         table_html = None
 
-    return render_template('data-cleaning.html', table_html=table_html)
+    return render_template('data-cleaning.html', table_html=table_html, original_table_html=None, cleaned_table_html=None, cleaning_summary=None)
+
 
 
 # Route: Save to Visualize

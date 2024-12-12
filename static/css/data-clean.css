@@ -17,7 +17,11 @@
     display: flex ;
     margin-left: 20px;
 }
+ 
+.main-cleaning-container {
+    overflow: scroll !important;
 
+}
 
 .table-container {
     background-color: #ffb6c1;

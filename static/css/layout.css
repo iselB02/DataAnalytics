@@ -134,7 +134,7 @@ svg {
     background: #fff0f5;
     background-image: url('');
     /* border-radius: 20px; Rounded corners for content box */
-    overflow: hidden;
+    overflow: scroll;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
