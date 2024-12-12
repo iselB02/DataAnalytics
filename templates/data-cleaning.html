@@ -4,35 +4,59 @@
 <div class="main-cleaning-container">
     <h1 class="title text-pink">Data Cleaning</h1>
     
-    {% if cleaning_summary %}
+    {% if analysis %}
     <div class="card mb-4">
         <div class="card-header bg-pink text-white">
-            Cleaning Summary
+            Data Analysis Summary
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                {% for action in cleaning_summary %}
-                    <li class="list-group-item">{{ action }}</li>
-                {% endfor %}
+                {% if analysis.duplicates %}
+                    <li class="list-group-item">
+                        <strong>Duplicates:</strong>
+                        <ul>
+                            {% for col, count in analysis.duplicates.items() %}
+                                <li>{{ col }}: {{ count }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+                
+                {% if analysis.missing %}
+                    <li class="list-group-item">
+                        <strong>Missing Values:</strong>
+                        <ul>
+                            {% for col, count in analysis.missing.items() %}
+                                <li>{{ col }}: {{ count }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+                
+                {% if analysis.outliers %}
+                    <li class="list-group-item">
+                        <strong>Outliers:</strong>
+                        <ul>
+                            {% for col, count in analysis.outliers.items() %}
+                                <li>{{ col }}: {{ count }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+                
+                {% if analysis.wrongFormat %}
+                    <li class="list-group-item">
+                        <strong>Wrong Formats:</strong>
+                        <ul>
+                            {% for col, count in analysis.wrongFormat.items() %}
+                                <li>{{ col }}: {{ count }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
-{% endif %}
-
-    <!-- Cleaning Summary Section -->
-    {% if cleaning_summary %}
-        <div class="card mb-4">
-            <div class="card-header bg-pink text-white">
-                Cleaning Summary
-            </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    {% for action in cleaning_summary %}
-                        <li class="list-group-item">{{ action }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
     {% endif %}
 
     <!-- Table Section -->
@@ -128,10 +152,9 @@
     }
 
     .card {
-        background-color: #721c24;
+        background-color: #ffffff; /* Changed to white for better readability */
         overflow: scroll;
     }
-
 
     .alert-success {
         background-color: #d4edda;

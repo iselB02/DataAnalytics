@@ -80,9 +80,10 @@ def analyze_data(data):
     """
     Analyzes the given data for duplicates, missing values, outliers, and wrong formats.
     Data is expected to be a list of dictionaries, each representing a row.
+    Returns a dictionary with counts.
     """
     if not isinstance(data, list) or len(data) == 0 or not all(isinstance(row, dict) for row in data):
-        return "No valid data provided to analyze."
+        return {"error": "No valid data provided to analyze."}
 
     columns = data[0].keys()
     analysis = {
@@ -145,27 +146,8 @@ def analyze_data(data):
             if invalid_count > 0:
                 analysis['wrongFormat'][col] = invalid_count
 
-    # Format the analysis message
-    def format_analysis(title, d):
-        if not d:
-            return ''
-        total = sum(d.values())
-        msg = f"**{title.upper()}**\nTotal: {total}\nColumns:\n"
-        for c, count in d.items():
-            msg += f"- {c}: {count}\n"
-        msg += "\n"
-        return msg
+    return analysis
 
-    message_parts = []
-    message_parts.append(format_analysis('duplicates', analysis['duplicates']))
-    message_parts.append(format_analysis('missing data', analysis['missing']))
-    message_parts.append(format_analysis('outliers', analysis['outliers']))
-    message_parts.append(format_analysis('wrong format', analysis['wrongFormat']))
-
-    final_message = ''.join(message_parts)
-    if final_message.strip() == '':
-        final_message = 'No issues found in the data.'
-    return final_message
 
 @app.route('/explain', methods=['POST'])
 def explain_data():
@@ -312,6 +294,10 @@ def cleaning():
             flash(f"Error reading CSV file: {e}", "error")
             return redirect(url_for('home'))
 
+        # Analyze the data for duplicates, errors, etc.
+        data_records = df.to_dict(orient='records')
+        analysis = analyze_data(data_records)  # This should return a dict with counts
+
         # Check if data is already clean
         if is_data_clean(df):
             flash("The dataset is already clean. No further cleaning required.", "info")
@@ -326,10 +312,8 @@ def cleaning():
 
             return render_template('data-cleaning.html', 
                                    table_html=df.to_html(classes='table table-striped', index=False),
-                                   original_table_html=None,
-                                   cleaned_table_html=None,
-                                   cleaning_summary=None)
-
+                                   analysis=analysis)
+        
         # Capture the original data before cleaning
         original_df = df.copy()
 
@@ -360,6 +344,10 @@ def cleaning():
 
         flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
 
+        # Analyze the cleaned data
+        cleaned_data_records = df.to_dict(orient='records')
+        cleaned_analysis = analyze_data(cleaned_data_records)
+
         # Convert DataFrames to HTML
         original_table_html = original_df.to_html(classes='table table-striped', index=False)
         cleaned_table_html = df.to_html(classes='table table-striped', index=False)
@@ -368,12 +356,12 @@ def cleaning():
                                original_table_html=original_table_html,
                                cleaned_table_html=cleaned_table_html,
                                table_html=df.to_html(classes='table table-striped', index=False),
-                               cleaning_summary=cleaning_summary)
+                               analysis=cleaned_analysis)
 
     # Handle GET request
     file_path = session.get('file_path')
     if not file_path:
-        return render_template('data-cleaning.html', table_html=None, original_table_html=None, cleaned_table_html=None, cleaning_summary=None)
+        return render_template('data-cleaning.html', table_html=None, analysis=None)
 
     # Read the CSV file into DataFrame to display
     try:
@@ -384,8 +372,11 @@ def cleaning():
         flash(f"Error reading CSV file: {e}", "error")
         table_html = None
 
-    return render_template('data-cleaning.html', table_html=table_html, original_table_html=None, cleaned_table_html=None, cleaning_summary=None)
+    # Analyze the data for duplicates, errors, etc.
+    data_records = df.to_dict(orient='records')
+    analysis = analyze_data(data_records)  # This should return a dict with counts
 
+    return render_template('data-cleaning.html', table_html=table_html, analysis=analysis)
 
 
 # Route: Save to Visualize
