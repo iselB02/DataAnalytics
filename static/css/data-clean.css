@@ -3,15 +3,6 @@
     margin: 0;
     padding: 0;
 }
-.main-cleaning {
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    height: 100%;
-    width: 100%;
-    /* background-color: aqua; */
-    padding: 15px;
-}
 
 .cleaning-container{
     display: flex ;
@@ -22,7 +13,7 @@
 .table-container {
     background-color: #ffb6c1;
     height: 500px;
-    width: 1250px;
+    width: 1000px;
     overflow: auto; /* Allows scrolling */
     display: flex;
     padding: 0;

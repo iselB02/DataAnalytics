@@ -1,0 +1,9 @@
+Name,Age,Email,Salary,Country
+Alice,23.0,alice@example.com,50000.0,USA
+Bob,45.0,bob@example.com,60000.0,Canada
+Charlie,28.0,charlie@example.com,70000.0,USA
+David,34.0,david@example.com,,UK
+Eve,41.0,eve@example.com,50000.0,USA
+Alice,,alice@wrongformat,60000.0,USA
+Bob,55.0,bob@example.com,60000.0,Canada
+Frank,300.0,frank@example.com,60000.0,USA

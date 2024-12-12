@@ -7,6 +7,8 @@ import datetime
 import numpy as np
 import uuid
 import re
+from collections import Counter
+import time
 
 # ⚠️ Security Warning: Ensure you have revoked the exposed API key before proceeding.
 genai.configure(api_key='YOUR_NEW_SECURE_API_KEY')  # Replace with your new secure API key
@@ -53,13 +55,25 @@ def format_date(value, date_format='%Y-%m-%d'):
 app.jinja_env.filters['format_date'] = format_date
 
 
-# Combined function to clean missing data and handle outliers
+
+
 def clean_and_handle_outliers(df):
+    """
+    This function cleans the dataframe by:
+    - Removing one row of each duplicated row.
+    - Filling missing values in categorical columns with the mode.
+    - Handling outliers based on skewness (mean for normal, median for skewed).
+    - Outliers are replaced by the mean or median depending on the column's distribution.
+    """
+    # Remove duplicate rows (keeps the first occurrence)
+    df.drop_duplicates(inplace=True)
+
     for column in df.columns:
         if df[column].dtype == 'object':  # Categorical column
             mode_value = df[column].mode()[0]  # Fill with mode (most frequent value)
             df[column].fillna(mode_value, inplace=True)
         else:  # Numerical column
+            # Compute IQR and detect outliers
             Q1 = df[column].quantile(0.25)
             Q3 = df[column].quantile(0.75)
             IQR = Q3 - Q1
@@ -68,71 +82,30 @@ def clean_and_handle_outliers(df):
             
             # Identify outliers
             outliers = (df[column] < lower_bound) | (df[column] > upper_bound)
-            if np.abs(df[column].skew()) < 0.5:
-                df.loc[outliers, column] = df[column].mean()  # Replace outliers with mean for roughly normal distributions
-            else:
-                df.loc[outliers, column] = df[column].median()  # Replace outliers with median for skewed distributions
+            
+            # Handle outliers based on skewness
+            skewness = df[column].skew()
+            if np.abs(skewness) < 0.5:  # Normal distribution
+                df.loc[outliers, column] = df[column].mean()  # Replace outliers with mean
+            else:  # Skewed distribution
+                df.loc[outliers, column] = df[column].median()  # Replace outliers with median
 
             # Fill remaining missing values based on skewness
-            skewness = df[column].skew()
             if np.abs(skewness) < 0.5:
-                mean_value = df[column].mean()  # Fill with mean for roughly normal distributions
+                mean_value = df[column].mean()  # Use mean for normal distributions
                 df[column].fillna(mean_value, inplace=True)
             else:
-                median_value = df[column].median()  # Fill with median for skewed distributions
+                median_value = df[column].median()  # Use median for skewed distributions
                 df[column].fillna(median_value, inplace=True)
+                
 
     return df
 
 
-<<<<<<< Updated upstream
-# Define the uploads and JSON folders
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
-JSON_FOLDER = os.path.join(os.path.dirname(__file__), 'json_data')
+import numpy as np
+import re
+from collections import Counter
 
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-if not os.path.exists(JSON_FOLDER):
-    os.makedirs(JSON_FOLDER)
-
-@app.route('/explain', methods=['POST'])
-def explain_data():
-    # Example: Request for explanation of the chart data or some result
-    data_to_explain = request.json.get('data')  # Get the data to explain (from frontend)
-
-    # Start a new chat with the AI model
-    chat = model.start_chat(history=[])
-
-    # Sending the message to explain the data
-    prompt = f"Explain the following data analysis: {data_to_explain}"
-    response = chat.send_message(prompt)
-
-    # Return the explanation to the frontend
-    return jsonify({'explanation': response.text})
-
-@app.route('/generate-report', methods=['POST'])
-def generate_report():
-    # Get the chart image, chart data, and the prompt
-    data = request.json
-    chart_image = data.get('chart_image')  # This is the base64 image
-    prompt = data.get('prompt')
-    chart_data = data.get('chart_data')  # Chart data to help with report generation
-
-    # Create the prompt for Gemini using the provided data
-    prompt_message = f"{prompt}\nHere is the chart data:\n{chart_data}"
-
-    # Start the chat session with Gemini and send the prompt
-    chat = model.start_chat(history=[])
-    response = chat.send_message(prompt_message)  # Send the prompt message to Gemini
-    
-    # You can optionally include the chart image as part of the conversation
-    # Depending on Gemini's capabilities, you may pass the image or process it further
-    
-    return jsonify({'report': response.text})
-
-=======
-# Helper function to analyze data
 def analyze_data(data):
     """
     Analyzes the given data for duplicates, missing values, outliers, and wrong formats.
@@ -144,7 +117,7 @@ def analyze_data(data):
 
     columns = data[0].keys()
     analysis = {
-        'duplicates': {},
+        'duplicates': [],
         'missing': {},
         'outliers': {},
         'wrongFormat': {}
@@ -165,34 +138,51 @@ def analyze_data(data):
         pattern = r"^\S+@\S+\.\S+$"
         return bool(re.match(pattern, str(val)))
 
+    # Count duplicates by row
+    rows = [tuple(row.items()) for row in data]  # Convert rows into tuples of key-value pairs
+    row_counts = Counter(rows)
+    
+    # Get duplicate rows
+    duplicate_rows = [dict(row) for row, count in row_counts.items() if count > 1]
+
+    if duplicate_rows:
+        for row in duplicate_rows:
+            duplicate_count = row_counts[tuple(row.items())]
+            analysis['duplicates'].append({'row': row, 'count': duplicate_count})
+
     # Analyze each column
     for col in columns:
         values = [row[col] for row in data]
         
-        # Count duplicates
-        value_counts = {}
-        for val in values:
-            value_counts[val] = value_counts.get(val, 0) + 1
-        duplicate_count = sum(1 for c in value_counts.values() if c > 1)
-        if duplicate_count > 0:
-            analysis['duplicates'][col] = duplicate_count
-
-        # Missing data count
-        missing_count = sum(1 for val in values if val is None or val == '')
+        # Count missing data (None and NaN values)
+        missing_count = sum(1 for val in values if val is None or (isinstance(val, float) and np.isnan(val)))
         if missing_count > 0:
             analysis['missing'][col] = missing_count
 
-        # Detect outliers (for numeric columns)
-        numeric_values = [float(v) for v in values if is_numeric(v)]
-        if len(numeric_values) == len(values) and len(numeric_values) > 1:
-            q1 = np.percentile(numeric_values, 25)
-            q3 = np.percentile(numeric_values, 75)
-            iqr = q3 - q1
-            lower_bound = q1 - 1.5 * iqr
-            upper_bound = q3 + 1.5 * iqr
-            outlier_count = sum(1 for v in numeric_values if v < lower_bound or v > upper_bound)
-            if outlier_count > 0:
-                analysis['outliers'][col] = outlier_count
+        col_values = [row[col] for row in data]  # Extract column values for outlier detection
+        if isinstance(col_values[0], (int, float)):  # Only check for numeric columns
+            numeric_values = [val for val in col_values if isinstance(val, (int, float)) and not np.isnan(val)]
+            
+            # Debugging: Check the numeric values
+            print(f"Column: {col} - Numeric Values: {numeric_values}")
+            
+            if len(numeric_values) > 1:  # Ensure we have enough data points
+                q1 = np.percentile(numeric_values, 25)
+                q3 = np.percentile(numeric_values, 75)
+                iqr = q3 - q1
+                lower_bound = q1 - 1.5 * iqr
+                upper_bound = q3 + 1.5 * iqr
+                
+                # Debugging: Check bounds
+                print(f"Column: {col} - Q1: {q1}, Q3: {q3}, IQR: {iqr}, Lower Bound: {lower_bound}, Upper Bound: {upper_bound}")
+                
+                outlier_count = sum(1 for v in numeric_values if v < lower_bound or v > upper_bound)
+                
+                # Debugging: Check outlier count
+                print(f"Column: {col} - Outlier Count: {outlier_count}")
+                
+                if outlier_count > 0:
+                    analysis['outliers'][col] = outlier_count
 
         # Wrong format: For demonstration, check email columns
         if 'email' in col.lower():
@@ -201,8 +191,14 @@ def analyze_data(data):
             if invalid_count > 0:
                 analysis['wrongFormat'][col] = invalid_count
 
+    # Summarize missing values (total missing count for each column)
+    total_missing_values = {col: analysis['missing'].get(col, 0) for col in columns}
+    analysis['totalMissing'] = sum(total_missing_values.values())  # Total missing values across all columns
+
     return analysis
->>>>>>> Stashed changes
+
+
+
 
 # Function to convert CSV to JSON
 def csv_to_json(csv_file_path):
@@ -303,9 +299,6 @@ def save_csv():
 
 @app.route('/cleaning', methods=['GET', 'POST'])
 def cleaning():
-<<<<<<< Updated upstream
-    if request.method == 'POST' and request.form.get('action') == 'clean_data':
-=======
     def is_data_clean(df):
         """
         Check if the dataset is already clean.
@@ -342,7 +335,6 @@ def cleaning():
         return True
 
     if request.method == 'POST':
->>>>>>> Stashed changes
         file_path = session.get('file_path')
         if not file_path:
             flash("No file uploaded.", "danger")
@@ -355,8 +347,6 @@ def cleaning():
             flash(f"Error reading CSV file: {e}", "danger")
             return redirect(url_for('home'))
 
-<<<<<<< Updated upstream
-=======
         # Analyze the data for duplicates, errors, etc.
         data_records = df.to_dict(orient='records')
         analysis = analyze_data(data_records)  # This should return a dict with counts
@@ -384,7 +374,6 @@ def cleaning():
         # Capture the original data before cleaning
         original_df = df.copy()
 
->>>>>>> Stashed changes
         # Clean missing data using the helper function
         df = clean_and_handle_outliers(df)
 
@@ -411,10 +400,6 @@ def cleaning():
         # Update 'file_path' to point to the cleaned file
         session['file_path'] = cleaned_file_path
 
-<<<<<<< Updated upstream
-        flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
-        return render_template('data-cleaning.html', table_html=df.to_html(classes='table table-striped'))
-=======
         # Analyze the cleaned data
         cleaned_data_records = df.to_dict(orient='records')
         cleaned_analysis = analyze_data(cleaned_data_records)
@@ -425,36 +410,23 @@ def cleaning():
                                table_html=df.to_html(classes='table table-striped', index=False),
                                analysis=cleaned_analysis,
                                display_details=DISPLAY_DETAILS)
->>>>>>> Stashed changes
 
     # Handle GET request
     file_path = session.get('file_path')
     if not file_path:
-<<<<<<< Updated upstream
-        return render_template('data-cleaning.html', table_html=None)
-=======
         return render_template('data-cleaning.html', 
                                table_html=None, 
                                analysis=None,
                                display_details=DISPLAY_DETAILS)
->>>>>>> Stashed changes
 
     # Read the CSV file into DataFrame
     try:
-<<<<<<< Updated upstream
-        df = pd.read_csv(file_path)
-        table_html = df.to_html(classes='table table-striped')
-=======
         df = pd.read_csv(file_path, na_values=[''])
         table_html = df.to_html(classes='table table-striped', index=False)
->>>>>>> Stashed changes
     except Exception as e:
         flash(f"Error reading CSV file: {e}", "danger")
         table_html = None
 
-<<<<<<< Updated upstream
-    return render_template('data-cleaning.html', table_html=table_html)
-=======
     # Analyze the data
     data_records = df.to_dict(orient='records')
     analysis = analyze_data(data_records)
@@ -465,8 +437,7 @@ def cleaning():
         analysis = None  # No analysis needed
     else:
         flash("Data has issues. Please review the analysis below.", "warning")
->>>>>>> Stashed changes
-
+    time.sleep(6)
     return render_template('data-cleaning.html', 
                            table_html=table_html, 
                            analysis=analysis,
@@ -583,10 +554,5 @@ def accountSetting():
 def layout():
     return render_template('layout.html')
 
-<<<<<<< Updated upstream
-if __name__ == "__main__":
-    app.run(debug=True)
-=======
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> Stashed changes

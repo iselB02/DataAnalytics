@@ -1,141 +1,195 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="main-cleaning-container">
-<<<<<<< Updated upstream
-    <h1 class="title">Data Cleaning</h1>
-=======
+
+<div class="clean">
     <h1 class="title text-pink">Data Cleaning</h1>
+    <div class="main-cleaning-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <div class="modal fade" id="dataIssuesModal" tabindex="-1" aria-labelledby="dataIssuesModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-pink text-white">
+                        <h5 class="modal-title" id="dataIssuesModalLabel">Data Analysis Report</h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Data Analysis Summary Card -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 id="summ" class="mb-0">Summary</h6>
+                            </div>
+                            <div class="card-body" id="body-1">
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <h4>{{ analysis.duplicates|length if analysis.duplicates else 0 }}</h4>
+                                        <p class="text-muted">Duplicates</p>
+                                    </div>
+                                    <div class="col">
+                                        <h4>{{ analysis.totalMissing if analysis.totalMissing else 0 }}</h4>
+                                        <p class="text-muted">Missing Values</p>
+                                    </div>
+                                    <div class="col">
+                                        <h4>{{ analysis.outliers|length }}</h4>
+                                        <p class="text-muted">Outliers (Columns)</p>
+                                    </div>
+                                    <div class="col">
+                                        <h4>{{ analysis.wrongFormat|length if analysis.wrongFormat else 0 }}</h4>
+                                        <p class="text-muted">Wrong Formats</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <!-- Modal for Flash Messages -->
-        <div class="modal fade" id="flashModal" tabindex="-1" aria-labelledby="flashModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <div class="modal-header bg-pink text-white">
-                <h5 class="modal-title" id="flashModalLabel">Data Issues</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <!-- Detailed Lists in a Scrollable Area -->
-                <div class="modal-scrollable">
-                    {% if analysis.duplicates %}
-                        <h6>Duplicates:</h6>
-                        <ul class="analysis-list">
-                            {% for col, count in analysis.duplicates.items() %}
-                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                        <!-- Detailed Issues Section -->
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h6 id="det" class="mb-0">Detailed Issues</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="accordion" id="issuesAccordion">
+                                    {% if analysis.duplicates %}
+                                    <!-- Duplicates Section -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="duplicatesHeader">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#duplicatesCollapse">
+                                                Duplicates
+                                            </button>
+                                        </h2>
+                                        <div id="duplicatesCollapse" class="accordion-collapse collapse" data-bs-parent="#issuesAccordion">
+                                            <div class="accordion-body">
+                                                <ul id="wrap" class="list-group">
+                                                    {% for row in analysis.duplicates %}
+                                                        <li id="dup-list" class="list-group-item">
+                                                            <pre>{{ row | tojson }}</pre>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
 
-                    {% if analysis.missing %}
-                        <h6>Missing Values:</h6>
-                        <ul class="analysis-list">
-                             {% for col, count in analysis.missing.items() %}
-                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                                    {% if analysis.missing %}
+                                    <!-- Missing Values Section -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="missingHeader">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#missingCollapse">
+                                                Missing Values
+                                            </button>
+                                        </h2>
+                                        <div id="missingCollapse" class="accordion-collapse collapse" data-bs-parent="#issuesAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-group">
+                                                    {% for col, count in analysis.missing.items() %}
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            {{ col }} => 
+                                                            <span class="badge bg-pink rounded-pill">{{ count }}</span> 
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
 
-                    {% if analysis.outliers %}
-                        <h6>Outliers:</h6>
-                        <ul class="analysis-list">
-                             {% for col, count in analysis.outliers.items() %}
-                                 <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                                    {% if analysis.outliers %}
+                                    <!-- Outliers Section -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="outliersHeader">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#outliersCollapse">
+                                                Outliers
+                                            </button>
+                                        </h2>
+                                        <div id="outliersCollapse" class="accordion-collapse collapse" data-bs-parent="#issuesAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-group">
+                                                    {% for col, count in analysis.outliers.items() %}
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            {{ col }} => 
+                                                            <span class="badge bg-pink rounded-pill">{{ count }}</span>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
 
-                    {% if analysis.wrongFormat %}
-                        <h6>Wrong Formats:</h6>
-                         <ul class="analysis-list">
-                            {% for col, count in analysis.wrongFormat.items() %}
-                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                                    {% if analysis.wrongFormat %}
+                                    <!-- Wrong Formats Section -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="formatHeader">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#formatCollapse">
+                                                Wrong Formats
+                                            </button>
+                                        </h2>
+                                        <div id="formatCollapse" class="accordion-collapse collapse" data-bs-parent="#issuesAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-group">
+                                                    {% for col, count in analysis.wrongFormat.items() %}
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            {{ col }}
+                                                            <span class="badge bg-pink rounded-pill">{{ count }}</span>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- If no issues, display 'Data is already clean' -->
+                                    {% if not analysis.duplicates and not analysis.missing and not analysis.outliers %}
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <p id="clean-data" class="text-center">The data is already clean</p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flashed Messages Section -->
+                        {% if messages %}
+                        {% endif %}
+                    </div>
                 </div>
-                
-                <!-- Flashed Messages -->
-                <hr>
-                <h6>Note:</h6>
-                <ul>
-                  {% for category, message in messages %}
-                    <li>{{ message }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
             </div>
-          </div>
         </div>
-      {% endif %}
-    {% endwith %}
-
-    {% if analysis %}
-    <div class="card mb-4">
-        <div class="card-header bg-pink text-white">
-            Data Analysis Summary
-        </div>
-        <div class="card-body">
-            <!-- Only show counts here to avoid duplication -->
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <strong>Total Duplicates:</strong> {{ analysis.duplicates|length if analysis.duplicates else 0 }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Total Missing Values:</strong> {{ analysis.missing|length if analysis.missing else 0 }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Total Outliers:</strong> {{ analysis.outliers|length if analysis.outliers else 0 }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Total Wrong Formats:</strong> {{ analysis.wrongFormat|length if analysis.wrongFormat else 0 }}
-                </li>
-            </ul>
-        </div>
-    </div>
-    {% endif %}
->>>>>>> Stashed changes
-
-    <div class="main-cleaning">
-        <div class="table-container">
-            {% if table_html %}
-                <div class="table-responsive">
-                    {{ table_html | safe }}
-                </div>
-            {% else %}
-                <p>No table to display. Please upload a CSV file first.</p>
-            {% endif %}
+        {% endwith %}
+    
+        <div class="main-cleaning">
+            <div class="table-container">
+                {% if table_html %}
+                    <div class="table-responsive">
+                        {{ table_html | safe }}
+                    </div>
+                {% else %}
+                    <p>No table to display. Please upload a CSV file first.</p>
+                {% endif %}
+            </div>
+            <div class="cleaning-container">
+                <form method="POST" class="d-inline">
+                    <button type="submit" name="action" value="clean_data" class="btn btn-pink">Clean Data</button>
+                </form>
+                <form method="POST" action="{{ url_for('save_to_visualize') }}" class="d-inline">
+                    <button id="visualize" type="submit" class="btn btn-pink">Visualize</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="cleaning-container">
-<<<<<<< Updated upstream
-    <!-- Button to trigger cleaning -->
-    <form method="POST">
-        <button type="submit" name="action" value="clean_data">Clean Data</button>
-    </form>
-
-    <form method="POST" action="/save-to-visualize">
-        <button id="visualize" type="submit">Visualize</button>
-=======
-    <form method="POST" class="d-inline">
-        <button type="submit" name="action" value="clean_data" class="btn btn-pink">Clean Data</button>
-    </form>
-    <form method="POST" action="{{ url_for('save_to_visualize') }}" class="d-inline">
-        <button id="visualize" type="submit" class="btn btn-pink">Visualize</button>
->>>>>>> Stashed changes
-    </form>
-</div>
-
-{% block styles %}
 <style>
-<<<<<<< Updated upstream
-    /* Styles for buttons and table */
-    button {
-=======
+    .clean {
+        /* background-color: #ff69b4; */
+        height: 95vh;
+        width: 100%;
+        overflow-y: scroll;
+    }
+
     .text-pink {
         color: #ff69b4 !important;
     }
@@ -145,7 +199,6 @@
     }
 
     .btn-pink {
->>>>>>> Stashed changes
         background-color: #ffb6c1;
         color: black;
         border: none;
@@ -155,14 +208,6 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-<<<<<<< Updated upstream
-
-    .main-cleaning-container {
-        /* background-color: aqua; */
-        margin-bottom: 20px;
-        /* overflow-y: scroll; */
-        height: 85vh !important;
-=======
     .btn-pink:hover {
         background-color: #ff69b4;
         color: white;
@@ -176,6 +221,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        margin: 0;
     }
     th, td {
         padding: 12px;
@@ -188,12 +234,19 @@
     }
 
     .main-cleaning-container {
-        margin: 20px auto;
-        padding: 20px;
-        max-width: 1200px;
-        background-color: #ffffff;
+        display: flex;
+        /* background-color: #ffffff; */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
+        width: 100%;
+        height: 79vh;
+        gap: 10px;
+    }
+
+    .main-cleaning{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
     }
 
     .cleaning-container {
@@ -205,27 +258,7 @@
         display: inline;
     }
 
-    @media (max-width: 768px) {
-        .main-cleaning-container {
-            margin: 10px;
-            padding: 15px;
-        }
-        .btn-pink {
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-    }
 
-    @media (max-width: 480px) {
-        .cleaning-container .btn-group {
-            flex-direction: column;
-            gap: 10px;
-        }
-        .main-cleaning-container {
-            padding: 10px;
-        }
->>>>>>> Stashed changes
-    }
 
     /* Analysis List Styles */
     .analysis-list {
@@ -242,18 +275,68 @@
         font-weight: bold;
         margin-right: 5px;
     }
-    .count {
-    }
-    /* Modal Scrollable */
-    .modal-scrollable {
-        max-height: 300px;
-        overflow-y: auto;
-        margin-top: 15px;
-    }
-</style>
-{% endblock %}
 
-{% block scripts %}
+    .modal {
+        background-color: #ffb6c1;
+        width: 20%;
+        padding: 10px;
+        overflow-y: scroll;
+        height: 79vh;
+    }
+
+    .modal-title{
+        text-align: center;
+        padding: 5px;
+    }
+    .col {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        background-color: #fcfcfc;
+        margin-bottom: 5px;
+        gap: 3px;
+        padding: 2px;
+
+    }
+    .accordion-item {
+        width: 100%;
+        /* background-color: red !important; */
+    }
+    .accordion-button {
+        width: 100% ;
+    }
+    .list-group {
+        max-width: 300px !important;  
+        /* background-color: #ff69b4;     */
+        overflow: auto;               
+        padding: 5px;                 
+    }
+
+    .list-group::-webkit-scrollbar, .modal::-webkit-scrollbar {
+    display: none;
+    }
+
+        /* For Firefox */
+    .list-group, .modal {
+        scrollbar-width: none;         /* Hides the scrollbar in Firefox */
+    }
+
+    #summ, #det{
+        /* background-color: aqua; */
+        font-size: 12px;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    #clean-data {
+        color: green;
+        font-weight: 700;
+        margin-left: 5px;
+    }
+
+</style>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var flashModalEl = document.getElementById('flashModal');
@@ -263,9 +346,4 @@
         }
     });
 </script>
-<<<<<<< Updated upstream
 {% endblock %}
-{% endblock %}
-=======
-{% endblock %}
->>>>>>> Stashed changes
