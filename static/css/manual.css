@@ -70,6 +70,7 @@ button {
     cursor: pointer;
     border-radius: 3px;
     margin: inherit;
+    font-weight: bold;
 }
 
 #data-table thead th:first-child,

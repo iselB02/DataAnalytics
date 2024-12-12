@@ -1,0 +1,14 @@
+{
+    "columns": [
+        "Name",
+        "Age",
+        "Section"
+    ],
+    "data": [
+        {
+            "Name": NaN,
+            "Age": NaN,
+            "Section": NaN
+        }
+    ]
+}

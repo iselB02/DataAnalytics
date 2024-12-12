@@ -43,9 +43,7 @@
   transition: transform 0.2s; /* Add interactive hover effect */
 }
 
-new i {
-  font-size: 1.2rem;
-}
+
 
 .new:hover {
   cursor: pointer;
