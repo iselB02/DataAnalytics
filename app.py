@@ -1,18 +1,39 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash, send_file, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for, flash, jsonify
 import os
 import pandas as pd
 import json
 import google.generativeai as genai
 import datetime
 import numpy as np
+import uuid
+import re
 
-
-genai.configure(api_key='AIzaSyAs7TiLmL-JRwRbkHo0vLC1P6XnR-P5w3Y')
+# ⚠️ Security Warning: Ensure you have revoked the exposed API key before proceeding.
+genai.configure(api_key='YOUR_NEW_SECURE_API_KEY')  # Replace with your new secure API key
 model = genai.GenerativeModel('gemini-1.5-flash')
+
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for session storage
+app.secret_key = 'your_secure_secret_key'  # Replace with a secure secret key
 
+# Configuration for display preferences
+DISPLAY_DETAILS = {
+    'duplicates': True,       # Show per-column counts
+    'missing': False,         # Show only total count
+    'outliers': False,        # Show only total count
+    'wrongFormat': True       # Show per-column counts
+}
 
+# Define the uploads and JSON folders
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+JSON_FOLDER = os.path.join(os.path.dirname(__file__), 'json_data')
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+if not os.path.exists(JSON_FOLDER):
+    os.makedirs(JSON_FOLDER)
+
+# Register the filter with Jinja2
 def format_date(value, date_format='%Y-%m-%d'):
     from datetime import datetime
     if isinstance(value, (int, float)):
@@ -29,8 +50,6 @@ def format_date(value, date_format='%Y-%m-%d'):
             return value  # Return value as-is if parsing fails
     return value  # Return value as-is if unsupported type
 
-
-# Register the filter with Jinja2
 app.jinja_env.filters['format_date'] = format_date
 
 
@@ -66,6 +85,7 @@ def clean_and_handle_outliers(df):
     return df
 
 
+<<<<<<< Updated upstream
 # Define the uploads and JSON folders
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
 JSON_FOLDER = os.path.join(os.path.dirname(__file__), 'json_data')
@@ -111,10 +131,83 @@ def generate_report():
     
     return jsonify({'report': response.text})
 
+=======
+# Helper function to analyze data
+def analyze_data(data):
+    """
+    Analyzes the given data for duplicates, missing values, outliers, and wrong formats.
+    Data is expected to be a list of dictionaries, each representing a row.
+    Returns a dictionary with counts.
+    """
+    if not isinstance(data, list) or len(data) == 0 or not all(isinstance(row, dict) for row in data):
+        return {"error": "No valid data provided to analyze."}
+
+    columns = data[0].keys()
+    analysis = {
+        'duplicates': {},
+        'missing': {},
+        'outliers': {},
+        'wrongFormat': {}
+    }
+
+    # Helper functions
+    def is_numeric(val):
+        try:
+            float(val)
+            return True
+        except (ValueError, TypeError):
+            return False
+
+    # Sample format validator (email)
+    def is_valid_email(val):
+        if val is None or val == '':
+            return True  # Missing is handled separately, here we just check format
+        pattern = r"^\S+@\S+\.\S+$"
+        return bool(re.match(pattern, str(val)))
+
+    # Analyze each column
+    for col in columns:
+        values = [row[col] for row in data]
+        
+        # Count duplicates
+        value_counts = {}
+        for val in values:
+            value_counts[val] = value_counts.get(val, 0) + 1
+        duplicate_count = sum(1 for c in value_counts.values() if c > 1)
+        if duplicate_count > 0:
+            analysis['duplicates'][col] = duplicate_count
+
+        # Missing data count
+        missing_count = sum(1 for val in values if val is None or val == '')
+        if missing_count > 0:
+            analysis['missing'][col] = missing_count
+
+        # Detect outliers (for numeric columns)
+        numeric_values = [float(v) for v in values if is_numeric(v)]
+        if len(numeric_values) == len(values) and len(numeric_values) > 1:
+            q1 = np.percentile(numeric_values, 25)
+            q3 = np.percentile(numeric_values, 75)
+            iqr = q3 - q1
+            lower_bound = q1 - 1.5 * iqr
+            upper_bound = q3 + 1.5 * iqr
+            outlier_count = sum(1 for v in numeric_values if v < lower_bound or v > upper_bound)
+            if outlier_count > 0:
+                analysis['outliers'][col] = outlier_count
+
+        # Wrong format: For demonstration, check email columns
+        if 'email' in col.lower():
+            invalid_count = sum(1 for val in values if not is_valid_email(val))
+            # Exclude missing because it's already counted in 'missing'
+            if invalid_count > 0:
+                analysis['wrongFormat'][col] = invalid_count
+
+    return analysis
+>>>>>>> Stashed changes
 
 # Function to convert CSV to JSON
 def csv_to_json(csv_file_path):
-    df = pd.read_csv(csv_file_path)
+    # Ensure that empty strings are treated as NaN
+    df = pd.read_csv(csv_file_path, na_values=[''])
     json_data = {
         "columns": df.columns.tolist(),
         "data": df.to_dict(orient='records')  # Each row as a dictionary
@@ -129,13 +222,26 @@ def csv_to_json(csv_file_path):
 def home():
     if request.method == 'POST':
         file = request.files.get('file')
-        if not file or not file.filename.endswith('.csv'):
-            flash("Please upload a valid CSV file.", "error")
+        if not file:
+            flash("No file part in the request.", "danger")
+            return redirect(url_for('home'))
+        if file.filename == '':
+            flash("No file selected for uploading.", "danger")
+            return redirect(url_for('home'))
+        if not file.filename.lower().endswith('.csv'):
+            flash("Please upload a valid CSV file.", "danger")
             return redirect(url_for('home'))
 
-        # Save the file
-        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(file_path)
+        # Generate a unique filename to prevent overwriting
+        unique_filename = f"{uuid.uuid4().hex}_{file.filename}"
+        file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
+        try:
+            # Ensure that empty strings are treated as NaN during CSV parsing
+            df = pd.read_csv(file, na_values=[''])
+            df.to_csv(file_path, index=False)  # Save the cleaned CSV
+        except Exception as e:
+            flash(f"Failed to save file: {e}", "danger")
+            return redirect(url_for('home'))
         session['file_path'] = file_path
 
         flash("File uploaded successfully. Redirecting to Data Cleaning.", "success")
@@ -151,7 +257,7 @@ def home():
                 os.path.getmtime(os.path.join(UPLOAD_FOLDER, file))
             ).strftime('%Y-%m-%d %H:%M:%S')
         }
-        for file in os.listdir(UPLOAD_FOLDER) if file.endswith('.csv')
+        for file in os.listdir(UPLOAD_FOLDER) if file.lower().endswith('.csv')
     ]
 
     # Sort by timestamp (newest first) and limit to the top 7
@@ -159,8 +265,6 @@ def home():
     top_files = uploaded_files[:7]
 
     return render_template('home.html', files=top_files)
-
-
 
 @app.route('/save-csv', methods=['POST'])
 def save_csv():
@@ -176,53 +280,124 @@ def save_csv():
         if not rows or not all(len(row) == len(columns) for row in rows):
             return jsonify({"error": "Invalid or incomplete rows. Ensure all rows match the column count."}), 400
 
-        # Save CSV file
+        # Generate a unique filename
         timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f"manual_entry_{timestamp}.csv"
-        file_path = os.path.join(UPLOAD_FOLDER, filename)
-        pd.DataFrame(rows, columns=columns).to_csv(file_path, index=False)
+        unique_filename = f"manual_entry_{timestamp}_{uuid.uuid4().hex}.csv"
+        file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
+        df = pd.DataFrame(rows, columns=columns)
+        # Treat empty strings as NaN
+        df.replace('', np.nan, inplace=True)
+        df.to_csv(file_path, index=False)
 
         # Update session for data cleaning
         session['file_path'] = file_path
 
         return jsonify({
             "success": True,
-            "message": f"CSV saved as {filename}. Redirecting to Data Cleaning.",
+            "message": f"CSV saved as {unique_filename}. Redirecting to Data Cleaning.",
             "redirect_url": url_for('cleaning')  # Ensure this generates the correct URL
         })
 
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
-
-
 @app.route('/cleaning', methods=['GET', 'POST'])
 def cleaning():
+<<<<<<< Updated upstream
     if request.method == 'POST' and request.form.get('action') == 'clean_data':
+=======
+    def is_data_clean(df):
+        """
+        Check if the dataset is already clean.
+        Returns True if no missing values, no duplicates, no outliers, and no wrong formats.
+        """
+        # Check for missing values
+        if df.isnull().sum().sum() > 0:
+            return False
+
+        # Check for duplicates
+        if df.duplicated().sum() > 0:
+            return False
+
+        # Check for outliers in numeric columns
+        for col in df.select_dtypes(include=[np.number]).columns:
+            q1 = df[col].quantile(0.25)
+            q3 = df[col].quantile(0.75)
+            iqr = q3 - q1
+            lower_bound = q1 - 1.5 * iqr
+            upper_bound = q3 + 1.5 * iqr
+            outliers = ((df[col] < lower_bound) | (df[col] > upper_bound)).sum()
+            if outliers > 0:
+                return False
+
+        # Check for wrong formats (e.g., invalid emails)
+        email_columns = [c for c in df.columns if 'email' in c.lower()]
+        email_pattern = r"^\S+@\S+\.\S+$"
+        for c in email_columns:
+            invalid_emails = df[c].dropna().apply(lambda x: not bool(re.match(email_pattern, str(x))))
+            if invalid_emails.sum() > 0:
+                return False
+
+        # If none of the checks returned False, the data is considered clean
+        return True
+
+    if request.method == 'POST':
+>>>>>>> Stashed changes
         file_path = session.get('file_path')
         if not file_path:
-            flash("No file uploaded", "error")
+            flash("No file uploaded.", "danger")
             return redirect(url_for('home'))
 
-        # Read the CSV file into DataFrame
+        # Read the CSV file into DataFrame (ensure empty strings are treated as NaN)
         try:
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path, na_values=[''])
         except Exception as e:
-            flash(f"Error reading CSV file: {e}", "error")
+            flash(f"Error reading CSV file: {e}", "danger")
             return redirect(url_for('home'))
 
+<<<<<<< Updated upstream
+=======
+        # Analyze the data for duplicates, errors, etc.
+        data_records = df.to_dict(orient='records')
+        analysis = analyze_data(data_records)  # This should return a dict with counts
+
+        # Check if data is already clean
+        if is_data_clean(df):
+            flash("The dataset is already clean. No further cleaning required.", "info")
+            
+            # Convert to JSON and save (in case it wasn't done before)
+            try:
+                json_file_path = csv_to_json(file_path)
+                session['json_file_path'] = json_file_path
+            except Exception as e:
+                flash(f"Error converting CSV to JSON: {e}", "danger")
+                return redirect(url_for('cleaning'))
+
+            return render_template('data-cleaning.html', 
+                                   table_html=df.to_html(classes='table table-striped', index=False),
+                                   analysis=None,  # No analysis needed
+                                   display_details=DISPLAY_DETAILS)
+        
+        # Data requires cleaning
+        flash("Data requires cleaning. Proceeding with cleaning operations.", "warning")
+
+        # Capture the original data before cleaning
+        original_df = df.copy()
+
+>>>>>>> Stashed changes
         # Clean missing data using the helper function
         df = clean_and_handle_outliers(df)
 
-        # Save cleaned DataFrame with the same name but with "_cleaned" suffix
+        # Save cleaned DataFrame with "_cleaned" suffix
         original_filename = os.path.basename(file_path)
         cleaned_filename = f"{os.path.splitext(original_filename)[0]}_cleaned.csv"
         cleaned_file_path = os.path.join(UPLOAD_FOLDER, cleaned_filename)
 
         try:
             df.to_csv(cleaned_file_path, index=False)
+            flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
         except Exception as e:
-            flash(f"Error saving cleaned CSV file: {e}", "error")
+            flash(f"Error saving cleaned CSV file: {e}", "danger")
             return redirect(url_for('home'))
 
         # Convert cleaned CSV to JSON and save
@@ -230,38 +405,79 @@ def cleaning():
             json_file_path = csv_to_json(cleaned_file_path)
             session['json_file_path'] = json_file_path
         except Exception as e:
-            flash(f"Error converting CSV to JSON: {e}", "error")
+            flash(f"Error converting CSV to JSON: {e}", "danger")
             return redirect(url_for('cleaning'))
 
-        # Optionally, update 'file_path' to point to the cleaned file
+        # Update 'file_path' to point to the cleaned file
         session['file_path'] = cleaned_file_path
 
+<<<<<<< Updated upstream
         flash(f"Missing data cleaned successfully. Saved as {cleaned_filename}.", "success")
         return render_template('data-cleaning.html', table_html=df.to_html(classes='table table-striped'))
+=======
+        # Analyze the cleaned data
+        cleaned_data_records = df.to_dict(orient='records')
+        cleaned_analysis = analyze_data(cleaned_data_records)
+
+        return render_template('data-cleaning.html', 
+                               original_table_html=original_df.to_html(classes='table table-striped', index=False),
+                               cleaned_table_html=df.to_html(classes='table table-striped', index=False),
+                               table_html=df.to_html(classes='table table-striped', index=False),
+                               analysis=cleaned_analysis,
+                               display_details=DISPLAY_DETAILS)
+>>>>>>> Stashed changes
 
     # Handle GET request
     file_path = session.get('file_path')
     if not file_path:
+<<<<<<< Updated upstream
         return render_template('data-cleaning.html', table_html=None)
+=======
+        return render_template('data-cleaning.html', 
+                               table_html=None, 
+                               analysis=None,
+                               display_details=DISPLAY_DETAILS)
+>>>>>>> Stashed changes
 
-    # Read the CSV file into DataFrame to display
+    # Read the CSV file into DataFrame
     try:
+<<<<<<< Updated upstream
         df = pd.read_csv(file_path)
         table_html = df.to_html(classes='table table-striped')
+=======
+        df = pd.read_csv(file_path, na_values=[''])
+        table_html = df.to_html(classes='table table-striped', index=False)
+>>>>>>> Stashed changes
     except Exception as e:
-        flash(f"Error reading CSV file: {e}", "error")
+        flash(f"Error reading CSV file: {e}", "danger")
         table_html = None
 
+<<<<<<< Updated upstream
     return render_template('data-cleaning.html', table_html=table_html)
+=======
+    # Analyze the data
+    data_records = df.to_dict(orient='records')
+    analysis = analyze_data(data_records)
 
+    # Determine if data is clean
+    if is_data_clean(df):
+        flash("The dataset is already clean. No further cleaning required.", "info")
+        analysis = None  # No analysis needed
+    else:
+        flash("Data has issues. Please review the analysis below.", "warning")
+>>>>>>> Stashed changes
 
-# Route: Save to Visualize
+    return render_template('data-cleaning.html', 
+                           table_html=table_html, 
+                           analysis=analysis,
+                           display_details=DISPLAY_DETAILS)
+
 @app.route('/save-to-visualize', methods=['POST'])
 def save_to_visualize():
     # Redirect to visualize after ensuring cleaned data exists
     json_file_path = session.get('json_file_path')
     if not json_file_path or not os.path.exists(json_file_path):
-        flash("No JSON file found. Please clean data first.", "error")
+        flash("No JSON file found. Please clean data first.", "danger")
         return redirect(url_for('cleaning'))
     return redirect(url_for('visualize'))
 
@@ -271,7 +487,7 @@ def visualize():
     
     # Check if the file exists
     if not json_file_path or not os.path.exists(json_file_path):
-        flash("No JSON file found. Please clean data first.", "error")
+        flash("No JSON file found. Please clean data first.", "danger")
         return redirect(url_for('cleaning'))
 
     # Read the JSON data
@@ -289,8 +505,6 @@ def visualize():
 
     return render_template('visualization.html', chart_data=json.dumps(chart_data))
 
-
-
 @app.route('/get-json-data', methods=['GET'])
 def get_json_data():
     """Serve JSON data dynamically for visualization."""
@@ -302,7 +516,6 @@ def get_json_data():
         chart_data = json.load(json_file)
 
     return jsonify(chart_data)
-
 
 @app.route('/create-new')
 def create():
@@ -323,7 +536,7 @@ def browse_files():
             'date_modified': os.path.getmtime(os.path.join(UPLOAD_FOLDER, file)),  # File modification timestamp
             'size': os.path.getsize(os.path.join(UPLOAD_FOLDER, file))  # File size in bytes
         }
-        for file in uploaded_files if file.endswith(('.csv', '.xlsx'))  # Filter by allowed file types
+        for file in uploaded_files if file.lower().endswith(('.csv', '.xlsx'))  # Filter by allowed file types
     ]
 
     # Sort files by modification time (most recent first)
@@ -349,7 +562,6 @@ def view_file(filename):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
 @app.route('/delete-file/<filename>', methods=['POST'])
 def delete_file(filename):
     file_path = os.path.join(UPLOAD_FOLDER, filename)
@@ -363,7 +575,6 @@ def delete_file(filename):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
 @app.route('/account-setting')
 def accountSetting():
     return render_template('account-setting.html')
@@ -372,5 +583,10 @@ def accountSetting():
 def layout():
     return render_template('layout.html')
 
+<<<<<<< Updated upstream
 if __name__ == "__main__":
     app.run(debug=True)
+=======
+if __name__ == '__main__':
+    app.run(debug=True)
+>>>>>>> Stashed changes

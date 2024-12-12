@@ -2,7 +2,101 @@
 
 {% block content %}
 <div class="main-cleaning-container">
+<<<<<<< Updated upstream
     <h1 class="title">Data Cleaning</h1>
+=======
+    <h1 class="title text-pink">Data Cleaning</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <!-- Modal for Flash Messages -->
+        <div class="modal fade" id="flashModal" tabindex="-1" aria-labelledby="flashModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header bg-pink text-white">
+                <h5 class="modal-title" id="flashModalLabel">Data Issues</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Detailed Lists in a Scrollable Area -->
+                <div class="modal-scrollable">
+                    {% if analysis.duplicates %}
+                        <h6>Duplicates:</h6>
+                        <ul class="analysis-list">
+                            {% for col, count in analysis.duplicates.items() %}
+                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if analysis.missing %}
+                        <h6>Missing Values:</h6>
+                        <ul class="analysis-list">
+                             {% for col, count in analysis.missing.items() %}
+                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if analysis.outliers %}
+                        <h6>Outliers:</h6>
+                        <ul class="analysis-list">
+                             {% for col, count in analysis.outliers.items() %}
+                                 <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if analysis.wrongFormat %}
+                        <h6>Wrong Formats:</h6>
+                         <ul class="analysis-list">
+                            {% for col, count in analysis.wrongFormat.items() %}
+                                <li><span class="col-name">{{ col }}:</span> <span class="count">{{ count }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <!-- Flashed Messages -->
+                <hr>
+                <h6>Note:</h6>
+                <ul>
+                  {% for category, message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if analysis %}
+    <div class="card mb-4">
+        <div class="card-header bg-pink text-white">
+            Data Analysis Summary
+        </div>
+        <div class="card-body">
+            <!-- Only show counts here to avoid duplication -->
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Total Duplicates:</strong> {{ analysis.duplicates|length if analysis.duplicates else 0 }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Missing Values:</strong> {{ analysis.missing|length if analysis.missing else 0 }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Outliers:</strong> {{ analysis.outliers|length if analysis.outliers else 0 }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Total Wrong Formats:</strong> {{ analysis.wrongFormat|length if analysis.wrongFormat else 0 }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+>>>>>>> Stashed changes
 
     <div class="main-cleaning">
         <div class="table-container">
@@ -18,6 +112,7 @@
 </div>
 
 <div class="cleaning-container">
+<<<<<<< Updated upstream
     <!-- Button to trigger cleaning -->
     <form method="POST">
         <button type="submit" name="action" value="clean_data">Clean Data</button>
@@ -25,13 +120,32 @@
 
     <form method="POST" action="/save-to-visualize">
         <button id="visualize" type="submit">Visualize</button>
+=======
+    <form method="POST" class="d-inline">
+        <button type="submit" name="action" value="clean_data" class="btn btn-pink">Clean Data</button>
+    </form>
+    <form method="POST" action="{{ url_for('save_to_visualize') }}" class="d-inline">
+        <button id="visualize" type="submit" class="btn btn-pink">Visualize</button>
+>>>>>>> Stashed changes
     </form>
 </div>
 
 {% block styles %}
 <style>
+<<<<<<< Updated upstream
     /* Styles for buttons and table */
     button {
+=======
+    .text-pink {
+        color: #ff69b4 !important;
+    }
+
+    .bg-pink {
+        background-color: #ffb6c1 !important;
+    }
+
+    .btn-pink {
+>>>>>>> Stashed changes
         background-color: #ffb6c1;
         color: black;
         border: none;
@@ -41,19 +155,117 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
+<<<<<<< Updated upstream
 
     .main-cleaning-container {
         /* background-color: aqua; */
         margin-bottom: 20px;
         /* overflow-y: scroll; */
         height: 85vh !important;
+=======
+    .btn-pink:hover {
+        background-color: #ff69b4;
+        color: white;
+    }
+
+    .list-group-item {
+        border: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+    }
+    th {
+        background-color: #ffb6c1;
+        color: white;
+    }
+
+    .main-cleaning-container {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 1200px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .cleaning-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .cleaning-container form {
+        display: inline;
+    }
+
+    @media (max-width: 768px) {
+        .main-cleaning-container {
+            margin: 10px;
+            padding: 15px;
+        }
+        .btn-pink {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .cleaning-container .btn-group {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .main-cleaning-container {
+            padding: 10px;
+        }
+>>>>>>> Stashed changes
+    }
+
+    /* Analysis List Styles */
+    .analysis-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    .analysis-list li {
+       display: flex;
+       align-items: baseline;
+       margin-bottom: 5px;
+       line-height: 1.5;
+    }
+    .col-name {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .count {
+    }
+    /* Modal Scrollable */
+    .modal-scrollable {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 15px;
     }
 </style>
 {% endblock %}
 
 {% block scripts %}
 <script>
-    // JavaScript code if needed for extra functionality
+    document.addEventListener("DOMContentLoaded", function() {
+        var flashModalEl = document.getElementById('flashModal');
+        if (flashModalEl) {
+            var flashModal = new bootstrap.Modal(flashModalEl);
+            flashModal.show();
+        }
+    });
 </script>
+<<<<<<< Updated upstream
 {% endblock %}
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> Stashed changes
